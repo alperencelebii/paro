@@ -1,0 +1,309 @@
+{
+  "_note1": "KEEP THIS FILE! Check it into a version control system (VCS) like git.",
+  "_note2": "ObjectBox manages crucial IDs for your object model. See docs for details.",
+  "_note3": "If you have VCS merge conflicts, you must resolve them according to ObjectBox docs.",
+  "entities": [
+    {
+      "id": "3:81247634925384840",
+      "lastPropertyId": "10:6988449071697347134",
+      "name": "Budget",
+      "properties": [
+        {
+          "id": "1:6510363472607288521",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:246579353552254622",
+          "name": "uuid",
+          "indexId": "3:333496852605170742",
+          "type": 9,
+          "flags": 2048
+        },
+        {
+          "id": "3:3121793599520404564",
+          "name": "amount",
+          "type": 8
+        },
+        {
+          "id": "4:6198282910203467533",
+          "name": "periodIndex",
+          "type": 6
+        },
+        {
+          "id": "5:8526747932628606350",
+          "name": "startDate",
+          "type": 10
+        },
+        {
+          "id": "6:5634995161435591799",
+          "name": "endDate",
+          "type": 10
+        },
+        {
+          "id": "7:499660993621569982",
+          "name": "createdAt",
+          "type": 10
+        },
+        {
+          "id": "8:4401545225109218369",
+          "name": "updatedAt",
+          "type": 10
+        },
+        {
+          "id": "9:1105721272587349487",
+          "name": "isActive",
+          "type": 1
+        },
+        {
+          "id": "10:6988449071697347134",
+          "name": "title",
+          "type": 9
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "5:739067201194216546",
+      "lastPropertyId": "14:990660789136097827",
+      "name": "Expense",
+      "properties": [
+        {
+          "id": "1:7479706554208144328",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:2940436087485513663",
+          "name": "uuid",
+          "indexId": "5:7684636022723500697",
+          "type": 9,
+          "flags": 2048
+        },
+        {
+          "id": "3:1800047645681547632",
+          "name": "title",
+          "type": 9
+        },
+        {
+          "id": "4:7878583720816409208",
+          "name": "amount",
+          "type": 8
+        },
+        {
+          "id": "5:249318011635223086",
+          "name": "date",
+          "type": 10
+        },
+        {
+          "id": "6:1543650949294280813",
+          "name": "categoryIndex",
+          "type": 6
+        },
+        {
+          "id": "7:8776865924080066574",
+          "name": "notes",
+          "type": 9
+        },
+        {
+          "id": "8:1455796930493397699",
+          "name": "paymentMethod",
+          "type": 9
+        },
+        {
+          "id": "9:4192989828849925450",
+          "name": "createdAt",
+          "type": 10
+        },
+        {
+          "id": "10:7365941715385902777",
+          "name": "customCategoryUuid",
+          "type": 9
+        },
+        {
+          "id": "11:5200336887223575820",
+          "name": "customCategoryName",
+          "type": 9
+        },
+        {
+          "id": "12:2782679574075699713",
+          "name": "customCategoryColorValue",
+          "type": 6
+        },
+        {
+          "id": "13:6010590442099476674",
+          "name": "customCategoryIconCodePoint",
+          "type": 6
+        },
+        {
+          "id": "14:990660789136097827",
+          "name": "customCategoryIconFontFamily",
+          "type": 9
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "6:7534537932749283974",
+      "lastPropertyId": "9:9093734368351599795",
+      "name": "Income",
+      "properties": [
+        {
+          "id": "1:407559700923601184",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:5013365351290766669",
+          "name": "uuid",
+          "indexId": "6:6203993762936950393",
+          "type": 9,
+          "flags": 2048
+        },
+        {
+          "id": "3:7342506963534845692",
+          "name": "title",
+          "type": 9
+        },
+        {
+          "id": "4:2014358193606310980",
+          "name": "amount",
+          "type": 8
+        },
+        {
+          "id": "5:4709049015137708348",
+          "name": "date",
+          "type": 10
+        },
+        {
+          "id": "6:5100157389212553420",
+          "name": "categoryIndex",
+          "type": 6
+        },
+        {
+          "id": "7:3766088310270361795",
+          "name": "notes",
+          "type": 9
+        },
+        {
+          "id": "8:6410935936453824060",
+          "name": "source",
+          "type": 9
+        },
+        {
+          "id": "9:9093734368351599795",
+          "name": "createdAt",
+          "type": 10
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "7:4144893094494599026",
+      "lastPropertyId": "10:4298117351285369764",
+      "name": "UserCategory",
+      "properties": [
+        {
+          "id": "1:3314709630581406443",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:6648677548663915945",
+          "name": "uuid",
+          "indexId": "7:7721961223379734638",
+          "type": 9,
+          "flags": 2048
+        },
+        {
+          "id": "3:9182622049072066739",
+          "name": "name",
+          "type": 9
+        },
+        {
+          "id": "4:8265655068231453351",
+          "name": "typeIndex",
+          "type": 6
+        },
+        {
+          "id": "5:5414667479545639482",
+          "name": "iconCodePoint",
+          "type": 6
+        },
+        {
+          "id": "6:4502809608429993445",
+          "name": "iconFontFamily",
+          "type": 9
+        },
+        {
+          "id": "7:6352591594616012320",
+          "name": "colorValue",
+          "type": 6
+        },
+        {
+          "id": "8:3823458794606573811",
+          "name": "isDeleted",
+          "type": 1
+        },
+        {
+          "id": "9:3936056188928035010",
+          "name": "createdAt",
+          "type": 10
+        },
+        {
+          "id": "10:4298117351285369764",
+          "name": "updatedAt",
+          "type": 10
+        }
+      ],
+      "relations": []
+    }
+  ],
+  "lastEntityId": "7:4144893094494599026",
+  "lastIndexId": "7:7721961223379734638",
+  "lastRelationId": "0:0",
+  "lastSequenceId": "0:0",
+  "modelVersion": 5,
+  "modelVersionParserMinimum": 5,
+  "retiredEntityUids": [
+    1386435878457391709,
+    4667250250272597199,
+    8530910738154387533
+  ],
+  "retiredIndexUids": [],
+  "retiredPropertyUids": [
+    4286248834555536309,
+    8201299129727239372,
+    2588423017779414273,
+    4067201059480405127,
+    7747404916808867456,
+    5882767399302189665,
+    868554118677768587,
+    7251540454158036757,
+    8737047782863942502,
+    8926470496389535023,
+    6005398066568197137,
+    8426471651077318668,
+    2023289715859698165,
+    160074701273853127,
+    476365427094538494,
+    5229508165175136115,
+    2013005097154119909,
+    1414350139442935485,
+    7544111559829825367,
+    7580535854297647677,
+    7266669356714285421,
+    574415832587173121,
+    6634070900413190953,
+    7406951788279076765,
+    5615406809933684389,
+    9047599874853163601,
+    2223034359026450276
+  ],
+  "retiredRelationUids": [],
+  "version": 1
+}

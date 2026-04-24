@@ -1,0 +1,25 @@
+name: firebase_authentication_client
+description: A Very Good Project created by Very Good CLI.
+version: 0.1.0+1
+publish_to: none
+
+environment:
+  sdk: ^3.5.0
+  flutter: ^3.24.0
+
+dependencies:
+  authentication_client:
+    path: ../authentication_client
+  firebase_auth: ^6.0.0
+  flutter:
+    sdk: flutter
+  flutter_facebook_auth: ^7.1.1
+  google_sign_in: ^7.1.1
+  token_storage:
+    path: ../token_storage
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  mocktail: ^1.0.4
+  very_good_analysis: ^6.0.0
