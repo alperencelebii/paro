@@ -497,9 +497,8 @@ obx_int.ModelDefinition getObjectBoxModel() {
       objectToFB: (Expense object, fb.Builder fbb) {
         final uuidOffset = fbb.writeString(object.uuid);
         final titleOffset = fbb.writeString(object.title);
-        final notesOffset = object.notes == null
-            ? null
-            : fbb.writeString(object.notes!);
+        final notesOffset =
+            object.notes == null ? null : fbb.writeString(object.notes!);
         final paymentMethodOffset = fbb.writeString(object.paymentMethod);
         final customCategoryUuidOffset = object.customCategoryUuid == null
             ? null
@@ -509,8 +508,8 @@ obx_int.ModelDefinition getObjectBoxModel() {
             : fbb.writeString(object.customCategoryName!);
         final customCategoryIconFontFamilyOffset =
             object.customCategoryIconFontFamily == null
-            ? null
-            : fbb.writeString(object.customCategoryIconFontFamily!);
+                ? null
+                : fbb.writeString(object.customCategoryIconFontFamily!);
         fbb.startTable(15);
         fbb.addInt64(0, object.id ?? 0);
         fbb.addOffset(1, uuidOffset);
@@ -576,8 +575,8 @@ obx_int.ModelDefinition getObjectBoxModel() {
             rootOffset,
             26,
           )
-          ..customCategoryIconCodePoint = const fb.Int64Reader()
-              .vTableGetNullable(buffer, rootOffset, 28)
+          ..customCategoryIconCodePoint =
+              const fb.Int64Reader().vTableGetNullable(buffer, rootOffset, 28)
           ..customCategoryIconFontFamily = const fb.StringReader(
             asciiOptimization: true,
           ).vTableGetNullable(buffer, rootOffset, 30);
@@ -596,9 +595,8 @@ obx_int.ModelDefinition getObjectBoxModel() {
       objectToFB: (Income object, fb.Builder fbb) {
         final uuidOffset = fbb.writeString(object.uuid);
         final titleOffset = fbb.writeString(object.title);
-        final notesOffset = object.notes == null
-            ? null
-            : fbb.writeString(object.notes!);
+        final notesOffset =
+            object.notes == null ? null : fbb.writeString(object.notes!);
         final sourceOffset = fbb.writeString(object.source);
         fbb.startTable(10);
         fbb.addInt64(0, object.id ?? 0);
