@@ -21,7 +21,7 @@ class SignupForm extends StatelessWidget {
         } else if (state.submissionStatus == SubmissionStatus.success) {
           // On success, navigate to verify email screen using GoRouter
           // ignore: use_build_context_synchronously
-          GoRouter.of(context).go('/verify-email');
+          GoRouter.of(context).go('/');
         }
       },
       child: const _SignupFormView(),
