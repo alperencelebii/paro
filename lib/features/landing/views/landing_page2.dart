@@ -40,7 +40,7 @@ class LandingPage2 extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Intelligent Finance',
+                        'Akıllı Finans',
                         style: TextStyle(
                           fontSize: 18.sp,
                           fontWeight: FontWeight.bold,
@@ -51,7 +51,7 @@ class LandingPage2 extends StatelessWidget {
                       ),
                       SizedBox(height: 4.h),
                       Text(
-                        'AI-powered tools to organize your finances',
+                        'Finansal işlemlerinizi düzenlemek için yapay zeka destekli araçlar.',
                         style: TextStyle(
                           fontSize: 12.sp,
                           fontWeight: FontWeight.w400,
@@ -77,9 +77,9 @@ class LandingPage2 extends StatelessWidget {
             _buildFeatureItem(
               theme: theme,
               icon: Icons.show_chart,
-              title: 'Expense Tracking',
+              title: 'Gider Takibi',
               description:
-                  'Record transactions with ease and categorize automatically',
+                  'İşlemleri kolayca kaydedin ve otomatik olarak kategorize edin.',
               mockup: _buildExpenseTrackingMockup(theme),
             ),
 
@@ -88,9 +88,9 @@ class LandingPage2 extends StatelessWidget {
             _buildFeatureItem(
               theme: theme,
               icon: Icons.pie_chart,
-              title: 'Smart Analytics',
+              title: 'Akıllı Analitik',
               description:
-                  'Get insights about your spending habits and patterns',
+                  'Harcama alışkanlıklarınız ve kalıplarınız hakkında bilgi edinin.',
               mockup: _buildAnalyticsMockup(theme),
             ),
 
@@ -99,9 +99,9 @@ class LandingPage2 extends StatelessWidget {
             _buildFeatureItem(
               theme: theme,
               icon: Icons.account_balance_wallet,
-              title: 'Budget Setting',
+              title: 'Bütçe Belirleme',
               description:
-                  'Set and track budgets for different expense categories',
+                  'Farklı gider kategorileri için bütçeler belirleyin ve takip edin.',
               mockup: _buildBudgetPlanningMockup(theme),
             ),
 
@@ -217,7 +217,7 @@ class LandingPage2 extends StatelessWidget {
                 SizedBox(width: 8.w),
                 Expanded(
                   child: Text(
-                    'Add Transaction',
+                    'İşlem Ekle',
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 14.sp,
@@ -243,18 +243,18 @@ class LandingPage2 extends StatelessWidget {
                   itemBuilder: (context, index) {
                     final List<Map<String, dynamic>> transactions = [
                       {
-                        'name': 'Grocery Store',
-                        'amount': '-\$32.50',
+                        'name': 'Ali Yılmaz',
+                        'amount': '-\₺32.50',
                         'icon': Icons.shopping_basket
                       },
                       {
-                        'name': 'Salary',
-                        'amount': '+\$1,250.00',
+                        'name': 'Maaş',
+                        'amount': '+\₺1,250.00',
                         'icon': Icons.payments
                       },
                       {
-                        'name': 'Utilities',
-                        'amount': '-\$75.30',
+                        'name': 'Hizmetler',
+                        'amount': '-\₺75.30',
                         'icon': Icons.bolt
                       },
                     ];
@@ -333,7 +333,7 @@ class LandingPage2 extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Monthly Summary',
+                'Aylık Özet',
                 style: TextStyle(
                   fontSize: 14.sp,
                   fontWeight: FontWeight.w600,
@@ -355,7 +355,7 @@ class LandingPage2 extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            'Income',
+                            'Gelir',
                             style: TextStyle(
                               fontSize: 11.sp,
                               color: theme.colorScheme.onSurface
@@ -364,7 +364,7 @@ class LandingPage2 extends StatelessWidget {
                           ),
                           SizedBox(height: 2.h),
                           Text(
-                            '\$2,450',
+                            '\₺2,450',
                             style: TextStyle(
                               fontSize: 14.sp,
                               fontWeight: FontWeight.bold,
@@ -388,7 +388,7 @@ class LandingPage2 extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            'Expenses',
+                            'Gider',
                             style: TextStyle(
                               fontSize: 11.sp,
                               color: theme.colorScheme.onSurface
@@ -397,7 +397,7 @@ class LandingPage2 extends StatelessWidget {
                           ),
                           SizedBox(height: 2.h),
                           Text(
-                            '\$1,286',
+                            '\₺1,286',
                             style: TextStyle(
                               fontSize: 14.sp,
                               fontWeight: FontWeight.bold,
@@ -421,7 +421,7 @@ class LandingPage2 extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            'Savings',
+                            'Tasarruf',
                             style: TextStyle(
                               fontSize: 11.sp,
                               color: theme.colorScheme.onSurface
@@ -430,7 +430,7 @@ class LandingPage2 extends StatelessWidget {
                           ),
                           SizedBox(height: 2.h),
                           Text(
-                            '\$1,164 (47%)',
+                            '\₺1,164 (47%)',
                             style: TextStyle(
                               fontSize: 14.sp,
                               fontWeight: FontWeight.bold,
@@ -454,19 +454,19 @@ class LandingPage2 extends StatelessWidget {
   Widget _buildBudgetPlanningMockup(ThemeData theme) {
     final List<Map<String, dynamic>> categories = [
       {
-        'name': 'Food & Dining',
+        'name': 'Yiyecek & İçecek',
         'spent': 320,
         'budget': 400,
         'icon': Icons.restaurant
       },
       {
-        'name': 'Transportation',
+        'name': 'Toplu taşıma',
         'spent': 180,
         'budget': 200,
         'icon': Icons.directions_car
       },
       {
-        'name': 'Entertainment',
+        'name': 'Eğlence',
         'spent': 120,
         'budget': 150,
         'icon': Icons.movie
@@ -484,7 +484,7 @@ class LandingPage2 extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Budget Overview',
+                'Bütçeye Genel Bakış',
                 style: TextStyle(
                   fontSize: 14.sp,
                   fontWeight: FontWeight.w600,
@@ -520,7 +520,7 @@ class LandingPage2 extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            '\$${category['spent']} / \$${category['budget']}',
+                            '\₺${category['spent']} / \₺${category['budget']}',
                             style: TextStyle(
                               fontSize: 12.sp,
                               fontWeight: FontWeight.w500,

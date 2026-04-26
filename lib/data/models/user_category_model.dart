@@ -3,48 +3,68 @@
 import 'package:objectbox/objectbox.dart';
 import 'package:flutter/material.dart';
 
-/// Type of category for transactions
 enum CategoryType {
   expense,
   income,
 }
 
-/// Extension for CategoryType serialization
 extension CategoryTypeExtension on CategoryType {
-  /// Convert to JSON (returns the enum index)
   int toJson() => index;
 
-  /// Create from JSON
   static CategoryType fromJson(int index) =>
       CategoryType.values[index.clamp(0, CategoryType.values.length - 1)];
 }
 
-/// User-defined category stored locally (ObjectBox) and in Firestore
+/// Flutter release build için güvenli icon resolver
+class CategoryIconResolver {
+  static const Map<int, IconData> icons = {
+    0xe532: Icons.restaurant,
+    0xe59c: Icons.directions_car,
+    0xe8cc: Icons.shopping_cart,
+    0xe88a: Icons.home,
+    0xe227: Icons.attach_money,
+    0xe8f6: Icons.local_hospital,
+    0xe53f: Icons.local_gas_station,
+    0xe80c: Icons.school,
+    0xe3f3: Icons.movie,
+    0xe8b8: Icons.settings,
+    0xe574: Icons.flight,
+    0xe57d: Icons.train,
+    0xe530: Icons.directions_bus,
+    0xe541: Icons.local_taxi,
+    0xe8e5: Icons.work,
+    0xe263: Icons.savings,
+    0xe850: Icons.account_balance,
+    0xe2c7: Icons.category,
+  };
+
+  static IconData? fromCodePoint(int? codePoint) {
+    if (codePoint == null) return null;
+    return icons[codePoint] ?? Icons.category;
+  }
+}
+
 @Entity()
 class UserCategory {
   @Id()
   int? id;
 
-  /// Stable UUID across devices (used as Firestore document ID)
   @Index()
   String uuid = '';
 
-  /// Display name
   String name = '';
 
-  /// Category type (expense or income)
   int typeIndex = 0;
 
-  /// Optional Material icon codePoint to render with IconData
+  /// Optional Material icon codePoint.
+  /// Not directly converted with IconData(...) because release build fails.
   int? iconCodePoint;
 
-  /// Optional Material icon font family (defaults to 'MaterialIcons')
+  /// Kept for backward compatibility, but no longer used for IconData creation.
   String? iconFontFamily;
 
-  /// ARGB color value
   int colorValue = 0;
 
-  /// Soft-delete flag for safe sync
   bool isDeleted = false;
 
   @Property(type: PropertyType.date)
@@ -53,10 +73,8 @@ class UserCategory {
   @Property(type: PropertyType.date)
   DateTime updatedAt = DateTime.now();
 
-  /// No-args constructor for ObjectBox
   UserCategory();
 
-  /// Convenience constructor to create a new category
   UserCategory.create({
     int? id,
     required String uuid,
@@ -83,9 +101,7 @@ class UserCategory {
 
   CategoryType get type => CategoryType.values[typeIndex];
 
-  IconData? get icon => iconCodePoint != null
-      ? IconData(iconCodePoint!, fontFamily: iconFontFamily ?? 'MaterialIcons')
-      : null;
+  IconData? get icon => CategoryIconResolver.fromCodePoint(iconCodePoint);
 
   Color get color => Color(colorValue);
 
@@ -111,10 +127,10 @@ class UserCategory {
       ..isDeleted = isDeleted ?? this.isDeleted
       ..createdAt = createdAt ?? this.createdAt
       ..updatedAt = updatedAt ?? this.updatedAt;
+
     return result;
   }
 
-  /// Convert to JSON
   Map<String, dynamic> toJson() => {
         'id': id,
         'uuid': uuid,
@@ -128,7 +144,6 @@ class UserCategory {
         'updatedAt': updatedAt.toIso8601String(),
       };
 
-  /// Create from JSON
   factory UserCategory.fromJson(Map<String, dynamic> json) {
     final category = UserCategory()
       ..id = json['id'] as int?
@@ -139,12 +154,15 @@ class UserCategory {
       ..iconFontFamily = json['iconFontFamily'] as String?
       ..colorValue = json['colorValue'] as int? ?? 0
       ..isDeleted = json['isDeleted'] as bool? ?? false;
+
     if (json['createdAt'] != null) {
       category.createdAt = DateTime.parse(json['createdAt'] as String);
     }
+
     if (json['updatedAt'] != null) {
       category.updatedAt = DateTime.parse(json['updatedAt'] as String);
     }
+
     return category;
   }
 }

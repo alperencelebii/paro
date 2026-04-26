@@ -40,7 +40,7 @@ class LandingPage1 extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Smart Expense Tracker',
+                        'Akıllı Cüzdan Takibi',
                         style: TextStyle(
                           fontSize: 18.sp,
                           fontWeight: FontWeight.bold,
@@ -51,7 +51,7 @@ class LandingPage1 extends StatelessWidget {
                       ),
                       SizedBox(height: 4.h),
                       Text(
-                        'Your complete financial companion',
+                        'Tam Kapsamlı Cep Ortağınız',
                         style: TextStyle(
                           fontSize: 12.sp,
                           fontWeight: FontWeight.w400,
@@ -80,7 +80,7 @@ class LandingPage1 extends StatelessWidget {
 
             // Features List
             Text(
-              'Key Features',
+              'Başlıca Özellikler',
               style: TextStyle(
                 fontSize: 18.sp,
                 fontWeight: FontWeight.bold,
@@ -93,8 +93,8 @@ class LandingPage1 extends StatelessWidget {
             _buildFeature(
               theme: theme,
               icon: Icons.track_changes_rounded,
-              title: 'Smart Tracking',
-              description: 'Automatically categorize expenses and income',
+              title: 'Akıllı Takip',
+              description: 'Giderleri ve gelirleri otomatik olarak kategorize et.',
               color: theme.colorScheme.primary,
               index: 0,
             ),
@@ -104,9 +104,9 @@ class LandingPage1 extends StatelessWidget {
             _buildFeature(
               theme: theme,
               icon: Icons.insert_chart_outlined_rounded,
-              title: 'Powerful Analytics',
+              title: 'Güçlü ve Analitik',
               description:
-                  'Visualize trends with interactive charts and insights',
+                  'İnteraktif grafikler ve analizlerle trendleri görselleştirin.',
               color: theme.colorScheme.secondary,
               index: 1,
             ),
@@ -116,9 +116,9 @@ class LandingPage1 extends StatelessWidget {
             _buildFeature(
               theme: theme,
               icon: Icons.attach_money_rounded,
-              title: 'Budget Setting',
+              title: 'Bütçe Belirleme',
               description:
-                  'Create monthly budgets and monitor your spending limits',
+                  'Aylık bütçeler oluşturun ve harcama limitlerinizi takip edin.',
               color: theme.colorScheme.tertiary,
               index: 2,
             ),
@@ -128,8 +128,8 @@ class LandingPage1 extends StatelessWidget {
             _buildFeature(
               theme: theme,
               icon: Icons.sync_rounded,
-              title: 'Cloud Sync',
-              description: 'Access your data across all your devices securely',
+              title: 'Bulut Senkronizasyonu',
+              description: 'Verilerinize tüm cihazlarınızdan güvenli bir şekilde erişin.',
               color: Colors.blueAccent,
               index: 3,
             ),
@@ -222,7 +222,7 @@ class LandingPage1 extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          'Dashboard',
+                          'Kontrol Paneli',
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 14.sp,
@@ -250,7 +250,7 @@ class LandingPage1 extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Total Balance',
+                                'Toplam Bakiye',
                                 style: TextStyle(
                                   fontSize: 10.sp,
                                   color: theme.colorScheme.onSurface
@@ -258,7 +258,7 @@ class LandingPage1 extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                '\$4,285.00',
+                                '\₺4,285.00',
                                 style: TextStyle(
                                   fontSize: 14.sp,
                                   fontWeight: FontWeight.bold,
@@ -290,14 +290,14 @@ class LandingPage1 extends StatelessWidget {
                                 ),
                                 SizedBox(height: 4.h),
                                 Text(
-                                  'Income',
+                                  'Gelir',
                                   style: TextStyle(
                                     fontSize: 10.sp,
                                     color: Colors.green[700],
                                   ),
                                 ),
                                 Text(
-                                  '\$5,240',
+                                  '\₺5,240',
                                   style: TextStyle(
                                     fontSize: 12.sp,
                                     fontWeight: FontWeight.bold,
@@ -326,14 +326,14 @@ class LandingPage1 extends StatelessWidget {
                                 ),
                                 SizedBox(height: 4.h),
                                 Text(
-                                  'Expense',
+                                  'Gider',
                                   style: TextStyle(
                                     fontSize: 10.sp,
                                     color: Colors.red[700],
                                   ),
                                 ),
                                 Text(
-                                  '\$955',
+                                  '\₺955',
                                   style: TextStyle(
                                     fontSize: 12.sp,
                                     fontWeight: FontWeight.bold,

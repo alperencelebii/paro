@@ -41,7 +41,7 @@ class LandingPage3 extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Data Analytics',
+                        'Veri Analizi',
                         style: TextStyle(
                           fontSize: 18.sp,
                           fontWeight: FontWeight.bold,
@@ -52,7 +52,7 @@ class LandingPage3 extends StatelessWidget {
                       ),
                       SizedBox(height: 4.h),
                       Text(
-                        'Visualize your spending with smart analytics',
+                        'Akıllı analizlerle harcamalarınızı görselleştirin.',
                         style: TextStyle(
                           fontSize: 12.sp,
                           fontWeight: FontWeight.w400,
@@ -81,7 +81,7 @@ class LandingPage3 extends StatelessWidget {
 
             // Features section title
             Text(
-              'Advanced Features',
+              'Gelişmiş Özellikler',
               style: TextStyle(
                 fontSize: 18.sp,
                 fontWeight: FontWeight.bold,
@@ -94,9 +94,9 @@ class LandingPage3 extends StatelessWidget {
             // Feature cards - Keeping these elements as user likes them
             _buildFeatureCard(
               theme: theme,
-              title: 'Smart Categorization',
+              title: 'Akıllı Kategorizasyon',
               description:
-                  'Automatically categorize transactions based on merchant and spending patterns',
+                  'İşlemleri satıcı ve harcama alışkanlıklarına göre otomatik olarak kategorize edin.',
               icon: Icons.category_rounded,
               color: theme.colorScheme.primary,
               index: 0,
@@ -107,9 +107,9 @@ class LandingPage3 extends StatelessWidget {
 
             _buildFeatureCard(
               theme: theme,
-              title: 'Spending Insights',
+              title: 'Harcama Analizleri',
               description:
-                  'Get personalized insights and recommendations to optimize your finances',
+                  'Finansal durumunuzu optimize etmek için kişiselleştirilmiş bilgiler ve öneriler alın.',
               icon: Icons.lightbulb_outline,
               color: theme.colorScheme.secondary,
               index: 1,
@@ -120,9 +120,9 @@ class LandingPage3 extends StatelessWidget {
 
             _buildFeatureCard(
               theme: theme,
-              title: 'Export & Reports',
+              title: 'Dışa Aktarma ve Raporlar',
               description:
-                  'Generate detailed reports and export data in multiple formats',
+                  'Ayrıntılı raporlar oluşturun ve verileri birden fazla formatta dışa aktarın.',
               icon: Icons.description_outlined,
               color: theme.colorScheme.tertiary,
               index: 2,
@@ -196,7 +196,7 @@ class LandingPage3 extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        'Expense Analysis',
+                        'Gider Analizi',
                         style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
@@ -221,7 +221,7 @@ class LandingPage3 extends StatelessWidget {
                             ),
                             SizedBox(width: 6.w),
                             Text(
-                              'May 2023',
+                              'May 2026',
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 12.sp,
@@ -259,7 +259,7 @@ class LandingPage3 extends StatelessWidget {
                               ),
                             ),
                             Text(
-                              'Used',
+                              'Kullanılan',
                               style: TextStyle(
                                 color: Colors.white.withValues(alpha: 0.8),
                                 fontSize: 12.sp,
@@ -279,28 +279,28 @@ class LandingPage3 extends StatelessWidget {
                           children: [
                             _buildLegendItem(
                               theme,
-                              'Food & Dining',
+                              'Yiyecek ve İçecek',
                               '35%',
                               const Color(0xFFFF9800),
                             ),
                             SizedBox(height: 8.h),
                             _buildLegendItem(
                               theme,
-                              'Transportation',
+                              'toplu taşıma',
                               '25%',
                               const Color(0xFF2196F3),
                             ),
                             SizedBox(height: 8.h),
                             _buildLegendItem(
                               theme,
-                              'Shopping',
+                              'Alışveriş',
                               '20%',
                               const Color(0xFFE91E63),
                             ),
                             SizedBox(height: 8.h),
                             _buildLegendItem(
                               theme,
-                              'Other',
+                              'Diğer',
                               '20%',
                               const Color(0xFF4CAF50),
                             ),
@@ -318,8 +318,8 @@ class LandingPage3 extends StatelessWidget {
                       Expanded(
                         child: _buildStatItem(
                           theme,
-                          'Monthly Budget',
-                          '\$3,000',
+                          'Aylık Bütçe',
+                          '\₺3,000',
                           Icons.account_balance_wallet,
                         ),
                       ),
@@ -327,8 +327,8 @@ class LandingPage3 extends StatelessWidget {
                       Expanded(
                         child: _buildStatItem(
                           theme,
-                          'Total Spent',
-                          '\$2,250',
+                          'Toplam Gider',
+                          '\₺2,250',
                           Icons.shopping_cart,
                         ),
                       ),
@@ -336,8 +336,8 @@ class LandingPage3 extends StatelessWidget {
                       Expanded(
                         child: _buildStatItem(
                           theme,
-                          'Remaining',
-                          '\$750',
+                          'Kalan',
+                          '\₺750',
                           Icons.savings,
                         ),
                       ),
@@ -532,10 +532,10 @@ class LandingPage3 extends StatelessWidget {
 
   Widget _buildCategoryChips(ThemeData theme) {
     final categories = [
-      {'name': 'Food', 'icon': Icons.restaurant, 'color': Colors.orange},
-      {'name': 'Transport', 'icon': Icons.directions_car, 'color': Colors.blue},
-      {'name': 'Shopping', 'icon': Icons.shopping_bag, 'color': Colors.pink},
-      {'name': 'Bills', 'icon': Icons.receipt, 'color': Colors.purple},
+      {'name': 'Yiyecek', 'icon': Icons.restaurant, 'color': Colors.orange},
+      {'name': 'Toplu Taşıma', 'icon': Icons.directions_car, 'color': Colors.blue},
+      {'name': 'Alışveriş', 'icon': Icons.shopping_bag, 'color': Colors.pink},
+      {'name': 'Faturalar', 'icon': Icons.receipt, 'color': Colors.purple},
     ];
 
     return Padding(
@@ -613,7 +613,7 @@ class LandingPage3 extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Spending Insight',
+                  'Harcama Analizi',
                   style: TextStyle(
                     color: theme.colorScheme.secondary,
                     fontWeight: FontWeight.bold,
@@ -622,7 +622,7 @@ class LandingPage3 extends StatelessWidget {
                 ),
                 SizedBox(height: 4.h),
                 Text(
-                  'You spent 15% less on dining this month compared to last month',
+                  'Bu ay yemek harcamalarınız geçen aya göre %15 daha az oldu.',
                   style: TextStyle(
                     color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
                     fontSize: 12.sp,
@@ -655,7 +655,7 @@ class LandingPage3 extends StatelessWidget {
           _buildReportItem(theme, 'PDF', Icons.picture_as_pdf, Colors.red),
           _buildReportItem(theme, 'CSV', Icons.table_chart, Colors.green),
           _buildReportItem(theme, 'Excel', Icons.insert_chart, Colors.blue),
-          _buildReportItem(theme, 'Print', Icons.print, Colors.purple),
+          _buildReportItem(theme, 'Yazdır', Icons.print, Colors.purple),
         ],
       ),
     );

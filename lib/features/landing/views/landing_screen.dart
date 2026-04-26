@@ -164,7 +164,7 @@ class _LandingScreenContentState extends State<_LandingScreenContent> {
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 Text(
-                                  'Skip',
+                                  'Geç',
                                   style: TextStyle(
                                     fontSize: 14.sp,
                                     fontWeight: FontWeight.w500,
@@ -296,7 +296,7 @@ class _LandingScreenContentState extends State<_LandingScreenContent> {
             icon: currentPage == 0
                 ? Icons.login_rounded
                 : Icons.arrow_back_rounded,
-            label: currentPage == 0 ? 'Sign In' : 'Back',
+            label: currentPage == 0 ? 'Giriş Yap' : 'Geri',
             flex: 1,
           ),
 
@@ -313,10 +313,10 @@ class _LandingScreenContentState extends State<_LandingScreenContent> {
                 ? Icons.rocket_launch_rounded
                 : Icons.arrow_forward_rounded,
             label: currentPage == 0
-                ? 'Next'
+                ? 'Sonraki'
                 : currentPage == 1
-                    ? 'Continue'
-                    : 'Get Started',
+                    ? 'Devam Et'
+                    : 'Başlayın',
             color: currentPage == 2
                 ? theme.colorScheme.tertiary
                 : theme.colorScheme.primary,
