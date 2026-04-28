@@ -5,6 +5,7 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
+import 'package:finance_track/core/localization/localization.dart';
 
 /// A widget to display the stats overview for all categories
 class CategoryStatsOverview extends StatelessWidget {
@@ -53,7 +54,7 @@ class CategoryStatsOverview extends StatelessWidget {
                       size: 22.r,
                     ),
                     SizedBox(width: 10.w),
-                    Text(
+                    LocalizedText(
                       isExpense ? 'Expense Overview' : 'Income Overview',
                       style: theme.textTheme.titleMedium?.copyWith(
                         fontWeight: FontWeight.bold,
@@ -78,7 +79,7 @@ class CategoryStatsOverview extends StatelessWidget {
                       width: 1,
                     ),
                   ),
-                  child: Text(
+                  child: LocalizedText(
                     _getTimeFrameLabel(selectedTimeFrame),
                     style: theme.textTheme.bodySmall?.copyWith(
                       color: isExpense ? theme.colorScheme.error : Colors.green,
@@ -147,8 +148,7 @@ class CategoryStatsOverview extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                'Total ${isExpense ? 'Expenses' : 'Income'}',
+              LocalizedText('Total ${isExpense ? 'Expenses' : 'Income'}',
                 style: TextStyle(
                   fontSize: 12.sp,
                   color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
@@ -156,7 +156,7 @@ class CategoryStatsOverview extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 2.h),
-              Text(
+              LocalizedText(
                 formatter.format(
                   isExpense ? state.totalExpenses : state.totalIncomes,
                 ),
@@ -175,8 +175,7 @@ class CategoryStatsOverview extends StatelessWidget {
               color: theme.colorScheme.surface,
               borderRadius: BorderRadius.circular(12.r),
             ),
-            child: Text(
-              '${isExpense ? state.expenseCategoriesAmount.length : state.incomeCategoriesAmount.length} Categories',
+            child: LocalizedText('${isExpense ? state.expenseCategoriesAmount.length : state.incomeCategoriesAmount.length} Categories',
               style: TextStyle(
                 fontSize: 10.sp,
                 fontWeight: FontWeight.w500,
@@ -212,8 +211,7 @@ class CategoryStatsOverview extends StatelessWidget {
               color: theme.colorScheme.outline.withValues(alpha: 0.5),
             ),
             SizedBox(height: 12.h),
-            Text(
-              'No data available',
+            LocalizedText('No data available',
               style: TextStyle(
                 color: theme.colorScheme.outline,
                 fontSize: 14.sp,
@@ -301,7 +299,7 @@ class CategoryStatsOverview extends StatelessWidget {
                           ),
                         ),
                         TextSpan(
-                          text: '$percentage% of total',
+                          text: AppLocalizations.tr('$percentage% of total'),
                           style: TextStyle(
                             color: barColors[groupIndex],
                             fontSize: 12.sp,
@@ -435,7 +433,7 @@ class CategoryStatsOverview extends StatelessWidget {
                 ),
               ),
               SizedBox(width: 4.w),
-              Text(
+              LocalizedText(
                 names[index],
                 style: TextStyle(
                   color: theme.colorScheme.onSurface,
@@ -444,8 +442,7 @@ class CategoryStatsOverview extends StatelessWidget {
                 ),
               ),
               SizedBox(width: 4.w),
-              Text(
-                '(${(categoriesPercentage[displayEntries[index].key] ?? 0).toStringAsFixed(1)}%)',
+              LocalizedText('(${(categoriesPercentage[displayEntries[index].key] ?? 0).toStringAsFixed(1)}%)',
                 style: TextStyle(
                   color: colors[index],
                   fontSize: 10.sp,

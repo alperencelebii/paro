@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
+import 'package:finance_track/core/localization/localization.dart';
 
 import '../../../core/extensions/currency_context_extension.dart';
 import '../../../data/repositories/expense_repository.dart';
@@ -40,7 +41,7 @@ class _DateWiseExpenseScreenState extends State<DateWiseExpenseScreen> {
       )..loadDateWiseData(days: 30),
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Date-wise Expenses'),
+          title: const LocalizedText('Date-wise Expenses'),
           backgroundColor: const Color(0xFF6C63FF),
           foregroundColor: Colors.white,
           elevation: 0,
@@ -58,7 +59,7 @@ class _DateWiseExpenseScreenState extends State<DateWiseExpenseScreen> {
                   children: [
                     Icon(Icons.error_outline, size: 64.r, color: Colors.red),
                     SizedBox(height: 16.h),
-                    Text('Error: ${state.message}'),
+                    LocalizedText('Error: ${state.message}'),
                   ],
                 ),
               );
@@ -113,13 +114,11 @@ class _DateWiseExpenseScreenState extends State<DateWiseExpenseScreen> {
         children: [
           Icon(Icons.bar_chart, size: 64.r, color: Colors.grey),
           SizedBox(height: 16.h),
-          Text(
-            'No data available',
+          LocalizedText('No data available',
             style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w600),
           ),
           SizedBox(height: 8.h),
-          Text(
-            'Add expenses and income to see date-wise analysis',
+          LocalizedText('Add expenses and income to see date-wise analysis',
             style: TextStyle(fontSize: 14.sp, color: Colors.grey),
           ),
         ],
@@ -217,7 +216,7 @@ class _DateWiseExpenseScreenState extends State<DateWiseExpenseScreen> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
+                  LocalizedText(
                     DateFormat('EEE').format(data.date),
                     style: TextStyle(
                       fontSize: isSelected ? 10.sp : 10.sp,
@@ -229,7 +228,7 @@ class _DateWiseExpenseScreenState extends State<DateWiseExpenseScreen> {
                     ),
                   ),
                   SizedBox(height: 4.h),
-                  Text(
+                  LocalizedText(
                     DateFormat('d').format(data.date),
                     style: TextStyle(
                       fontSize: isSelected ? 24.sp : 20.sp,
@@ -238,7 +237,7 @@ class _DateWiseExpenseScreenState extends State<DateWiseExpenseScreen> {
                     ),
                   ),
                   SizedBox(height: 4.h),
-                  Text(
+                  LocalizedText(
                     DateFormat('MMM').format(data.date),
                     style: TextStyle(
                       fontSize: isSelected ? 11.sp : 10.sp,
@@ -301,8 +300,7 @@ class _DateWiseExpenseScreenState extends State<DateWiseExpenseScreen> {
                       Icon(Icons.trending_down,
                           color: Colors.red.shade700, size: 20.r),
                       SizedBox(width: 4.w),
-                      Text(
-                        'Expense',
+                      LocalizedText('Expense',
                         style: TextStyle(
                           fontSize: 12.sp,
                           color: Colors.red.shade700,
@@ -312,7 +310,7 @@ class _DateWiseExpenseScreenState extends State<DateWiseExpenseScreen> {
                     ],
                   ),
                   SizedBox(height: 8.h),
-                  Text(
+                  LocalizedText(
                     formatter.format(selectedData.expense),
                     style: TextStyle(
                       fontSize: 18.sp,
@@ -342,8 +340,7 @@ class _DateWiseExpenseScreenState extends State<DateWiseExpenseScreen> {
                       Icon(Icons.trending_up,
                           color: Colors.green.shade700, size: 20.r),
                       SizedBox(width: 4.w),
-                      Text(
-                        'Income',
+                      LocalizedText('Income',
                         style: TextStyle(
                           fontSize: 12.sp,
                           color: Colors.green.shade700,
@@ -353,7 +350,7 @@ class _DateWiseExpenseScreenState extends State<DateWiseExpenseScreen> {
                     ],
                   ),
                   SizedBox(height: 8.h),
-                  Text(
+                  LocalizedText(
                     formatter.format(selectedData.income),
                     style: TextStyle(
                       fontSize: 18.sp,
@@ -386,8 +383,7 @@ class _DateWiseExpenseScreenState extends State<DateWiseExpenseScreen> {
               color: Colors.grey.shade400,
             ),
             SizedBox(height: 16.h),
-            Text(
-              'No transactions',
+            LocalizedText('No transactions',
               style: TextStyle(
                 fontSize: 16.sp,
                 fontWeight: FontWeight.w600,
@@ -395,8 +391,7 @@ class _DateWiseExpenseScreenState extends State<DateWiseExpenseScreen> {
               ),
             ),
             SizedBox(height: 8.h),
-            Text(
-              'Add expenses or income for this date',
+            LocalizedText('Add expenses or income for this date',
               style: TextStyle(
                 fontSize: 14.sp,
                 color: Colors.grey.shade500,

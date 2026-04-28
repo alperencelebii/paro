@@ -43,7 +43,7 @@ class HelpSupportCubit extends Cubit<HelpSupportState> {
         final String body = Uri.encodeComponent(formattedMessage);
 
         final String emailUrl =
-            'mailto:oveshdevwala@gmail.com?subject=$subject&body=$body';
+            'mailto:alperencelebiq@gmail.com?subject=$subject&body=$body';
         final Uri emailUri = Uri.parse(emailUrl);
 
         final bool launched = await launchUrl(emailUri);
@@ -130,7 +130,7 @@ class HelpSupportCubit extends Cubit<HelpSupportState> {
         '[Optional: Portfolio/GitHub/LinkedIn]');
 
     final String emailUrl =
-        'mailto:oveshdevwala@gmail.com?subject=$subject&body=$body';
+        'mailto:alperencelebiq@gmail.com?subject=$subject&body=$body';
     await _launchUrlHelper(emailUrl);
   }
 
@@ -155,7 +155,7 @@ class HelpSupportCubit extends Cubit<HelpSupportState> {
         '[Optional: Relevant experience or background]');
 
     final String emailUrl =
-        'mailto:oveshdevwala@gmail.com?subject=$subject&body=$body';
+        'mailto:alperencelebiq@gmail.com?subject=$subject&body=$body';
     await _launchUrlHelper(emailUrl);
   }
 

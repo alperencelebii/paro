@@ -10,6 +10,7 @@ import 'package:go_router/go_router.dart';
 import '../../../core/extensions/currency_context_extension.dart';
 import '../bloc/budget_bloc/budget_bloc.dart';
 import '../bloc/budget_form_bloc/budget_form_bloc.dart';
+import 'package:finance_track/core/localization/localization.dart';
 
 Future<void> budgetFormDialog(BuildContext context, {Budget? budget}) async {
   return showDialog<void>(
@@ -121,7 +122,7 @@ class _BudgetFormDialogContentState extends State<_BudgetFormDialogContent> {
                       ..hideCurrentSnackBar()
                       ..showSnackBar(
                         SnackBar(
-                          content: Text(
+                          content: LocalizedText(
                             state.isEditing
                                 ? 'Budget updated successfully'
                                 : 'Budget created successfully',
@@ -176,7 +177,7 @@ class _BudgetFormDialogContentState extends State<_BudgetFormDialogContent> {
                       ..hideCurrentSnackBar()
                       ..showSnackBar(
                         SnackBar(
-                          content: const Text('Budget deleted successfully'),
+                          content: const LocalizedText('Budget deleted successfully'),
                           backgroundColor: theme.colorScheme.tertiary,
                           behavior: SnackBarBehavior.floating,
                           duration: const Duration(seconds: 2),
@@ -224,7 +225,7 @@ class _BudgetFormDialogContentState extends State<_BudgetFormDialogContent> {
                     if (state.errorMessage != null) {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
-                          content: Text(state.errorMessage!),
+                          content: LocalizedText(state.errorMessage!),
                           backgroundColor: theme.colorScheme.error,
                           behavior: SnackBarBehavior.floating,
                           shape: RoundedRectangleBorder(
@@ -263,7 +264,7 @@ class _BudgetFormDialogContentState extends State<_BudgetFormDialogContent> {
           child: Row(
             children: [
               Expanded(
-                child: Text(
+                child: LocalizedText(
                   state.isEditing ? 'Edit Budget' : 'Create Budget',
                   style: theme.textTheme.titleLarge?.copyWith(
                     fontWeight: FontWeight.bold,
@@ -307,7 +308,7 @@ class _BudgetFormDialogContentState extends State<_BudgetFormDialogContent> {
                     child: TextFormField(
                       controller: state.titleController,
                       decoration: InputDecoration(
-                        hintText: 'Budget Title',
+                        hintText: AppLocalizations.tr('Budget Title'),
                         prefixIcon: CircleAvatar(
                           radius: 3.r,
                           backgroundColor: theme.colorScheme.primaryContainer,
@@ -359,11 +360,11 @@ class _BudgetFormDialogContentState extends State<_BudgetFormDialogContent> {
                         color: theme.colorScheme.primary,
                       ),
                       decoration: InputDecoration(
-                        hintText: 'Enter amount',
+                        hintText: AppLocalizations.tr('Enter amount'),
                         prefixIcon: CircleAvatar(
                           radius: 3.r,
                           backgroundColor: theme.colorScheme.primaryContainer,
-                          child: Text(
+                          child: LocalizedText(
                             context.currencySymbol,
                             style: theme.textTheme.titleMedium?.copyWith(
                               fontWeight: FontWeight.bold,
@@ -384,13 +385,13 @@ class _BudgetFormDialogContentState extends State<_BudgetFormDialogContent> {
                       ),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'Please enter a budget amount';
+                          return AppLocalizations.tr('Please enter a budget amount');
                         }
                         final parsed = double.tryParse(value);
                         if (parsed == null)
-                          return 'Please enter a valid number';
+                          return AppLocalizations.tr('Please enter a valid number');
                         if (parsed <= 0) {
-                          return 'Budget amount must be greater than zero';
+                          return AppLocalizations.tr('Budget amount must be greater than zero');
                         }
                         return null;
                       },
@@ -419,8 +420,7 @@ class _BudgetFormDialogContentState extends State<_BudgetFormDialogContent> {
                             color: theme.colorScheme.primary,
                           ),
                           SizedBox(width: 12.w),
-                          Text(
-                            'Monthly (Auto)',
+                          LocalizedText('Monthly (Auto)',
                             style: theme.textTheme.bodyMedium?.copyWith(
                               fontWeight: FontWeight.w600,
                               color: theme.colorScheme.primary,
@@ -448,8 +448,7 @@ class _BudgetFormDialogContentState extends State<_BudgetFormDialogContent> {
                     context,
                     state.budget!.id!,
                   ),
-                  child: Text(
-                    'Delete',
+                  child: LocalizedText('Delete',
                     style: TextStyle(
                       color: theme.colorScheme.error,
                     ),
@@ -458,7 +457,7 @@ class _BudgetFormDialogContentState extends State<_BudgetFormDialogContent> {
               SizedBox(width: 8.w),
               TextButton(
                 onPressed: _closeDialog,
-                child: const Text('Cancel'),
+                child: const LocalizedText('Cancel'),
               ),
               SizedBox(width: 8.w),
               ElevatedButton(
@@ -479,7 +478,7 @@ class _BudgetFormDialogContentState extends State<_BudgetFormDialogContent> {
                           strokeWidth: 2,
                         ),
                       )
-                    : Text(state.isEditing ? 'Update' : 'Save'),
+                    : LocalizedText(state.isEditing ? 'Update' : 'Save'),
               ),
             ],
           ),
@@ -500,15 +499,13 @@ class _BudgetFormDialogContentState extends State<_BudgetFormDialogContent> {
           borderRadius: BorderRadius.circular(20.r),
         ),
         backgroundColor: theme.colorScheme.surface,
-        title: Text(
-          'Delete Budget',
+        title: LocalizedText('Delete Budget',
           style: theme.textTheme.titleLarge?.copyWith(
             fontWeight: FontWeight.bold,
             color: theme.colorScheme.error,
           ),
         ),
-        content: Text(
-          'Are you sure you want to delete this budget? This action cannot be undone.',
+        content: LocalizedText('Are you sure you want to delete this budget? This action cannot be undone.',
           style: theme.textTheme.bodyMedium?.copyWith(
             color: theme.colorScheme.onSurface.withValues(alpha: 0.8),
           ),
@@ -522,8 +519,7 @@ class _BudgetFormDialogContentState extends State<_BudgetFormDialogContent> {
                 borderRadius: BorderRadius.circular(12.r),
               ),
             ),
-            child: Text(
-              'Cancel',
+            child: LocalizedText('Cancel',
               style: theme.textTheme.labelLarge?.copyWith(
                 fontWeight: FontWeight.w600,
                 color: theme.colorScheme.onSurface.withValues(alpha: 0.8),
@@ -542,7 +538,7 @@ class _BudgetFormDialogContentState extends State<_BudgetFormDialogContent> {
               // Show loading indicator using the captured messenger
               messenger.showSnackBar(
                 const SnackBar(
-                  content: Text('Deleting budget...'),
+                  content: LocalizedText('Deleting budget...'),
                   duration: Duration(seconds: 1),
                 ),
               );
@@ -555,7 +551,7 @@ class _BudgetFormDialogContentState extends State<_BudgetFormDialogContent> {
                 budgetBloc.add(const LoadBudget());
                 messenger.showSnackBar(
                   const SnackBar(
-                    content: Text('Budget deleted successfully'),
+                    content: LocalizedText('Budget deleted successfully'),
                     backgroundColor: Colors.green,
                   ),
                 );
@@ -576,8 +572,7 @@ class _BudgetFormDialogContentState extends State<_BudgetFormDialogContent> {
                 borderRadius: BorderRadius.circular(12.r),
               ),
             ),
-            child: Text(
-              'Delete',
+            child: LocalizedText('Delete',
               style: theme.textTheme.labelLarge?.copyWith(
                 fontWeight: FontWeight.bold,
                 color: theme.colorScheme.onError,

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../cubit/export_data_cubit.dart';
+import 'package:finance_track/core/localization/localization.dart';
 
 class ExportDataScreen extends StatelessWidget {
   const ExportDataScreen({super.key});
@@ -24,7 +25,7 @@ class _ExportDataView extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color(0xFFF8F9FA),
       appBar: AppBar(
-        title: const Text('Export Data'),
+        title: const LocalizedText('Export Data'),
         elevation: 0,
         backgroundColor: Theme.of(context).colorScheme.primary,
         foregroundColor: Theme.of(context).colorScheme.onPrimary,
@@ -35,14 +36,13 @@ class _ExportDataView extends StatelessWidget {
               showDialog(
                 context: context,
                 builder: (context) => AlertDialog(
-                  title: const Text('Export Information'),
-                  content: const Text(
-                    'You can export your transactions to a CSV file. The file will include all transaction details including date, amount, category, and description.',
+                  title: const LocalizedText('Export Information'),
+                  content: const LocalizedText('You can export your transactions to a CSV file. The file will include all transaction details including date, amount, category, and description.',
                   ),
                   actions: [
                     TextButton(
                       onPressed: () => Navigator.pop(context),
-                      child: const Text('Got it'),
+                      child: const LocalizedText('Got it'),
                     ),
                   ],
                 ),
@@ -83,8 +83,7 @@ class _ExportDataView extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            'Select Date Range',
+          LocalizedText('Select Date Range',
             style: TextStyle(
               fontSize: 16.sp,
               fontWeight: FontWeight.w600,
@@ -100,7 +99,7 @@ class _ExportDataView extends StatelessWidget {
                 return Padding(
                   padding: EdgeInsets.only(right: 8.w),
                   child: ChoiceChip(
-                    label: Text(
+                    label: LocalizedText(
                       _getPeriodLabel(period),
                       style: TextStyle(
                         fontSize: 14.sp,
@@ -219,7 +218,7 @@ class _ExportDataView extends StatelessWidget {
               color: Colors.grey[600],
             ),
             SizedBox(width: 8.w),
-            Text(
+            LocalizedText(
               date != null
                   ? DateFormat('MMM dd, yyyy').format(date)
                   : 'Select $label',
@@ -246,16 +245,14 @@ class _ExportDataView extends StatelessWidget {
               color: Colors.grey[400],
             ),
             SizedBox(height: 16.h),
-            Text(
-              'No transactions found',
+            LocalizedText('No transactions found',
               style: TextStyle(
                 fontSize: 16.sp,
                 color: Colors.grey[600],
               ),
             ),
             SizedBox(height: 8.h),
-            Text(
-              'Try selecting a different date range',
+            LocalizedText('Try selecting a different date range',
               style: TextStyle(
                 fontSize: 14.sp,
                 color: Colors.grey[500],
@@ -280,16 +277,14 @@ class _ExportDataView extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                '${state.transactions.length} Transactions',
+              LocalizedText('${state.transactions.length} Transactions',
                 style: TextStyle(
                   fontSize: 14.sp,
                   fontWeight: FontWeight.w600,
                   color: Colors.black87,
                 ),
               ),
-              Text(
-                'Total: ${formatter.format(state.transactions.fold<double>(0, (sum, t) => sum + (t['amount'] as double)))}',
+              LocalizedText('Total: ${formatter.format(state.transactions.fold<double>(0, (sum, t) => sum + (t['amount'] as double)))}',
                 style: TextStyle(
                   fontSize: 14.sp,
                   fontWeight: FontWeight.w600,
@@ -328,7 +323,7 @@ class _ExportDataView extends StatelessWidget {
                     size: 20.r,
                   ),
                 ),
-                title: Text(
+                title: LocalizedText(
                   transaction['description'] ?? 'No description',
                   style: TextStyle(
                     fontSize: 14.sp,
@@ -340,7 +335,7 @@ class _ExportDataView extends StatelessWidget {
                 subtitle: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
+                    LocalizedText(
                       DateFormat('MMM dd, yyyy').format(
                         transaction['date'] as DateTime,
                       ),
@@ -350,7 +345,7 @@ class _ExportDataView extends StatelessWidget {
                       ),
                     ),
                     if (transaction['category'] != null)
-                      Text(
+                      LocalizedText(
                         transaction['category'] as String,
                         style: TextStyle(
                           fontSize: 12.sp,
@@ -359,7 +354,7 @@ class _ExportDataView extends StatelessWidget {
                       ),
                   ],
                 ),
-                trailing: Text(
+                trailing: LocalizedText(
                   formatter.format(transaction['amount']),
                   style: TextStyle(
                     fontSize: 14.sp,
@@ -409,7 +404,7 @@ class _ExportDataView extends StatelessWidget {
                   ),
                   SizedBox(width: 8.w),
                   Expanded(
-                    child: Text(
+                    child: LocalizedText(
                       state.error!,
                       style: TextStyle(
                         color: Colors.red.shade700,
@@ -454,8 +449,7 @@ class _ExportDataView extends StatelessWidget {
                           size: 20.r,
                         ),
                         SizedBox(width: 8.w),
-                        Text(
-                          'Export ${state.transactions.length} Transactions',
+                        LocalizedText('Export ${state.transactions.length} Transactions',
                           style: TextStyle(
                             fontSize: 16.sp,
                             fontWeight: FontWeight.w600,

@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'dart:math' as math;
+import 'package:finance_track/core/localization/localization.dart';
 
 import '../../../core/models/currency_model.dart';
 
@@ -56,7 +57,7 @@ class DashboardCard extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
+                  LocalizedText(
                     title,
                     style: theme.textTheme.titleMedium?.copyWith(
                       fontWeight: FontWeight.w600,
@@ -123,8 +124,7 @@ class MonthHeaderCard extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                '$month Summary',
+              LocalizedText('$month Summary',
                 style: TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
@@ -132,7 +132,7 @@ class MonthHeaderCard extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 4.h),
-              Text(
+              LocalizedText(
                 year,
                 style: TextStyle(
                   color: Colors.white.withValues(alpha: 0.7),
@@ -159,7 +159,7 @@ class MonthHeaderCard extends StatelessWidget {
                   size: 16.r,
                 ),
                 SizedBox(width: 6.w),
-                Text(
+                LocalizedText(
                   isSurplus ? 'Surplus' : 'Deficit',
                   style: TextStyle(
                     color: Colors.white,
@@ -221,8 +221,7 @@ class BalanceCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Header
-            Text(
-              'Current Balance',
+            LocalizedText('Current Balance',
               style: theme.textTheme.titleMedium?.copyWith(
                 fontWeight: FontWeight.w600,
                 fontSize: 16.sp,
@@ -262,7 +261,7 @@ class BalanceCard extends StatelessWidget {
                           children: [
                             FittedBox(
                               fit: BoxFit.scaleDown,
-                              child: Text(
+                              child: LocalizedText(
                                 formatter.format(balance),
                                 style: theme.textTheme.headlineSmall?.copyWith(
                                   fontWeight: FontWeight.bold,
@@ -273,8 +272,7 @@ class BalanceCard extends StatelessWidget {
                               ),
                             ),
                             if (hasComparison)
-                              Text(
-                                'vs ${formatter.format(previousMonthBalance!)} last month',
+                              LocalizedText('vs ${formatter.format(previousMonthBalance!)} last month',
                                 style: theme.textTheme.bodySmall?.copyWith(
                                   color: theme.colorScheme.onSurface
                                       .withValues(alpha: 0.6),
@@ -311,8 +309,7 @@ class BalanceCard extends StatelessWidget {
                           size: 14.r,
                         ),
                         SizedBox(width: 2.w),
-                        Text(
-                          '${percentChange.abs().toStringAsFixed(1)}%',
+                        LocalizedText('${percentChange.abs().toStringAsFixed(1)}%',
                           style: theme.textTheme.bodyMedium?.copyWith(
                             fontWeight: FontWeight.bold,
                             color: isPositiveChange ? Colors.green : Colors.red,
@@ -331,14 +328,12 @@ class BalanceCard extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    'Last Month',
+                  LocalizedText('Last Month',
                     style: theme.textTheme.bodySmall?.copyWith(
                       color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
                     ),
                   ),
-                  Text(
-                    'This Month',
+                  LocalizedText('This Month',
                     style: theme.textTheme.bodySmall?.copyWith(
                       color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
                     ),
@@ -431,8 +426,7 @@ class IncomeExpenseCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Header
-            Text(
-              'Income & Expenses',
+            LocalizedText('Income & Expenses',
               style: theme.textTheme.titleMedium?.copyWith(
                 fontWeight: FontWeight.w600,
                 fontSize: 16.sp,
@@ -482,8 +476,7 @@ class IncomeExpenseCard extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    'Net Cashflow',
+                  LocalizedText('Net Cashflow',
                     style: theme.textTheme.titleSmall?.copyWith(
                       fontWeight: FontWeight.w500,
                     ),
@@ -500,7 +493,7 @@ class IncomeExpenseCard extends StatelessWidget {
                       SizedBox(width: 4.w),
                       FittedBox(
                         fit: BoxFit.scaleDown,
-                        child: Text(
+                        child: LocalizedText(
                           formatter.format(netCashflow.abs()),
                           style: theme.textTheme.titleMedium?.copyWith(
                             fontWeight: FontWeight.bold,
@@ -524,8 +517,7 @@ class IncomeExpenseCard extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      'Monthly spending ratio',
+                    LocalizedText('Monthly spending ratio',
                       style: theme.textTheme.bodySmall?.copyWith(
                         color:
                             theme.colorScheme.onSurface.withValues(alpha: 0.7),
@@ -539,8 +531,7 @@ class IncomeExpenseCard extends StatelessWidget {
                             _getRatioColor(ratio, theme).withValues(alpha: 0.1),
                         borderRadius: BorderRadius.circular(12.r),
                       ),
-                      child: Text(
-                        '${ratio.toStringAsFixed(1)}%',
+                      child: LocalizedText('${ratio.toStringAsFixed(1)}%',
                         style: theme.textTheme.bodyMedium?.copyWith(
                           fontWeight: FontWeight.bold,
                           color: _getRatioColor(ratio, theme),
@@ -585,24 +576,21 @@ class IncomeExpenseCard extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      '0%',
+                    LocalizedText('0%',
                       style: theme.textTheme.bodySmall?.copyWith(
                         color:
                             theme.colorScheme.onSurface.withValues(alpha: 0.5),
                         fontSize: 10.sp,
                       ),
                     ),
-                    Text(
-                      '50%',
+                    LocalizedText('50%',
                       style: theme.textTheme.bodySmall?.copyWith(
                         color:
                             theme.colorScheme.onSurface.withValues(alpha: 0.5),
                         fontSize: 10.sp,
                       ),
                     ),
-                    Text(
-                      '100% (Balance)',
+                    LocalizedText('100% (Balance)',
                       style: theme.textTheme.bodySmall?.copyWith(
                         color:
                             theme.colorScheme.onSurface.withValues(alpha: 0.5),
@@ -646,7 +634,7 @@ class IncomeExpenseCard extends StatelessWidget {
                 size: 16.r,
               ),
               SizedBox(width: 4.w),
-              Text(
+              LocalizedText(
                 title,
                 style: theme.textTheme.bodyMedium?.copyWith(
                   fontWeight: FontWeight.w500,
@@ -657,7 +645,7 @@ class IncomeExpenseCard extends StatelessWidget {
           SizedBox(height: 8.h),
           FittedBox(
             fit: BoxFit.scaleDown,
-            child: Text(
+            child: LocalizedText(
               formatter.format(amount),
               style: theme.textTheme.titleMedium?.copyWith(
                 fontWeight: FontWeight.bold,
@@ -706,11 +694,10 @@ class ExpenseRatioCard extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                'Monthly spending ratio',
+              LocalizedText('Monthly spending ratio',
                 style: theme.textTheme.bodyMedium,
               ),
-              Text(
+              LocalizedText(
                 income > 0
                     ? '${expenseToIncomeRatio.toStringAsFixed(1)}%'
                     : 'N/A',
@@ -775,16 +762,13 @@ class ExpenseRatioCard extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
-                            '0%',
+                          LocalizedText('0%',
                             style: theme.textTheme.bodySmall,
                           ),
-                          Text(
-                            '50%',
+                          LocalizedText('50%',
                             style: theme.textTheme.bodySmall,
                           ),
-                          Text(
-                            '100% (Balance)',
+                          LocalizedText('100% (Balance)',
                             style: theme.textTheme.bodySmall?.copyWith(
                               fontWeight: FontWeight.bold,
                             ),
@@ -805,8 +789,7 @@ class ExpenseRatioCard extends StatelessWidget {
                     color: theme.colorScheme.surfaceContainerHighest,
                     borderRadius: BorderRadius.circular(8.r),
                   ),
-                  child: Text(
-                    'No income recorded this month',
+                  child: LocalizedText('No income recorded this month',
                     style: theme.textTheme.bodyMedium?.copyWith(
                       color: theme.colorScheme.onSurfaceVariant,
                     ),
@@ -945,8 +928,7 @@ class DailySpendingCard extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  'Daily Spending Trend',
+                LocalizedText('Daily Spending Trend',
                   style: theme.textTheme.titleMedium?.copyWith(
                     fontWeight: FontWeight.w600,
                     fontSize: 16.sp,
@@ -968,7 +950,7 @@ class DailySpendingCard extends StatelessWidget {
                         size: 14.r,
                       ),
                       SizedBox(width: 4.w),
-                      Text(
+                      LocalizedText(
                         trendText,
                         style: theme.textTheme.bodySmall?.copyWith(
                           fontWeight: FontWeight.bold,
@@ -1058,7 +1040,7 @@ class DailySpendingCard extends StatelessWidget {
                                 if (value % 5 != 0) return const SizedBox();
                                 return Padding(
                                   padding: EdgeInsets.only(top: 8.h),
-                                  child: Text(
+                                  child: LocalizedText(
                                     value.toInt().toString(),
                                     style: theme.textTheme.bodySmall,
                                   ),
@@ -1194,8 +1176,7 @@ class DailySpendingCard extends StatelessWidget {
                       ),
                     ),
                     SizedBox(width: 6.w),
-                    Text(
-                      'Daily Spending',
+                    LocalizedText('Daily Spending',
                       style: theme.textTheme.bodySmall,
                     ),
                     SizedBox(width: 16.w),
@@ -1208,8 +1189,7 @@ class DailySpendingCard extends StatelessWidget {
                       ),
                     ),
                     SizedBox(width: 6.w),
-                    Text(
-                      '7-day Average',
+                    LocalizedText('7-day Average',
                       style: theme.textTheme.bodySmall,
                     ),
                   ],
@@ -1251,7 +1231,7 @@ class DailySpendingCard extends StatelessWidget {
                 color: color,
               ),
               SizedBox(width: 6.w),
-              Text(
+              LocalizedText(
                 title,
                 style: theme.textTheme.bodySmall?.copyWith(
                   color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
@@ -1263,7 +1243,7 @@ class DailySpendingCard extends StatelessWidget {
           Row(
             children: [
               if (subtitle.isNotEmpty) ...[
-                Text(
+                LocalizedText(
                   subtitle,
                   style: theme.textTheme.titleMedium?.copyWith(
                     fontWeight: FontWeight.bold,
@@ -1272,7 +1252,7 @@ class DailySpendingCard extends StatelessWidget {
                 SizedBox(width: 4.w),
               ],
               Expanded(
-                child: Text(
+                child: LocalizedText(
                   value,
                   style: theme.textTheme.titleSmall?.copyWith(
                     fontWeight: FontWeight.bold,
@@ -1301,8 +1281,7 @@ class DailySpendingCard extends StatelessWidget {
             color: theme.colorScheme.onSurface.withValues(alpha: 0.2),
           ),
           SizedBox(height: 16.h),
-          Text(
-            'No daily spending data available',
+          LocalizedText('No daily spending data available',
             style: theme.textTheme.bodyMedium?.copyWith(
               color: theme.colorScheme.onSurface.withValues(alpha: 0.5),
             ),
@@ -1367,15 +1346,13 @@ class EmptyStateCard extends StatelessWidget {
               size: 48.r,
             ),
             SizedBox(height: 16.h),
-            Text(
-              'No transactions for $month',
+            LocalizedText('No transactions for $month',
               style: theme.textTheme.titleMedium?.copyWith(
                 fontWeight: FontWeight.w500,
               ),
             ),
             SizedBox(height: 8.h),
-            Text(
-              'Add income and expenses to see your summary',
+            LocalizedText('Add income and expenses to see your summary',
               style: theme.textTheme.bodyMedium?.copyWith(
                 color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
               ),
@@ -1488,8 +1465,7 @@ class MonthComparisonCard extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  'Month-to-Month Analysis',
+                LocalizedText('Month-to-Month Analysis',
                   style: theme.textTheme.titleMedium?.copyWith(
                     fontWeight: FontWeight.w600,
                     fontSize: 16.sp,
@@ -1506,8 +1482,7 @@ class MonthComparisonCard extends StatelessWidget {
                       width: 1,
                     ),
                   ),
-                  child: Text(
-                    'vs Last Month',
+                  child: LocalizedText('vs Last Month',
                     style: theme.textTheme.bodySmall?.copyWith(
                       fontWeight: FontWeight.w500,
                     ),
@@ -1544,8 +1519,7 @@ class MonthComparisonCard extends StatelessWidget {
                           size: 24.r,
                         ),
                         SizedBox(height: 4.h),
-                        Text(
-                          '${overallChange.abs().toStringAsFixed(1)}%',
+                        LocalizedText('${overallChange.abs().toStringAsFixed(1)}%',
                           style: theme.textTheme.titleMedium?.copyWith(
                             fontWeight: FontWeight.bold,
                             color: isPositiveChange ? Colors.red : Colors.green,
@@ -1563,7 +1537,7 @@ class MonthComparisonCard extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
+                      LocalizedText(
                         isPositiveChange
                             ? 'Spending has increased'
                             : 'Spending has decreased',
@@ -1573,8 +1547,7 @@ class MonthComparisonCard extends StatelessWidget {
                         ),
                       ),
                       SizedBox(height: 4.h),
-                      Text(
-                        'From ${formatter.format(previousMonthTotal)} to ${formatter.format(currentMonthTotal)}',
+                      LocalizedText('From ${formatter.format(previousMonthTotal)} to ${formatter.format(currentMonthTotal)}',
                         style: theme.textTheme.bodySmall?.copyWith(
                           color: theme.colorScheme.onSurface
                               .withValues(alpha: 0.7),
@@ -1595,8 +1568,7 @@ class MonthComparisonCard extends StatelessWidget {
             SizedBox(height: 24.h),
 
             // Top changes section header
-            Text(
-              'Top Changes by Category',
+            LocalizedText('Top Changes by Category',
               style: theme.textTheme.titleSmall?.copyWith(
                 fontWeight: FontWeight.w600,
               ),
@@ -1609,8 +1581,7 @@ class MonthComparisonCard extends StatelessWidget {
               height: 220.h,
               child: categoryChanges.isEmpty
                   ? Center(
-                      child: Text(
-                        'No significant category changes found',
+                      child: LocalizedText('No significant category changes found',
                         style: theme.textTheme.bodyMedium?.copyWith(
                           color: theme.colorScheme.onSurface
                               .withValues(alpha: 0.6),
@@ -1657,15 +1628,14 @@ class MonthComparisonCard extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      'Key Insight',
+                    LocalizedText('Key Insight',
                       style: theme.textTheme.titleSmall?.copyWith(
                         fontWeight: FontWeight.bold,
                         color: theme.colorScheme.primary,
                       ),
                     ),
                     SizedBox(height: 4.h),
-                    Text(
+                    LocalizedText(
                       _generateInsight(categoryChanges, isPositiveChange),
                       style: theme.textTheme.bodySmall,
                     ),
@@ -1706,7 +1676,7 @@ class MonthComparisonCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Expanded(
-                child: Text(
+                child: LocalizedText(
                   category,
                   style: theme.textTheme.titleSmall?.copyWith(
                     fontWeight: FontWeight.w600,
@@ -1730,8 +1700,7 @@ class MonthComparisonCard extends StatelessWidget {
                       size: 12.r,
                     ),
                     SizedBox(width: 4.w),
-                    Text(
-                      '${percentChange.abs().toStringAsFixed(1)}%',
+                    LocalizedText('${percentChange.abs().toStringAsFixed(1)}%',
                       style: theme.textTheme.bodySmall?.copyWith(
                         fontWeight: FontWeight.bold,
                         color: color,
@@ -1749,15 +1718,14 @@ class MonthComparisonCard extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      'Last Month',
+                    LocalizedText('Last Month',
                       style: theme.textTheme.bodySmall?.copyWith(
                         color:
                             theme.colorScheme.onSurface.withValues(alpha: 0.6),
                       ),
                     ),
                     SizedBox(height: 4.h),
-                    Text(
+                    LocalizedText(
                       formatter.format(previousAmount),
                       style: theme.textTheme.bodyMedium?.copyWith(
                         fontWeight: FontWeight.w500,
@@ -1775,15 +1743,14 @@ class MonthComparisonCard extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    Text(
-                      'This Month',
+                    LocalizedText('This Month',
                       style: theme.textTheme.bodySmall?.copyWith(
                         color:
                             theme.colorScheme.onSurface.withValues(alpha: 0.6),
                       ),
                     ),
                     SizedBox(height: 4.h),
-                    Text(
+                    LocalizedText(
                       formatter.format(currentAmount),
                       style: theme.textTheme.bodyMedium?.copyWith(
                         fontWeight: FontWeight.w500,
@@ -1864,8 +1831,7 @@ class MonthComparisonCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              'Month-to-Month Analysis',
+            LocalizedText('Month-to-Month Analysis',
               style: theme.textTheme.titleMedium?.copyWith(
                 fontWeight: FontWeight.w600,
                 fontSize: 16.sp,
@@ -1882,16 +1848,14 @@ class MonthComparisonCard extends StatelessWidget {
                       size: 48.r,
                     ),
                     SizedBox(height: 16.h),
-                    Text(
-                      'Insufficient data for comparison',
+                    LocalizedText('Insufficient data for comparison',
                       style: theme.textTheme.titleSmall?.copyWith(
                         color:
                             theme.colorScheme.onSurface.withValues(alpha: 0.7),
                       ),
                     ),
                     SizedBox(height: 8.h),
-                    Text(
-                      'We need at least two months of data to show comparison',
+                    LocalizedText('We need at least two months of data to show comparison',
                       style: theme.textTheme.bodySmall?.copyWith(
                         color:
                             theme.colorScheme.onSurface.withValues(alpha: 0.5),

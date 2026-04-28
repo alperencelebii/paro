@@ -9,6 +9,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import 'package:finance_track/core/utils/currency_formatter.dart';
 import 'package:finance_track/core/extensions/currency_context_extension.dart';
+import 'package:finance_track/core/localization/localization.dart';
 
 /// Beautiful dialog for filtering transactions
 class FilterBottomSheet extends StatefulWidget {
@@ -191,7 +192,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
                             color: theme.colorScheme.primary,
                             shape: BoxShape.circle,
                           ),
-                          child: Text(
+                          child: LocalizedText(
                             _activeFilterCount.toString(),
                             style: TextStyle(
                               color: Colors.white,
@@ -205,8 +206,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
                 ),
                 SizedBox(width: 12.w),
                 Expanded(
-                  child: Text(
-                    'Filter Transactions',
+                  child: LocalizedText('Filter Transactions',
                     style: theme.textTheme.titleMedium?.copyWith(
                       fontWeight: FontWeight.bold,
                       color: Colors.black87,
@@ -224,7 +224,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
                     visualDensity: VisualDensity.compact,
                     padding: EdgeInsets.symmetric(horizontal: 8.w),
                   ),
-                  child: const Text('Reset'),
+                  child: const LocalizedText('Reset'),
                 ),
                 IconButton(
                   icon: const Icon(Icons.close, color: Colors.black54),
@@ -342,8 +342,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
                     size: 18.r,
                     color: theme.colorScheme.error,
                   ),
-                  label: Text(
-                    'Reset',
+                  label: LocalizedText('Reset',
                     style: TextStyle(
                       fontSize: 14.sp,
                       fontWeight: FontWeight.w500,
@@ -399,7 +398,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
                       size: 18.r,
                       color: Colors.white,
                     ),
-                    label: Text('Apply Filters',
+                    label: LocalizedText('Apply Filters',
                         style: theme.textTheme.bodySmall?.copyWith(
                           fontSize: 14.sp,
                           fontWeight: FontWeight.w500,
@@ -443,7 +442,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
             child: Row(
               children: [
                 // Title with indicator if filters are active
-                Text(
+                LocalizedText(
                   title,
                   style: theme.textTheme.titleMedium?.copyWith(
                     fontWeight:
@@ -563,14 +562,13 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Text(
-                      'Current selection:',
+                    LocalizedText('Current selection:',
                       style: theme.textTheme.bodySmall?.copyWith(
                         color: Colors.black54,
                       ),
                     ),
                     SizedBox(height: 2.h),
-                    Text(
+                    LocalizedText(
                       selectedDateRangeText,
                       style: theme.textTheme.bodyMedium?.copyWith(
                         fontWeight: FontWeight.bold,
@@ -610,8 +608,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
         SizedBox(height: 16.h),
 
         // Preset date ranges
-        Text(
-          'Quick Select',
+        LocalizedText('Quick Select',
           style: theme.textTheme.titleSmall?.copyWith(
             fontWeight: FontWeight.w600,
           ),
@@ -625,7 +622,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
           children: [
             _buildDateChip(
               context,
-              label: 'Last 7 days',
+              label: AppLocalizations.tr('Last 7 days'),
               onTap: () {
                 final newRange = DateTimeRange(
                   start: DateTime.now().subtract(const Duration(days: 7)),
@@ -639,7 +636,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
             ),
             _buildDateChip(
               context,
-              label: 'Last 30 days',
+              label: AppLocalizations.tr('Last 30 days'),
               onTap: () {
                 final newRange = DateTimeRange(
                   start: DateTime.now().subtract(const Duration(days: 30)),
@@ -653,7 +650,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
             ),
             _buildDateChip(
               context,
-              label: 'This month',
+              label: AppLocalizations.tr('This month'),
               onTap: () {
                 final now = DateTime.now();
                 final firstDayOfMonth = DateTime(now.year, now.month, 1);
@@ -669,7 +666,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
             ),
             _buildDateChip(
               context,
-              label: 'Last month',
+              label: AppLocalizations.tr('Last month'),
               onTap: () {
                 final now = DateTime.now();
                 final firstDayOfLastMonth =
@@ -687,7 +684,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
             ),
             _buildDateChip(
               context,
-              label: 'This year',
+              label: AppLocalizations.tr('This year'),
               onTap: () {
                 final now = DateTime.now();
                 final firstDayOfYear = DateTime(now.year, 1, 1);
@@ -703,7 +700,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
             ),
             _buildDateChip(
               context,
-              label: 'All time',
+              label: AppLocalizations.tr('All time'),
               onTap: () {
                 final newRange = DateTimeRange(
                   start: DateTime(2000),
@@ -746,7 +743,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
+            LocalizedText(
               title,
               style: theme.textTheme.bodySmall?.copyWith(
                 color: Colors.grey.shade700,
@@ -762,7 +759,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
                 ),
                 SizedBox(width: 4.w),
                 Expanded(
-                  child: Text(
+                  child: LocalizedText(
                     dateFormat.format(date),
                     style: theme.textTheme.bodyMedium?.copyWith(
                       fontWeight: FontWeight.w600,
@@ -867,7 +864,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
                   color: Colors.white,
                 ),
               ),
-            Text(
+            LocalizedText(
               label,
               style: TextStyle(
                 fontSize: 13.sp,
@@ -933,7 +930,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
           ),
           child: Row(
             children: [
-              Text(
+              LocalizedText(
                 context.currencySymbol,
                 style: theme.textTheme.titleMedium?.copyWith(
                   color: theme.colorScheme.primary,
@@ -946,14 +943,13 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Text(
-                      'Current selection:',
+                    LocalizedText('Current selection:',
                       style: theme.textTheme.bodySmall?.copyWith(
                         color: Colors.black54,
                       ),
                     ),
                     SizedBox(height: 2.h),
-                    Text(
+                    LocalizedText(
                       selectedAmountText,
                       style: theme.textTheme.bodyMedium?.copyWith(
                         fontWeight: FontWeight.bold,
@@ -968,8 +964,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
         ),
 
         // Amount range slider
-        Text(
-          'Amount Range',
+        LocalizedText('Amount Range',
           style: theme.textTheme.titleSmall?.copyWith(
             fontWeight: FontWeight.w600,
             color: Colors.black87,
@@ -992,7 +987,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
                   width: 1,
                 ),
               ),
-              child: Text(
+              child: LocalizedText(
                 CurrencyFormatter.format(_amountRange.start, currency),
                 style: theme.textTheme.bodyMedium?.copyWith(
                   fontWeight: FontWeight.w600,
@@ -1000,8 +995,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
                 ),
               ),
             ),
-            Text(
-              'to',
+            LocalizedText('to',
               style: TextStyle(
                 color: Colors.black54,
                 fontSize: 14.sp,
@@ -1017,7 +1011,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
                   width: 1,
                 ),
               ),
-              child: Text(
+              child: LocalizedText(
                 _amountRange.end >= 9999
                     ? 'No limit'
                     : CurrencyFormatter.format(_amountRange.end, currency),
@@ -1063,8 +1057,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
         SizedBox(height: 16.h),
 
         // Preset amounts
-        Text(
-          'Quick Select',
+        LocalizedText('Quick Select',
           style: theme.textTheme.titleSmall?.copyWith(
             fontWeight: FontWeight.w600,
             color: Colors.black87,
@@ -1079,7 +1072,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
           children: [
             _buildAmountChip(
               context,
-              label: 'Under ${currency.symbol}100',
+              label: AppLocalizations.tr('Under ${currency.symbol}100'),
               onTap: () {
                 setState(() {
                   _amountRange = const RangeValues(0, 100);
@@ -1088,7 +1081,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
             ),
             _buildAmountChip(
               context,
-              label: '${currency.symbol}100-${currency.symbol}500',
+              label: AppLocalizations.tr('${currency.symbol}100-${currency.symbol}500'),
               onTap: () {
                 setState(() {
                   _amountRange = const RangeValues(100, 500);
@@ -1097,7 +1090,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
             ),
             _buildAmountChip(
               context,
-              label: '${currency.symbol}500-${currency.symbol}1k',
+              label: AppLocalizations.tr('${currency.symbol}500-${currency.symbol}1k'),
               onTap: () {
                 setState(() {
                   _amountRange = const RangeValues(500, 1000);
@@ -1106,7 +1099,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
             ),
             _buildAmountChip(
               context,
-              label: 'Over ${currency.symbol}1k',
+              label: AppLocalizations.tr('Over ${currency.symbol}1k'),
               onTap: () {
                 setState(() {
                   _amountRange = const RangeValues(1000, 10000);
@@ -1115,7 +1108,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
             ),
             _buildAmountChip(
               context,
-              label: 'Any',
+              label: AppLocalizations.tr('Any'),
               onTap: () {
                 setState(() {
                   _amountRange = const RangeValues(0, 10000);
@@ -1195,7 +1188,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
                   color: Colors.white,
                 ),
               ),
-            Text(
+            LocalizedText(
               label,
               style: TextStyle(
                 fontSize: 13.sp,
@@ -1264,14 +1257,13 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Text(
-                      'Current selection:',
+                    LocalizedText('Current selection:',
                       style: theme.textTheme.bodySmall?.copyWith(
                         color: Colors.grey.shade700,
                       ),
                     ),
                     SizedBox(height: 2.h),
-                    Text(
+                    LocalizedText(
                       selectedCategoriesText,
                       style: theme.textTheme.bodyMedium?.copyWith(
                         fontWeight: FontWeight.bold,
@@ -1310,8 +1302,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
                           : Colors.transparent,
                       borderRadius: BorderRadius.circular(16.r),
                     ),
-                    child: Text(
-                      'Expense',
+                    child: LocalizedText('Expense',
                       style: theme.textTheme.bodySmall?.copyWith(
                         fontWeight: FontWeight.bold,
                         color: _showExpenseCategories
@@ -1339,8 +1330,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
                           : Colors.transparent,
                       borderRadius: BorderRadius.circular(16.r),
                     ),
-                    child: Text(
-                      'Income',
+                    child: LocalizedText('Income',
                       style: theme.textTheme.bodySmall?.copyWith(
                         fontWeight: FontWeight.bold,
                         color: !_showExpenseCategories
@@ -1361,8 +1351,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
-              'Select ${_showExpenseCategories ? 'expense' : 'income'} categories',
+            LocalizedText('Select ${_showExpenseCategories ? 'expense' : 'income'} categories',
               style: theme.textTheme.bodySmall?.copyWith(
                 color: Colors.grey.shade700,
               ),
@@ -1390,7 +1379,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
                     });
                   },
                   icon: Icon(Icons.check_box, size: 14.r),
-                  label: const Text('All'),
+                  label: const LocalizedText('All'),
                   style: OutlinedButton.styleFrom(
                     padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 0),
                     minimumSize: Size(0, 30.h),
@@ -1413,7 +1402,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
                     });
                   },
                   icon: Icon(Icons.check_box_outline_blank, size: 14.r),
-                  label: const Text('None'),
+                  label: const LocalizedText('None'),
                   style: OutlinedButton.styleFrom(
                     padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 0),
                     minimumSize: Size(0, 30.h),
@@ -1576,7 +1565,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
                   color: isSelected ? Colors.white : theme.colorScheme.primary,
                 ),
                 SizedBox(width: 6.w),
-                Text(
+                LocalizedText(
                   displayInfo.name,
                   style: TextStyle(
                     fontSize: 13.sp,

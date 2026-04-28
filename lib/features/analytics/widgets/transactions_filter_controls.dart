@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
+import 'package:finance_track/core/localization/localization.dart';
 
 /// Compact header that shows the Filter/Sort bar and the Applied Filters chips.
 /// This reuses the analytics screen UI but can be embedded in any screen.
@@ -76,8 +77,7 @@ class TransactionsFilterControls extends StatelessWidget {
                                         : Colors.black87,
                                   ),
                                   SizedBox(width: 4.w),
-                                  Text(
-                                    'Filter',
+                                  LocalizedText('Filter',
                                     style: TextStyle(
                                       fontSize: 12.sp,
                                       fontWeight: hasActiveFilters(state)
@@ -114,8 +114,7 @@ class TransactionsFilterControls extends StatelessWidget {
                                     color: Colors.black87,
                                   ),
                                   SizedBox(width: 4.w),
-                                  Text(
-                                    'Sort',
+                                  LocalizedText('Sort',
                                     style: TextStyle(
                                       fontSize: 12.sp,
                                       color: Colors.black87,
@@ -166,8 +165,7 @@ class TransactionsFilterControls extends StatelessWidget {
                             color: theme.colorScheme.primary,
                           ),
                           SizedBox(width: 6.w),
-                          Text(
-                            'Applied Filters',
+                          LocalizedText('Applied Filters',
                             style: TextStyle(
                               fontSize: 12.sp,
                               fontWeight: FontWeight.w600,
@@ -190,8 +188,7 @@ class TransactionsFilterControls extends StatelessWidget {
                                 width: 1,
                               ),
                             ),
-                            child: Text(
-                              '${_activeFilterCount(state)} active',
+                            child: LocalizedText('${_activeFilterCount(state)} active',
                               style: TextStyle(
                                 fontSize: 11.sp,
                                 fontWeight: FontWeight.w600,
@@ -223,8 +220,7 @@ class TransactionsFilterControls extends StatelessWidget {
                               size: 14.r,
                               color: theme.colorScheme.error,
                             ),
-                            label: Text(
-                              'Reset all',
+                            label: LocalizedText('Reset all',
                               style: TextStyle(
                                 fontSize: 12.sp,
                                 color: theme.colorScheme.error,
@@ -291,7 +287,7 @@ class TransactionsFilterControls extends StatelessWidget {
       final endDate = dateFormat.format(state.dateRange!.end);
       chips.add(_buildFilterItem(
         context: context,
-        label: '$startDate - $endDate',
+        label: AppLocalizations.tr('$startDate - $endDate'),
         icon: Icons.date_range,
         onClear: () {
           context.read<TransactionAnalyticsBloc>().add(
@@ -311,7 +307,7 @@ class TransactionsFilterControls extends StatelessWidget {
               : '∞';
       chips.add(_buildFilterItem(
         context: context,
-        label: '₹$minText - ₹$maxText',
+        label: AppLocalizations.tr('₹$minText - ₹$maxText'),
         icon: Icons.attach_money,
         onClear: () {
           context.read<TransactionAnalyticsBloc>().add(
@@ -326,8 +322,7 @@ class TransactionsFilterControls extends StatelessWidget {
         state.expenseCategories!.isNotEmpty) {
       chips.add(_buildFilterItem(
         context: context,
-        label:
-            '${state.expenseCategories!.length} expense${state.expenseCategories!.length > 1 ? 's' : ''}',
+        label: AppLocalizations.tr('${state.expenseCategories!.length} expense${state.expenseCategories!.length > 1 ? 's' : ''}'),
         icon: Icons.category,
         onClear: () {
           context.read<TransactionAnalyticsBloc>().add(
@@ -339,8 +334,7 @@ class TransactionsFilterControls extends StatelessWidget {
     if (state.incomeCategories != null && state.incomeCategories!.isNotEmpty) {
       chips.add(_buildFilterItem(
         context: context,
-        label:
-            '${state.incomeCategories!.length} income${state.incomeCategories!.length > 1 ? 's' : ''}',
+        label: AppLocalizations.tr('${state.incomeCategories!.length} income${state.incomeCategories!.length > 1 ? 's' : ''}'),
         icon: Icons.category,
         onClear: () {
           context.read<TransactionAnalyticsBloc>().add(
@@ -448,7 +442,7 @@ class TransactionsFilterControls extends StatelessWidget {
                 color: theme.colorScheme.primary.withValues(alpha: 0.7),
               ),
               SizedBox(width: 6.w),
-              Text(
+              LocalizedText(
                 label,
                 style: TextStyle(
                   fontSize: 12.sp,
@@ -642,8 +636,7 @@ class TransactionsFilterPill extends StatelessWidget {
                                   : Colors.black87,
                         ),
                         SizedBox(width: 4.w),
-                        Text(
-                          'Filter',
+                        LocalizedText('Filter',
                           style: TextStyle(
                             fontSize: 11.sp,
                             fontWeight:
@@ -677,8 +670,7 @@ class TransactionsFilterPill extends StatelessWidget {
                       children: [
                         Icon(Icons.sort, size: 14.r, color: Colors.black87),
                         SizedBox(width: 4.w),
-                        Text(
-                          'Sort',
+                        LocalizedText('Sort',
                           style:
                               TextStyle(fontSize: 11.sp, color: Colors.black87),
                         ),
@@ -738,8 +730,7 @@ class AppliedFiltersCard extends StatelessWidget {
                     Icon(Icons.filter_alt,
                         size: 14.r, color: theme.colorScheme.primary),
                     SizedBox(width: 6.w),
-                    Text(
-                      'Applied Filters',
+                    LocalizedText('Applied Filters',
                       style: TextStyle(
                         fontSize: 12.sp,
                         fontWeight: FontWeight.w600,
@@ -762,8 +753,7 @@ class AppliedFiltersCard extends StatelessWidget {
                       },
                       icon: Icon(Icons.refresh,
                           size: 14.r, color: theme.colorScheme.error),
-                      label: Text(
-                        'Reset all',
+                      label: LocalizedText('Reset all',
                         style: TextStyle(
                           fontSize: 12.sp,
                           color: theme.colorScheme.error,

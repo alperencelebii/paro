@@ -2,6 +2,7 @@ import 'package:finance_track/features/navigation/cubit/navigation_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:finance_track/core/localization/localization.dart';
 
 import '../../features/expense_list/bloc/expense_list_bloc.dart';
 import '../../features/expense_list/bloc/expense_list_event.dart';
@@ -51,7 +52,7 @@ class _ScaffoldWithNavBarState extends State<ScaffoldWithNavBar> {
               index: state.currentTab == NavigationTab.home ? 0 : 1,
               children: [
                 widget.child,
-                const Center(child: Text('Income List')),
+                const Center(child: LocalizedText('Income List')),
               ],
             ),
             bottomNavigationBar: _isBottomSheetVisible

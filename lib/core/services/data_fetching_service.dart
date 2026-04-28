@@ -14,6 +14,7 @@ import '../../data/repositories/objectbox_expense_repository.dart';
 import '../../data/repositories/objectbox_income_repository.dart';
 import '../../data/repositories/objectbox_budget_repository.dart';
 import '../../data/objectbox.dart';
+import 'package:finance_track/core/localization/localization.dart';
 
 /// Base class for data fetch status
 abstract class DataFetchStatus {
@@ -34,7 +35,7 @@ class DataFetchLoading extends DataFetchStatus {
   final String message;
 
   /// Constructor
-  const DataFetchLoading({
+  DataFetchLoading({
     this.progress = 0.0,
     this.message = 'Loading your data...',
   });
@@ -145,7 +146,7 @@ class DataFetchingService {
     _fetchedItems = 0;
     _totalItemsToFetch = 0;
 
-    _updateStatus(const DataFetchLoading(message: 'Starting data fetch...'));
+    _updateStatus(DataFetchLoading(message: AppLocalizations.tr('Starting data fetch...')));
 
     try {
       final user = FirebaseAuth.instance.currentUser;
@@ -164,7 +165,7 @@ class DataFetchingService {
 
       _updateStatus(DataFetchLoading(
           progress: 0.1,
-          message: 'Found $_totalItemsToFetch items to fetch...'));
+          message: AppLocalizations.tr('Found $_totalItemsToFetch items to fetch...')));
 
       if (_totalItemsToFetch == 0) {
         dev.log('No data to fetch for user');
@@ -173,20 +174,20 @@ class DataFetchingService {
         return;
       }
 
-      _updateStatus(const DataFetchLoading(
-          progress: 0.2, message: 'Fetching income data...'));
+      _updateStatus(DataFetchLoading(
+          progress: 0.2, message: AppLocalizations.tr('Fetching income data...')));
 
       // Fetch and store incomes
       final incomes = await _fetchIncomes();
 
-      _updateStatus(const DataFetchLoading(
-          progress: 0.6, message: 'Fetching expense data...'));
+      _updateStatus(DataFetchLoading(
+          progress: 0.6, message: AppLocalizations.tr('Fetching expense data...')));
 
       // Fetch and store expenses
       final expenses = await _fetchExpenses();
 
-      _updateStatus(const DataFetchLoading(
-          progress: 0.8, message: 'Fetching budget data...'));
+      _updateStatus(DataFetchLoading(
+          progress: 0.8, message: AppLocalizations.tr('Fetching budget data...')));
 
       // Fetch and store budgets
       final budgets = await _fetchBudgets();

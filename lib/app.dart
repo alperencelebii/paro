@@ -4,11 +4,13 @@ import 'package:finance_track/features/budget/bloc/budget_bloc/budget_bloc.dart'
 import 'package:finance_track/features/subscription/cubits/purchases_cubit/purchases_cubit.dart';
 import 'package:finance_track/features/subscription/cubits/subscription_cubit/subscription_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:user_repository/user_repository.dart';
 
+import 'core/localization/localization.dart';
 import 'core/theme/theme.dart';
 import 'features/profile/currency/bloc/currency/currency_bloc.dart';
 import 'features/profile/currency/bloc/currency/currency_event.dart';
@@ -97,6 +99,9 @@ class ExpenseApp extends StatelessWidget {
             BlocProvider<PurchasesCubit>(create: (context) => PurchasesCubit()),
             BlocProvider<NavigationCubit>.value(value: navigationCubit),
             BlocProvider<ConnectivityCubit>.value(value: connectivityCubit),
+            BlocProvider<LanguageCubit>(
+              create: (context) => LanguageCubit()..loadLanguage(),
+            ),
             BlocProvider<ExpenseListBloc>(
               create: (context) {
                 final bloc = ExpenseListBloc(expenseRepository);
@@ -170,16 +175,29 @@ class ExpenseApp extends StatelessWidget {
               minTextAdapt: true,
               splitScreenMode: true,
               builder: (context, child) {
-                return MaterialApp.router(
-                  title: 'Finance Track',
-                  theme: lightThemeData(),
-                  debugShowCheckedModeBanner: false,
-                  darkTheme: darkThemeData(),
-                  themeMode: ThemeMode.light,
-                  routerConfig: appRouter.router(appBloc),
-                  builder: (context, child) {
-                    return ConnectivityBanner(
-                      child: child ?? const SizedBox.shrink(),
+                return BlocBuilder<LanguageCubit, LanguageState>(
+                  builder: (context, languageState) {
+                    return MaterialApp.router(
+                      title: 'Finance Track',
+                      onGenerateTitle: (context) => AppLocalizations.tr('Finance Track'),
+                      locale: languageState.locale,
+                      supportedLocales: AppLocalizations.supportedLocales,
+                      localizationsDelegates: const [
+                        AppLocalizations.delegate,
+                        GlobalMaterialLocalizations.delegate,
+                        GlobalWidgetsLocalizations.delegate,
+                        GlobalCupertinoLocalizations.delegate,
+                      ],
+                      theme: lightThemeData(),
+                      debugShowCheckedModeBanner: false,
+                      darkTheme: darkThemeData(),
+                      themeMode: ThemeMode.light,
+                      routerConfig: appRouter.router(appBloc),
+                      builder: (context, child) {
+                        return ConnectivityBanner(
+                          child: child ?? const SizedBox.shrink(),
+                        );
+                      },
                     );
                   },
                 );

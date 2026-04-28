@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import 'package:go_router/go_router.dart';
 import '../../../core/router/app_router.dart';
+import 'package:finance_track/core/localization/localization.dart';
 
 import '../../../core/extensions/currency_context_extension.dart';
 import '../../expense_list/bloc/expense_list_bloc.dart';
@@ -152,7 +153,7 @@ class _HomeDateWiseExpenseChartWidgetState
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
+                    LocalizedText(
                       formatter.format(_selected == _ChartType.expense
                           ? state.totalExpense
                           : state.totalIncome),
@@ -165,8 +166,7 @@ class _HomeDateWiseExpenseChartWidgetState
                     SizedBox(height: 4.h),
                     Row(
                       children: [
-                        Text(
-                          'Last ${widget.days} Days',
+                        LocalizedText('Last ${widget.days} Days',
                           style: TextStyle(
                             fontSize: 11.sp,
                             color: Colors.grey.shade600,
@@ -184,8 +184,7 @@ class _HomeDateWiseExpenseChartWidgetState
                                 : Colors.green.shade50,
                             borderRadius: BorderRadius.circular(4.r),
                           ),
-                          child: Text(
-                            '${state.changePercentage >= 0 ? '+' : ''}${state.changePercentage.toStringAsFixed(0)}%',
+                          child: LocalizedText('${state.changePercentage >= 0 ? '+' : ''}${state.changePercentage.toStringAsFixed(0)}%',
                             style: TextStyle(
                               fontSize: 10.sp,
                               fontWeight: FontWeight.w600,
@@ -227,7 +226,7 @@ class _HomeDateWiseExpenseChartWidgetState
                             Icon(Icons.trending_down,
                                 color: const Color(0xFFF08080), size: 14.r),
                             SizedBox(width: 8.w),
-                            const Text('Expense'),
+                            const LocalizedText('Expense'),
                           ],
                         ),
                       ),
@@ -238,7 +237,7 @@ class _HomeDateWiseExpenseChartWidgetState
                             Icon(Icons.trending_up,
                                 color: Colors.green, size: 14.r),
                             SizedBox(width: 8.w),
-                            const Text('Income'),
+                            const LocalizedText('Income'),
                           ],
                         ),
                       ),
@@ -262,7 +261,7 @@ class _HomeDateWiseExpenseChartWidgetState
                             size: 16.r,
                           ),
                           SizedBox(width: 6.w),
-                          Text(
+                          LocalizedText(
                             _selected == _ChartType.expense
                                 ? 'Expense'
                                 : 'Income',
@@ -303,7 +302,7 @@ class _HomeDateWiseExpenseChartWidgetState
                         if (value > 0)
                           Padding(
                             padding: EdgeInsets.only(bottom: 2.h),
-                            child: Text(
+                            child: LocalizedText(
                               formatter.format(value),
                               style: TextStyle(
                                 fontSize: 7.sp,
@@ -340,7 +339,7 @@ class _HomeDateWiseExpenseChartWidgetState
                           mainAxisSize: MainAxisSize.min,
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Text(
+                            LocalizedText(
                               DateFormat('MMM').format(data.date),
                               style: TextStyle(
                                 fontSize: 7.sp,
@@ -350,7 +349,7 @@ class _HomeDateWiseExpenseChartWidgetState
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
                             ),
-                            Text(
+                            LocalizedText(
                               DateFormat('d').format(data.date),
                               style: TextStyle(
                                 fontSize: 8.sp,
@@ -378,8 +377,7 @@ class _HomeDateWiseExpenseChartWidgetState
                 minimumSize: Size.zero,
                 tapTargetSize: MaterialTapTargetSize.shrinkWrap,
               ),
-              child: Text(
-                'View More',
+              child: LocalizedText('View More',
                 style: TextStyle(
                   fontSize: 13.sp,
                   fontWeight: FontWeight.w600,

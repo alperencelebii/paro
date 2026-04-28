@@ -15,6 +15,7 @@ import '../../../data/models/expense_model.dart';
 import '../../../data/models/income_model.dart';
 import '../../dashboard/bloc/category_analysis_bloc.dart';
 import '../widget/widgets.dart';
+import 'package:finance_track/core/localization/localization.dart';
 
 class CategoryDetailScreen extends StatefulWidget {
   final dynamic category;
@@ -366,7 +367,7 @@ class _CategoryDetailScreenState extends State<CategoryDetailScreen>
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Error loading category data: $e'),
+            content: LocalizedText('Error loading category data: $e'),
             backgroundColor: Colors.red,
           ),
         );
@@ -435,7 +436,7 @@ class _CategoryDetailScreenState extends State<CategoryDetailScreen>
             debugPrint('Category analysis error: ${state.message}');
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
-                content: Text('Error: ${state.message}'),
+                content: LocalizedText('Error: ${state.message}'),
                 backgroundColor: Colors.red,
               ),
             );
@@ -518,7 +519,7 @@ class _CategoryDetailScreenState extends State<CategoryDetailScreen>
     return Scaffold(
       appBar: AppBar(
         backgroundColor: _categoryColor,
-        title: Text(
+        title: LocalizedText(
           _categoryName,
           style: const TextStyle(
             color: Colors.white,
@@ -540,8 +541,7 @@ class _CategoryDetailScreenState extends State<CategoryDetailScreen>
               color: _categoryColor.withValues(alpha: 0.5),
             ),
             SizedBox(height: 16.h),
-            Text(
-              'Loading $_categoryName data...',
+            LocalizedText('Loading $_categoryName data...',
               style: TextStyle(
                 fontSize: 16.sp,
                 fontWeight: FontWeight.w500,
@@ -566,7 +566,7 @@ class _CategoryDetailScreenState extends State<CategoryDetailScreen>
         icon: const Icon(Icons.arrow_back_ios, color: Colors.white, size: 20),
         onPressed: () => Navigator.of(context).pop(),
       ),
-      title: Text(
+      title: LocalizedText(
         _categoryName,
         style: TextStyle(
           color: Colors.white,
@@ -579,7 +579,7 @@ class _CategoryDetailScreenState extends State<CategoryDetailScreen>
         IconButton(
           icon: const Icon(Icons.date_range, color: Colors.white, size: 20),
           onPressed: _selectDateRange,
-          tooltip: 'Select custom date range',
+          tooltip: AppLocalizations.tr('Select custom date range'),
         ),
       ],
       bottom: PreferredSize(
@@ -687,7 +687,7 @@ class _CategoryDetailScreenState extends State<CategoryDetailScreen>
                   borderRadius: BorderRadius.circular(20.r),
                 ),
                 alignment: Alignment.center,
-                child: Text(
+                child: LocalizedText(
                   _timeFrameLabels[index],
                   style: TextStyle(
                     color: isSelected ? _categoryColor : Colors.white,
@@ -786,7 +786,7 @@ class _CategoryDetailScreenState extends State<CategoryDetailScreen>
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
+                  LocalizedText(
                     formatTransactionDate(date),
                     style: Theme.of(context).textTheme.titleMedium?.copyWith(
                           fontWeight: FontWeight.w600,
@@ -867,7 +867,7 @@ class _CategoryDetailScreenState extends State<CategoryDetailScreen>
             color: Colors.grey.withValues(alpha: 0.5),
           ),
           SizedBox(height: 16.h),
-          Text(
+          LocalizedText(
             _hasActiveFilters()
                 ? 'No transactions match your filters'
                 : 'No transactions in this category',
@@ -884,7 +884,7 @@ class _CategoryDetailScreenState extends State<CategoryDetailScreen>
                 });
               },
               icon: const Icon(Icons.filter_alt_off),
-              label: const Text('Clear Filters'),
+              label: const LocalizedText('Clear Filters'),
             ),
           ],
         ],
@@ -1055,7 +1055,7 @@ class _CategoryDetailScreenState extends State<CategoryDetailScreen>
   //         Row(
   //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
   //           children: [
-  //             Text(
+  //             LocalizedText(
   //               'Budget Tracking',
   //               style: theme.textTheme.titleMedium?.copyWith(
   //                 fontWeight: FontWeight.bold,
@@ -1081,7 +1081,7 @@ class _CategoryDetailScreenState extends State<CategoryDetailScreen>
   //                       color: _categoryColor,
   //                     ),
   //                     SizedBox(width: 4.w),
-  //                     Text(
+  //                     LocalizedText(
   //                       'Adjust',
   //                       style: theme.textTheme.bodySmall?.copyWith(
   //                         color: _categoryColor,
@@ -1098,11 +1098,11 @@ class _CategoryDetailScreenState extends State<CategoryDetailScreen>
   //         Row(
   //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
   //           children: [
-  //             Text(
+  //             LocalizedText(
   //               'Budget',
   //               style: theme.textTheme.bodyMedium,
   //             ),
-  //             Text(
+  //             LocalizedText(
   //               formatter.format(_budgetAmount),
   //               style: theme.textTheme.titleSmall?.copyWith(
   //                 fontWeight: FontWeight.bold,
@@ -1114,11 +1114,11 @@ class _CategoryDetailScreenState extends State<CategoryDetailScreen>
   //         Row(
   //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
   //           children: [
-  //             Text(
+  //             LocalizedText(
   //               'Spent',
   //               style: theme.textTheme.bodyMedium,
   //             ),
-  //             Text(
+  //             LocalizedText(
   //               formatter.format(state.totalAmount),
   //               style: theme.textTheme.titleSmall?.copyWith(
   //                 fontWeight: FontWeight.bold,
@@ -1131,11 +1131,11 @@ class _CategoryDetailScreenState extends State<CategoryDetailScreen>
   //         Row(
   //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
   //           children: [
-  //             Text(
+  //             LocalizedText(
   //               'Remaining',
   //               style: theme.textTheme.bodyMedium,
   //             ),
-  //             Text(
+  //             LocalizedText(
   //               formatter.format(_budgetRemaining),
   //               style: theme.textTheme.titleSmall?.copyWith(
   //                 fontWeight: FontWeight.bold,
@@ -1159,7 +1159,7 @@ class _CategoryDetailScreenState extends State<CategoryDetailScreen>
   //               ),
   //             ),
   //             SizedBox(height: 6.h),
-  //             Text(
+  //             LocalizedText(
   //               '${_budgetUsedPercentage.toStringAsFixed(1)}% used',
   //               style: theme.textTheme.bodySmall?.copyWith(
   //                 fontWeight: FontWeight.bold,
@@ -1185,7 +1185,7 @@ class _CategoryDetailScreenState extends State<CategoryDetailScreen>
   //                 ),
   //                 SizedBox(width: 8.w),
   //                 Expanded(
-  //                   child: Text(
+  //                   child: LocalizedText(
   //                     _budgetUsedPercentage >= 100
   //                         ? 'You have exceeded your budget for this category'
   //                         : 'You are close to exceeding your budget for this category',
@@ -1218,7 +1218,7 @@ class _CategoryDetailScreenState extends State<CategoryDetailScreen>
   //                 child: Column(
   //                   crossAxisAlignment: CrossAxisAlignment.start,
   //                   children: [
-  //                     Text(
+  //                     LocalizedText(
   //                       'Daily budget: ${formatter.format(_budgetRemaining / math.max(state.dateRange.end.difference(DateTime.now()).inDays + 1, 1))}',
   //                       style: theme.textTheme.bodySmall?.copyWith(
   //                         fontWeight: FontWeight.bold,
@@ -1226,7 +1226,7 @@ class _CategoryDetailScreenState extends State<CategoryDetailScreen>
   //                       ),
   //                     ),
   //                     if (_budgetRemaining > 0)
-  //                       Text(
+  //                       LocalizedText(
   //                         'Staying within budget for the next ${state.dateRange.end.difference(DateTime.now()).inDays + 1} days',
   //                         style: theme.textTheme.bodySmall?.copyWith(
   //                           color: theme.colorScheme.primary.withValues(alpha:0.8),
@@ -1263,7 +1263,7 @@ class _CategoryDetailScreenState extends State<CategoryDetailScreen>
   //   return showDialog(
   //     context: context,
   //     builder: (context) => AlertDialog(
-  //       title: Text('Adjust Budget for $_categoryName'),
+  //       title: LocalizedText('Adjust Budget for $_categoryName'),
   //       content: Column(
   //         mainAxisSize: MainAxisSize.min,
   //         children: [
@@ -1272,7 +1272,7 @@ class _CategoryDetailScreenState extends State<CategoryDetailScreen>
   //             keyboardType:
   //                 const TextInputType.numberWithOptions(decimal: true),
   //             decoration: InputDecoration(
-  //               labelText: 'Budget Amount',
+  //               labelText: AppLocalizations.tr('Budget Amount'),
   //               prefixText: widget.currency.symbol,
   //               border: const OutlineInputBorder(),
   //             ),
@@ -1282,7 +1282,7 @@ class _CategoryDetailScreenState extends State<CategoryDetailScreen>
   //       actions: [
   //         TextButton(
   //           onPressed: () => Navigator.of(context).pop(),
-  //           child: const Text('Cancel'),
+  //           child: const LocalizedText('Cancel'),
   //         ),
   //         ElevatedButton(
   //           onPressed: () {
@@ -1304,13 +1304,13 @@ class _CategoryDetailScreenState extends State<CategoryDetailScreen>
   //             } catch (e) {
   //               ScaffoldMessenger.of(context).showSnackBar(
   //                 const SnackBar(
-  //                   content: Text('Please enter a valid amount'),
+  //                   content: LocalizedText('Please enter a valid amount'),
   //                   backgroundColor: Colors.red,
   //                 ),
   //               );
   //             }
   //           },
-  //           child: const Text('Save'),
+  //           child: const LocalizedText('Save'),
   //         ),
   //       ],
   //     ),
@@ -1421,10 +1421,8 @@ class TabBarHeaderDelegate extends StatelessWidget {
           tabController.animateTo(value);
         },
         tabs: const [
-          Tab(
-            text: 'Overview',
-          ),
-          Tab(text: 'Transactions'),
+          Tab(child: LocalizedText('Overview')),
+          Tab(child: LocalizedText('Transactions')),
         ],
       ),
     );

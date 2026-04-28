@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:finance_track/core/localization/localization.dart';
 
 import '../../../../data/models/budget_model.dart';
 import '../../../../data/repositories/composite_budget_repository.dart';
@@ -50,14 +51,16 @@ class BudgetFormBloc extends Bloc<BudgetFormEvent, BudgetFormState> {
 
     bool isDefaultTitle = false;
     for (final name in periodNames) {
-      if (currentTitle == '$name Budget') {
+      if (currentTitle == '$name Budget' ||
+          currentTitle == AppLocalizations.tr('$name Budget')) {
         isDefaultTitle = true;
         break;
       }
     }
 
     if (isDefaultTitle || currentTitle.isEmpty) {
-      state.titleController.text = '${event.period.displayName} Budget';
+      state.titleController.text =
+          AppLocalizations.tr('${event.period.displayName} Budget');
     }
 
     emit(state.copyWith(
@@ -118,7 +121,7 @@ class BudgetFormBloc extends Bloc<BudgetFormEvent, BudgetFormState> {
       final title = state.titleController.text.trim();
       if (title.isEmpty) {
         state.titleController.text =
-            '${state.selectedPeriod.displayName} Budget';
+            AppLocalizations.tr('${state.selectedPeriod.displayName} Budget');
       }
 
       // Perform the budget operation

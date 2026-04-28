@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:finance_track/core/localization/localization.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_upgrade_version/flutter_upgrade_version.dart';
@@ -96,21 +97,19 @@ class _UpdateRequiredScreenState extends State<UpdateRequiredScreen> {
               Icon(Icons.system_update,
                   size: 72, color: theme.colorScheme.primary),
               const SizedBox(height: 16),
-              Text(
-                'Update Required',
+              LocalizedText('Update Required',
                 style: theme.textTheme.headlineSmall
                     ?.copyWith(fontWeight: FontWeight.bold),
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 8),
-              Text(
-                'A newer version of the app is available and is required to continue.',
+              LocalizedText('A newer version of the app is available and is required to continue.',
                 style: theme.textTheme.bodyMedium,
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 24),
               if (_error != null) ...[
-                Text(_error!,
+                LocalizedText(_error!,
                     style: theme.textTheme.bodySmall
                         ?.copyWith(color: theme.colorScheme.error)),
                 const SizedBox(height: 12),
@@ -123,11 +122,10 @@ class _UpdateRequiredScreenState extends State<UpdateRequiredScreen> {
                           height: 20,
                           width: 20,
                           child: CircularProgressIndicator(strokeWidth: 2))
-                      : const Text('Update Now'),
+                      : const LocalizedText('Update Now'),
                 ),
               if (Platform.isAndroid)
-                Text(
-                  'The update will start automatically. Please follow the on-screen instructions.',
+                LocalizedText('The update will start automatically. Please follow the on-screen instructions.',
                   style: theme.textTheme.bodySmall,
                   textAlign: TextAlign.center,
                 ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
+import 'package:finance_track/core/localization/localization.dart';
 
 import '../../../core/models/currency_model.dart';
 import '../bloc/transaction_analytics_event.dart';
@@ -132,7 +133,7 @@ class TransactionSummaryCard extends StatelessWidget {
                         ),
                       ),
                       SizedBox(width: 12.w),
-                      Text(
+                      LocalizedText(
                         title,
                         style: theme.textTheme.titleMedium?.copyWith(
                           fontWeight: FontWeight.w600,
@@ -145,7 +146,7 @@ class TransactionSummaryCard extends StatelessWidget {
                   SizedBox(height: 20.h),
 
                   // Amount
-                  Text(
+                  LocalizedText(
                     formatter.format(totalAmount),
                     style: theme.textTheme.headlineSmall?.copyWith(
                       fontWeight: FontWeight.bold,
@@ -174,8 +175,7 @@ class TransactionSummaryCard extends StatelessWidget {
                           color: amountColor.withValues(alpha: 0.8),
                         ),
                         SizedBox(width: 6.w),
-                        Text(
-                          '$totalTransactions transaction${totalTransactions == 1 ? '' : 's'}',
+                        LocalizedText('$totalTransactions transaction${totalTransactions == 1 ? '' : 's'}',
                           style: theme.textTheme.bodyMedium?.copyWith(
                             color: amountColor.withValues(alpha: 0.8),
                             fontWeight: FontWeight.w500,

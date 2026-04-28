@@ -9,6 +9,7 @@ import '../../bloc/scanner_event.dart';
 import '../../bloc/scanner_state.dart';
 import '../../utils/permission_helper.dart';
 import '../../../../core/router/app_router.dart';
+import 'package:finance_track/core/localization/localization.dart';
 
 /// Camera page for capturing receipt images
 class CameraPage extends StatefulWidget {
@@ -96,7 +97,7 @@ class _CameraPageState extends State<CameraPage> {
         });
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Failed to initialize camera: $e'),
+            content: LocalizedText('Failed to initialize camera: $e'),
             backgroundColor: Colors.red,
           ),
         );
@@ -135,7 +136,7 @@ class _CameraPageState extends State<CameraPage> {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Failed to take picture: $e'),
+            content: LocalizedText('Failed to take picture: $e'),
             backgroundColor: Colors.red,
           ),
         );
@@ -190,21 +191,20 @@ class _CameraPageState extends State<CameraPage> {
                   showDialog(
                     context: context,
                     builder: (context) => AlertDialog(
-                      title: const Text('Permission Required'),
-                      content: const Text(
-                        'Storage permission is required to select photos. Please grant permission in app settings.',
+                      title: const LocalizedText('Permission Required'),
+                      content: const LocalizedText('Storage permission is required to select photos. Please grant permission in app settings.',
                       ),
                       actions: [
                         TextButton(
                           onPressed: () => Navigator.of(context).pop(),
-                          child: const Text('Cancel'),
+                          child: const LocalizedText('Cancel'),
                         ),
                         ElevatedButton(
                           onPressed: () async {
                             Navigator.of(context).pop();
                             await PermissionHelper.openAppSettings();
                           },
-                          child: const Text('Open Settings'),
+                          child: const LocalizedText('Open Settings'),
                         ),
                       ],
                     ),
@@ -213,7 +213,7 @@ class _CameraPageState extends State<CameraPage> {
                   // Show snackbar for temporary denial
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(
-                      content: Text('Storage permission is required to select photos'),
+                      content: LocalizedText('Storage permission is required to select photos'),
                       backgroundColor: Colors.red,
                       duration: Duration(seconds: 3),
                     ),
@@ -235,7 +235,7 @@ class _CameraPageState extends State<CameraPage> {
               if (mounted) {
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
-                    content: Text('Failed to pick image: ${e2.toString()}'),
+                    content: LocalizedText('Failed to pick image: ${e2.toString()}'),
                     backgroundColor: Colors.red,
                     duration: const Duration(seconds: 3),
                   ),
@@ -266,7 +266,7 @@ class _CameraPageState extends State<CameraPage> {
           if (mounted) {
             ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(
-                content: Text('Selected image file not found'),
+                content: LocalizedText('Selected image file not found'),
                 backgroundColor: Colors.red,
               ),
             );
@@ -287,11 +287,11 @@ class _CameraPageState extends State<CameraPage> {
         
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text(errorMessage),
+            content: LocalizedText(errorMessage),
             backgroundColor: Colors.red,
             duration: const Duration(seconds: 4),
             action: SnackBarAction(
-              label: 'Retry',
+              label: AppLocalizations.tr('Retry'),
               textColor: Colors.white,
               onPressed: () => _pickFromGallery(),
             ),
@@ -371,8 +371,7 @@ class _CameraPageState extends State<CameraPage> {
                         onPressed: _pickFromGallery,
                         icon: const Icon(Icons.photo_library,
                             color: Colors.white),
-                        label: const Text(
-                          'Select Photo',
+                        label: const LocalizedText('Select Photo',
                           style: TextStyle(color: Colors.white),
                         ),
                         style: TextButton.styleFrom(
@@ -454,8 +453,7 @@ class _CameraPageState extends State<CameraPage> {
             const Icon(Icons.camera_alt_outlined,
                 size: 64, color: Colors.white),
             const SizedBox(height: 16),
-            const Text(
-              'Camera Permission Required',
+            const LocalizedText('Camera Permission Required',
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 20,
@@ -464,8 +462,7 @@ class _CameraPageState extends State<CameraPage> {
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 8),
-            const Text(
-              'Please grant camera permission to scan receipts',
+            const LocalizedText('Please grant camera permission to scan receipts',
               style: TextStyle(color: Colors.white70),
               textAlign: TextAlign.center,
             ),
@@ -480,8 +477,7 @@ class _CameraPageState extends State<CameraPage> {
                   if (mounted) {
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(
-                        content: Text(
-                          'Please grant camera permission in app settings',
+                        content: LocalizedText('Please grant camera permission in app settings',
                         ),
                         backgroundColor: Colors.red,
                       ),
@@ -489,7 +485,7 @@ class _CameraPageState extends State<CameraPage> {
                   }
                 }
               },
-              child: const Text('Grant Permission'),
+              child: const LocalizedText('Grant Permission'),
             ),
           ],
         ),
@@ -506,8 +502,7 @@ class _CameraPageState extends State<CameraPage> {
           children: [
             const Icon(Icons.error_outline, size: 64, color: Colors.white),
             const SizedBox(height: 16),
-            const Text(
-              'Camera Not Available',
+            const LocalizedText('Camera Not Available',
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 20,
@@ -516,8 +511,7 @@ class _CameraPageState extends State<CameraPage> {
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 8),
-            const Text(
-              'Unable to access camera. Please try again.',
+            const LocalizedText('Unable to access camera. Please try again.',
               style: TextStyle(color: Colors.white70),
               textAlign: TextAlign.center,
             ),
@@ -526,7 +520,7 @@ class _CameraPageState extends State<CameraPage> {
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: const Text('Go Back'),
+              child: const LocalizedText('Go Back'),
             ),
           ],
         ),

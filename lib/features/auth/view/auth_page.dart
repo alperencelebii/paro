@@ -2,6 +2,7 @@ import 'package:finance_track/features/auth/login/view/login_page.dart';
 import 'package:finance_track/features/auth/signup/view/signup_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:finance_track/core/localization/localization.dart';
 
 class AuthPage extends StatefulWidget {
   const AuthPage({super.key});
@@ -49,16 +50,14 @@ class _AuthPageState extends State<AuthPage>
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    'Finance Tracker',
+                  LocalizedText('Finance Tracker',
                     style: theme.textTheme.headlineMedium?.copyWith(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                   SizedBox(height: 8.h),
-                  Text(
-                    'Get Started now',
+                  LocalizedText('Get Started now',
                     style: theme.textTheme.bodyLarge?.copyWith(
                       color: Colors.white.withValues(alpha: 0.9),
                     ),
@@ -83,16 +82,14 @@ class _AuthPageState extends State<AuthPage>
                       dividerHeight: 0,
                       tabs: const [
                         Tab(
-                          child: Text(
-                            'Log In',
+                          child: LocalizedText('Log In',
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                             ),
                           ),
                         ),
                         Tab(
-                          child: Text(
-                            'Sign Up',
+                          child: LocalizedText('Sign Up',
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                             ),

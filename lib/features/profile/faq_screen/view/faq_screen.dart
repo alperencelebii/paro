@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:finance_track/core/localization/localization.dart';
 
 import '../bloc/faq_bloc.dart';
 
@@ -77,7 +78,7 @@ class _FaqViewState extends State<FaqView> with SingleTickerProviderStateMixin {
           showDialog(
             context: context,
             builder: (context) => AlertDialog(
-              title: const Text('Error'),
+              title: const LocalizedText('Error'),
               content: SelectableText.rich(
                 TextSpan(
                   text: state.error!,
@@ -87,7 +88,7 @@ class _FaqViewState extends State<FaqView> with SingleTickerProviderStateMixin {
               actions: [
                 TextButton(
                   onPressed: () => Navigator.of(context).pop(),
-                  child: const Text('OK'),
+                  child: const LocalizedText('OK'),
                 ),
               ],
             ),
@@ -116,8 +117,7 @@ class _FaqViewState extends State<FaqView> with SingleTickerProviderStateMixin {
                       title: AnimatedOpacity(
                         duration: const Duration(milliseconds: 300),
                         opacity: innerBoxIsScrolled ? 1.0 : 0.0,
-                        child: const Text(
-                          'Frequently Asked Questions',
+                        child: const LocalizedText('Frequently Asked Questions',
                           style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
@@ -147,8 +147,7 @@ class _FaqViewState extends State<FaqView> with SingleTickerProviderStateMixin {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Text(
-                                  'How can we help you?',
+                                LocalizedText('How can we help you?',
                                   style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 24.sp,
@@ -156,8 +155,7 @@ class _FaqViewState extends State<FaqView> with SingleTickerProviderStateMixin {
                                   ),
                                 ),
                                 SizedBox(height: 8.h),
-                                Text(
-                                  'Find answers to common questions about using the app.',
+                                LocalizedText('Find answers to common questions about using the app.',
                                   style: TextStyle(
                                     color: Colors.white.withValues(alpha: 0.9),
                                     fontSize: 14.sp,
@@ -210,7 +208,7 @@ class _FaqViewState extends State<FaqView> with SingleTickerProviderStateMixin {
           child: TextField(
             controller: _searchController,
             decoration: InputDecoration(
-              hintText: 'Search FAQs...',
+              hintText: AppLocalizations.tr('Search FAQs...'),
               filled: true,
               fillColor: Colors.grey[50],
               prefixIcon: const Icon(Icons.search, color: Color(0xFF6C63FF)),
@@ -265,8 +263,7 @@ class _FaqViewState extends State<FaqView> with SingleTickerProviderStateMixin {
                 color: Colors.grey[300],
               ),
               SizedBox(height: 24.h),
-              Text(
-                'No results found for "${state.searchQuery}"',
+              LocalizedText('No results found for "${state.searchQuery}"',
                 style: TextStyle(
                   fontSize: 16.sp,
                   fontWeight: FontWeight.w500,
@@ -276,8 +273,7 @@ class _FaqViewState extends State<FaqView> with SingleTickerProviderStateMixin {
               SizedBox(height: 12.h),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 32.w),
-                child: Text(
-                  'Try using different keywords or check for spelling errors',
+                child: LocalizedText('Try using different keywords or check for spelling errors',
                   style: TextStyle(
                     fontSize: 14.sp,
                     color: Colors.grey[600],
@@ -292,8 +288,7 @@ class _FaqViewState extends State<FaqView> with SingleTickerProviderStateMixin {
                   context.read<FaqBloc>().add(const ClearSearch());
                 },
                 icon: const Icon(Icons.refresh, color: Color(0xFF6C63FF)),
-                label: Text(
-                  'Clear Search',
+                label: LocalizedText('Clear Search',
                   style: TextStyle(
                     color: const Color(0xFF6C63FF),
                     fontWeight: FontWeight.w500,
@@ -435,7 +430,7 @@ class _SearchResultsListView extends StatelessWidget {
                   color: const Color(0xFF6C63FF).withValues(alpha: 0.05),
                   borderRadius: BorderRadius.circular(4.r),
                 ),
-                child: Text(
+                child: LocalizedText(
                   result.category,
                   style: TextStyle(
                     fontSize: 11.sp,
@@ -448,7 +443,7 @@ class _SearchResultsListView extends StatelessWidget {
           ),
           tilePadding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
           childrenPadding: const EdgeInsets.all(0),
-          title: Text(
+          title: LocalizedText(
             result.question,
             style: TextStyle(
               fontSize: 15.sp,
@@ -468,7 +463,7 @@ class _SearchResultsListView extends StatelessWidget {
                 color: Colors.grey[50],
               ),
               child: SelectableText(
-                result.answer,
+                AppLocalizations.tr(result.answer),
                 style: TextStyle(
                   fontSize: 14.sp,
                   color: Colors.black87,
@@ -544,7 +539,7 @@ class _FaqCategoryItem extends StatelessWidget {
               size: 22.r,
             ),
           ),
-          title: Text(
+          title: LocalizedText(
             category.title,
             style: TextStyle(
               fontSize: 16.sp,
@@ -593,7 +588,7 @@ class _FaqCategoryItem extends StatelessWidget {
         maintainState: true,
         tilePadding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
         childrenPadding: const EdgeInsets.all(0),
-        title: Text(
+        title: LocalizedText(
           faqItem.question,
           style: TextStyle(
             fontSize: 15.sp,
@@ -619,7 +614,7 @@ class _FaqCategoryItem extends StatelessWidget {
               color: Colors.grey[50],
             ),
             child: SelectableText(
-              faqItem.answer,
+              AppLocalizations.tr(faqItem.answer),
               style: TextStyle(
                 fontSize: 14.sp,
                 color: Colors.black87,

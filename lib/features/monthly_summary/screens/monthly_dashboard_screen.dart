@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:fl_chart/fl_chart.dart';
+import 'package:finance_track/core/localization/localization.dart';
 
 import '../blocs/monthly_summary_cubit.dart';
 import '../widgets/advanced_trend_chart.dart';
@@ -184,8 +185,7 @@ class _MonthlyDashboardScreenState extends State<MonthlyDashboardScreen> {
                 SliverToBoxAdapter(
                   child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: 16.w),
-                    child: const Text(
-                      'Advanced Analytics',
+                    child: const LocalizedText('Advanced Analytics',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 18,
@@ -259,17 +259,17 @@ class _MonthlyDashboardScreenState extends State<MonthlyDashboardScreen> {
 
                           // Create legend items
                           final legendItems = [
-                            const LegendItem(
-                              label: 'Daily Spending',
+                            LegendItem(
+                              label: AppLocalizations.tr('Daily Spending'),
                               color: Color(0xFF2196F3),
                             ),
                             if (movingAverageSpots.isNotEmpty)
-                              const LegendItem(
-                                label: '7-Day Trend',
+                              LegendItem(
+                                label: AppLocalizations.tr('7-Day Trend'),
                                 color: Color(0xFFFF9800),
                               ),
-                            const LegendItem(
-                              label: 'Monthly Average',
+                            LegendItem(
+                              label: AppLocalizations.tr('Monthly Average'),
                               color: Color(0xFF4CAF50),
                             ),
                           ];
@@ -323,8 +323,7 @@ class _MonthlyDashboardScreenState extends State<MonthlyDashboardScreen> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [],
                                 ),
-                                Text(
-                                  'Key Insights',
+                                LocalizedText('Key Insights',
                                   style: TextStyle(
                                     fontWeight: FontWeight.w500,
                                     fontSize: 14.sp,
@@ -350,7 +349,7 @@ class _MonthlyDashboardScreenState extends State<MonthlyDashboardScreen> {
           }
 
           // Fallback
-          return const Center(child: Text('Something went wrong'));
+          return const Center(child: LocalizedText('Something went wrong'));
         },
       ),
     );
@@ -374,8 +373,7 @@ class _MonthlyDashboardScreenState extends State<MonthlyDashboardScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            'Selected Period',
+          LocalizedText('Selected Period',
             style: TextStyle(
               color: Colors.black.withValues(alpha: 0.9),
               fontSize: 18.sp,
@@ -449,7 +447,7 @@ class _MonthlyDashboardScreenState extends State<MonthlyDashboardScreen> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Text(
+                                    LocalizedText(
                                       displayDate,
                                       style: TextStyle(
                                         color: Colors.white,
@@ -469,8 +467,7 @@ class _MonthlyDashboardScreenState extends State<MonthlyDashboardScreen> {
                                           size: 12.r,
                                         ),
                                         SizedBox(width: 4.w),
-                                        Text(
-                                          '$daysDifference ${daysDifference == 1 ? 'day' : 'days'}',
+                                        LocalizedText('$daysDifference ${daysDifference == 1 ? 'day' : 'days'}',
                                           style: TextStyle(
                                             color: Colors.white
                                                 .withValues(alpha: 0.8),
@@ -500,8 +497,7 @@ class _MonthlyDashboardScreenState extends State<MonthlyDashboardScreen> {
                                           size: 16.r,
                                         ),
                                         SizedBox(width: 6.w),
-                                        Text(
-                                          'Change',
+                                        LocalizedText('Change',
                                           style: TextStyle(
                                             color: Colors.white,
                                             fontWeight: FontWeight.w500,
@@ -526,8 +522,7 @@ class _MonthlyDashboardScreenState extends State<MonthlyDashboardScreen> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          'Quick Access',
+                        LocalizedText('Quick Access',
                           style: TextStyle(
                             fontSize: 13.sp,
                             fontWeight: FontWeight.w600,
@@ -542,43 +537,43 @@ class _MonthlyDashboardScreenState extends State<MonthlyDashboardScreen> {
                           runSpacing: 8.h,
                           children: [
                             // _buildQuickAccessChip(
-                            //   label: 'Today',
+                            //   label: AppLocalizations.tr('Today'),
                             //   onTap: _selectToday,
                             //   isActive: _isTodaySelected(),
                             //   icon: Icons.today,
                             // ),
                             // _buildQuickAccessChip(
-                            //   label: 'Yesterday',
+                            //   label: AppLocalizations.tr('Yesterday'),
                             //   onTap: _selectYesterday,
                             //   isActive: _isYesterdaySelected(),
                             //   icon: Icons.history,
                             // ),
                             // _buildQuickAccessChip(
-                            //   label: 'This Week',
+                            //   label: AppLocalizations.tr('This Week'),
                             //   onTap: _selectThisWeek,
                             //   isActive: _isThisWeekSelected(),
                             //   icon: Icons.view_week,
                             // ),
                             _buildQuickAccessChip(
-                              label: 'This Month',
+                              label: AppLocalizations.tr('This Month'),
                               onTap: _selectCurrentMonth,
                               isActive: _isCurrentMonthSelected(),
                               icon: Icons.calendar_month,
                             ),
                             _buildQuickAccessChip(
-                              label: 'Last Month',
+                              label: AppLocalizations.tr('Last Month'),
                               onTap: _selectLastMonth,
                               isActive: _isLastMonthSelected(),
                               icon: Icons.calendar_month,
                             ),
                             _buildQuickAccessChip(
-                              label: 'This Year',
+                              label: AppLocalizations.tr('This Year'),
                               onTap: _selectThisYear,
                               isActive: _isThisYearSelected(),
                               icon: Icons.calendar_view_month,
                             ),
                             _buildQuickAccessChip(
-                              label: 'Custom',
+                              label: AppLocalizations.tr('Custom'),
                               onTap: () => _showDateRangePicker(),
                               isActive: _isCustomRangeSelected(),
                               icon: Icons.date_range,
@@ -612,7 +607,7 @@ class _MonthlyDashboardScreenState extends State<MonthlyDashboardScreen> {
                         Icons.refresh,
                         size: 16.r,
                       ),
-                      label: const Text('Refresh Data'),
+                      label: const LocalizedText('Refresh Data'),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: theme.colorScheme.primary,
                         foregroundColor: Colors.white,
@@ -669,7 +664,7 @@ class _MonthlyDashboardScreenState extends State<MonthlyDashboardScreen> {
                   color: isActive ? Colors.white : theme.colorScheme.primary,
                 ),
                 SizedBox(width: 6.w),
-                Text(
+                LocalizedText(
                   label,
                   style: TextStyle(
                     fontSize: 13.sp,
@@ -728,8 +723,7 @@ class _MonthlyDashboardScreenState extends State<MonthlyDashboardScreen> {
                     size: 24.r,
                   ),
                   SizedBox(width: 10.w),
-                  Text(
-                    'Select Time Period',
+                  LocalizedText('Select Time Period',
                     style: TextStyle(
                       fontSize: 18.sp,
                       fontWeight: FontWeight.bold,
@@ -852,7 +846,7 @@ class _MonthlyDashboardScreenState extends State<MonthlyDashboardScreen> {
                     ),
                   ),
                 ),
-                child: const Text('Close'),
+                child: const LocalizedText('Close'),
               ),
             ),
           ],
@@ -867,7 +861,7 @@ class _MonthlyDashboardScreenState extends State<MonthlyDashboardScreen> {
       children: [
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
-          child: Text(
+          child: LocalizedText(
             title,
             style: TextStyle(
               fontSize: 14.sp,
@@ -912,7 +906,7 @@ class _MonthlyDashboardScreenState extends State<MonthlyDashboardScreen> {
               ),
               SizedBox(width: 12.w),
               Expanded(
-                child: Text(
+                child: LocalizedText(
                   label,
                   style: TextStyle(
                     fontSize: 15.sp,
@@ -1147,8 +1141,7 @@ class _MonthlyDashboardScreenState extends State<MonthlyDashboardScreen> {
         icon: const Icon(Icons.arrow_back, color: Colors.white),
       ),
       flexibleSpace: FlexibleSpaceBar(
-        title: Text(
-          'Monthly Summary',
+        title: LocalizedText('Monthly Summary',
           style: TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.bold,
@@ -1219,8 +1212,7 @@ class _MonthlyDashboardScreenState extends State<MonthlyDashboardScreen> {
                   size: 48.r,
                 ),
                 SizedBox(height: 16.h),
-                Text(
-                  'Error Loading Summary',
+                LocalizedText('Error Loading Summary',
                   style: theme.textTheme.titleLarge,
                 ),
                 SizedBox(height: 8.h),
@@ -1240,7 +1232,7 @@ class _MonthlyDashboardScreenState extends State<MonthlyDashboardScreen> {
                 ElevatedButton.icon(
                   onPressed: _loadData,
                   icon: const Icon(Icons.refresh),
-                  label: const Text('Retry'),
+                  label: const LocalizedText('Retry'),
                   style: ElevatedButton.styleFrom(
                     padding:
                         EdgeInsets.symmetric(horizontal: 24.w, vertical: 12.h),
@@ -1270,16 +1262,14 @@ class _MonthlyDashboardScreenState extends State<MonthlyDashboardScreen> {
               size: 72.r,
             ),
             SizedBox(height: 16.h),
-            Text(
-              'No transactions for $month',
+            LocalizedText('No transactions for $month',
               style: TextStyle(
                 fontSize: 18.sp,
                 fontWeight: FontWeight.w500,
               ),
             ),
             SizedBox(height: 8.h),
-            Text(
-              'Add income and expenses to see your summary',
+            LocalizedText('Add income and expenses to see your summary',
               style: TextStyle(
                 color: Colors.grey,
                 fontSize: 14.sp,
@@ -1292,7 +1282,7 @@ class _MonthlyDashboardScreenState extends State<MonthlyDashboardScreen> {
                 // Navigate to transaction entry screen
               },
               icon: const Icon(Icons.add),
-              label: const Text('Add Transaction'),
+              label: const LocalizedText('Add Transaction'),
               style: ElevatedButton.styleFrom(
                 padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 12.h),
               ),
@@ -1362,8 +1352,7 @@ class _MonthlyDashboardScreenState extends State<MonthlyDashboardScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Expanded(
-                  child: Text(
-                    'Financial Overview',
+                  child: LocalizedText('Financial Overview',
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 18.sp,
@@ -1392,8 +1381,7 @@ class _MonthlyDashboardScreenState extends State<MonthlyDashboardScreen> {
                         size: 14.r,
                       ),
                       SizedBox(width: 4.w),
-                      Text(
-                        '${savingsRate.toStringAsFixed(1)}% saved',
+                      LocalizedText('${savingsRate.toStringAsFixed(1)}% saved',
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 12.sp,
@@ -1467,7 +1455,7 @@ class _MonthlyDashboardScreenState extends State<MonthlyDashboardScreen> {
               ),
             ),
             SizedBox(height: 8.h),
-            Text(
+            LocalizedText(
               state.income > 0
                   ? 'You\'ve spent ${((state.expense / state.income) * 100).toStringAsFixed(1)}% of your income'
                   : 'No income recorded for this period',
@@ -1512,7 +1500,7 @@ class _MonthlyDashboardScreenState extends State<MonthlyDashboardScreen> {
             ),
             SizedBox(width: 4.w),
             Flexible(
-              child: Text(
+              child: LocalizedText(
                 label,
                 style: TextStyle(
                   color: Colors.white.withValues(alpha: 0.9),
@@ -1528,7 +1516,7 @@ class _MonthlyDashboardScreenState extends State<MonthlyDashboardScreen> {
         FittedBox(
           fit: BoxFit.scaleDown,
           alignment: Alignment.centerLeft,
-          child: Text(
+          child: LocalizedText(
             NumberFormat.currency(
               symbol: currency.symbol,
               decimalDigits: 0,
@@ -1623,8 +1611,7 @@ class _MonthlyDashboardScreenState extends State<MonthlyDashboardScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    'Expense Breakdown',
+                  LocalizedText('Expense Breakdown',
                     style: TextStyle(
                       fontSize: 18.sp,
                       fontWeight: FontWeight.bold,
@@ -1697,8 +1684,7 @@ class _MonthlyDashboardScreenState extends State<MonthlyDashboardScreen> {
                                 child: Column(
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
-                                    Text(
-                                      'Total',
+                                    LocalizedText('Total',
                                       style: TextStyle(
                                         fontSize: 10.sp,
                                         color: Colors.grey[600],
@@ -1707,7 +1693,7 @@ class _MonthlyDashboardScreenState extends State<MonthlyDashboardScreen> {
                                     SizedBox(height: 2.h),
                                     FittedBox(
                                       fit: BoxFit.scaleDown,
-                                      child: Text(
+                                      child: LocalizedText(
                                         NumberFormat.compact(
                                           locale: 'en_IN',
                                         ).format(totalExpense),
@@ -1767,7 +1753,7 @@ class _MonthlyDashboardScreenState extends State<MonthlyDashboardScreen> {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                        Text(
+                                        LocalizedText(
                                           category['name'] as String,
                                           style: const TextStyle(
                                             color: Colors.white,
@@ -1777,8 +1763,7 @@ class _MonthlyDashboardScreenState extends State<MonthlyDashboardScreen> {
                                           overflow: TextOverflow.ellipsis,
                                         ),
                                         SizedBox(height: 2.h),
-                                        Text(
-                                          '${percent.toStringAsFixed(1)}% of total',
+                                        LocalizedText('${percent.toStringAsFixed(1)}% of total',
                                           style: TextStyle(
                                             color: Colors.white
                                                 .withValues(alpha: 0.7),
@@ -1815,8 +1800,7 @@ class _MonthlyDashboardScreenState extends State<MonthlyDashboardScreen> {
                 children: [
                   Padding(
                     padding: EdgeInsets.only(bottom: 12.h, left: 4.w),
-                    child: Text(
-                      'Top Spending Categories',
+                    child: LocalizedText('Top Spending Categories',
                       style: TextStyle(
                         fontSize: 14.sp,
                         fontWeight: FontWeight.w600,
@@ -1863,14 +1847,14 @@ class _MonthlyDashboardScreenState extends State<MonthlyDashboardScreen> {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Text(
+                                    LocalizedText(
                                       category['name'] as String,
                                       style: TextStyle(
                                         fontSize: 14.sp,
                                         fontWeight: FontWeight.w500,
                                       ),
                                     ),
-                                    Text(
+                                    LocalizedText(
                                       NumberFormat.currency(
                                         symbol: state.currency.symbol,
                                         decimalDigits: 0,
@@ -1900,8 +1884,7 @@ class _MonthlyDashboardScreenState extends State<MonthlyDashboardScreen> {
                                       ),
                                     ),
                                     SizedBox(width: 8.w),
-                                    Text(
-                                      '${percent.toStringAsFixed(1)}%',
+                                    LocalizedText('${percent.toStringAsFixed(1)}%',
                                       style: TextStyle(
                                         fontSize: 12.sp,
                                         fontWeight: FontWeight.w500,
@@ -1929,8 +1912,7 @@ class _MonthlyDashboardScreenState extends State<MonthlyDashboardScreen> {
                         size: 16.r,
                         color: theme.colorScheme.primary,
                       ),
-                      label: Text(
-                        'View All Categories',
+                      label: LocalizedText('View All Categories',
                         style: TextStyle(
                           fontSize: 13.sp,
                           fontWeight: FontWeight.w500,
@@ -1981,7 +1963,7 @@ class _MonthlyDashboardScreenState extends State<MonthlyDashboardScreen> {
             children: [
               _buildCompactInsight(
                 icon: Icons.arrow_upward,
-                label: 'Highest',
+                label: AppLocalizations.tr('Highest'),
                 value: _getHighestSpendingDay(dailyExpenses),
                 color: Colors.redAccent,
                 flex: 1,
@@ -1989,7 +1971,7 @@ class _MonthlyDashboardScreenState extends State<MonthlyDashboardScreen> {
               SizedBox(width: 16.w),
               _buildCompactInsight(
                 icon: Icons.arrow_downward,
-                label: 'Lowest',
+                label: AppLocalizations.tr('Lowest'),
                 value: _getLowestSpendingDay(dailyExpenses),
                 color: Colors.greenAccent,
                 flex: 1,
@@ -1999,7 +1981,7 @@ class _MonthlyDashboardScreenState extends State<MonthlyDashboardScreen> {
           SizedBox(height: 16.h),
           _buildCompactInsight(
             icon: Icons.autorenew,
-            label: 'Trend',
+            label: AppLocalizations.tr('Trend'),
             value: _getSpendingTrend(dailySpendingSpots),
             color: Colors.blueAccent,
             isFullWidth: true,
@@ -2044,7 +2026,7 @@ class _MonthlyDashboardScreenState extends State<MonthlyDashboardScreen> {
                   color: color,
                 ),
                 SizedBox(width: 6.w),
-                Text(
+                LocalizedText(
                   label,
                   style: TextStyle(
                     fontWeight: FontWeight.w500,
@@ -2056,14 +2038,14 @@ class _MonthlyDashboardScreenState extends State<MonthlyDashboardScreen> {
             ),
             SizedBox(height: 8.h),
             if (dayText.isNotEmpty)
-              Text(
+              LocalizedText(
                 dayText,
                 style: TextStyle(
                   fontSize: 12.sp,
                   color: Colors.grey[600],
                 ),
               ),
-            Text(
+            LocalizedText(
               valueText,
               style: TextStyle(
                 fontWeight: FontWeight.bold,

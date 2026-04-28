@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:finance_track/core/localization/localization.dart';
 // import 'package:purchases_flutter/models/package_wrapper.dart';
 
 import 'package:finance_track/features/subscription/cubits/purchases_cubit/purchases_cubit.dart';
@@ -31,7 +32,7 @@ class _PurchasesPageState extends State<PurchasesPage> {
     return Scaffold(
       backgroundColor: theme.colorScheme.surface,
       appBar: AppBar(
-        title: const Text('Go Premium'),
+        title: const LocalizedText('Go Premium'),
         centerTitle: true,
         backgroundColor: theme.colorScheme.primary,
         leading: IconButton(
@@ -97,13 +98,11 @@ class _LoadingView extends StatelessWidget {
             child: CircularProgressIndicator(),
           ),
           const SizedBox(height: 16),
-          Text(
-            'Fetching premium plans…',
+          LocalizedText('Fetching premium plans…',
             style: theme.textTheme.titleMedium,
           ),
           const SizedBox(height: 8),
-          Text(
-            'Hang tight while we prepare the best offers for you.',
+          LocalizedText('Hang tight while we prepare the best offers for you.',
             style: theme.textTheme.bodySmall
                 ?.copyWith(color: theme.hintColor.withValues(alpha: 0.8)),
             textAlign: TextAlign.center,
@@ -137,15 +136,14 @@ class _ErrorView extends StatelessWidget {
             color: theme.colorScheme.error,
           ),
           const SizedBox(height: 24),
-          Text(
-            'We couldn’t load the purchase options',
+          LocalizedText('We couldn’t load the purchase options',
             style: theme.textTheme.titleLarge?.copyWith(
               fontWeight: FontWeight.bold,
             ),
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 12),
-          Text(
+          LocalizedText(
             message,
             style: theme.textTheme.bodyMedium
                 ?.copyWith(color: theme.colorScheme.onSurfaceVariant),
@@ -156,13 +154,13 @@ class _ErrorView extends StatelessWidget {
             width: double.infinity,
             child: ElevatedButton(
               onPressed: onRetry,
-              child: const Text('Try again'),
+              child: const LocalizedText('Try again'),
             ),
           ),
           const SizedBox(height: 12),
           TextButton(
             onPressed: () => Navigator.of(context).maybePop(),
-            child: const Text('Maybe later'),
+            child: const LocalizedText('Maybe later'),
           ),
         ],
       ),
@@ -189,16 +187,14 @@ class _EmptyOfferingView extends StatelessWidget {
             color: theme.colorScheme.primary,
           ),
           const SizedBox(height: 24),
-          Text(
-            'Plans are getting ready',
+          LocalizedText('Plans are getting ready',
             style: theme.textTheme.titleLarge?.copyWith(
               fontWeight: FontWeight.bold,
             ),
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 12),
-          Text(
-            'We couldn’t find any plans right now. Check back in a moment or refresh.',
+          LocalizedText('We couldn’t find any plans right now. Check back in a moment or refresh.',
             style: theme.textTheme.bodyMedium
                 ?.copyWith(color: theme.colorScheme.onSurfaceVariant),
             textAlign: TextAlign.center,
@@ -208,7 +204,7 @@ class _EmptyOfferingView extends StatelessWidget {
             width: double.infinity,
             child: ElevatedButton(
               onPressed: onRetry,
-              child: const Text('Refresh plans'),
+              child: const LocalizedText('Refresh plans'),
             ),
           ),
         ],
@@ -271,16 +267,14 @@ class _SuccessView extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 16),
-                Text(
-                  'Upgrade to Premium Budgeting',
+                LocalizedText('Upgrade to Premium Budgeting',
                   style: theme.textTheme.headlineSmall?.copyWith(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 const SizedBox(height: 8),
-                Text(
-                  'Unlock unlimited budget planning, smart insights, and more ways to stay on top of your finances.',
+                LocalizedText('Unlock unlimited budget planning, smart insights, and more ways to stay on top of your finances.',
                   style: theme.textTheme.bodyMedium?.copyWith(
                     color: Colors.white.withValues(alpha: 0.9),
                   ),
@@ -289,8 +283,7 @@ class _SuccessView extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 32),
-          Text(
-            'What you’ll get',
+          LocalizedText('What you’ll get',
             style: theme.textTheme.titleMedium?.copyWith(
               fontWeight: FontWeight.w700,
             ),
@@ -308,7 +301,7 @@ class _SuccessView extends StatelessWidget {
                   ),
                   const SizedBox(width: 12),
                   Expanded(
-                    child: Text(
+                    child: LocalizedText(
                       benefit,
                       style: theme.textTheme.bodyMedium,
                     ),
@@ -319,7 +312,7 @@ class _SuccessView extends StatelessWidget {
           ),
           // if (state.packages.isNotEmpty) ...[
           //   const SizedBox(height: 24),
-          //   Text(
+          //   LocalizedText(
           //     'Available plans',
           //     style: theme.textTheme.titleMedium?.copyWith(
           //       fontWeight: FontWeight.w700,
@@ -342,14 +335,14 @@ class _SuccessView extends StatelessWidget {
           //             child: Column(
           //               crossAxisAlignment: CrossAxisAlignment.start,
           //               children: [
-          //                 Text(
+          //                 LocalizedText(
           //                   package.storeProduct.title,
           //                   style: theme.textTheme.titleSmall?.copyWith(
           //                     fontWeight: FontWeight.bold,
           //                   ),
           //                 ),
           //                 const SizedBox(height: 4),
-          //                 Text(
+          //                 LocalizedText(
           //                   package.storeProduct.description,
           //                   style: theme.textTheme.bodySmall?.copyWith(
           //                     color: theme.colorScheme.onSurfaceVariant,
@@ -359,7 +352,7 @@ class _SuccessView extends StatelessWidget {
           //             ),
           //           ),
           //           const SizedBox(width: 12),
-          //           Text(
+          //           LocalizedText(
           //             package.storeProduct.priceString,
           //             style: theme.textTheme.titleMedium?.copyWith(
           //               fontWeight: FontWeight.w700,
@@ -379,7 +372,7 @@ class _SuccessView extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            child: Text('Unlock Premium'),
+            child: LocalizedText('Unlock Premium'),
           ),
           // const SizedBox(height: 12),
           // OutlinedButton(
@@ -387,12 +380,12 @@ class _SuccessView extends StatelessWidget {
           //   style: OutlinedButton.styleFrom(
           //     padding: const EdgeInsets.symmetric(vertical: 14),
           //   ),
-          //   child: const Text('Refresh plans'),
+          //   child: const LocalizedText('Refresh plans'),
           // ),
           const SizedBox(height: 8),
           TextButton(
             onPressed: () => Navigator.of(context).maybePop(),
-            child: const Text('Maybe later'),
+            child: const LocalizedText('Maybe later'),
           ),
         ],
       ),

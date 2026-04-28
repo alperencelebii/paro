@@ -13,6 +13,7 @@ import '../../../expense_list/add_expense_bloc/add_expense_bloc.dart';
 import '../../../expense_list/add_expense_bloc/add_expense_event.dart';
 import '../../../../data/repositories/expense_repository.dart';
 import '../../../../core/router/app_router.dart';
+import 'package:finance_track/core/localization/localization.dart';
 
 /// Page for previewing parsed invoice data and editing before saving
 class PreviewPage extends StatelessWidget {
@@ -27,14 +28,14 @@ class PreviewPage extends StatelessWidget {
             context.go(AppPaths.home);
             ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(
-                content: Text('Expense saved successfully!'),
+                content: LocalizedText('Expense saved successfully!'),
                 backgroundColor: Colors.green,
               ),
             );
           } else {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
-                content: Text('Failed to save: ${state.errorMessage}'),
+                content: LocalizedText('Failed to save: ${state.errorMessage}'),
                 backgroundColor: Colors.red,
               ),
             );
@@ -43,7 +44,7 @@ class PreviewPage extends StatelessWidget {
       },
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Review Invoice'),
+          title: const LocalizedText('Review Invoice'),
           actions: [
             IconButton(
               icon: const Icon(Icons.close),
@@ -66,7 +67,7 @@ class PreviewPage extends StatelessWidget {
                     if (state.progress == null)
                       const CircularProgressIndicator(),
                     const SizedBox(height: 16),
-                    Text(state.message ?? 'Processing...'),
+                    LocalizedText(state.message ?? 'Processing...'),
                   ],
                 ),
               );
@@ -84,20 +85,20 @@ class PreviewPage extends StatelessWidget {
                     const Icon(Icons.error_outline,
                         size: 64, color: Colors.red),
                     const SizedBox(height: 16),
-                    Text(state.message),
+                    LocalizedText(state.message),
                     const SizedBox(height: 24),
                     ElevatedButton(
                       onPressed: () {
                         context.read<ScannerBloc>().add(const RetryScan());
                       },
-                      child: const Text('Retry'),
+                      child: const LocalizedText('Retry'),
                     ),
                   ],
                 ),
               );
             }
 
-            return const Center(child: Text('No data to display'));
+            return const Center(child: LocalizedText('No data to display'));
           },
         ),
       ),
@@ -135,8 +136,7 @@ class PreviewPage extends StatelessWidget {
           const SizedBox(height: 24),
 
           // Parsed fields
-          Text(
-            'Parsed Information',
+          LocalizedText('Parsed Information',
             style: Theme.of(context).textTheme.titleLarge?.copyWith(
                   fontWeight: FontWeight.bold,
                 ),
@@ -145,7 +145,7 @@ class PreviewPage extends StatelessWidget {
 
           // Merchant
           FieldChip(
-            label: 'Merchant',
+            label: AppLocalizations.tr('Merchant'),
             value: invoice.merchant,
             confidence: invoice.getFieldConfidence('merchant'),
             isLowConfidence: invoice.isLowConfidence('merchant'),
@@ -155,7 +155,7 @@ class PreviewPage extends StatelessWidget {
 
           // Date
           FieldChip(
-            label: 'Date',
+            label: AppLocalizations.tr('Date'),
             value: invoice.date != null
                 ? DateFormat('MMM dd, yyyy').format(invoice.date!)
                 : 'Not found',
@@ -169,7 +169,7 @@ class PreviewPage extends StatelessWidget {
 
           // Total
           FieldChip(
-            label: 'Total',
+            label: AppLocalizations.tr('Total'),
             value: invoice.total != null
                 ? '${invoice.currency} ${invoice.total!.toStringAsFixed(2)}'
                 : 'Not found',
@@ -184,7 +184,7 @@ class PreviewPage extends StatelessWidget {
           // Tax
           if (invoice.tax != null)
             FieldChip(
-              label: 'Tax',
+              label: AppLocalizations.tr('Tax'),
               value: '${invoice.currency} ${invoice.tax!.toStringAsFixed(2)}',
               confidence: invoice.getFieldConfidence('tax'),
               isLowConfidence: invoice.isLowConfidence('tax'),
@@ -194,7 +194,7 @@ class PreviewPage extends StatelessWidget {
           // Invoice Number
           if (invoice.invoiceNumber != null)
             FieldChip(
-              label: 'Invoice #',
+              label: AppLocalizations.tr('Invoice #'),
               value: invoice.invoiceNumber!,
               confidence: invoice.getFieldConfidence('invoiceNumber'),
               isLowConfidence: invoice.isLowConfidence('invoiceNumber'),
@@ -215,8 +215,7 @@ class PreviewPage extends StatelessWidget {
                   const Icon(Icons.warning_amber_rounded, color: Colors.orange),
                   const SizedBox(width: 8),
                   Expanded(
-                    child: Text(
-                      'Some fields have low confidence. Please verify before saving.',
+                    child: LocalizedText('Some fields have low confidence. Please verify before saving.',
                       style: TextStyle(color: Colors.orange.shade900),
                     ),
                   ),
@@ -238,8 +237,7 @@ class PreviewPage extends StatelessWidget {
                   borderRadius: BorderRadius.circular(12),
                 ),
               ),
-              child: const Text(
-                'Review & Save',
+              child: const LocalizedText('Review & Save',
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
               ),
             ),
@@ -259,7 +257,7 @@ class PreviewPage extends StatelessWidget {
                   borderRadius: BorderRadius.circular(12),
                 ),
               ),
-              child: const Text('Save Directly'),
+              child: const LocalizedText('Save Directly'),
             ),
           ),
         ],
@@ -272,7 +270,7 @@ class PreviewPage extends StatelessWidget {
     showDialog(
       context: context,
       builder: (dialogContext) => AlertDialog(
-        title: Text('Edit $field'),
+        title: LocalizedText('Edit $field'),
         content: TextField(
           controller: controller,
           autofocus: true,
@@ -280,7 +278,7 @@ class PreviewPage extends StatelessWidget {
         actions: [
           TextButton(
             onPressed: () => Navigator.of(dialogContext).pop(),
-            child: const Text('Cancel'),
+            child: const LocalizedText('Cancel'),
           ),
           TextButton(
             onPressed: () {
@@ -292,7 +290,7 @@ class PreviewPage extends StatelessWidget {
                   );
               Navigator.of(dialogContext).pop();
             },
-            child: const Text('Save'),
+            child: const LocalizedText('Save'),
           ),
         ],
       ),
@@ -323,7 +321,7 @@ class PreviewPage extends StatelessWidget {
     showDialog(
       context: context,
       builder: (dialogContext) => AlertDialog(
-        title: const Text('Edit Amount'),
+        title: const LocalizedText('Edit Amount'),
         content: TextField(
           controller: controller,
           keyboardType: const TextInputType.numberWithOptions(decimal: true),
@@ -332,7 +330,7 @@ class PreviewPage extends StatelessWidget {
         actions: [
           TextButton(
             onPressed: () => Navigator.of(dialogContext).pop(),
-            child: const Text('Cancel'),
+            child: const LocalizedText('Cancel'),
           ),
           TextButton(
             onPressed: () {
@@ -347,7 +345,7 @@ class PreviewPage extends StatelessWidget {
                 Navigator.of(dialogContext).pop();
               }
             },
-            child: const Text('Save'),
+            child: const LocalizedText('Save'),
           ),
         ],
       ),

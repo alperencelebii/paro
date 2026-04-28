@@ -4,6 +4,7 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
+import 'package:finance_track/core/localization/localization.dart';
 
 /// A widget to display a single summary item
 
@@ -46,8 +47,7 @@ class CategoryTrendChart extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            'Spending Trend',
+          LocalizedText('Spending Trend',
             style: theme.textTheme.titleMedium?.copyWith(
               fontWeight: FontWeight.bold,
             ),
@@ -87,8 +87,7 @@ class CategoryTrendChart extends StatelessWidget {
                 color: Colors.grey.withValues(alpha: 0.5),
               ),
               SizedBox(height: 16.h),
-              Text(
-                'No data available for selected period',
+              LocalizedText('No data available for selected period',
                 style: theme.textTheme.bodyLarge?.copyWith(
                   color: Colors.grey,
                 ),
@@ -136,7 +135,7 @@ class CategoryTrendChart extends StatelessWidget {
                       : DateFormat('MMM d');
                   return Padding(
                     padding: EdgeInsets.only(top: 8.h),
-                    child: Text(
+                    child: LocalizedText(
                       dateFormat.format(periodicData[value.toInt()].date),
                       style: theme.textTheme.bodySmall,
                     ),
@@ -153,7 +152,7 @@ class CategoryTrendChart extends StatelessWidget {
               getTitlesWidget: (value, meta) {
                 return Padding(
                   padding: EdgeInsets.only(right: 8.w),
-                  child: Text(
+                  child: LocalizedText(
                     formatter.format(value),
                     style: theme.textTheme.bodySmall,
                   ),

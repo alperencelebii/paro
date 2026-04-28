@@ -7,6 +7,7 @@ import '../../../../data/repositories/objectbox_expense_repository.dart';
 import '../../../../data/repositories/objectbox_income_repository.dart';
 import '../bloc/privacy_security_bloc.dart';
 import '../../widgets/animated_settings_item.dart';
+import 'package:finance_track/core/localization/localization.dart';
 
 class PrivacySecurityScreen extends StatelessWidget {
   const PrivacySecurityScreen({super.key});
@@ -35,7 +36,7 @@ class PrivacySecurityView extends StatelessWidget {
         if (state.error != null) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
-              content: Text(state.error!,
+              content: LocalizedText(state.error!,
                   style: const TextStyle(color: Colors.white)),
               backgroundColor: Colors.red,
             ),
@@ -45,7 +46,7 @@ class PrivacySecurityView extends StatelessWidget {
         if (state.successMessage != null) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
-              content: Text(state.successMessage!,
+              content: LocalizedText(state.successMessage!,
                   style: const TextStyle(color: Colors.white)),
               backgroundColor: Theme.of(context).colorScheme.primary,
             ),
@@ -61,7 +62,7 @@ class PrivacySecurityView extends StatelessWidget {
       },
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Privacy & Security'),
+          title: const LocalizedText('Privacy & Security'),
           centerTitle: true,
           elevation: 0,
           backgroundColor: Theme.of(context).colorScheme.primary,
@@ -115,8 +116,7 @@ class PrivacySecurityView extends StatelessWidget {
                 size: 28.w,
               ),
               SizedBox(width: 12.w),
-              Text(
-                'Your Privacy Matters',
+              LocalizedText('Your Privacy Matters',
                 style: TextStyle(
                   fontSize: 18.sp,
                   fontWeight: FontWeight.bold,
@@ -126,8 +126,7 @@ class PrivacySecurityView extends StatelessWidget {
             ],
           ),
           SizedBox(height: 16.h),
-          Text(
-            'This is your control center for privacy and security settings. '
+          LocalizedText('This is your control center for privacy and security settings. '
             'We prioritize your data privacy with our offline-first approach.',
             style: TextStyle(
               fontSize: 14.sp,
@@ -146,8 +145,7 @@ class PrivacySecurityView extends StatelessWidget {
       children: [
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 12.w),
-          child: Text(
-            'Security',
+          child: LocalizedText('Security',
             style: TextStyle(
               fontSize: 18.sp,
               fontWeight: FontWeight.w600,
@@ -172,7 +170,7 @@ class PrivacySecurityView extends StatelessWidget {
                       const Icon(Icons.info_outline, color: Colors.white),
                       SizedBox(width: 10.w),
                       const Expanded(
-                        child: Text('Biometric authentication coming soon!'),
+                        child: LocalizedText('Biometric authentication coming soon!'),
                       ),
                     ],
                   ),
@@ -201,8 +199,7 @@ class PrivacySecurityView extends StatelessWidget {
       children: [
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 12.w),
-          child: Text(
-            'Privacy',
+          child: LocalizedText('Privacy',
             style: TextStyle(
               fontSize: 18.sp,
               fontWeight: FontWeight.w600,
@@ -228,8 +225,7 @@ class PrivacySecurityView extends StatelessWidget {
       children: [
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 12.w),
-          child: Text(
-            'Data Handling',
+          child: LocalizedText('Data Handling',
             style: TextStyle(
               fontSize: 18.sp,
               fontWeight: FontWeight.w600,
@@ -267,14 +263,13 @@ class PrivacySecurityView extends StatelessWidget {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Delete Your Data?'),
-        content: const Text(
-          'This will permanently delete all your data from our servers. Your local data will remain intact. This action cannot be undone.',
+        title: const LocalizedText('Delete Your Data?'),
+        content: const LocalizedText('This will permanently delete all your data from our servers. Your local data will remain intact. This action cannot be undone.',
         ),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: const Text('Cancel'),
+            child: const LocalizedText('Cancel'),
           ),
           ElevatedButton(
             style: ElevatedButton.styleFrom(
@@ -287,7 +282,7 @@ class PrivacySecurityView extends StatelessWidget {
                   .read<PrivacySecurityBloc>()
                   .add(const RequestDataDeletion());
             },
-            child: const Text('Delete My Data'),
+            child: const LocalizedText('Delete My Data'),
           ),
         ],
       ),
@@ -298,14 +293,13 @@ class PrivacySecurityView extends StatelessWidget {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Offline Data Storage'),
+        title: const LocalizedText('Offline Data Storage'),
         content: const SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text(
-                'This app uses ObjectBox for secure local data storage:',
+              LocalizedText('This app uses ObjectBox for secure local data storage:',
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
               SizedBox(height: 8),
@@ -313,24 +307,23 @@ class PrivacySecurityView extends StatelessWidget {
                 leading: Icon(Icons.check_circle_outline, color: Colors.green),
                 contentPadding: EdgeInsets.zero,
                 title:
-                    Text('All financial data is stored on your device first'),
+                    LocalizedText('All financial data is stored on your device first'),
               ),
               ListTile(
                 leading: Icon(Icons.check_circle_outline, color: Colors.green),
                 contentPadding: EdgeInsets.zero,
                 title:
-                    Text('Works offline with no internet connection required'),
+                    LocalizedText('Works offline with no internet connection required'),
               ),
               ListTile(
                 leading: Icon(Icons.check_circle_outline, color: Colors.green),
                 contentPadding: EdgeInsets.zero,
-                title: Text('Fast and efficient with minimal battery usage'),
+                title: LocalizedText('Fast and efficient with minimal battery usage'),
               ),
               ListTile(
                 leading: Icon(Icons.check_circle_outline, color: Colors.green),
                 contentPadding: EdgeInsets.zero,
-                title: Text(
-                    'Your data never leaves your device unless cloud sync is enabled'),
+                title: LocalizedText('Your data never leaves your device unless cloud sync is enabled'),
               ),
             ],
           ),
@@ -338,7 +331,7 @@ class PrivacySecurityView extends StatelessWidget {
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: const Text('Got it'),
+            child: const LocalizedText('Got it'),
           ),
         ],
       ),
@@ -349,42 +342,38 @@ class PrivacySecurityView extends StatelessWidget {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Firebase Cloud Storage'),
+        title: const LocalizedText('Firebase Cloud Storage'),
         content: const SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text(
-                'When cloud sync is enabled:',
+              LocalizedText('When cloud sync is enabled:',
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
               SizedBox(height: 8),
               ListTile(
                 leading: Icon(Icons.check_circle_outline, color: Colors.green),
                 contentPadding: EdgeInsets.zero,
-                title: Text('Your data is securely encrypted in transit'),
+                title: LocalizedText('Your data is securely encrypted in transit'),
               ),
               ListTile(
                 leading: Icon(Icons.check_circle_outline, color: Colors.green),
                 contentPadding: EdgeInsets.zero,
-                title: Text(
-                    'Only you can access your financial data with your account'),
+                title: LocalizedText('Only you can access your financial data with your account'),
               ),
               ListTile(
                 leading: Icon(Icons.check_circle_outline, color: Colors.green),
                 contentPadding: EdgeInsets.zero,
-                title: Text(
-                    'Google Firebase security standards protect your information'),
+                title: LocalizedText('Google Firebase security standards protect your information'),
               ),
               ListTile(
                 leading: Icon(Icons.check_circle_outline, color: Colors.green),
                 contentPadding: EdgeInsets.zero,
-                title: Text('Data is synchronized across all your devices'),
+                title: LocalizedText('Data is synchronized across all your devices'),
               ),
               SizedBox(height: 8),
-              Text(
-                'You can disable cloud sync at any time to keep your data local only.',
+              LocalizedText('You can disable cloud sync at any time to keep your data local only.',
                 style: TextStyle(fontStyle: FontStyle.italic),
               ),
             ],
@@ -393,7 +382,7 @@ class PrivacySecurityView extends StatelessWidget {
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: const Text('Got it'),
+            child: const LocalizedText('Got it'),
           ),
         ],
       ),
@@ -404,14 +393,13 @@ class PrivacySecurityView extends StatelessWidget {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Export Your Data'),
-        content: const Text(
-          'You can export all your financial data as a CSV or JSON file. This includes all your income and expense transactions, categories, and budget settings.',
+        title: const LocalizedText('Export Your Data'),
+        content: const LocalizedText('You can export all your financial data as a CSV or JSON file. This includes all your income and expense transactions, categories, and budget settings.',
         ),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: const Text('Cancel'),
+            child: const LocalizedText('Cancel'),
           ),
           TextButton(
             onPressed: () {
@@ -420,7 +408,7 @@ class PrivacySecurityView extends StatelessWidget {
                   .read<PrivacySecurityBloc>()
                   .add(const ExportData(isJson: false));
             },
-            child: const Text('Export as CSV'),
+            child: const LocalizedText('Export as CSV'),
           ),
           ElevatedButton(
             onPressed: () {
@@ -429,7 +417,7 @@ class PrivacySecurityView extends StatelessWidget {
                   .read<PrivacySecurityBloc>()
                   .add(const ExportData(isJson: true));
             },
-            child: const Text('Export as JSON'),
+            child: const LocalizedText('Export as JSON'),
           ),
         ],
       ),
@@ -452,7 +440,7 @@ class PrivacySecurityView extends StatelessWidget {
     try {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
-          content: Text('Exporting data, please wait...'),
+          content: LocalizedText('Exporting data, please wait...'),
           duration: Duration(seconds: 2),
         ),
       );
@@ -467,21 +455,20 @@ class PrivacySecurityView extends StatelessWidget {
       showDialog(
         context: context,
         builder: (dialogContext) => AlertDialog(
-          title: const Text('Export Successful'),
-          content: Text(
-            'Your transactions have been exported to: $filePath',
+          title: const LocalizedText('Export Successful'),
+          content: LocalizedText('Your transactions have been exported to: $filePath',
           ),
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(dialogContext),
-              child: const Text('OK'),
+              child: const LocalizedText('OK'),
             ),
             ElevatedButton(
               onPressed: () {
                 Navigator.pop(dialogContext);
                 exportService.shareFile(filePath);
               },
-              child: const Text('Share File'),
+              child: const LocalizedText('Share File'),
             ),
           ],
         ),
@@ -491,7 +478,7 @@ class PrivacySecurityView extends StatelessWidget {
 
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('Error exporting data: $e'),
+          content: LocalizedText('Error exporting data: $e'),
           backgroundColor: Colors.red,
         ),
       );

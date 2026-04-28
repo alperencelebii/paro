@@ -8,6 +8,7 @@ import '../../../data/models/income_model.dart';
 import '../../dashboard/bloc/category_analysis_bloc.dart';
 import 'package:go_router/go_router.dart';
 import '../widget/widgets.dart';
+import 'package:finance_track/core/localization/localization.dart';
 
 class AllCategoriesScreen extends StatefulWidget {
   final Currency currency;
@@ -64,8 +65,7 @@ class _AllCategoriesScreenState extends State<AllCategoriesScreen>
     return Scaffold(
       // backgroundColor: theme.colorScheme.surface,
       appBar: AppBar(
-        title: Text(
-          'Analyze Categories',
+        title: LocalizedText('Analyze Categories',
           style: TextStyle(
             fontWeight: FontWeight.w700,
             fontSize: 20.sp,
@@ -91,8 +91,8 @@ class _AllCategoriesScreenState extends State<AllCategoriesScreen>
               TabBar(
                 controller: _tabController,
                 tabs: const [
-                  Tab(text: 'Expense'),
-                  Tab(text: 'Income'),
+                  Tab(child: LocalizedText('Expense')),
+                  Tab(child: LocalizedText('Income')),
                 ],
                 indicatorColor: theme.colorScheme.onPrimary,
                 labelColor: theme.colorScheme.onPrimary,
@@ -123,7 +123,7 @@ class _AllCategoriesScreenState extends State<AllCategoriesScreen>
           if (state is CategoryAnalysisError) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
-                content: Text(state.message),
+                content: LocalizedText(state.message),
                 backgroundColor: Colors.red,
               ),
             );
@@ -145,12 +145,11 @@ class _AllCategoriesScreenState extends State<AllCategoriesScreen>
                     size: 48.r,
                   ),
                   SizedBox(height: 16.h),
-                  Text(
-                    'Error loading categories',
+                  LocalizedText('Error loading categories',
                     style: Theme.of(context).textTheme.titleLarge,
                   ),
                   SizedBox(height: 8.h),
-                  Text(
+                  LocalizedText(
                     state.message,
                     textAlign: TextAlign.center,
                     style: Theme.of(context).textTheme.bodyMedium,
@@ -163,7 +162,7 @@ class _AllCategoriesScreenState extends State<AllCategoriesScreen>
                           );
                     },
                     icon: const Icon(Icons.refresh),
-                    label: const Text('Retry'),
+                    label: const LocalizedText('Retry'),
                   ),
                 ],
               ),
@@ -256,7 +255,7 @@ class _AllCategoriesScreenState extends State<AllCategoriesScreen>
                     width: 1,
                   ),
                 ),
-                child: Text(
+                child: LocalizedText(
                   _timeFrameLabels[index],
                   style: TextStyle(
                     fontSize: 12.sp,
@@ -310,7 +309,7 @@ class _AllCategoriesScreenState extends State<AllCategoriesScreen>
                   color: theme.colorScheme.primary.withValues(alpha: 0.5),
                 ),
                 SizedBox(height: 24.h),
-                Text(
+                LocalizedText(
                   isExpense
                       ? 'No expense categories found'
                       : 'No income categories found',
@@ -320,8 +319,7 @@ class _AllCategoriesScreenState extends State<AllCategoriesScreen>
                   textAlign: TextAlign.center,
                 ),
                 SizedBox(height: 8.h),
-                Text(
-                  'Try selecting a different time period',
+                LocalizedText('Try selecting a different time period',
                   style: theme.textTheme.bodyMedium?.copyWith(
                     color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
                   ),
@@ -420,8 +418,7 @@ class _AllCategoriesScreenState extends State<AllCategoriesScreen>
                   color: theme.colorScheme.primary.withValues(alpha: 0.5),
                 ),
                 SizedBox(height: 16.h),
-                Text(
-                  'No categories match your filters',
+                LocalizedText('No categories match your filters',
                   style: theme.textTheme.titleMedium?.copyWith(
                     fontWeight: FontWeight.bold,
                   ),
@@ -439,7 +436,7 @@ class _AllCategoriesScreenState extends State<AllCategoriesScreen>
                     });
                   },
                   icon: const Icon(Icons.clear_all),
-                  label: const Text('Clear Filters'),
+                  label: const LocalizedText('Clear Filters'),
                 ),
               ],
             ),
@@ -528,7 +525,7 @@ class _AllCategoriesScreenState extends State<AllCategoriesScreen>
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(
+                                  LocalizedText(
                                     categoryName,
                                     style: TextStyle(
                                       fontSize: 16.sp,
@@ -537,7 +534,7 @@ class _AllCategoriesScreenState extends State<AllCategoriesScreen>
                                     ),
                                   ),
                                   SizedBox(height: 4.h),
-                                  Text(
+                                  LocalizedText(
                                     formatter.format(amount),
                                     style: TextStyle(
                                       fontSize: 14.sp,
@@ -564,8 +561,7 @@ class _AllCategoriesScreenState extends State<AllCategoriesScreen>
                                   ),
                                 ],
                               ),
-                              child: Text(
-                                '${percentage.toStringAsFixed(1)}%',
+                              child: LocalizedText('${percentage.toStringAsFixed(1)}%',
                                 style: TextStyle(
                                   fontSize: 13.sp,
                                   fontWeight: FontWeight.bold,

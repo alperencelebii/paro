@@ -10,6 +10,7 @@ import '../../bloc/scanner_state.dart';
 import '../../data/models/invoice_model.dart';
 import '../../../transactions/screens/add_transaction_bottom_sheet.dart';
 import '../../../../core/router/app_router.dart';
+import 'package:finance_track/core/localization/localization.dart';
 
 /// Page for cropping the captured image
 /// Managed by ScannerBloc for proper state management
@@ -143,10 +144,10 @@ class _CropPageState extends State<CropPage> with WidgetsBindingObserver {
         // Error will be handled by bloc listener
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Error cropping image: ${e.toString()}'),
+            content: LocalizedText('Error cropping image: ${e.toString()}'),
             backgroundColor: Colors.red,
             action: SnackBarAction(
-              label: 'Retry',
+              label: AppLocalizations.tr('Retry'),
               textColor: Colors.white,
               onPressed: () {
                 _hasStartedCropping = false;
@@ -167,11 +168,11 @@ class _CropPageState extends State<CropPage> with WidgetsBindingObserver {
           if (mounted && context.mounted) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
-                content: Text(state.message),
+                content: LocalizedText(state.message),
                 backgroundColor: Colors.red,
                 action: state.canRetry
                     ? SnackBarAction(
-                        label: 'Retry',
+                        label: AppLocalizations.tr('Retry'),
                         textColor: Colors.white,
                         onPressed: () {
                           _hasStartedCropping = false;
@@ -204,7 +205,7 @@ class _CropPageState extends State<CropPage> with WidgetsBindingObserver {
                       ? Brightness.dark
                       : Brightness.light,
             ),
-            title: const Text('Crop Receipt'),
+            title: const LocalizedText('Crop Receipt'),
             leading: IconButton(
               icon: const Icon(Icons.arrow_back),
               onPressed: state is ScannerProcessing
@@ -240,12 +241,11 @@ class _CropPageState extends State<CropPage> with WidgetsBindingObserver {
             children: [
               const Icon(Icons.error_outline, size: 64, color: Colors.red),
               const SizedBox(height: 16),
-              Text(
-                'Error cropping image',
+              LocalizedText('Error cropping image',
                 style: Theme.of(context).textTheme.titleLarge,
               ),
               const SizedBox(height: 8),
-              Text(
+              LocalizedText(
                 state.message,
                 textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.bodyMedium,
@@ -265,7 +265,7 @@ class _CropPageState extends State<CropPage> with WidgetsBindingObserver {
                         }
                       }
                     },
-                    child: const Text('Go Back'),
+                    child: const LocalizedText('Go Back'),
                   ),
                   const SizedBox(width: 16),
                   OutlinedButton(
@@ -273,7 +273,7 @@ class _CropPageState extends State<CropPage> with WidgetsBindingObserver {
                       _hasStartedCropping = false;
                       _startCropping();
                     },
-                    child: const Text('Retry'),
+                    child: const LocalizedText('Retry'),
                   ),
                 ],
               ),
@@ -291,7 +291,7 @@ class _CropPageState extends State<CropPage> with WidgetsBindingObserver {
           children: [
             const CircularProgressIndicator(),
             const SizedBox(height: 16),
-            Text(
+            LocalizedText(
               state.message ?? 'Processing image...',
               style: Theme.of(context).textTheme.titleMedium,
             ),
@@ -302,15 +302,14 @@ class _CropPageState extends State<CropPage> with WidgetsBindingObserver {
                 backgroundColor: Colors.grey[300],
               ),
               const SizedBox(height: 8),
-              Text(
-                '${((state.progress ?? 0) * 100).toInt()}%',
+              LocalizedText('${((state.progress ?? 0) * 100).toInt()}%',
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
                       color: Colors.grey,
                     ),
               ),
             ],
             const SizedBox(height: 8),
-            Text(
+            LocalizedText(
               state.message == 'Processing image...'
                   ? 'Please crop your receipt'
                   : 'Extracting receipt information',
@@ -331,15 +330,14 @@ class _CropPageState extends State<CropPage> with WidgetsBindingObserver {
           children: [
             const CircularProgressIndicator(),
             const SizedBox(height: 16),
-            Text(
+            LocalizedText(
               _hasStartedCropping
                   ? 'Opening crop editor...'
                   : 'Preparing crop editor...',
               style: Theme.of(context).textTheme.titleMedium,
             ),
             const SizedBox(height: 8),
-            Text(
-              'Please wait',
+            LocalizedText('Please wait',
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                     color: Colors.grey,
                   ),
@@ -356,7 +354,7 @@ class _CropPageState extends State<CropPage> with WidgetsBindingObserver {
         children: [
           CircularProgressIndicator(),
           SizedBox(height: 16),
-          Text('Loading...'),
+          LocalizedText('Loading...'),
         ],
       ),
     );

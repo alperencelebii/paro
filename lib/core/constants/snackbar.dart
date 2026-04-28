@@ -1,6 +1,7 @@
 import 'package:finance_track/core/colors/app_colors.dart';
 import 'package:finance_track/core/spacing/app_spacing.dart';
 import 'package:flutter/material.dart';
+import 'package:finance_track/core/localization/localization.dart';
 
 /// Custom snack bar
 SnackBar customSnackBar(
@@ -26,19 +27,19 @@ SnackBar customSnackBar(
       vertical: AppSpacing.md,
     ),
     content: solution == null
-        ? Text(
+        ? LocalizedText(
             text,
             textAlign: TextAlign.center,
             style: TextStyle(color: color),
           )
         : Column(
             children: [
-              Text(
+              LocalizedText(
                 text,
                 textAlign: TextAlign.center,
                 style: TextStyle(color: color),
               ),
-              Text(
+              LocalizedText(
                 solution,
                 textAlign: TextAlign.center,
                 style:

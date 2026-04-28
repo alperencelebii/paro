@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:finance_track/core/localization/localization.dart';
 
 /// Second landing page - Features showcasing expense tracking, analytics, budgeting
 class LandingPage2 extends StatelessWidget {
@@ -39,8 +40,7 @@ class LandingPage2 extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        'Akıllı Finans',
+                      LocalizedText('Akıllı Finans',
                         style: TextStyle(
                           fontSize: 18.sp,
                           fontWeight: FontWeight.bold,
@@ -50,8 +50,7 @@ class LandingPage2 extends StatelessWidget {
                         overflow: TextOverflow.ellipsis,
                       ),
                       SizedBox(height: 4.h),
-                      Text(
-                        'Finansal işlemlerinizi düzenlemek için yapay zeka destekli araçlar.',
+                      LocalizedText('Finansal işlemlerinizi düzenlemek için yapay zeka destekli araçlar.',
                         style: TextStyle(
                           fontSize: 12.sp,
                           fontWeight: FontWeight.w400,
@@ -154,7 +153,7 @@ class LandingPage2 extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
+                    LocalizedText(
                       title,
                       style: TextStyle(
                         fontSize: 16.sp,
@@ -165,7 +164,7 @@ class LandingPage2 extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                     ),
                     SizedBox(height: 4.h),
-                    Text(
+                    LocalizedText(
                       description,
                       style: TextStyle(
                         fontSize: 13.sp,
@@ -216,8 +215,7 @@ class LandingPage2 extends StatelessWidget {
                 ),
                 SizedBox(width: 8.w),
                 Expanded(
-                  child: Text(
-                    'İşlem Ekle',
+                  child: LocalizedText('İşlem Ekle',
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 14.sp,
@@ -244,17 +242,17 @@ class LandingPage2 extends StatelessWidget {
                     final List<Map<String, dynamic>> transactions = [
                       {
                         'name': 'Ali Yılmaz',
-                        'amount': '-\₺32.50',
+                        'amount': '-₺32.50',
                         'icon': Icons.shopping_basket
                       },
                       {
                         'name': 'Maaş',
-                        'amount': '+\₺1,250.00',
+                        'amount': '+₺1,250.00',
                         'icon': Icons.payments
                       },
                       {
                         'name': 'Hizmetler',
-                        'amount': '-\₺75.30',
+                        'amount': '-₺75.30',
                         'icon': Icons.bolt
                       },
                     ];
@@ -291,7 +289,7 @@ class LandingPage2 extends StatelessWidget {
                           ),
                           SizedBox(width: 8.w),
                           Expanded(
-                            child: Text(
+                            child: LocalizedText(
                               transaction['name'] as String,
                               style: TextStyle(
                                 fontSize: 12.sp,
@@ -300,7 +298,7 @@ class LandingPage2 extends StatelessWidget {
                               overflow: TextOverflow.ellipsis,
                             ),
                           ),
-                          Text(
+                          LocalizedText(
                             transaction['amount'] as String,
                             style: TextStyle(
                               fontSize: 12.sp,
@@ -332,8 +330,7 @@ class LandingPage2 extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                'Aylık Özet',
+              LocalizedText('Aylık Özet',
                 style: TextStyle(
                   fontSize: 14.sp,
                   fontWeight: FontWeight.w600,
@@ -354,8 +351,7 @@ class LandingPage2 extends StatelessWidget {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(
-                            'Gelir',
+                          LocalizedText('Gelir',
                             style: TextStyle(
                               fontSize: 11.sp,
                               color: theme.colorScheme.onSurface
@@ -363,8 +359,7 @@ class LandingPage2 extends StatelessWidget {
                             ),
                           ),
                           SizedBox(height: 2.h),
-                          Text(
-                            '\₺2,450',
+                          LocalizedText('₺2,450',
                             style: TextStyle(
                               fontSize: 14.sp,
                               fontWeight: FontWeight.bold,
@@ -387,8 +382,7 @@ class LandingPage2 extends StatelessWidget {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(
-                            'Gider',
+                          LocalizedText('Gider',
                             style: TextStyle(
                               fontSize: 11.sp,
                               color: theme.colorScheme.onSurface
@@ -396,8 +390,7 @@ class LandingPage2 extends StatelessWidget {
                             ),
                           ),
                           SizedBox(height: 2.h),
-                          Text(
-                            '\₺1,286',
+                          LocalizedText('₺1,286',
                             style: TextStyle(
                               fontSize: 14.sp,
                               fontWeight: FontWeight.bold,
@@ -420,8 +413,7 @@ class LandingPage2 extends StatelessWidget {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(
-                            'Tasarruf',
+                          LocalizedText('Tasarruf',
                             style: TextStyle(
                               fontSize: 11.sp,
                               color: theme.colorScheme.onSurface
@@ -429,8 +421,7 @@ class LandingPage2 extends StatelessWidget {
                             ),
                           ),
                           SizedBox(height: 2.h),
-                          Text(
-                            '\₺1,164 (47%)',
+                          LocalizedText('₺1,164 (47%)',
                             style: TextStyle(
                               fontSize: 14.sp,
                               fontWeight: FontWeight.bold,
@@ -483,8 +474,7 @@ class LandingPage2 extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                'Bütçeye Genel Bakış',
+              LocalizedText('Bütçeye Genel Bakış',
                 style: TextStyle(
                   fontSize: 14.sp,
                   fontWeight: FontWeight.w600,
@@ -510,7 +500,7 @@ class LandingPage2 extends StatelessWidget {
                           ),
                           SizedBox(width: 4.w),
                           Expanded(
-                            child: Text(
+                            child: LocalizedText(
                               category['name'] as String,
                               style: TextStyle(
                                 fontSize: 12.sp,
@@ -519,8 +509,7 @@ class LandingPage2 extends StatelessWidget {
                               overflow: TextOverflow.ellipsis,
                             ),
                           ),
-                          Text(
-                            '\₺${category['spent']} / \₺${category['budget']}',
+                          LocalizedText('₺${category['spent']} / ₺${category['budget']}',
                             style: TextStyle(
                               fontSize: 12.sp,
                               fontWeight: FontWeight.w500,

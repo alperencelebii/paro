@@ -10,6 +10,7 @@ import '../../profile/currency/bloc/currency/currency_bloc.dart';
 import '../../profile/currency/bloc/currency/currency_state.dart';
 import '../../../core/models/currency_model.dart';
 import '../../../core/utils/currency_formatter.dart';
+import 'package:finance_track/core/localization/localization.dart';
 
 /// Utility class for transaction-related operations
 class TransactionUtils {
@@ -203,7 +204,7 @@ class TransactionUtils {
                             vertical: 8.h,
                             horizontal: 24.w,
                           ),
-                          child: Text(
+                          child: LocalizedText(
                             formatCurrency(amount, currency: currency),
                             style: theme.textTheme.headlineSmall?.copyWith(
                               fontWeight: FontWeight.w600,
@@ -216,8 +217,7 @@ class TransactionUtils {
                         // Transaction type and date
                         Padding(
                           padding: EdgeInsets.only(bottom: 16.h),
-                          child: Text(
-                            '${isExpen ? 'Expense' : 'Income'} · ${DateFormat('MMM d, yyyy').format(date)}',
+                          child: LocalizedText('${isExpen ? 'Expense' : 'Income'} · ${DateFormat('MMM d, yyyy').format(date)}',
                             style: theme.textTheme.bodyMedium?.copyWith(
                               color: Colors.white.withValues(alpha: 0.9),
                             ),
@@ -268,7 +268,7 @@ class TransactionUtils {
                                   _buildDetailCard(
                                     icon: Icons.description_outlined,
                                     color: accentColor,
-                                    label: 'Title',
+                                    label: AppLocalizations.tr('Title'),
                                     value: title,
                                     theme: theme,
                                   ),
@@ -277,7 +277,7 @@ class TransactionUtils {
                                   _buildDetailCard(
                                     icon: Icons.category_outlined,
                                     color: accentColor,
-                                    label: 'Category',
+                                    label: AppLocalizations.tr('Category'),
                                     value: getCategoryDisplayName(category),
                                     theme: theme,
                                   ),
@@ -286,7 +286,7 @@ class TransactionUtils {
                                   _buildDetailCard(
                                     icon: Icons.access_time_rounded,
                                     color: accentColor,
-                                    label: 'Date & Time',
+                                    label: AppLocalizations.tr('Date & Time'),
                                     value:
                                         '${dateFormat.format(date)}\n${timeFormat.format(date)}',
                                     theme: theme,
@@ -312,7 +312,7 @@ class TransactionUtils {
                                 _buildFullWidthCard(
                                   icon: Icons.sticky_note_2_outlined,
                                   color: accentColor,
-                                  label: 'Notes',
+                                  label: AppLocalizations.tr('Notes'),
                                   value: notes,
                                   theme: theme,
                                 ),
@@ -334,7 +334,7 @@ class TransactionUtils {
                                           Icons.edit_outlined,
                                           size: 18.r,
                                         ),
-                                        label: const Text('Edit'),
+                                        label: const LocalizedText('Edit'),
                                         style: ElevatedButton.styleFrom(
                                           backgroundColor: accentColor,
                                           foregroundColor: Colors.white,
@@ -362,8 +362,7 @@ class TransactionUtils {
                                           size: 18.r,
                                           color: theme.colorScheme.error,
                                         ),
-                                        label: Text(
-                                          'Delete',
+                                        label: LocalizedText('Delete',
                                           style: TextStyle(
                                             color: theme.colorScheme.error,
                                             fontWeight: FontWeight.w500,
@@ -448,7 +447,7 @@ class TransactionUtils {
                 ),
               ),
               SizedBox(width: 6.w),
-              Text(
+              LocalizedText(
                 label,
                 style: theme.textTheme.bodySmall?.copyWith(
                   color: theme.colorScheme.outline,
@@ -460,7 +459,7 @@ class TransactionUtils {
           SizedBox(height: 8.h),
           // Value
           Expanded(
-            child: Text(
+            child: LocalizedText(
               value,
               style: theme.textTheme.bodyMedium?.copyWith(
                 fontWeight: FontWeight.w500,
@@ -519,7 +518,7 @@ class TransactionUtils {
                 ),
               ),
               SizedBox(width: 6.w),
-              Text(
+              LocalizedText(
                 label,
                 style: theme.textTheme.bodySmall?.copyWith(
                   color: theme.colorScheme.outline,
@@ -530,7 +529,7 @@ class TransactionUtils {
           ),
           SizedBox(height: 8.h),
           // Value
-          Text(
+          LocalizedText(
             value,
             style: theme.textTheme.bodyMedium?.copyWith(
               fontWeight: FontWeight.w500,

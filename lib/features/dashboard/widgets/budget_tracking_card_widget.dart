@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:finance_track/core/localization/localization.dart';
 
 import 'package:finance_track/core/models/currency_model.dart';
 import 'package:finance_track/core/router/app_router.dart';
@@ -142,8 +143,7 @@ class BudgetTrackingCardWidget extends StatelessWidget {
             ),
             height: 150.h,
             child: Center(
-              child: Text(
-                'Error loading budget: ${budgetState.message}',
+              child: LocalizedText('Error loading budget: ${budgetState.message}',
                 style: TextStyle(
                   color: Colors.red,
                   fontSize: 14.sp,
@@ -181,15 +181,13 @@ class BudgetTrackingCardWidget extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                'Used $symbol${spentAmount.toStringAsFixed(0)}',
+              LocalizedText('Used $symbol${spentAmount.toStringAsFixed(0)}',
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
                       fontWeight: FontWeight.w600,
                     ),
               ),
               SizedBox(height: 4.h),
-              Text(
-                'No active budget',
+              LocalizedText('No active budget',
                 style: Theme.of(context)
                     .textTheme
                     .bodySmall
@@ -204,7 +202,7 @@ class BudgetTrackingCardWidget extends StatelessWidget {
               // });
               context.pushNamed(AppRoutes.budgetSettings);
             },
-            child: const Text('Set Budget'),
+            child: const LocalizedText('Set Budget'),
           )
         ],
       ),
@@ -332,7 +330,7 @@ class BudgetTrackingCardWidget extends StatelessWidget {
   //             ),
   //             SizedBox(width: 12.w),
   //             Expanded(
-  //               child: Text(
+  //               child: LocalizedText(
   //                 'Budget insights preview',
   //                 style: TextStyle(
   //                   color: Colors.white,
@@ -350,7 +348,7 @@ class BudgetTrackingCardWidget extends StatelessWidget {
   //                 color: Colors.white.withValues(alpha: 0.2),
   //                 borderRadius: BorderRadius.circular(12.r),
   //               ),
-  //               child: Text(
+  //               child: LocalizedText(
   //                 'Premium',
   //                 style: TextStyle(
   //                   color: Colors.white,
@@ -362,7 +360,7 @@ class BudgetTrackingCardWidget extends StatelessWidget {
   //           ],
   //         ),
   //         SizedBox(height: 18.h),
-  //         Text(
+  //         LocalizedText(
   //           'Spent $symbol${spentAmount.toStringAsFixed(0)} this month',
   //           style: TextStyle(
   //             color: Colors.white,
@@ -386,7 +384,7 @@ class BudgetTrackingCardWidget extends StatelessWidget {
   //               ),
   //             ),
   //             SizedBox(width: 12.w),
-  //             Text(
+  //             LocalizedText(
   //               percentText,
   //               style: TextStyle(
   //                 color: Colors.white.withValues(alpha: 0.9),
@@ -397,7 +395,7 @@ class BudgetTrackingCardWidget extends StatelessWidget {
   //           ],
   //         ),
   //         SizedBox(height: 16.h),
-  //         Text(
+  //         LocalizedText(
   //           daysRemaining > 0
   //               ? '$daysRemaining days left in your plan.'
   //               : 'This month is complete.',
@@ -408,7 +406,7 @@ class BudgetTrackingCardWidget extends StatelessWidget {
   //           ),
   //         ),
   //         SizedBox(height: 10.h),
-  //         Text(
+  //         LocalizedText(
   //           'Unlock remaining balance, daily allowance and smart alerts with Premium.',
   //           style: TextStyle(
   //             color: Colors.white.withValues(alpha: 0.8),
@@ -430,7 +428,7 @@ class BudgetTrackingCardWidget extends StatelessWidget {
   //                 borderRadius: BorderRadius.circular(14.r),
   //               ),
   //             ),
-  //             child: const Text('Unlock Premium Insights'),
+  //             child: const LocalizedText('Unlock Premium Insights'),
   //           ),
   //         ),
   //       ],

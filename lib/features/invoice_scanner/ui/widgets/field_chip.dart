@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../widgets/confidence_badge.dart';
+import 'package:finance_track/core/localization/localization.dart';
 
 /// Widget to display an editable field with confidence badge
 class FieldChip extends StatelessWidget {
@@ -43,7 +44,7 @@ class FieldChip extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: [
-                Text(
+                LocalizedText(
                   label,
                   style: TextStyle(
                     fontSize: 10,
@@ -52,7 +53,7 @@ class FieldChip extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 2),
-                Text(
+                LocalizedText(
                   value,
                   style: TextStyle(
                     fontSize: 14,

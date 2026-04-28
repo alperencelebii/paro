@@ -1,3 +1,4 @@
+import 'package:finance_track/core/localization/localization.dart';
 // import 'dart:async';
 // import 'package:flutter/material.dart';
 // import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -135,7 +136,7 @@
 //         child: Column(
 //           mainAxisSize: MainAxisSize.min,
 //           children: [
-//             const Text(
+//             const LocalizedText(
 //               'Loading Your Data',
 //               style: TextStyle(
 //                 fontWeight: FontWeight.bold,
@@ -154,7 +155,7 @@
 //                 ),
 //               ),
 //               SizedBox(height: 16.h),
-//               Text(
+//               LocalizedText(
 //                 'Please wait while we fetch your transactions...',
 //                 textAlign: TextAlign.center,
 //                 style: TextStyle(
@@ -167,7 +168,7 @@
 //                 _status == DataFetchStatus.empty)
 //               ElevatedButton(
 //                 onPressed: () => Navigator.of(context).pop(),
-//                 child: const Text('Close'),
+//                 child: const LocalizedText('Close'),
 //               ),
 //           ],
 //         ),
@@ -198,7 +199,7 @@
 //               size: 64.r,
 //             ),
 //             SizedBox(height: 16.h),
-//             const Text(
+//             const LocalizedText(
 //               'Data loaded successfully!',
 //               textAlign: TextAlign.center,
 //             ),
@@ -214,7 +215,7 @@
 //               size: 64.r,
 //             ),
 //             SizedBox(height: 16.h),
-//             Text(
+//             LocalizedText(
 //               _errorMessage.isEmpty
 //                   ? 'Failed to load data. Please try again.'
 //                   : _errorMessage,
@@ -232,7 +233,7 @@
 //               size: 64.r,
 //             ),
 //             SizedBox(height: 16.h),
-//             const Text(
+//             const LocalizedText(
 //               'No transactions found. Start adding your income and expenses!',
 //               textAlign: TextAlign.center,
 //             ),

@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:finance_track/core/localization/localization.dart';
 
 class SocialButtonCompact extends StatelessWidget {
   final IconData icon;
@@ -42,7 +43,7 @@ class SocialButtonCompact extends StatelessWidget {
                 color: iconColor,
               ),
               SizedBox(width: 6.w),
-              Text(
+              LocalizedText(
                 text,
                 style: TextStyle(
                   fontWeight: FontWeight.w500,

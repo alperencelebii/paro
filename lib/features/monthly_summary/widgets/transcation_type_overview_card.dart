@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
+import 'package:finance_track/core/localization/localization.dart';
 
 import '../../profile/currency/bloc/currency/currency_bloc.dart';
 import '../../profile/currency/bloc/currency/currency_state.dart';
@@ -79,7 +80,7 @@ class TransactionTypeOverviewCard extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(width: 12),
-                    Text(
+                    LocalizedText(
                       title,
                       style: theme.textTheme.titleMedium?.copyWith(
                         fontWeight: FontWeight.w600,
@@ -96,7 +97,7 @@ class TransactionTypeOverviewCard extends StatelessWidget {
                 //     color: theme.colorScheme.primary.withValues(alpha:0.1),
                 //     borderRadius: BorderRadius.circular(20),
                 //   ),
-                //   child: Text(
+                //   child: LocalizedText(
                 //     'Last 30 days',
                 //     style: theme.textTheme.bodySmall?.copyWith(
                 //       color: theme.colorScheme.primary,
@@ -136,7 +137,7 @@ class TransactionTypeOverviewCard extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
+                        LocalizedText(
                           isIncome ? 'Total Income' : 'Total Expenses',
                           style: theme.textTheme.bodyMedium?.copyWith(
                             color: theme.colorScheme.onSurface
@@ -149,7 +150,7 @@ class TransactionTypeOverviewCard extends StatelessWidget {
                             final currency = state is CurrencyLoaded
                                 ? state.selectedCurrency
                                 : Currencies.inr;
-                            return Text(
+                            return LocalizedText(
                               NumberFormat.currency(
                                 symbol: currency.symbol,
                                 decimalDigits: 2,
@@ -164,8 +165,7 @@ class TransactionTypeOverviewCard extends StatelessWidget {
                       ],
                     ),
                   ),
-                  Text(
-                    '${sortedCategories.length} Categories',
+                  LocalizedText('${sortedCategories.length} Categories',
                     style: theme.textTheme.bodyMedium?.copyWith(
                       color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
                       fontWeight: FontWeight.w500,
@@ -201,7 +201,7 @@ class TransactionTypeOverviewCard extends StatelessWidget {
                               ),
                             ),
                             const SizedBox(width: 8),
-                            Text(
+                            LocalizedText(
                               category.key,
                               style: theme.textTheme.bodyMedium?.copyWith(
                                 fontWeight: FontWeight.w500,
@@ -209,8 +209,7 @@ class TransactionTypeOverviewCard extends StatelessWidget {
                             ),
                           ],
                         ),
-                        Text(
-                          '${percentage.toStringAsFixed(1)}%',
+                        LocalizedText('${percentage.toStringAsFixed(1)}%',
                           style: theme.textTheme.bodyMedium?.copyWith(
                             color: theme.colorScheme.onSurface
                                 .withValues(alpha: 0.7),
@@ -260,15 +259,13 @@ class TransactionTypeOverviewCard extends StatelessWidget {
               color: theme.colorScheme.primary.withValues(alpha: 0.5),
             ),
             const SizedBox(height: 16),
-            Text(
-              'No expenses yet',
+            LocalizedText('No expenses yet',
               style: theme.textTheme.titleMedium?.copyWith(
                 color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
               ),
             ),
             const SizedBox(height: 8),
-            Text(
-              'Start adding expenses to see your category breakdown',
+            LocalizedText('Start adding expenses to see your category breakdown',
               textAlign: TextAlign.center,
               style: theme.textTheme.bodyMedium?.copyWith(
                 color: theme.colorScheme.onSurface.withValues(alpha: 0.5),

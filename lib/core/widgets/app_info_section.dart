@@ -2,6 +2,7 @@
 
 import 'package:finance_track/core/core.dart';
 import 'package:flutter/material.dart';
+import 'package:finance_track/core/localization/localization.dart';
 
 class AppInfoSection extends StatelessWidget {
   const AppInfoSection({
@@ -22,7 +23,7 @@ class AppInfoSection extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text(
+        LocalizedText(
           info,
           textAlign: TextAlign.center,
           style: context.titleLarge,
@@ -35,7 +36,7 @@ class AppInfoSection extends StatelessWidget {
                   padding: const EdgeInsets.only(right: AppSpacing.sm),
                   child: Icon(icon),
                 ),
-          label: Text(buttonLabel),
+          label: LocalizedText(buttonLabel),
         ),
       ],
     );

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
+import 'package:finance_track/core/localization/localization.dart';
 
 // /// A widget to display summary statistics for a category
 // class CategorySummaryCard extends StatelessWidget {
@@ -47,7 +48,7 @@ import 'package:intl/intl.dart';
 //       child: Column(
 //         crossAxisAlignment: CrossAxisAlignment.start,
 //         children: [
-//           Text(
+//           LocalizedText(
 //             'Summary',
 //             style: theme.textTheme.titleMedium?.copyWith(
 //               fontWeight: FontWeight.bold,
@@ -137,7 +138,7 @@ import 'package:intl/intl.dart';
 //               ),
 //               SizedBox(width: 8.w),
 //               Expanded(
-//                 child: Text(
+//                 child: LocalizedText(
 //                   title,
 //                   style: theme.textTheme.bodySmall?.copyWith(
 //                     fontWeight: FontWeight.w500,
@@ -148,7 +149,7 @@ import 'package:intl/intl.dart';
 //             ],
 //           ),
 //           SizedBox(height: 8.h),
-//           Text(
+//           LocalizedText(
 //             value,
 //             style: theme.textTheme.titleMedium?.copyWith(
 //               fontWeight: FontWeight.bold,
@@ -204,8 +205,7 @@ class CategorySummaryCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            'Summary',
+          LocalizedText('Summary',
             style: theme.textTheme.titleMedium?.copyWith(
               fontWeight: FontWeight.bold,
             ),
@@ -295,7 +295,7 @@ class _SummaryItem extends StatelessWidget {
               ),
               SizedBox(width: 8.w),
               Expanded(
-                child: Text(
+                child: LocalizedText(
                   title,
                   style: theme.textTheme.bodySmall?.copyWith(
                     fontWeight: FontWeight.w500,
@@ -306,7 +306,7 @@ class _SummaryItem extends StatelessWidget {
             ],
           ),
           SizedBox(height: 8.h),
-          Text(
+          LocalizedText(
             value,
             style: theme.textTheme.titleMedium?.copyWith(
               fontWeight: FontWeight.bold,

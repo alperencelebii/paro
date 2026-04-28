@@ -8,6 +8,7 @@ import '../../../data/models/expense_model.dart';
 import '../../../data/repositories/expense_repository.dart';
 import 'scanner_event.dart';
 import 'scanner_state.dart';
+import 'package:finance_track/core/localization/localization.dart';
 
 /// BLoC for managing the invoice scanner flow
 class ScannerBloc extends Bloc<ScannerEvent, ScannerState> {
@@ -60,8 +61,8 @@ class ScannerBloc extends Bloc<ScannerEvent, ScannerState> {
       emit(const ScannerInitial());
     } else {
       // Permissions denied
-      emit(const ScannerPermissionsDenied(
-        message: 'Camera and storage permissions are required to scan receipts. Please grant permissions in app settings.',
+      emit(ScannerPermissionsDenied(
+        message: AppLocalizations.tr('Camera and storage permissions are required to scan receipts. Please grant permissions in app settings.'),
       ));
     }
   }
@@ -86,22 +87,22 @@ class ScannerBloc extends Bloc<ScannerEvent, ScannerState> {
     RunOcr event,
     Emitter<ScannerState> emit,
   ) async {
-    emit(const ScannerProcessing(
+    emit(ScannerProcessing(
       progress: 0.3,
-      message: 'Processing image...',
+      message: AppLocalizations.tr('Processing image...'),
     ));
 
     try {
       final recognizedText = await _ocrService.recognizeText(event.image);
-      emit(const ScannerProcessing(
+      emit(ScannerProcessing(
         progress: 0.7,
-        message: 'Extracting data...',
+        message: AppLocalizations.tr('Extracting data...'),
       ));
 
       add(OcrCompleted(ocrResult: recognizedText, image: event.image));
     } catch (e) {
       emit(ScannerError(
-        message: 'Failed to process image: ${e.toString()}',
+        message: AppLocalizations.tr('Failed to process image: ${e.toString()}'),
         canRetry: true,
       ));
     }
@@ -127,7 +128,7 @@ class ScannerBloc extends Bloc<ScannerEvent, ScannerState> {
       ));
     } catch (e) {
       emit(ScannerError(
-        message: 'Failed to parse invoice: ${e.toString()}',
+        message: AppLocalizations.tr('Failed to parse invoice: ${e.toString()}'),
         canRetry: true,
       ));
     }
@@ -171,8 +172,8 @@ class ScannerBloc extends Bloc<ScannerEvent, ScannerState> {
     Emitter<ScannerState> emit,
   ) async {
     if (state is! ScannerParsed) {
-      emit(const ScannerError(
-        message: 'No invoice data to save',
+      emit(ScannerError(
+        message: AppLocalizations.tr('No invoice data to save'),
         canRetry: false,
       ));
       return;
@@ -182,16 +183,16 @@ class ScannerBloc extends Bloc<ScannerEvent, ScannerState> {
     final invoice = currentState.invoice;
 
     if (invoice.total == null || invoice.total! <= 0) {
-      emit(const ScannerError(
-        message: 'Invalid total amount',
+      emit(ScannerError(
+        message: AppLocalizations.tr('Invalid total amount'),
         canRetry: false,
       ));
       return;
     }
 
-    emit(const ScannerProcessing(
+    emit(ScannerProcessing(
       progress: 0.9,
-      message: 'Saving expense...',
+      message: AppLocalizations.tr('Saving expense...'),
     ));
 
     try {
@@ -254,8 +255,8 @@ class ScannerBloc extends Bloc<ScannerEvent, ScannerState> {
       emit(const ScannerInitial());
     } else {
       // Permissions denied
-      emit(const ScannerPermissionsDenied(
-        message: 'Camera and storage permissions are required to scan receipts. Please grant permissions in app settings.',
+      emit(ScannerPermissionsDenied(
+        message: AppLocalizations.tr('Camera and storage permissions are required to scan receipts. Please grant permissions in app settings.'),
       ));
     }
   }

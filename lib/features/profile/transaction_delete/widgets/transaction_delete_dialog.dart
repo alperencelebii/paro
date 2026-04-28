@@ -9,6 +9,7 @@ import 'package:finance_track/core/router/app_router.dart';
 import '../bloc/transaction_delete_bloc.dart';
 import '../bloc/transaction_delete_event.dart';
 import '../bloc/transaction_delete_state.dart';
+import 'package:finance_track/core/localization/localization.dart';
 
 /// Dialog for confirming and displaying transaction deletion process
 class TransactionDeleteDialog extends StatelessWidget {
@@ -83,8 +84,7 @@ class TransactionDeleteDialog extends StatelessWidget {
               ),
               SizedBox(width: 12.w),
               Expanded(
-                child: Text(
-                  'Delete All Transactions?',
+                child: LocalizedText('Delete All Transactions?',
                   style: TextStyle(
                     fontSize: 18.sp,
                     fontWeight: FontWeight.w600,
@@ -94,8 +94,7 @@ class TransactionDeleteDialog extends StatelessWidget {
             ],
           ),
           SizedBox(height: 16.h),
-          Text(
-            'This will permanently delete all your expenses and incomes from both your device and the cloud. This action cannot be undone.',
+          LocalizedText('This will permanently delete all your expenses and incomes from both your device and the cloud. This action cannot be undone.',
             style: TextStyle(fontSize: 15.sp),
           ),
           SizedBox(height: 24.h),
@@ -109,8 +108,7 @@ class TransactionDeleteDialog extends StatelessWidget {
                       .add(const CancelDeletion());
                   Navigator.of(context).pop();
                 },
-                child: Text(
-                  'Cancel',
+                child: LocalizedText('Cancel',
                   style: TextStyle(
                     color: Colors.grey[700],
                     fontWeight: FontWeight.w500,
@@ -131,8 +129,7 @@ class TransactionDeleteDialog extends StatelessWidget {
                       EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
                 ),
                 icon: const Icon(Icons.delete_forever),
-                label: Text(
-                  'Delete All',
+                label: LocalizedText('Delete All',
                   style: TextStyle(
                     fontSize: 15.sp,
                     fontWeight: FontWeight.w500,
@@ -172,8 +169,7 @@ class TransactionDeleteDialog extends StatelessWidget {
               ),
               SizedBox(width: 12.w),
               Expanded(
-                child: Text(
-                  'Deleting Transactions',
+                child: LocalizedText('Deleting Transactions',
                   style: TextStyle(
                     fontSize: 18.sp,
                     fontWeight: FontWeight.w600,
@@ -194,7 +190,7 @@ class TransactionDeleteDialog extends StatelessWidget {
             ),
           ),
           SizedBox(height: 24.h),
-          Text(
+          LocalizedText(
             state.progressMessage,
             style: TextStyle(fontSize: 15.sp),
             textAlign: TextAlign.center,
@@ -202,8 +198,7 @@ class TransactionDeleteDialog extends StatelessWidget {
           SizedBox(height: 16.h),
           _buildProgressIndicator(context, state),
           SizedBox(height: 8.h),
-          Text(
-            '${state.progressPercentage}%',
+          LocalizedText('${state.progressPercentage}%',
             style: TextStyle(
               fontSize: 14.sp,
               fontWeight: FontWeight.w500,
@@ -301,7 +296,7 @@ class TransactionDeleteDialog extends StatelessWidget {
                 size: 20.r,
               ),
         SizedBox(width: 8.w),
-        Text(
+        LocalizedText(
           title,
           style: TextStyle(
             fontSize: 14.sp,
@@ -334,8 +329,7 @@ class TransactionDeleteDialog extends StatelessWidget {
               ),
               SizedBox(width: 12.w),
               Expanded(
-                child: Text(
-                  'Successfully Deleted',
+                child: LocalizedText('Successfully Deleted',
                   style: TextStyle(
                     fontSize: 18.sp,
                     fontWeight: FontWeight.w600,
@@ -345,8 +339,7 @@ class TransactionDeleteDialog extends StatelessWidget {
             ],
           ),
           SizedBox(height: 16.h),
-          Text(
-            'All your transactions have been permanently deleted from both local storage and cloud.',
+          LocalizedText('All your transactions have been permanently deleted from both local storage and cloud.',
             style: TextStyle(fontSize: 15.sp),
           ),
           SizedBox(height: 16.h),
@@ -366,8 +359,7 @@ class TransactionDeleteDialog extends StatelessWidget {
                 ),
                 SizedBox(width: 8.w),
                 Expanded(
-                  child: Text(
-                    'To ensure all data is properly refreshed, restarting the app is recommended.',
+                  child: LocalizedText('To ensure all data is properly refreshed, restarting the app is recommended.',
                     style: TextStyle(
                       fontSize: 14.sp,
                       color: Colors.amber.shade900,
@@ -394,7 +386,7 @@ class TransactionDeleteDialog extends StatelessWidget {
                           SizedBox(width: 8.w),
                           const Expanded(
                             child:
-                                Text('All transactions deleted successfully'),
+                                LocalizedText('All transactions deleted successfully'),
                           ),
                         ],
                       ),
@@ -412,8 +404,7 @@ class TransactionDeleteDialog extends StatelessWidget {
                       .add(const ContinueWithoutRestart());
                   Navigator.of(context).pop();
                 },
-                child: Text(
-                  'Continue Without Restart',
+                child: LocalizedText('Continue Without Restart',
                   style: TextStyle(
                     color: Colors.grey[700],
                     fontWeight: FontWeight.w500,
@@ -434,8 +425,7 @@ class TransactionDeleteDialog extends StatelessWidget {
                       EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
                 ),
                 icon: const Icon(Icons.refresh),
-                label: Text(
-                  'Restart Now',
+                label: LocalizedText('Restart Now',
                   style: TextStyle(
                     fontSize: 15.sp,
                     fontWeight: FontWeight.w500,
@@ -473,8 +463,7 @@ class TransactionDeleteDialog extends StatelessWidget {
               ),
               SizedBox(width: 12.w),
               Expanded(
-                child: Text(
-                  'Error Deleting Transactions',
+                child: LocalizedText('Error Deleting Transactions',
                   style: TextStyle(
                     fontSize: 18.sp,
                     fontWeight: FontWeight.w600,
@@ -485,8 +474,7 @@ class TransactionDeleteDialog extends StatelessWidget {
             ],
           ),
           SizedBox(height: 16.h),
-          Text(
-            'We encountered a problem while deleting your transactions:',
+          LocalizedText('We encountered a problem while deleting your transactions:',
             style: TextStyle(fontSize: 15.sp),
           ),
           SizedBox(height: 16.h),
@@ -506,7 +494,7 @@ class TransactionDeleteDialog extends StatelessWidget {
                 ),
                 SizedBox(width: 8.w),
                 Expanded(
-                  child: Text(
+                  child: LocalizedText(
                     state.errorMessage ?? 'Unknown error',
                     style: TextStyle(
                       fontSize: 14.sp,
@@ -537,8 +525,7 @@ class TransactionDeleteDialog extends StatelessWidget {
                     .add(const AcknowledgeError());
                 Navigator.of(context).pop();
               },
-              child: Text(
-                'OK',
+              child: LocalizedText('OK',
                 style: TextStyle(
                   fontSize: 16.sp,
                   fontWeight: FontWeight.w500,
@@ -576,8 +563,7 @@ class TransactionDeleteDialog extends StatelessWidget {
             ),
           ),
           SizedBox(height: 24.h),
-          Text(
-            'Restarting app...',
+          LocalizedText('Restarting app...',
             style: TextStyle(
               fontSize: 18.sp,
               fontWeight: FontWeight.w500,
@@ -585,8 +571,7 @@ class TransactionDeleteDialog extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
           SizedBox(height: 8.h),
-          Text(
-            'Please wait while the app restarts',
+          LocalizedText('Please wait while the app restarts',
             style: TextStyle(
               fontSize: 14.sp,
               color: Colors.grey[600],

@@ -1,6 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'dart:developer' as dev;
+import 'package:finance_track/core/localization/localization.dart';
 
 import 'package:finance_track/core/services/data_fetching_service.dart';
 import 'package:finance_track/features/expense_list/bloc/expense_list_bloc.dart';
@@ -242,7 +243,7 @@ class AuthRouteListener extends NavigatorObserver {
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
                                 content:
-                                    Text('Error loading data: $errorMessage'),
+                                    LocalizedText('Error loading data: $errorMessage'),
                                 backgroundColor: Colors.red,
                               ),
                             );
@@ -280,8 +281,7 @@ class AuthRouteListener extends NavigatorObserver {
                           try {
                             ScaffoldMessenger.of(context).showSnackBar(
                               const SnackBar(
-                                content: Text(
-                                    'No transactions found. Start by adding your first transaction!'),
+                                content: LocalizedText('No transactions found. Start by adding your first transaction!'),
                                 backgroundColor: Colors.blue,
                               ),
                             );

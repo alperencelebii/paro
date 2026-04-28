@@ -9,6 +9,7 @@ import '../bloc/subscription_management_bloc.dart';
 import '../repository/subscription_management_repository.dart';
 import '../models/subscription_details_model.dart';
 import '../services/subscription_service.dart';
+import 'package:finance_track/core/localization/localization.dart';
 
 /// Screen for managing and viewing subscription details
 class SubscriptionManagementScreen extends StatelessWidget {
@@ -33,7 +34,7 @@ class _SubscriptionManagementView extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.grey[50],
       appBar: AppBar(
-        title: const Text('Subscription Management'),
+        title: const LocalizedText('Subscription Management'),
         backgroundColor: const Color(0xFF6C63FF),
         foregroundColor: Colors.white,
         elevation: 0,
@@ -59,7 +60,7 @@ class _SubscriptionManagementView extends StatelessWidget {
                             .read<SubscriptionManagementBloc>()
                             .add(const RefreshSubscriptionDetails());
                       },
-                tooltip: 'Refresh',
+                tooltip: AppLocalizations.tr('Refresh'),
               );
             },
           ),
@@ -85,8 +86,7 @@ class _SubscriptionManagementView extends StatelessWidget {
                     color: Colors.red[300],
                   ),
                   SizedBox(height: 16.h),
-                  Text(
-                    'Error loading subscription details',
+                  LocalizedText('Error loading subscription details',
                     style: TextStyle(
                       fontSize: 18.sp,
                       fontWeight: FontWeight.w600,
@@ -95,7 +95,7 @@ class _SubscriptionManagementView extends StatelessWidget {
                   SizedBox(height: 8.h),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 32.w),
-                    child: Text(
+                    child: LocalizedText(
                       state.errorMessage ?? 'Unknown error occurred',
                       textAlign: TextAlign.center,
                       style: TextStyle(
@@ -112,7 +112,7 @@ class _SubscriptionManagementView extends StatelessWidget {
                           .add(const LoadSubscriptionDetails());
                     },
                     icon: const Icon(Icons.refresh),
-                    label: const Text('Retry'),
+                    label: const LocalizedText('Retry'),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xFF6C63FF),
                       foregroundColor: Colors.white,
@@ -134,16 +134,14 @@ class _SubscriptionManagementView extends StatelessWidget {
                     color: Colors.grey[400],
                   ),
                   SizedBox(height: 16.h),
-                  Text(
-                    'No Active Subscription',
+                  LocalizedText('No Active Subscription',
                     style: TextStyle(
                       fontSize: 18.sp,
                       fontWeight: FontWeight.w600,
                     ),
                   ),
                   SizedBox(height: 8.h),
-                  Text(
-                    'You don\'t have an active subscription',
+                  LocalizedText('You don\'t have an active subscription',
                     style: TextStyle(
                       fontSize: 14.sp,
                       color: Colors.grey[600],
@@ -155,7 +153,7 @@ class _SubscriptionManagementView extends StatelessWidget {
                       context.pushNamed('purchasesPage');
                     },
                     icon: const Icon(Icons.arrow_forward),
-                    label: const Text('View Plans'),
+                    label: const LocalizedText('View Plans'),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xFF6C63FF),
                       foregroundColor: Colors.white,
@@ -275,15 +273,14 @@ class _SubscriptionManagementView extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      'Active Subscription',
+                    LocalizedText('Active Subscription',
                       style: TextStyle(
                         fontSize: 14.sp,
                         color: Colors.white.withValues(alpha: 0.9),
                       ),
                     ),
                     SizedBox(height: 4.h),
-                    Text(
+                    LocalizedText(
                       subscription.productIdentifier.toUpperCase(),
                       style: TextStyle(
                         fontSize: 20.sp,
@@ -302,7 +299,7 @@ class _SubscriptionManagementView extends StatelessWidget {
                       : Colors.red,
                   borderRadius: BorderRadius.circular(20.r),
                 ),
-                child: Text(
+                child: LocalizedText(
                   subscription.isActive && !isExpired ? 'ACTIVE' : 'EXPIRED',
                   style: TextStyle(
                     fontSize: 12.sp,
@@ -381,8 +378,7 @@ class _SubscriptionManagementView extends StatelessWidget {
                     size: 16.r,
                   ),
                   SizedBox(width: 8.w),
-                  Text(
-                    'Sandbox Environment',
+                  LocalizedText('Sandbox Environment',
                     style: TextStyle(
                       fontSize: 12.sp,
                       color: Colors.orange[700],
@@ -412,7 +408,7 @@ class _SubscriptionManagementView extends StatelessWidget {
           color: Colors.white.withValues(alpha: 0.8),
         ),
         SizedBox(width: 12.w),
-        Text(
+        LocalizedText(
           label,
           style: TextStyle(
             fontSize: 14.sp,
@@ -420,7 +416,7 @@ class _SubscriptionManagementView extends StatelessWidget {
           ),
         ),
         const Spacer(),
-        Text(
+        LocalizedText(
           value,
           style: TextStyle(
             fontSize: 14.sp,
@@ -439,8 +435,7 @@ class _SubscriptionManagementView extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          'All Active Subscriptions',
+        LocalizedText('All Active Subscriptions',
           style: TextStyle(
             fontSize: 18.sp,
             fontWeight: FontWeight.w600,
@@ -487,7 +482,7 @@ class _SubscriptionManagementView extends StatelessWidget {
               ),
               SizedBox(width: 8.w),
               Expanded(
-                child: Text(
+                child: LocalizedText(
                   subscription.productIdentifier,
                   style: TextStyle(
                     fontSize: 16.sp,
@@ -503,7 +498,7 @@ class _SubscriptionManagementView extends StatelessWidget {
                       : Colors.red.withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(8.r),
                 ),
-                child: Text(
+                child: LocalizedText(
                   subscription.isActive ? 'Active' : 'Inactive',
                   style: TextStyle(
                     fontSize: 12.sp,
@@ -539,14 +534,14 @@ class _SubscriptionManagementView extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(
+          LocalizedText(
             label,
             style: TextStyle(
               fontSize: 14.sp,
               color: Colors.grey[600],
             ),
           ),
-          Text(
+          LocalizedText(
             value,
             style: TextStyle(
               fontSize: 14.sp,
@@ -587,8 +582,7 @@ class _SubscriptionManagementView extends StatelessWidget {
                 size: 20.r,
               ),
               SizedBox(width: 8.w),
-              Text(
-                'Account Information',
+              LocalizedText('Account Information',
                 style: TextStyle(
                   fontSize: 18.sp,
                   fontWeight: FontWeight.w600,
@@ -640,8 +634,7 @@ class _SubscriptionManagementView extends StatelessWidget {
                 size: 20.r,
               ),
               SizedBox(width: 8.w),
-              Text(
-                'Transaction History',
+              LocalizedText('Transaction History',
                 style: TextStyle(
                   fontSize: 18.sp,
                   fontWeight: FontWeight.w600,
@@ -660,7 +653,7 @@ class _SubscriptionManagementView extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
+                    LocalizedText(
                       transaction.productIdentifier,
                       style: TextStyle(
                         fontSize: 14.sp,
@@ -668,15 +661,13 @@ class _SubscriptionManagementView extends StatelessWidget {
                       ),
                     ),
                     SizedBox(height: 4.h),
-                    Text(
-                      'Date: ${dateFormat.format(transaction.purchaseDate)}',
+                    LocalizedText('Date: ${dateFormat.format(transaction.purchaseDate)}',
                       style: TextStyle(
                         fontSize: 12.sp,
                         color: Colors.grey[600],
                       ),
                     ),
-                    Text(
-                      'Transaction ID: ${transaction.transactionIdentifier}',
+                    LocalizedText('Transaction ID: ${transaction.transactionIdentifier}',
                       style: TextStyle(
                         fontSize: 12.sp,
                         color: Colors.grey[600],
@@ -718,8 +709,7 @@ class _SubscriptionManagementView extends StatelessWidget {
                 size: 20.r,
               ),
               SizedBox(width: 8.w),
-              Text(
-                'Manage Subscription',
+              LocalizedText('Manage Subscription',
                 style: TextStyle(
                   fontSize: 18.sp,
                   fontWeight: FontWeight.w600,
@@ -740,14 +730,14 @@ class _SubscriptionManagementView extends StatelessWidget {
                     if (context.mounted) {
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
-                          content: Text('Could not open management URL'),
+                          content: LocalizedText('Could not open management URL'),
                         ),
                       );
                     }
                   }
                 },
                 icon: const Icon(Icons.open_in_new),
-                label: const Text('Open Subscription Settings'),
+                label: const LocalizedText('Open Subscription Settings'),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFF6C63FF),
                   foregroundColor: Colors.white,
@@ -765,7 +755,7 @@ class _SubscriptionManagementView extends StatelessWidget {
                     .add(const RefreshSubscriptionDetails());
               },
               icon: const Icon(Icons.refresh),
-              label: const Text('Refresh Subscription Info'),
+              label: const LocalizedText('Refresh Subscription Info'),
               style: OutlinedButton.styleFrom(
                 foregroundColor: const Color(0xFF6C63FF),
                 side: const BorderSide(color: Color(0xFF6C63FF)),
@@ -783,7 +773,7 @@ class _SubscriptionManagementView extends StatelessWidget {
                   // Show loading
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(
-                      content: Text('Restoring purchases...'),
+                      content: LocalizedText('Restoring purchases...'),
                       backgroundColor: Colors.blue,
                       duration: Duration(seconds: 3),
                     ),
@@ -798,8 +788,7 @@ class _SubscriptionManagementView extends StatelessWidget {
                         restoredInfo.entitlements.active.isNotEmpty) {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
-                          content: Text(
-                              'Purchases restored! Found ${restoredInfo.entitlements.active.length} active subscription(s)'),
+                          content: LocalizedText('Purchases restored! Found ${restoredInfo.entitlements.active.length} active subscription(s)'),
                           backgroundColor: Colors.green,
                           duration: const Duration(seconds: 3),
                         ),
@@ -811,7 +800,7 @@ class _SubscriptionManagementView extends StatelessWidget {
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
-                          content: Text('No purchases found to restore'),
+                          content: LocalizedText('No purchases found to restore'),
                           backgroundColor: Colors.orange,
                           duration: Duration(seconds: 3),
                         ),
@@ -821,14 +810,14 @@ class _SubscriptionManagementView extends StatelessWidget {
                 } else {
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(
-                      content: Text('No user logged in'),
+                      content: LocalizedText('No user logged in'),
                       backgroundColor: Colors.red,
                     ),
                   );
                 }
               },
               icon: const Icon(Icons.restore),
-              label: const Text('Restore Purchases'),
+              label: const LocalizedText('Restore Purchases'),
               style: OutlinedButton.styleFrom(
                 foregroundColor: Colors.blue,
                 side: const BorderSide(color: Colors.blue),
@@ -848,8 +837,7 @@ class _SubscriptionManagementView extends StatelessWidget {
                       );
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
-                      content: const Text(
-                          'Testing subscription restore... Check logs for details'),
+                      content: const LocalizedText('Testing subscription restore... Check logs for details'),
                       backgroundColor: Colors.blue,
                       duration: const Duration(seconds: 2),
                     ),
@@ -857,14 +845,14 @@ class _SubscriptionManagementView extends StatelessWidget {
                 } else {
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(
-                      content: Text('No user logged in'),
+                      content: LocalizedText('No user logged in'),
                       backgroundColor: Colors.red,
                     ),
                   );
                 }
               },
               icon: const Icon(Icons.bug_report),
-              label: const Text('Test Subscription Restore'),
+              label: const LocalizedText('Test Subscription Restore'),
               style: OutlinedButton.styleFrom(
                 foregroundColor: Colors.orange,
                 side: const BorderSide(color: Colors.orange),

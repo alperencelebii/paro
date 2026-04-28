@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:cloud_firestore/cloud_firestore.dart' as firestore;
+import 'user_category_model.dart';
 
 /// Represents a category for an expense
 enum ExpenseCategory {
@@ -183,10 +184,7 @@ class Expense {
 
   @Transient()
   IconData get effectiveCategoryIcon => usesCustomCategory
-      ? (customCategoryIconCodePoint != null
-          ? IconData(customCategoryIconCodePoint!,
-              fontFamily: customCategoryIconFontFamily ?? 'MaterialIcons')
-          : Icons.category)
+      ? (CategoryIconResolver.fromCodePoint(customCategoryIconCodePoint) ?? Icons.category)
       : category.icon;
 
   @Transient()

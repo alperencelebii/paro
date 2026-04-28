@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:finance_track/core/localization/localization.dart';
 
 /// First landing page - Overview with Hero Section & CTA
 class LandingPage1 extends StatelessWidget {
@@ -39,8 +40,7 @@ class LandingPage1 extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        'Akıllı Cüzdan Takibi',
+                      LocalizedText('Akıllı Cüzdan Takibi',
                         style: TextStyle(
                           fontSize: 18.sp,
                           fontWeight: FontWeight.bold,
@@ -50,8 +50,7 @@ class LandingPage1 extends StatelessWidget {
                         overflow: TextOverflow.ellipsis,
                       ),
                       SizedBox(height: 4.h),
-                      Text(
-                        'Tam Kapsamlı Cep Ortağınız',
+                      LocalizedText('Tam Kapsamlı Cep Ortağınız',
                         style: TextStyle(
                           fontSize: 12.sp,
                           fontWeight: FontWeight.w400,
@@ -79,8 +78,7 @@ class LandingPage1 extends StatelessWidget {
             SizedBox(height: 32.h),
 
             // Features List
-            Text(
-              'Başlıca Özellikler',
+            LocalizedText('Başlıca Özellikler',
               style: TextStyle(
                 fontSize: 18.sp,
                 fontWeight: FontWeight.bold,
@@ -221,8 +219,7 @@ class LandingPage1 extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
-                          'Kontrol Paneli',
+                        LocalizedText('Kontrol Paneli',
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 14.sp,
@@ -249,16 +246,14 @@ class LandingPage1 extends StatelessWidget {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
-                                'Toplam Bakiye',
+                              LocalizedText('Toplam Bakiye',
                                 style: TextStyle(
                                   fontSize: 10.sp,
                                   color: theme.colorScheme.onSurface
                                       .withValues(alpha: 0.7),
                                 ),
                               ),
-                              Text(
-                                '\₺4,285.00',
+                              LocalizedText('₺4,285.00',
                                 style: TextStyle(
                                   fontSize: 14.sp,
                                   fontWeight: FontWeight.bold,
@@ -289,15 +284,13 @@ class LandingPage1 extends StatelessWidget {
                                   size: 14.r,
                                 ),
                                 SizedBox(height: 4.h),
-                                Text(
-                                  'Gelir',
+                                LocalizedText('Gelir',
                                   style: TextStyle(
                                     fontSize: 10.sp,
                                     color: Colors.green[700],
                                   ),
                                 ),
-                                Text(
-                                  '\₺5,240',
+                                LocalizedText('₺5,240',
                                   style: TextStyle(
                                     fontSize: 12.sp,
                                     fontWeight: FontWeight.bold,
@@ -325,15 +318,13 @@ class LandingPage1 extends StatelessWidget {
                                   size: 14.r,
                                 ),
                                 SizedBox(height: 4.h),
-                                Text(
-                                  'Gider',
+                                LocalizedText('Gider',
                                   style: TextStyle(
                                     fontSize: 10.sp,
                                     color: Colors.red[700],
                                   ),
                                 ),
-                                Text(
-                                  '\₺955',
+                                LocalizedText('₺955',
                                   style: TextStyle(
                                     fontSize: 12.sp,
                                     fontWeight: FontWeight.bold,
@@ -406,7 +397,7 @@ class LandingPage1 extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
+                LocalizedText(
                   title,
                   style: TextStyle(
                     fontSize: 16.sp,
@@ -417,7 +408,7 @@ class LandingPage1 extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
                 ),
                 SizedBox(height: 4.h),
-                Text(
+                LocalizedText(
                   description,
                   style: TextStyle(
                     fontSize: 13.sp,

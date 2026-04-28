@@ -12,6 +12,7 @@ import 'package:finance_track/features/income_list/bloc/income_list_event.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:finance_track/core/localization/localization.dart';
 
 // Import the public flag from auth_route_listener
 import '../../../core/router/auth_route_listener.dart'
@@ -213,8 +214,7 @@ class _HomeWrapperState extends State<HomeWrapper> {
                                 // Show error snackbar
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
-                                    content: Text(
-                                        'Error loading data: $errorMessage'),
+                                    content: LocalizedText('Error loading data: $errorMessage'),
                                     backgroundColor: Colors.red,
                                   ),
                                 );
@@ -248,8 +248,7 @@ class _HomeWrapperState extends State<HomeWrapper> {
                                 // Show info snackbar
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   const SnackBar(
-                                    content: Text(
-                                        'No transactions found. Start by adding your first transaction!'),
+                                    content: LocalizedText('No transactions found. Start by adding your first transaction!'),
                                     backgroundColor: Colors.blue,
                                   ),
                                 );

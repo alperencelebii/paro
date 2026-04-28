@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:finance_track/core/localization/localization.dart';
 
 /// A custom tab bar header delegate for category detail screen
 class TabBarHeaderDelegate extends StatelessWidget {
@@ -39,10 +40,8 @@ class TabBarHeaderDelegate extends StatelessWidget {
           tabController.animateTo(value);
         },
         tabs: const [
-          Tab(
-            text: 'Overview',
-          ),
-          Tab(text: 'Transactions'),
+          Tab(child: LocalizedText('Overview')),
+          Tab(child: LocalizedText('Transactions')),
         ],
       ),
     );
@@ -92,7 +91,7 @@ class TabBarHeaderDelegate extends StatelessWidget {
 //       child: Column(
 //         crossAxisAlignment: CrossAxisAlignment.start,
 //         children: [
-//           Text(
+//           LocalizedText(
 //             'Summary',
 //             style: theme.textTheme.titleMedium?.copyWith(
 //               fontWeight: FontWeight.bold,
@@ -183,7 +182,7 @@ class TabBarHeaderDelegate extends StatelessWidget {
 //               ),
 //               SizedBox(width: 8.w),
 //               Expanded(
-//                 child: Text(
+//                 child: LocalizedText(
 //                   title,
 //                   style: theme.textTheme.bodySmall?.copyWith(
 //                     fontWeight: FontWeight.w500,
@@ -194,7 +193,7 @@ class TabBarHeaderDelegate extends StatelessWidget {
 //             ],
 //           ),
 //           SizedBox(height: 8.h),
-//           Text(
+//           LocalizedText(
 //             value,
 //             style: theme.textTheme.titleMedium?.copyWith(
 //               fontWeight: FontWeight.bold,
@@ -249,7 +248,7 @@ class TabBarHeaderDelegate extends StatelessWidget {
 //                   color: Colors.grey.withValues(alpha:0.5),
 //                 ),
 //                 SizedBox(height: 16.h),
-//                 Text(
+//                 LocalizedText(
 //                   'No data available for selected period',
 //                   style: theme.textTheme.bodyLarge?.copyWith(
 //                     color: Colors.grey,
@@ -278,7 +277,7 @@ class TabBarHeaderDelegate extends StatelessWidget {
 //       child: Column(
 //         crossAxisAlignment: CrossAxisAlignment.start,
 //         children: [
-//           Text(
+//           LocalizedText(
 //             'Spending Trend',
 //             style: theme.textTheme.titleMedium?.copyWith(
 //               fontWeight: FontWeight.bold,
@@ -314,7 +313,7 @@ class TabBarHeaderDelegate extends StatelessWidget {
 //                         if (value.toInt() >= 0 && value.toInt() < data.length) {
 //                           return Padding(
 //                             padding: EdgeInsets.only(top: 8.h),
-//                             child: Text(
+//                             child: LocalizedText(
 //                               DateFormat('MMM d')
 //                                   .format(data[value.toInt()].date),
 //                               style: theme.textTheme.bodySmall,
@@ -332,7 +331,7 @@ class TabBarHeaderDelegate extends StatelessWidget {
 //                       getTitlesWidget: (value, meta) {
 //                         return Padding(
 //                           padding: EdgeInsets.only(right: 8.w),
-//                           child: Text(
+//                           child: LocalizedText(
 //                             NumberFormat.compactCurrency(
 //                               symbol: '\$',
 //                               decimalDigits: 0,

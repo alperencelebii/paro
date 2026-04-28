@@ -2,6 +2,7 @@ import 'dart:math' as math;
 import 'package:finance_track/features/analytics/bloc/transaction_analytics_event.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:finance_track/core/localization/localization.dart';
 
 /// Custom bottom sheet for sorting transactions
 class SortBottomSheet extends StatelessWidget {
@@ -80,8 +81,7 @@ class SortBottomSheet extends StatelessWidget {
                   ),
                   SizedBox(width: 12.w),
                   Expanded(
-                    child: Text(
-                      'Sort Transactions',
+                    child: LocalizedText('Sort Transactions',
                       style: theme.textTheme.titleMedium?.copyWith(
                         fontWeight: FontWeight.bold,
                         color: Colors.black87,
@@ -135,15 +135,13 @@ class SortBottomSheet extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisSize: MainAxisSize.min,
                               children: [
-                                Text(
-                                  'Current selection:',
+                                LocalizedText('Current selection:',
                                   style: theme.textTheme.bodySmall?.copyWith(
                                     color: Colors.grey.shade700,
                                   ),
                                 ),
                                 SizedBox(height: 2.h),
-                                Text(
-                                  '${_getSortFieldName(currentSortField)} - ${currentSortDirection == SortDirection.ascending ? 'Ascending' : 'Descending'}',
+                                LocalizedText('${_getSortFieldName(currentSortField)} - ${currentSortDirection == SortDirection.ascending ? 'Ascending' : 'Descending'}',
                                   style: theme.textTheme.bodyMedium?.copyWith(
                                     fontWeight: FontWeight.bold,
                                     color: Colors.black87,
@@ -157,8 +155,7 @@ class SortBottomSheet extends StatelessWidget {
                     ),
 
                     // Sort by section
-                    Text(
-                      'Sort by',
+                    LocalizedText('Sort by',
                       style: theme.textTheme.titleMedium?.copyWith(
                         fontWeight: FontWeight.w600,
                         color: Colors.black87,
@@ -203,8 +200,7 @@ class SortBottomSheet extends StatelessWidget {
                     SizedBox(height: 24.h),
 
                     // Direction section
-                    Text(
-                      'Direction',
+                    LocalizedText('Direction',
                       style: theme.textTheme.titleMedium?.copyWith(
                         fontWeight: FontWeight.w600,
                         color: Colors.black87,
@@ -279,7 +275,7 @@ class SortBottomSheet extends StatelessWidget {
                   foregroundColor: Colors.white,
                   elevation: 0,
                 ),
-                child: const Text('Apply Sort'),
+                child: const LocalizedText('Apply Sort'),
               ),
             ),
           ],
@@ -334,7 +330,7 @@ class SortBottomSheet extends StatelessWidget {
                   size: 14.r,
                 ),
               ),
-            Text(
+            LocalizedText(
               title,
               style: TextStyle(
                 fontSize: 13.sp,
@@ -398,7 +394,7 @@ class SortBottomSheet extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: [
-                Text(
+                LocalizedText(
                   title,
                   style: TextStyle(
                     fontSize: 13.sp,
@@ -406,7 +402,7 @@ class SortBottomSheet extends StatelessWidget {
                     color: isSelected ? Colors.white : Colors.grey.shade800,
                   ),
                 ),
-                Text(
+                LocalizedText(
                   subtitle,
                   style: TextStyle(
                     fontSize: 11.sp,

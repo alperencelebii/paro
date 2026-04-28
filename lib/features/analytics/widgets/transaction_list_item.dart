@@ -2,6 +2,7 @@ import 'package:finance_track/features/monthly_summary/models/transaction_item.d
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
+import 'package:finance_track/core/localization/localization.dart';
 
 /// Widget for displaying a transaction item in a list
 class TransactionListItem extends StatelessWidget {
@@ -71,7 +72,7 @@ class TransactionListItem extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
+                    LocalizedText(
                       transaction.title,
                       style: theme.textTheme.titleMedium?.copyWith(
                         fontWeight: FontWeight.w600,
@@ -91,7 +92,7 @@ class TransactionListItem extends StatelessWidget {
                                 .withValues(alpha: 0.1),
                             borderRadius: BorderRadius.circular(4.r),
                           ),
-                          child: Text(
+                          child: LocalizedText(
                             transaction.categoryName,
                             style: theme.textTheme.bodySmall?.copyWith(
                               color: transaction.categoryColor,
@@ -102,15 +103,14 @@ class TransactionListItem extends StatelessWidget {
                         ),
                         Padding(
                           padding: EdgeInsets.symmetric(horizontal: 6.w),
-                          child: Text(
-                            '•',
+                          child: LocalizedText('•',
                             style: TextStyle(
                               color: theme.colorScheme.onSurface
                                   .withValues(alpha: 0.5),
                             ),
                           ),
                         ),
-                        Text(
+                        LocalizedText(
                           dateFormat.format(transaction.date),
                           style: theme.textTheme.bodySmall?.copyWith(
                             color: theme.colorScheme.onSurface
@@ -135,7 +135,7 @@ class TransactionListItem extends StatelessWidget {
                       : Colors.green.withValues(alpha: 0.12),
                   borderRadius: BorderRadius.circular(8.r),
                 ),
-                child: Text(
+                child: LocalizedText(
                   formatter.format(transaction.amount),
                   style: theme.textTheme.titleMedium?.copyWith(
                     fontWeight: FontWeight.bold,

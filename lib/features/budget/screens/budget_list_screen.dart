@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
+import 'package:finance_track/core/localization/localization.dart';
 
 import '../../profile/currency/bloc/currency/currency_bloc.dart';
 import '../../profile/currency/bloc/currency/currency_state.dart';
@@ -67,7 +68,7 @@ class _BudgetListScreenState extends State<BudgetListScreen> {
             return Center(
               child: SelectableText.rich(
                 TextSpan(
-                  text: 'Error: ',
+                  text: AppLocalizations.tr('Error: '),
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
                       color: Colors.red,
@@ -110,8 +111,7 @@ class _BudgetListScreenState extends State<BudgetListScreen> {
                   flexibleSpace: FlexibleSpaceBar(
                     title: Padding(
                       padding: EdgeInsets.only(left: 35.w),
-                      child: Text(
-                        'Budget Settings',
+                      child: LocalizedText('Budget Settings',
                         style: theme.textTheme.titleLarge?.copyWith(
                           color: Colors.white,
                         ),
@@ -187,7 +187,7 @@ class _BudgetListScreenState extends State<BudgetListScreen> {
                           _navigateToCreateBudget(context);
                         }
                       },
-                      tooltip: 'Create New Budget',
+                      tooltip: AppLocalizations.tr('Create New Budget'),
                     ),
                     SizedBox(width: 8.w),
                   ],
@@ -216,8 +216,7 @@ class _BudgetListScreenState extends State<BudgetListScreen> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(
-                                'Your Budgets',
+                              LocalizedText('Your Budgets',
                                 style: theme.textTheme.titleLarge?.copyWith(
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -233,7 +232,7 @@ class _BudgetListScreenState extends State<BudgetListScreen> {
                                     _navigateToCreateBudget(context);
                                   }
                                 },
-                                tooltip: 'Create New Budget',
+                                tooltip: AppLocalizations.tr('Create New Budget'),
                               ),
                             ],
                           ),
@@ -408,15 +407,14 @@ class _BudgetListScreenState extends State<BudgetListScreen> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
-                                  'Active Budget',
+                                LocalizedText('Active Budget',
                                   style: TextStyle(
                                     color: Colors.white.withValues(alpha: 0.9),
                                     fontSize: 14.sp,
                                   ),
                                 ),
                                 SizedBox(height: 4.h),
-                                Text(
+                                LocalizedText(
                                   budget.title.isNotEmpty
                                       ? budget.title
                                       : '${budget.period.displayName} Budget',
@@ -440,7 +438,7 @@ class _BudgetListScreenState extends State<BudgetListScreen> {
                               color: Colors.white.withValues(alpha: 0.2),
                               borderRadius: BorderRadius.circular(12.r),
                             ),
-                            child: Text(
+                            child: LocalizedText(
                               budget.period.displayName,
                               style: TextStyle(
                                 color: Colors.white,
@@ -461,15 +459,13 @@ class _BudgetListScreenState extends State<BudgetListScreen> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(
-                                'Budget Usage',
+                              LocalizedText('Budget Usage',
                                 style: TextStyle(
                                   color: Colors.white.withValues(alpha: 0.9),
                                   fontSize: 12.sp,
                                 ),
                               ),
-                              Text(
-                                '${(percentUsed * 100).toInt()}%',
+                              LocalizedText('${(percentUsed * 100).toInt()}%',
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 12.sp,
@@ -580,7 +576,7 @@ class _BudgetListScreenState extends State<BudgetListScreen> {
               ),
               SizedBox(width: 4.w),
             ],
-            Text(
+            LocalizedText(
               title,
               style: TextStyle(
                 color: color.withValues(alpha: 0.8),
@@ -590,7 +586,7 @@ class _BudgetListScreenState extends State<BudgetListScreen> {
           ],
         ),
         SizedBox(height: 4.h),
-        Text(
+        LocalizedText(
           value,
           style: TextStyle(
             color: color,
@@ -699,7 +695,7 @@ class _BudgetListScreenState extends State<BudgetListScreen> {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
+                        LocalizedText(
                           budget.title.isNotEmpty
                               ? budget.title
                               : '${budget.period.displayName} Budget',
@@ -708,8 +704,7 @@ class _BudgetListScreenState extends State<BudgetListScreen> {
                           ),
                         ),
                         SizedBox(height: 4.h),
-                        Text(
-                          '${DateFormat('MMM d').format(budget.startDate)} - ${DateFormat('MMM d').format(budget.endDate)}',
+                        LocalizedText('${DateFormat('MMM d').format(budget.startDate)} - ${DateFormat('MMM d').format(budget.endDate)}',
                           style: theme.textTheme.bodySmall?.copyWith(
                             color: Colors.grey.shade600,
                           ),
@@ -727,8 +722,7 @@ class _BudgetListScreenState extends State<BudgetListScreen> {
                           color: theme.colorScheme.primary,
                           borderRadius: BorderRadius.circular(12.r),
                         ),
-                        child: Text(
-                          'Active',
+                        child: LocalizedText('Active',
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 12.sp,
@@ -747,15 +741,13 @@ class _BudgetListScreenState extends State<BudgetListScreen> {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          '$currencySymbol${budget.amount.toStringAsFixed(0)}',
+                        LocalizedText('$currencySymbol${budget.amount.toStringAsFixed(0)}',
                           style: theme.textTheme.titleLarge?.copyWith(
                             fontWeight: FontWeight.bold,
                             color: theme.colorScheme.primary,
                           ),
                         ),
-                        Text(
-                          'Total Budget',
+                        LocalizedText('Total Budget',
                           style: TextStyle(
                             color: Colors.grey.shade600,
                             fontSize: 12.sp,
@@ -799,8 +791,7 @@ class _BudgetListScreenState extends State<BudgetListScreen> {
                               ),
                             ),
                             // Percentage text
-                            Text(
-                              '${(percentUsed * 100).toInt()}%',
+                            LocalizedText('${(percentUsed * 100).toInt()}%',
                               style: TextStyle(
                                 fontSize: 12.sp,
                                 fontWeight: FontWeight.bold,
@@ -822,8 +813,7 @@ class _BudgetListScreenState extends State<BudgetListScreen> {
                           size: 16.r,
                           color: theme.colorScheme.primary,
                         ),
-                        label: Text(
-                          'Set Active',
+                        label: LocalizedText('Set Active',
                           style: TextStyle(
                             color: theme.colorScheme.primary,
                             fontSize: 13.sp,
@@ -862,8 +852,7 @@ class _BudgetListScreenState extends State<BudgetListScreen> {
                           color: theme.colorScheme.primary,
                         ),
                         SizedBox(width: 4.w),
-                        Text(
-                          '${budget.daysRemaining} days left',
+                        LocalizedText('${budget.daysRemaining} days left',
                           style: TextStyle(
                             fontSize: 12.sp,
                             color: theme.colorScheme.primary,
@@ -890,8 +879,7 @@ class _BudgetListScreenState extends State<BudgetListScreen> {
                           Icons.edit_outlined,
                           size: 16.r,
                         ),
-                        label: Text(
-                          'Edit',
+                        label: LocalizedText('Edit',
                           style: TextStyle(fontSize: 14.sp),
                         ),
                         style: OutlinedButton.styleFrom(
@@ -919,8 +907,7 @@ class _BudgetListScreenState extends State<BudgetListScreen> {
                           size: 16.r,
                           color: Colors.red,
                         ),
-                        label: Text(
-                          'Delete',
+                        label: LocalizedText('Delete',
                           style: TextStyle(
                             color: Colors.red,
                             fontSize: 14.sp,
@@ -966,8 +953,7 @@ class _BudgetListScreenState extends State<BudgetListScreen> {
             ),
           ),
           SizedBox(height: 24.h),
-          Text(
-            'No Budgets Found',
+          LocalizedText('No Budgets Found',
             style: theme.textTheme.titleLarge?.copyWith(
               fontWeight: FontWeight.bold,
             ),
@@ -975,8 +961,7 @@ class _BudgetListScreenState extends State<BudgetListScreen> {
           SizedBox(height: 12.h),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 32.w),
-            child: Text(
-              'Create a budget to track your spending and save money',
+            child: LocalizedText('Create a budget to track your spending and save money',
               style: theme.textTheme.bodyMedium?.copyWith(
                 color: Colors.grey.shade600,
               ),
@@ -991,7 +976,7 @@ class _BudgetListScreenState extends State<BudgetListScreen> {
               }
             },
             icon: const Icon(Icons.add),
-            label: const Text('Create Budget'),
+            label: const LocalizedText('Create Budget'),
             style: ElevatedButton.styleFrom(
               padding: EdgeInsets.symmetric(
                 horizontal: 32.w,
@@ -1015,7 +1000,7 @@ class _BudgetListScreenState extends State<BudgetListScreen> {
     // Show loading indicator
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
-        content: Text('Setting budget as active...'),
+        content: LocalizedText('Setting budget as active...'),
         duration: Duration(seconds: 1),
       ),
     );
@@ -1066,13 +1051,12 @@ class _BudgetListScreenState extends State<BudgetListScreen> {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Delete Budget'),
-        content: Text(
-            'Are you sure you want to delete this ${budget.period.displayName} budget?'),
+        title: const LocalizedText('Delete Budget'),
+        content: LocalizedText('Are you sure you want to delete this ${budget.period.displayName} budget?'),
         actions: [
           TextButton(
             onPressed: () => Navigator.of(context).pop(),
-            child: const Text('Cancel'),
+            child: const LocalizedText('Cancel'),
           ),
           TextButton(
             onPressed: () {
@@ -1086,7 +1070,7 @@ class _BudgetListScreenState extends State<BudgetListScreen> {
                 // Show loading indicator
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(
-                    content: Text('Deleting budget...'),
+                    content: LocalizedText('Deleting budget...'),
                     duration: Duration(seconds: 1),
                   ),
                 );
@@ -1102,7 +1086,7 @@ class _BudgetListScreenState extends State<BudgetListScreen> {
                 }
               }
             },
-            child: const Text('Delete', style: TextStyle(color: Colors.red)),
+            child: const LocalizedText('Delete', style: TextStyle(color: Colors.red)),
           ),
         ],
       ),

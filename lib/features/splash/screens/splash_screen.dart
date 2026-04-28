@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:finance_track/core/localization/localization.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -126,15 +127,13 @@ class _SplashScreenState extends State<SplashScreen>
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
-                          'Finance',
+                        LocalizedText('Finance',
                           style: theme.textTheme.headlineSmall?.copyWith(
                             fontWeight: FontWeight.bold,
                             color: primaryColor,
                           ),
                         ),
-                        Text(
-                          'Track',
+                        LocalizedText('Track',
                           style: theme.textTheme.headlineSmall?.copyWith(
                             fontWeight: FontWeight.w400,
                             color: theme.colorScheme.onSurface,

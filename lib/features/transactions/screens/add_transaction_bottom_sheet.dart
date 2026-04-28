@@ -23,6 +23,7 @@ import '../../income_list/add_income_bloc/add_income_state.dart';
 import '../../income_list/bloc/income_list_bloc.dart';
 import '../../income_list/bloc/income_list_event.dart';
 import '../utils/transaction_utils.dart';
+import 'package:finance_track/core/localization/localization.dart';
 
 /// Enum to represent transaction type
 enum TransactionType {
@@ -271,7 +272,7 @@ class _AddTransactionBottomSheetState extends State<AddTransactionBottomSheet>
               if (context.mounted) {
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(
-                    content: Text('Expense added successfully'),
+                    content: LocalizedText('Expense added successfully'),
                     backgroundColor: Colors.green,
                   ),
                 );
@@ -285,7 +286,7 @@ class _AddTransactionBottomSheetState extends State<AddTransactionBottomSheet>
               if (context.mounted) {
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
-                    content: Text('Error: ${state.errorMessage}'),
+                    content: LocalizedText('Error: ${state.errorMessage}'),
                     backgroundColor: Colors.red,
                   ),
                 );
@@ -320,7 +321,7 @@ class _AddTransactionBottomSheetState extends State<AddTransactionBottomSheet>
               if (context.mounted) {
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(
-                    content: Text('Income added successfully'),
+                    content: LocalizedText('Income added successfully'),
                     backgroundColor: Colors.green,
                   ),
                 );
@@ -334,7 +335,7 @@ class _AddTransactionBottomSheetState extends State<AddTransactionBottomSheet>
               if (context.mounted) {
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
-                    content: Text('Error: ${state.errorMessage}'),
+                    content: LocalizedText('Error: ${state.errorMessage}'),
                     backgroundColor: Colors.red,
                   ),
                 );
@@ -465,8 +466,7 @@ class _AddTransactionBottomSheetState extends State<AddTransactionBottomSheet>
                         ),
                       ),
                       const SizedBox(width: 12),
-                      Text(
-                        'Add ${isExpense ? 'Expense' : 'Income'}',
+                      LocalizedText('Add ${isExpense ? 'Expense' : 'Income'}',
                         style: theme.textTheme.headlineSmall?.copyWith(
                           fontWeight: FontWeight.bold,
                           color: Color.lerp(
@@ -483,7 +483,7 @@ class _AddTransactionBottomSheetState extends State<AddTransactionBottomSheet>
               IconButton(
                 icon: const Icon(Icons.close, size: 20),
                 onPressed: () => Navigator.of(context).pop(),
-                tooltip: 'Close',
+                tooltip: AppLocalizations.tr('Close'),
                 style: IconButton.styleFrom(
                   foregroundColor: colorScheme.onSurface,
                   padding: EdgeInsets.zero,
@@ -598,7 +598,7 @@ class _AddTransactionBottomSheetState extends State<AddTransactionBottomSheet>
                 size: 18,
               ),
               const SizedBox(width: 8),
-              Text(
+              LocalizedText(
                 label,
                 style: theme.textTheme.titleMedium?.copyWith(
                   color: isSelected
@@ -633,7 +633,7 @@ class _AddTransactionBottomSheetState extends State<AddTransactionBottomSheet>
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text(
+          LocalizedText(
             context.currencySymbol,
             style: theme.textTheme.headlineMedium!.copyWith(
               color: accentColor,
@@ -652,10 +652,10 @@ class _AddTransactionBottomSheetState extends State<AddTransactionBottomSheet>
               keyboardType:
                   const TextInputType.numberWithOptions(decimal: true),
               textAlign: TextAlign.left,
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 border: InputBorder.none,
                 contentPadding: EdgeInsets.zero,
-                hintText: '0.00',
+                hintText: AppLocalizations.tr('0.00'),
                 isDense: true,
               ),
               inputFormatters: [
@@ -689,8 +689,7 @@ class _AddTransactionBottomSheetState extends State<AddTransactionBottomSheet>
         children: [
           Padding(
             padding: const EdgeInsets.fromLTRB(16, 12, 16, 4),
-            child: Text(
-              'Title',
+            child: LocalizedText('Title',
               style: theme.textTheme.titleSmall?.copyWith(
                 color: colorScheme.onSurface.withValues(alpha: 0.8),
                 fontWeight: FontWeight.w500,
@@ -764,8 +763,7 @@ class _AddTransactionBottomSheetState extends State<AddTransactionBottomSheet>
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: [
-        Text(
-          'Date',
+        LocalizedText('Date',
           style: theme.textTheme.titleSmall?.copyWith(
             fontWeight: FontWeight.bold,
             color: theme.colorScheme.onSurface.withValues(alpha: 0.8),
@@ -794,7 +792,7 @@ class _AddTransactionBottomSheetState extends State<AddTransactionBottomSheet>
                 ),
                 const SizedBox(width: 6),
                 Expanded(
-                  child: Text(
+                  child: LocalizedText(
                     formattedDate,
                     style: theme.textTheme.bodyMedium,
                     overflow: TextOverflow.ellipsis,
@@ -824,8 +822,7 @@ class _AddTransactionBottomSheetState extends State<AddTransactionBottomSheet>
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: [
-        Text(
-          'Category',
+        LocalizedText('Category',
           style: theme.textTheme.titleSmall?.copyWith(
             fontWeight: FontWeight.bold,
             color: theme.colorScheme.onSurface.withValues(alpha: 0.8),
@@ -881,7 +878,7 @@ class _AddTransactionBottomSheetState extends State<AddTransactionBottomSheet>
             ),
             const SizedBox(width: 8),
             Expanded(
-              child: Text(
+              child: LocalizedText(
                 _selectedCustomExpenseCategory?.name ??
                     _selectedExpenseCategory.displayName,
                 style: theme.textTheme.bodyMedium?.copyWith(
@@ -927,7 +924,7 @@ class _AddTransactionBottomSheetState extends State<AddTransactionBottomSheet>
                 color: Colors.green.withValues(alpha: 0.15),
                 shape: BoxShape.circle,
               ),
-              child: Text(
+              child: LocalizedText(
                 context.currencySymbol,
                 style: theme.textTheme.bodyMedium?.copyWith(
                   color: Colors.green,
@@ -937,7 +934,7 @@ class _AddTransactionBottomSheetState extends State<AddTransactionBottomSheet>
             ),
             const SizedBox(width: 8),
             Expanded(
-              child: Text(
+              child: LocalizedText(
                 _selectedIncomeCategory.displayName,
                 style: theme.textTheme.bodyMedium?.copyWith(
                   color: Colors.green,
@@ -964,8 +961,7 @@ class _AddTransactionBottomSheetState extends State<AddTransactionBottomSheet>
       crossAxisAlignment: CrossAxisAlignment.start,
       key: const ValueKey('source_field'),
       children: [
-        Text(
-          'Source (Optional)',
+        LocalizedText('Source (Optional)',
           style: theme.textTheme.titleSmall?.copyWith(
             fontWeight: FontWeight.bold,
             color: theme.colorScheme.onSurface.withValues(alpha: 0.8),
@@ -983,11 +979,11 @@ class _AddTransactionBottomSheetState extends State<AddTransactionBottomSheet>
           ),
           child: TextField(
             controller: _sourceController,
-            decoration: const InputDecoration(
+            decoration: InputDecoration(
               border: InputBorder.none,
               contentPadding:
                   EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-              hintText: 'e.g., ABC Company, Freelance Client (Optional)',
+              hintText: AppLocalizations.tr('e.g., ABC Company, Freelance Client (Optional)'),
               prefixIcon: Icon(
                 Icons.business,
                 color: Colors.green,
@@ -1011,8 +1007,7 @@ class _AddTransactionBottomSheetState extends State<AddTransactionBottomSheet>
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          'Notes (Optional)',
+        LocalizedText('Notes (Optional)',
           style: theme.textTheme.titleSmall?.copyWith(
             fontWeight: FontWeight.bold,
             color: theme.colorScheme.onSurface.withValues(alpha: 0.8),
@@ -1034,7 +1029,7 @@ class _AddTransactionBottomSheetState extends State<AddTransactionBottomSheet>
               border: InputBorder.none,
               contentPadding:
                   const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-              hintText: 'Add any additional notes here...',
+              hintText: AppLocalizations.tr('Add any additional notes here...'),
               prefixIcon: Icon(
                 Icons.note_alt_outlined,
                 color: iconColor,
@@ -1064,8 +1059,7 @@ class _AddTransactionBottomSheetState extends State<AddTransactionBottomSheet>
         backgroundColor: color,
         minimumSize: const Size(double.infinity, 56),
       ),
-      child: Text(
-        'Add ${isExpense ? 'Expense' : 'Income'}',
+      child: LocalizedText('Add ${isExpense ? 'Expense' : 'Income'}',
         style: theme.textTheme.titleMedium?.copyWith(
           color: theme.colorScheme.onPrimary,
           fontWeight: FontWeight.bold,
@@ -1175,7 +1169,7 @@ class _AddTransactionBottomSheetState extends State<AddTransactionBottomSheet>
                 ),
                 const SizedBox(width: 12),
                 Expanded(
-                  child: Text(
+                  child: LocalizedText(
                     message,
                     style: theme.textTheme.bodyMedium?.copyWith(
                       color: Colors.white,
@@ -1417,7 +1411,7 @@ class CategorySelectionBottomSheet extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 16),
-                    Text(
+                    LocalizedText(
                       title,
                       style: theme.textTheme.titleLarge?.copyWith(
                         fontWeight: FontWeight.w600,
@@ -1489,7 +1483,7 @@ class CategorySelectionBottomSheet extends StatelessWidget {
                             child: Padding(
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 4),
-                              child: Text(
+                              child: LocalizedText(
                                 getDisplayName(category),
                                 style: theme.textTheme.bodySmall?.copyWith(
                                   fontWeight: isSelected
@@ -1568,8 +1562,7 @@ class _ExpenseCategoryPicker extends StatelessWidget {
               padding: const EdgeInsets.fromLTRB(20, 16, 20, 8),
               child: Row(
                 children: [
-                  Text(
-                    'Select Category',
+                  LocalizedText('Select Category',
                     style: theme.textTheme.titleLarge?.copyWith(
                       fontWeight: FontWeight.w600,
                     ),
@@ -1581,7 +1574,7 @@ class _ExpenseCategoryPicker extends StatelessWidget {
                       context.pushNamed(AppRoutes.manageCategories);
                     },
                     icon: const Icon(Icons.add),
-                    label: const Text('Add'),
+                    label: const LocalizedText('Add'),
                   )
                 ],
               ),
@@ -1599,8 +1592,7 @@ class _ExpenseCategoryPicker extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.symmetric(
                               horizontal: 20, vertical: 8),
-                          child: Text(
-                            'Your Categories',
+                          child: LocalizedText('Your Categories',
                             style: theme.textTheme.titleMedium
                                 ?.copyWith(fontWeight: FontWeight.bold),
                           ),
@@ -1611,7 +1603,7 @@ class _ExpenseCategoryPicker extends StatelessWidget {
                               child: Icon(c.icon ?? Icons.category,
                                   color: c.color),
                             ),
-                            title: Text(c.name),
+                            title: LocalizedText(c.name),
                             onTap: () {
                               onSelectCustom(c);
                               Navigator.pop(context);
@@ -1620,8 +1612,7 @@ class _ExpenseCategoryPicker extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.symmetric(
                             horizontal: 20, vertical: 8),
-                        child: Text(
-                          'Default Categories',
+                        child: LocalizedText('Default Categories',
                           style: theme.textTheme.titleMedium
                               ?.copyWith(fontWeight: FontWeight.bold),
                         ),
@@ -1636,7 +1627,7 @@ class _ExpenseCategoryPicker extends StatelessWidget {
                           trailing: category == selectedSystem
                               ? const Icon(Icons.check)
                               : null,
-                          title: Text(category.displayName),
+                          title: LocalizedText(category.displayName),
                           onTap: () {
                             onSelectSystem(category);
                             Navigator.pop(context);

@@ -21,6 +21,7 @@ import '../data/repositories/mock_income_repository.dart';
 import '../data/repositories/objectbox_expense_repository.dart';
 import '../data/repositories/objectbox_income_repository.dart';
 import 'router/navigation_manager.dart';
+import 'package:finance_track/core/localization/localization.dart';
 
 /// Result class for repository initialization
 class RepositoryInitResult {
@@ -144,10 +145,9 @@ void showDatabaseErrorDialog(String errorMessage) {
       showDialog<void>(
         context: context,
         builder: (context) => AlertDialog(
-          title: const Text('Database Initialization Failed'),
+          title: const LocalizedText('Database Initialization Failed'),
           content: SingleChildScrollView(
-            child: Text(
-              'The app database could not be initialized. '
+            child: LocalizedText('The app database could not be initialized. '
               'You are using a temporary in-memory database. '
               'Your data will not be saved when you close the app.\n\n'
               'Error details:\n$errorMessage',
@@ -156,7 +156,7 @@ void showDatabaseErrorDialog(String errorMessage) {
           actions: [
             TextButton(
               onPressed: () => Navigator.of(context).pop(),
-              child: const Text('OK'),
+              child: const LocalizedText('OK'),
             ),
           ],
         ),

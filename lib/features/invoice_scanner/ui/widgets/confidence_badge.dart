@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:finance_track/core/localization/localization.dart';
 
 /// Widget to display confidence score for a field
 class ConfidenceBadge extends StatelessWidget {
@@ -37,8 +38,7 @@ class ConfidenceBadge extends StatelessWidget {
             color: isLowConfidence ? Colors.orange : Colors.green,
           ),
           const SizedBox(width: 4),
-          Text(
-            '$percentage%',
+          LocalizedText('$percentage%',
             style: TextStyle(
               fontSize: 12,
               fontWeight: FontWeight.w600,

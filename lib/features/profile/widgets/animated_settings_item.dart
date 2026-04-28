@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:finance_track/core/localization/localization.dart';
 
 class AnimatedSettingsItem extends StatelessWidget {
   final IconData icon;
@@ -63,7 +64,7 @@ class AnimatedSettingsItem extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
+                      LocalizedText(
                         title,
                         style: TextStyle(
                           fontSize: 16.sp,
@@ -72,7 +73,7 @@ class AnimatedSettingsItem extends StatelessWidget {
                         ),
                       ),
                       SizedBox(height: 4.h),
-                      Text(
+                      LocalizedText(
                         subtitle,
                         style: TextStyle(
                           fontSize: 12.sp,

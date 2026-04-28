@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../connectivity/connectivity_cubit.dart';
+import 'package:finance_track/core/localization/localization.dart';
 
 /// A widget that displays a floating notification when the device is offline
 class ConnectivityBanner extends StatefulWidget {
@@ -132,8 +133,7 @@ class _ConnectivityBannerState extends State<ConnectivityBanner>
                       // Optional: Add an action when tapping on the notification
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
-                          content: Text(
-                              'Working offline. Your data is being saved locally.'),
+                          content: LocalizedText('Working offline. Your data is being saved locally.'),
                           duration: Duration(seconds: 2),
                         ),
                       );
@@ -156,16 +156,14 @@ class _ConnectivityBannerState extends State<ConnectivityBanner>
                               mainAxisSize: MainAxisSize.min,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
-                                  'You are offline',
+                                LocalizedText('You are offline',
                                   style: theme.textTheme.titleSmall?.copyWith(
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
                                 SizedBox(height: 2.h),
-                                Text(
-                                  'Data will be synced automatically when reconnected',
+                                LocalizedText('Data will be synced automatically when reconnected',
                                   style: theme.textTheme.bodySmall?.copyWith(
                                     color: Colors.white.withValues(alpha: 0.85),
                                   ),

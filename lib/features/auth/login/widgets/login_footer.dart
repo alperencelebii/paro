@@ -3,6 +3,7 @@ import 'package:finance_track/features/auth/widgets/social_button_compact.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:finance_track/core/localization/localization.dart';
 
 class LoginFooter extends StatelessWidget {
   const LoginFooter({super.key});
@@ -22,8 +23,7 @@ class LoginFooter extends StatelessWidget {
               Expanded(child: Divider(thickness: 1, color: Colors.grey[200])),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 16.w),
-                child: Text(
-                  'Or',
+                child: LocalizedText('Or',
                   style: theme.textTheme.bodySmall?.copyWith(
                     color: Colors.grey[500],
                     fontWeight: FontWeight.w500,
@@ -39,7 +39,7 @@ class LoginFooter extends StatelessWidget {
         SocialButtonCompact(
           icon: Icons.g_mobiledata,
           iconSize: 24.r,
-          text: 'Googles',
+          text: 'Google',
           iconColor: Colors.red[700]!,
           onPressed: () async {
             context.read<LoginCubit>().onGoogleLogin();

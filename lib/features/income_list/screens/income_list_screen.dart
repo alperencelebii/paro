@@ -21,6 +21,7 @@ import '../../analytics/widgets/transactions_filter_controls.dart';
 import '../../analytics/bloc/transaction_analytics_bloc.dart';
 import '../../analytics/bloc/transaction_analytics_state.dart';
 import '../../analytics/bloc/transaction_analytics_event.dart' as ta_events;
+import 'package:finance_track/core/localization/localization.dart';
 
 /// Screen to display the list of incomes
 class IncomeListScreen extends StatelessWidget {
@@ -31,7 +32,7 @@ class IncomeListScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.surface,
       appBar: AppBar(
-        title: const Text('Income History'),
+        title: const LocalizedText('Income History'),
         elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.white),
@@ -45,7 +46,7 @@ class IncomeListScreen extends StatelessWidget {
           IconButton(
             icon: const Icon(Icons.filter_list),
             onPressed: () => _showFilterDialog(context),
-            tooltip: 'Filter incomes',
+            tooltip: AppLocalizations.tr('Filter incomes'),
           ),
           IconButton(
             icon: const Icon(Icons.search),
@@ -57,7 +58,7 @@ class IncomeListScreen extends StatelessWidget {
                 ),
               );
             },
-            tooltip: 'Search incomes',
+            tooltip: AppLocalizations.tr('Search incomes'),
           ),
         ],
         flexibleSpace: Container(
@@ -150,7 +151,7 @@ class IncomeListScreen extends StatelessWidget {
             ),
           ),
           SizedBox(height: 32.h),
-          Text(
+          LocalizedText(
             state.selectedCategory != null
                 ? 'No ${state.selectedCategory!.displayName} incomes found'
                 : 'No incomes recorded yet',
@@ -159,8 +160,7 @@ class IncomeListScreen extends StatelessWidget {
             ),
           ),
           SizedBox(height: 16.h),
-          Text(
-            'Tap the + button to add a new income',
+          LocalizedText('Tap the + button to add a new income',
             textAlign: TextAlign.center,
             style: theme.textTheme.bodyLarge?.copyWith(
               color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
@@ -175,7 +175,7 @@ class IncomeListScreen extends StatelessWidget {
                     .add(const FilterIncomesByCategory(null));
               },
               icon: const Icon(Icons.filter_alt_off),
-              label: const Text('Clear Filter'),
+              label: const LocalizedText('Clear Filter'),
               style: ElevatedButton.styleFrom(
                 backgroundColor: const Color(0xFF00B07B),
                 foregroundColor: Colors.white,
@@ -214,7 +214,7 @@ class IncomeListScreen extends StatelessWidget {
               TextSpan(
                 children: [
                   TextSpan(
-                    text: 'Error loading incomes\n',
+                    text: AppLocalizations.tr('Error loading incomes\n'),
                     style: theme.textTheme.titleLarge?.copyWith(
                       fontWeight: FontWeight.bold,
                       color: Colors.red.shade700,
@@ -236,7 +236,7 @@ class IncomeListScreen extends StatelessWidget {
                 context.read<IncomeListBloc>().add(const LoadIncomes());
               },
               icon: const Icon(Icons.refresh),
-              label: const Text('Try Again'),
+              label: const LocalizedText('Try Again'),
               style: ElevatedButton.styleFrom(
                 backgroundColor: theme.colorScheme.error,
                 foregroundColor: theme.colorScheme.onError,
@@ -428,7 +428,7 @@ class IncomeListScreen extends StatelessWidget {
               color: const Color(0xFF00B07B),
             ),
             SizedBox(width: 8.w),
-            Text(
+            LocalizedText(
               title,
               style: theme.textTheme.titleMedium?.copyWith(
                 fontWeight: FontWeight.bold,
@@ -451,7 +451,7 @@ class IncomeListScreen extends StatelessWidget {
         //         color: const Color(0xFF00B07B),
         //       ),
         //       SizedBox(width: 4.w),
-        //       Text(
+        //       LocalizedText(
         //         filterText,
         //         style: theme.textTheme.bodySmall?.copyWith(
         //           fontWeight: FontWeight.w500,
@@ -502,7 +502,7 @@ class _DateHeader extends StatelessWidget {
       padding: EdgeInsets.only(top: 16.h, bottom: 8.h),
       child: Row(
         children: [
-          Text(
+          LocalizedText(
             dateText,
             style: theme.textTheme.titleSmall?.copyWith(
               fontWeight: FontWeight.bold,
@@ -670,8 +670,7 @@ class _IncomeSummaryCardState extends State<_IncomeSummaryCard> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
-                            'Total Income',
+                          LocalizedText('Total Income',
                             style: theme.textTheme.titleMedium?.copyWith(
                               color: Colors.white.withValues(alpha: 0.9),
                               fontWeight: FontWeight.w500,
@@ -693,7 +692,7 @@ class _IncomeSummaryCardState extends State<_IncomeSummaryCard> {
                               ? currencyState.selectedCurrency
                               : Currencies.inr;
 
-                          return Text(
+                          return LocalizedText(
                             CurrencyFormatter.format(periodTotal, currency),
                             style: theme.textTheme.headlineLarge?.copyWith(
                               fontWeight: FontWeight.bold,
@@ -719,8 +718,7 @@ class _IncomeSummaryCardState extends State<_IncomeSummaryCard> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        'Top Sources',
+                      LocalizedText('Top Sources',
                         style: theme.textTheme.titleMedium?.copyWith(
                           fontWeight: FontWeight.bold,
                         ),
@@ -730,8 +728,7 @@ class _IncomeSummaryCardState extends State<_IncomeSummaryCard> {
                         Center(
                           child: Padding(
                             padding: const EdgeInsets.symmetric(vertical: 16.0),
-                            child: Text(
-                              'No income data available for $period',
+                            child: LocalizedText('No income data available for $period',
                               style: theme.textTheme.bodyMedium?.copyWith(
                                 color: theme.colorScheme.onSurface
                                     .withValues(alpha: 0.7),
@@ -809,7 +806,7 @@ class _PeriodSelector extends StatelessWidget {
           ].map((String value) {
             return DropdownMenuItem<String>(
               value: value,
-              child: Text(
+              child: LocalizedText(
                 value,
                 style: TextStyle(
                   color: Colors.white,
@@ -865,7 +862,7 @@ class _CategoryProgressBar extends StatelessWidget {
             ),
             SizedBox(width: 12.w),
             Expanded(
-              child: Text(
+              child: LocalizedText(
                 category.displayName,
                 style: theme.textTheme.bodyMedium?.copyWith(
                   fontWeight: FontWeight.w500,
@@ -880,7 +877,7 @@ class _CategoryProgressBar extends StatelessWidget {
                     ? currencyState.selectedCurrency
                     : Currencies.inr;
 
-                return Text(
+                return LocalizedText(
                   CurrencyFormatter.formatCompact(amount, currency),
                   style: theme.textTheme.bodyMedium?.copyWith(
                     fontWeight: FontWeight.bold,
@@ -889,8 +886,7 @@ class _CategoryProgressBar extends StatelessWidget {
               },
             ),
             SizedBox(width: 8.w),
-            Text(
-              '${percentage.toStringAsFixed(0)}%',
+            LocalizedText('${percentage.toStringAsFixed(0)}%',
               style: theme.textTheme.bodySmall?.copyWith(
                 color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
               ),
@@ -938,8 +934,7 @@ class IncomeListItemWidget extends StatelessWidget {
           children: [
             Icon(Icons.edit, color: Colors.white, size: 24.r),
             SizedBox(width: 8.w),
-            Text(
-              'Edit',
+            LocalizedText('Edit',
               style: theme.textTheme.titleMedium?.copyWith(
                 color: Colors.white,
                 fontWeight: FontWeight.w600,
@@ -958,8 +953,7 @@ class IncomeListItemWidget extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            Text(
-              'Delete',
+            LocalizedText('Delete',
               style: theme.textTheme.titleMedium?.copyWith(
                 color: Colors.white,
                 fontWeight: FontWeight.w600,
@@ -1031,7 +1025,7 @@ class IncomeListItemWidget extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
+                      LocalizedText(
                         income.title,
                         style: theme.textTheme.bodyLarge?.copyWith(
                           fontWeight: FontWeight.w600,
@@ -1040,8 +1034,7 @@ class IncomeListItemWidget extends StatelessWidget {
                         overflow: TextOverflow.ellipsis,
                       ),
                       SizedBox(height: 4.h),
-                      Text(
-                        '${income.category.displayName} • ${dateFormat.format(income.date)}',
+                      LocalizedText('${income.category.displayName} • ${dateFormat.format(income.date)}',
                         style: theme.textTheme.bodySmall?.copyWith(
                           color: theme.colorScheme.onSurface
                               .withValues(alpha: 0.6),
@@ -1060,8 +1053,7 @@ class IncomeListItemWidget extends StatelessWidget {
                         ? currencyState.selectedCurrency
                         : Currencies.inr;
 
-                    return Text(
-                      '+${CurrencyFormatter.format(income.amount, currency)}',
+                    return LocalizedText('+${CurrencyFormatter.format(income.amount, currency)}',
                       style: theme.textTheme.titleMedium?.copyWith(
                         color: Colors.greenAccent.shade700,
                         fontWeight: FontWeight.bold,
@@ -1176,8 +1168,7 @@ class IncomeListItemWidget extends StatelessWidget {
                                   );
                                 }),
                             SizedBox(height: 24.h),
-                            Text(
-                              'Delete Income',
+                            LocalizedText('Delete Income',
                               style: theme.textTheme.titleLarge?.copyWith(
                                 fontWeight: FontWeight.bold,
                                 color: Colors.red.shade700,
@@ -1228,7 +1219,7 @@ class IncomeListItemWidget extends StatelessWidget {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                        Text(
+                                        LocalizedText(
                                           income.title,
                                           style: theme.textTheme.titleMedium
                                               ?.copyWith(
@@ -1245,7 +1236,7 @@ class IncomeListItemWidget extends StatelessWidget {
                                                     is CurrencyLoaded
                                                 ? currencyState.selectedCurrency
                                                 : Currencies.inr;
-                                            return Text(
+                                            return LocalizedText(
                                               CurrencyFormatter.format(
                                                   income.amount, currency),
                                               style: theme.textTheme.bodyMedium
@@ -1265,8 +1256,7 @@ class IncomeListItemWidget extends StatelessWidget {
 
                             SizedBox(height: 24.h),
 
-                            Text(
-                              'This action cannot be undone. Are you sure you want to delete this income?',
+                            LocalizedText('This action cannot be undone. Are you sure you want to delete this income?',
                               textAlign: TextAlign.center,
                               style: theme.textTheme.bodyMedium?.copyWith(
                                 color: theme.colorScheme.onSurface
@@ -1300,8 +1290,7 @@ class IncomeListItemWidget extends StatelessWidget {
                                   ),
                                   padding: EdgeInsets.symmetric(vertical: 12.h),
                                 ),
-                                child: Text(
-                                  'Cancel',
+                                child: LocalizedText('Cancel',
                                   style: TextStyle(
                                     fontWeight: FontWeight.w600,
                                     color: theme.colorScheme.onSurface,
@@ -1323,8 +1312,7 @@ class IncomeListItemWidget extends StatelessWidget {
                                   padding: EdgeInsets.symmetric(vertical: 12.h),
                                   elevation: 0,
                                 ),
-                                child: const Text(
-                                  'Delete',
+                                child: const LocalizedText('Delete',
                                   style: TextStyle(
                                     fontWeight: FontWeight.w600,
                                   ),
@@ -1395,7 +1383,7 @@ class _IncomeSearchDelegate extends SearchDelegate<Income?> {
             query = '';
             showSuggestions(context);
           },
-          tooltip: 'Clear',
+          tooltip: AppLocalizations.tr('Clear'),
         ),
     ];
   }
@@ -1460,8 +1448,7 @@ class _IncomeSearchDelegate extends SearchDelegate<Income?> {
             color: const Color(0xFF00B07B).withValues(alpha: 0.5),
           ),
           SizedBox(height: 16.h),
-          Text(
-            'Search for incomes by title, category, source, or notes',
+          LocalizedText('Search for incomes by title, category, source, or notes',
             textAlign: TextAlign.center,
             style: theme.textTheme.bodyLarge?.copyWith(
               color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
@@ -1485,16 +1472,14 @@ class _IncomeSearchDelegate extends SearchDelegate<Income?> {
             color: theme.colorScheme.onSurface.withValues(alpha: 0.3),
           ),
           SizedBox(height: 16.h),
-          Text(
-            'No results found for "$query"',
+          LocalizedText('No results found for "$query"',
             textAlign: TextAlign.center,
             style: theme.textTheme.titleMedium?.copyWith(
               fontWeight: FontWeight.bold,
             ),
           ),
           SizedBox(height: 8.h),
-          Text(
-            'Try using different keywords or filters',
+          LocalizedText('Try using different keywords or filters',
             textAlign: TextAlign.center,
             style: theme.textTheme.bodyMedium?.copyWith(
               color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
@@ -1581,7 +1566,7 @@ class _IncomeSearchDelegate extends SearchDelegate<Income?> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
+                  LocalizedText(
                     income.title,
                     style: theme.textTheme.titleMedium?.copyWith(
                       fontWeight: FontWeight.w600,
@@ -1590,15 +1575,14 @@ class _IncomeSearchDelegate extends SearchDelegate<Income?> {
                     overflow: TextOverflow.ellipsis,
                   ),
                   SizedBox(height: 2.h),
-                  Text(
-                    '${income.category.displayName} • ${dateFormat.format(income.date)}',
+                  LocalizedText('${income.category.displayName} • ${dateFormat.format(income.date)}',
                     style: theme.textTheme.bodySmall?.copyWith(
                       color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
                     ),
                   ),
                   if (income.notes != null && income.notes!.isNotEmpty) ...[
                     SizedBox(height: 4.h),
-                    Text(
+                    LocalizedText(
                       income.notes!,
                       style: theme.textTheme.bodySmall?.copyWith(
                         color:
@@ -1620,8 +1604,7 @@ class _IncomeSearchDelegate extends SearchDelegate<Income?> {
                     ? currencyState.selectedCurrency
                     : Currencies.inr;
 
-                return Text(
-                  '+${CurrencyFormatter.format(income.amount, currency)}',
+                return LocalizedText('+${CurrencyFormatter.format(income.amount, currency)}',
                   style: theme.textTheme.titleMedium?.copyWith(
                     color: Colors.greenAccent.shade700,
                     fontWeight: FontWeight.bold,
@@ -1706,8 +1689,7 @@ class _IncomeSearchDelegate extends SearchDelegate<Income?> {
                           },
                         ),
                         SizedBox(height: 24.h),
-                        Text(
-                          'Delete Income',
+                        LocalizedText('Delete Income',
                           style: theme.textTheme.titleLarge?.copyWith(
                             fontWeight: FontWeight.bold,
                             color: Colors.red.shade700,
@@ -1757,7 +1739,7 @@ class _IncomeSearchDelegate extends SearchDelegate<Income?> {
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text(
+                                    LocalizedText(
                                       income.title,
                                       style:
                                           theme.textTheme.titleMedium?.copyWith(
@@ -1773,7 +1755,7 @@ class _IncomeSearchDelegate extends SearchDelegate<Income?> {
                                             currencyState is CurrencyLoaded
                                                 ? currencyState.selectedCurrency
                                                 : Currencies.inr;
-                                        return Text(
+                                        return LocalizedText(
                                           CurrencyFormatter.format(
                                               income.amount, currency),
                                           style: theme.textTheme.bodyMedium
@@ -1793,8 +1775,7 @@ class _IncomeSearchDelegate extends SearchDelegate<Income?> {
 
                         SizedBox(height: 24.h),
 
-                        Text(
-                          'This action cannot be undone. Are you sure you want to delete this income?',
+                        LocalizedText('This action cannot be undone. Are you sure you want to delete this income?',
                           textAlign: TextAlign.center,
                           style: theme.textTheme.bodyMedium?.copyWith(
                             color: theme.colorScheme.onSurface
@@ -1827,8 +1808,7 @@ class _IncomeSearchDelegate extends SearchDelegate<Income?> {
                               ),
                               padding: EdgeInsets.symmetric(vertical: 12.h),
                             ),
-                            child: Text(
-                              'Cancel',
+                            child: LocalizedText('Cancel',
                               style: TextStyle(
                                 fontWeight: FontWeight.w600,
                                 color: theme.colorScheme.onSurface,
@@ -1854,8 +1834,7 @@ class _IncomeSearchDelegate extends SearchDelegate<Income?> {
                               padding: EdgeInsets.symmetric(vertical: 12.h),
                               elevation: 0,
                             ),
-                            child: const Text(
-                              'Delete',
+                            child: const LocalizedText('Delete',
                               style: TextStyle(
                                 fontWeight: FontWeight.w600,
                               ),
@@ -1907,8 +1886,7 @@ class _FilterDialog extends StatelessWidget {
                 ),
                 SizedBox(width: 12.w),
                 Expanded(
-                  child: Text(
-                    'Filter by Category',
+                  child: LocalizedText('Filter by Category',
                     style: theme.textTheme.titleMedium?.copyWith(
                       fontWeight: FontWeight.bold,
                       color: Colors.white,
@@ -1919,7 +1897,7 @@ class _FilterDialog extends StatelessWidget {
                 IconButton(
                   icon: const Icon(Icons.close),
                   onPressed: () => Navigator.pop(context),
-                  tooltip: 'Close',
+                  tooltip: AppLocalizations.tr('Close'),
                   color: Colors.white,
                   iconSize: 24.r,
                 ),
@@ -1977,7 +1955,7 @@ class _FilterDialog extends StatelessWidget {
               children: [
                 TextButton(
                   onPressed: () => Navigator.pop(context),
-                  child: const Text('Cancel'),
+                  child: const LocalizedText('Cancel'),
                 ),
                 SizedBox(width: 8.w),
                 FilledButton(
@@ -1985,7 +1963,7 @@ class _FilterDialog extends StatelessWidget {
                   style: FilledButton.styleFrom(
                     backgroundColor: const Color(0xFF00B07B),
                   ),
-                  child: const Text('Close'),
+                  child: const LocalizedText('Close'),
                 ),
               ],
             ),
@@ -2036,7 +2014,7 @@ class _FilterItem extends StatelessWidget {
               ),
               SizedBox(width: 16.w),
               Expanded(
-                child: Text(
+                child: LocalizedText(
                   title,
                   style: theme.textTheme.bodyLarge,
                 ),

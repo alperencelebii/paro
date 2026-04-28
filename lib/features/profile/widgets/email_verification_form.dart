@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:finance_track/features/profile/profile_edit/bloc/profile_edit_bloc.dart';
+import 'package:finance_track/core/localization/localization.dart';
 
 class EmailVerificationForm extends StatefulWidget {
   final String email;
@@ -29,7 +30,7 @@ class _EmailVerificationFormState extends State<EmailVerificationForm> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Verify Email'),
+        title: const LocalizedText('Verify Email'),
         backgroundColor: const Color(0xFF6C63FF),
         foregroundColor: Colors.white,
       ),
@@ -38,7 +39,7 @@ class _EmailVerificationFormState extends State<EmailVerificationForm> {
           if (state.status == ProfileEditStatus.otpVerified) {
             ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(
-                content: Text('Email verification successful'),
+                content: LocalizedText('Email verification successful'),
                 backgroundColor: Colors.green,
               ),
             );
@@ -47,7 +48,7 @@ class _EmailVerificationFormState extends State<EmailVerificationForm> {
           } else if (state.status == ProfileEditStatus.failure) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
-                content: Text(state.errorMessage),
+                content: LocalizedText(state.errorMessage),
                 backgroundColor: Colors.red,
               ),
             );
@@ -70,8 +71,7 @@ class _EmailVerificationFormState extends State<EmailVerificationForm> {
                       ),
                     ),
                     SizedBox(height: 24.h),
-                    Text(
-                      'Verify Your Email',
+                    LocalizedText('Verify Your Email',
                       style: TextStyle(
                         fontSize: 22.sp,
                         fontWeight: FontWeight.w600,
@@ -79,24 +79,21 @@ class _EmailVerificationFormState extends State<EmailVerificationForm> {
                       ),
                     ),
                     SizedBox(height: 12.h),
-                    Text(
-                      'We\'ve sent a verification link to ${widget.email}',
+                    LocalizedText('We\'ve sent a verification link to ${widget.email}',
                       style: TextStyle(
                         fontSize: 16.sp,
                         color: Colors.grey[600],
                       ),
                     ),
                     SizedBox(height: 8.h),
-                    Text(
-                      'Please click the link in the email to verify your new email address.',
+                    LocalizedText('Please click the link in the email to verify your new email address.',
                       style: TextStyle(
                         fontSize: 16.sp,
                         color: Colors.grey[600],
                       ),
                     ),
                     SizedBox(height: 32.h),
-                    Text(
-                      'For testing purposes, please enter the verification code:',
+                    LocalizedText('For testing purposes, please enter the verification code:',
                       style: TextStyle(
                         fontSize: 16.sp,
                         fontWeight: FontWeight.w500,
@@ -130,8 +127,8 @@ class _EmailVerificationFormState extends State<EmailVerificationForm> {
       keyboardType: TextInputType.number,
       maxLength: 6,
       decoration: InputDecoration(
-        labelText: 'Verification Code',
-        hintText: 'Enter 6-digit code',
+        labelText: AppLocalizations.tr('Verification Code'),
+        hintText: AppLocalizations.tr('Enter 6-digit code'),
         counterText: '',
         prefixIcon: Icon(
           Icons.security,
@@ -174,10 +171,10 @@ class _EmailVerificationFormState extends State<EmailVerificationForm> {
       },
       validator: (value) {
         if (value == null || value.isEmpty) {
-          return 'Please enter verification code';
+          return AppLocalizations.tr('Please enter verification code');
         }
         if (value.length != 6) {
-          return 'Code must be 6 digits';
+          return AppLocalizations.tr('Code must be 6 digits');
         }
         return null;
       },
@@ -187,7 +184,7 @@ class _EmailVerificationFormState extends State<EmailVerificationForm> {
   Widget _buildErrorText(String message) {
     return Padding(
       padding: EdgeInsets.only(left: 16.w, top: 4.h),
-      child: Text(
+      child: LocalizedText(
         message,
         style: TextStyle(
           color: Colors.red[600],
@@ -232,8 +229,7 @@ class _EmailVerificationFormState extends State<EmailVerificationForm> {
                   strokeWidth: 2,
                 ),
               )
-            : Text(
-                'Verify',
+            : LocalizedText('Verify',
                 style: TextStyle(
                   fontSize: 16.sp,
                   fontWeight: FontWeight.w600,
@@ -263,8 +259,7 @@ class _EmailVerificationFormState extends State<EmailVerificationForm> {
             ),
           ),
         ),
-        child: Text(
-          'Resend Verification Link',
+        child: LocalizedText('Resend Verification Link',
           style: TextStyle(
             fontSize: 16.sp,
             fontWeight: FontWeight.w600,
@@ -294,8 +289,7 @@ class _EmailVerificationFormState extends State<EmailVerificationForm> {
                   size: 20.r,
                 ),
                 SizedBox(width: 8.w),
-                Text(
-                  'Important Information',
+                LocalizedText('Important Information',
                   style: TextStyle(
                     fontSize: 16.sp,
                     fontWeight: FontWeight.w600,
@@ -305,16 +299,14 @@ class _EmailVerificationFormState extends State<EmailVerificationForm> {
               ],
             ),
             SizedBox(height: 8.h),
-            Text(
-              'Firebase normally sends verification links by email which users must click to complete verification. The OTP input here is for demonstration purposes.',
+            LocalizedText('Firebase normally sends verification links by email which users must click to complete verification. The OTP input here is for demonstration purposes.',
               style: TextStyle(
                 fontSize: 14.sp,
                 color: Colors.blue[700],
               ),
             ),
             SizedBox(height: 8.h),
-            Text(
-              'For testing, any 6-digit code will be accepted.',
+            LocalizedText('For testing, any 6-digit code will be accepted.',
               style: TextStyle(
                 fontSize: 14.sp,
                 fontWeight: FontWeight.w500,

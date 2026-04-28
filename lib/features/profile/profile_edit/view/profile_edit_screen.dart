@@ -6,6 +6,7 @@ import 'package:finance_track/features/profile/widgets/name_change_form.dart';
 import 'package:finance_track/features/profile/widgets/password_change_form.dart';
 import 'package:user_repository/user_repository.dart';
 import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
+import 'package:finance_track/core/localization/localization.dart';
 
 class ProfileEditScreen extends StatefulWidget {
   const ProfileEditScreen({super.key});
@@ -67,7 +68,7 @@ class _ProfileEditScreenState extends State<ProfileEditScreen>
             // Password tab
             ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(
-                content: Text('Password updated successfully'),
+                content: LocalizedText('Password updated successfully'),
                 backgroundColor: Colors.green,
               ),
             );
@@ -81,11 +82,11 @@ class _ProfileEditScreenState extends State<ProfileEditScreen>
             // PigeonUserInfo errors are handled by the name form
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
-                content: Text(state.errorMessage),
+                content: LocalizedText(state.errorMessage),
                 backgroundColor: Colors.red,
                 duration: const Duration(seconds: 5),
                 action: SnackBarAction(
-                  label: 'Dismiss',
+                  label: AppLocalizations.tr('Dismiss'),
                   textColor: Colors.white,
                   onPressed: () {
                     ScaffoldMessenger.of(context).hideCurrentSnackBar();
@@ -97,7 +98,7 @@ class _ProfileEditScreenState extends State<ProfileEditScreen>
         },
         child: Scaffold(
           appBar: AppBar(
-            title: const Text('Edit Profile'),
+            title: const LocalizedText('Edit Profile'),
             backgroundColor: Theme.of(context).colorScheme.primary,
             foregroundColor: Colors.white,
             elevation: 0,
@@ -106,8 +107,8 @@ class _ProfileEditScreenState extends State<ProfileEditScreen>
                     controller: _tabController,
                     indicatorColor: Colors.white,
                     tabs: const [
-                      Tab(text: 'Name'),
-                      Tab(text: 'Password'),
+                      Tab(child: LocalizedText('Name')),
+                      Tab(child: LocalizedText('Password')),
                     ],
                     labelColor: Colors.white,
                     unselectedLabelColor: Colors.white70,
@@ -144,7 +145,7 @@ class _ProfileEditScreenState extends State<ProfileEditScreen>
           );
         } else {
           return const Center(
-            child: Text('Please login to change your name'),
+            child: LocalizedText('Please login to change your name'),
           );
         }
       },
@@ -167,8 +168,7 @@ class _ProfileEditScreenState extends State<ProfileEditScreen>
             children: [
               Icon(Icons.info_outline, color: Colors.blue.shade700),
               const SizedBox(width: 8),
-              Text(
-                'Social Account Sign In',
+              LocalizedText('Social Account Sign In',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   color: Colors.blue.shade700,
@@ -178,8 +178,7 @@ class _ProfileEditScreenState extends State<ProfileEditScreen>
             ],
           ),
           const SizedBox(height: 8),
-          const Text(
-            'You\'re signed in with a social account. Password changes are managed through your social account provider.',
+          const LocalizedText('You\'re signed in with a social account. Password changes are managed through your social account provider.',
             style: TextStyle(fontSize: 14),
           ),
         ],
@@ -194,7 +193,7 @@ class _ProfileEditScreenState extends State<ProfileEditScreen>
           return const SingleChildScrollView(child: PasswordChangeForm());
         } else {
           return const Center(
-            child: Text('Please login to change your password'),
+            child: LocalizedText('Please login to change your password'),
           );
         }
       },

@@ -7,6 +7,7 @@ import 'package:finance_track/features/monthly_summary/models/transaction_item.d
 import 'package:intl/intl.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:finance_track/core/localization/localization.dart';
 
 /// Service for exporting transaction data
 class ExportService {
@@ -112,7 +113,7 @@ class ExportService {
   /// Share the exported file
   Future<void> shareFile(String filePath) async {
     final file = XFile(filePath);
-    await Share.shareXFiles([file], text: 'Expense App Transactions');
+    await Share.shareXFiles([file], text: AppLocalizations.tr('Expense App Transactions'));
   }
 
   /// Escape CSV fields that contain commas, quotes, or newlines

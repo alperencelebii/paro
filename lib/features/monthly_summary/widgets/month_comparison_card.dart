@@ -4,6 +4,7 @@ import '../../profile/currency/bloc/currency/currency_bloc.dart';
 import '../../profile/currency/bloc/currency/currency_state.dart';
 import '../../../core/models/currency_model.dart';
 import 'package:intl/intl.dart';
+import 'package:finance_track/core/localization/localization.dart';
 
 class MonthComparisonCard extends StatelessWidget {
   final Map<String, double> monthComparison;
@@ -73,8 +74,7 @@ class MonthComparisonCard extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(width: 12),
-                    Text(
-                      'Month-over-Month',
+                    LocalizedText('Month-over-Month',
                       style: theme.textTheme.titleMedium?.copyWith(
                         fontWeight: FontWeight.w600,
                       ),
@@ -139,7 +139,7 @@ class MonthComparisonCard extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
+                            LocalizedText(
                               isIncrease
                                   ? 'Spending Increased'
                                   : 'Spending Decreased',
@@ -149,8 +149,7 @@ class MonthComparisonCard extends StatelessWidget {
                               ),
                             ),
                             const SizedBox(height: 4),
-                            Text(
-                              '${isIncrease ? '+' : '-'}${currencyFormat.format(difference.abs())} (${percentageChange.abs().toStringAsFixed(1)}%)',
+                            LocalizedText('${isIncrease ? '+' : '-'}${currencyFormat.format(difference.abs())} (${percentageChange.abs().toStringAsFixed(1)}%)',
                               style: theme.textTheme.bodyMedium?.copyWith(
                                 color: (isIncrease ? Colors.red : Colors.green)
                                     .withValues(alpha: 0.8),
@@ -204,7 +203,7 @@ class MonthComparisonCard extends StatelessWidget {
                 color: color.withValues(alpha: 0.7),
               ),
               const SizedBox(width: 8),
-              Text(
+              LocalizedText(
                 label,
                 style: theme.textTheme.bodySmall?.copyWith(
                   color:
@@ -216,7 +215,7 @@ class MonthComparisonCard extends StatelessWidget {
           const SizedBox(height: 8),
           FittedBox(
             fit: BoxFit.scaleDown,
-            child: Text(
+            child: LocalizedText(
               amount,
               style: theme.textTheme.titleLarge?.copyWith(
                 fontWeight: FontWeight.w600,
@@ -255,15 +254,13 @@ class MonthComparisonCard extends StatelessWidget {
               color: theme.colorScheme.primary.withValues(alpha: 0.5),
             ),
             const SizedBox(height: 16),
-            Text(
-              'No comparison data available',
+            LocalizedText('No comparison data available',
               style: theme.textTheme.titleMedium?.copyWith(
                 color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
               ),
             ),
             const SizedBox(height: 8),
-            Text(
-              'Add more transactions to see spending comparisons',
+            LocalizedText('Add more transactions to see spending comparisons',
               textAlign: TextAlign.center,
               style: theme.textTheme.bodyMedium?.copyWith(
                 color: theme.colorScheme.onSurface.withValues(alpha: 0.5),

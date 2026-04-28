@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../bloc/about_cubit.dart';
+import 'package:finance_track/core/localization/localization.dart';
 
 class FeatureSearch extends StatefulWidget {
   const FeatureSearch({super.key});
@@ -107,7 +108,7 @@ class _FeatureSearchState extends State<FeatureSearch>
               horizontal: 20,
               vertical: 16,
             ),
-            hintText: 'Search features...',
+            hintText: AppLocalizations.tr('Search features...'),
             border: InputBorder.none,
             prefixIcon: AnimatedContainer(
               duration: const Duration(milliseconds: 200),

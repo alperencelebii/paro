@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
+import 'package:finance_track/core/localization/localization.dart';
 // Now using Tesseract OCR (supports 16KB page sizes)
 import 'package:go_router/go_router.dart';
 import '../../../core/extensions/currency_context_extension.dart';
@@ -181,7 +182,7 @@ class _HomeScreenState extends State<HomeScreen>
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
+            LocalizedText(
               formattedDate,
               style: theme.textTheme.bodySmall?.copyWith(
                 color: Colors.white.withValues(alpha: 0.9),
@@ -190,8 +191,7 @@ class _HomeScreenState extends State<HomeScreen>
               ),
             ),
             SizedBox(height: 4.h),
-            Text(
-              'Finance Tracker',
+            LocalizedText('Finance Tracker',
               style: theme.textTheme.titleLarge?.copyWith(
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
@@ -253,7 +253,7 @@ class _HomeScreenState extends State<HomeScreen>
             onPressed: () {
               context.push(AppPaths.invoiceScanner);
             },
-            tooltip: 'Scan Receipt',
+            tooltip: AppLocalizations.tr('Scan Receipt'),
           ),
         ),
       ],

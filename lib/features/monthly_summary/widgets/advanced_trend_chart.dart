@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:finance_track/core/localization/localization.dart';
 
 import '../../../core/models/currency_model.dart';
 
@@ -225,8 +226,7 @@ class _AdvancedTrendChartState extends State<AdvancedTrendChart>
                   : theme.colorScheme.primary.withValues(alpha: 0.5),
             ),
             SizedBox(height: 16.h),
-            Text(
-              'No data available',
+            LocalizedText('No data available',
               style: TextStyle(
                 color: widget.useDarkTheme
                     ? Colors.white.withValues(alpha: 0.7)
@@ -256,7 +256,7 @@ class _AdvancedTrendChartState extends State<AdvancedTrendChart>
       title = index.toString();
     }
 
-    text = Text(
+    text = LocalizedText(
       title,
       style: TextStyle(
         color: titleColor,
@@ -282,7 +282,7 @@ class _AdvancedTrendChartState extends State<AdvancedTrendChart>
     final formatter = NumberFormat.compact();
     return SideTitleWidget(
       meta: meta,
-      child: Text(
+      child: LocalizedText(
         formatter.format(value),
         style: TextStyle(
           color: titleColor,
@@ -309,7 +309,7 @@ class _AdvancedTrendChartState extends State<AdvancedTrendChart>
           ),
         ),
         SizedBox(width: 4.w),
-        Text(
+        LocalizedText(
           item.label,
           style: TextStyle(
             color: textColor,
@@ -357,7 +357,7 @@ class _AdvancedTrendChartState extends State<AdvancedTrendChart>
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             if (widget.subtitle != null) ...[
-              Text(
+              LocalizedText(
                 widget.subtitle!,
                 style: TextStyle(
                   color: subtitleColor,
@@ -367,7 +367,7 @@ class _AdvancedTrendChartState extends State<AdvancedTrendChart>
               SizedBox(height: 4.h),
             ],
             if (widget.title != null) ...[
-              Text(
+              LocalizedText(
                 widget.title!,
                 style: TextStyle(
                   color: titleColor,

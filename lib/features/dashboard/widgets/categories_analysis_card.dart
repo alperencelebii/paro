@@ -12,6 +12,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:finance_track/core/extensions/currency_context_extension.dart';
+import 'package:finance_track/core/localization/localization.dart';
 
 class CategoriesAnalysisCard extends StatelessWidget {
   const CategoriesAnalysisCard({super.key});
@@ -27,7 +28,7 @@ class CategoriesAnalysisCard extends StatelessWidget {
           // Optionally show a snackbar for analytics errors
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
-              content: Text(analyticsState.message),
+              content: LocalizedText(analyticsState.message),
               backgroundColor: Colors.red,
             ),
           );
@@ -80,12 +81,11 @@ class CategoriesAnalysisCard extends StatelessWidget {
                   size: 32.r,
                 ),
                 SizedBox(height: 16.h),
-                Text(
-                  'Error loading category analysis',
+                LocalizedText('Error loading category analysis',
                   style: Theme.of(context).textTheme.titleMedium,
                 ),
                 SizedBox(height: 8.h),
-                Text(
+                LocalizedText(
                   analyticsState.message,
                   textAlign: TextAlign.center,
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
@@ -103,7 +103,7 @@ class CategoriesAnalysisCard extends StatelessWidget {
                         .add(const LoadCategoryAnalysis());
                   },
                   icon: const Icon(Icons.refresh),
-                  label: const Text('Retry'),
+                  label: const LocalizedText('Retry'),
                 ),
               ],
             ),
@@ -164,8 +164,7 @@ class CategoriesAnalysisCard extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  'Top Categories',
+                LocalizedText('Top Categories',
                   style: theme.textTheme.titleLarge?.copyWith(
                     fontWeight: FontWeight.bold,
                   ),
@@ -181,19 +180,19 @@ class CategoriesAnalysisCard extends StatelessWidget {
                     items: const [
                       DropdownMenuItem(
                         value: 7,
-                        child: Text('Last 7 days'),
+                        child: LocalizedText('Last 7 days'),
                       ),
                       DropdownMenuItem(
                         value: 30,
-                        child: Text('Last 30 days'),
+                        child: LocalizedText('Last 30 days'),
                       ),
                       DropdownMenuItem(
                         value: 90,
-                        child: Text('Last 3 months'),
+                        child: LocalizedText('Last 3 months'),
                       ),
                       DropdownMenuItem(
                         value: 365,
-                        child: Text('Last year'),
+                        child: LocalizedText('Last year'),
                       ),
                     ],
                     onChanged: (value) {
@@ -242,8 +241,7 @@ class CategoriesAnalysisCard extends StatelessWidget {
             Padding(
               padding: EdgeInsets.only(
                   left: 20.w, right: 20.w, top: 20.h, bottom: 8.h),
-              child: Text(
-                'Expense Categories',
+              child: LocalizedText('Expense Categories',
                 style: theme.textTheme.titleMedium?.copyWith(
                   fontWeight: FontWeight.bold,
                   color: Colors.redAccent,
@@ -299,8 +297,7 @@ class CategoriesAnalysisCard extends StatelessWidget {
             Padding(
               padding: EdgeInsets.only(
                   left: 20.w, right: 20.w, top: 20.h, bottom: 8.h),
-              child: Text(
-                'Income Categories',
+              child: LocalizedText('Income Categories',
                 style: theme.textTheme.titleMedium?.copyWith(
                   fontWeight: FontWeight.bold,
                   color: Colors.green,
@@ -346,8 +343,7 @@ class CategoriesAnalysisCard extends StatelessWidget {
                       color: Colors.grey.withValues(alpha: 0.5),
                     ),
                     SizedBox(height: 16.h),
-                    Text(
-                      'No transactions found for the selected period',
+                    LocalizedText('No transactions found for the selected period',
                       style: theme.textTheme.bodyLarge?.copyWith(
                         color: Colors.grey,
                       ),
@@ -368,8 +364,7 @@ class CategoriesAnalysisCard extends StatelessWidget {
                   // so the All Categories screen is shown there
                   context.go(AppPaths.analytics);
                 },
-                icon: Text(
-                  'View All Categories',
+                icon: LocalizedText('View All Categories',
                   style: theme.textTheme.bodyMedium?.copyWith(
                     color: theme.colorScheme.primary,
                     fontWeight: FontWeight.bold,
@@ -415,7 +410,7 @@ class CategoriesAnalysisCard extends StatelessWidget {
                 color: color,
               ),
               SizedBox(width: 8.w),
-              Text(
+              LocalizedText(
                 title,
                 style: theme.textTheme.bodyMedium?.copyWith(
                   fontWeight: FontWeight.w500,
@@ -424,15 +419,14 @@ class CategoriesAnalysisCard extends StatelessWidget {
             ],
           ),
           SizedBox(height: 8.h),
-          Text(
+          LocalizedText(
             amount,
             style: theme.textTheme.titleLarge?.copyWith(
               fontWeight: FontWeight.bold,
               color: color,
             ),
           ),
-          Text(
-            '$categoryCount ${categoryCount == 1 ? 'category' : 'categories'}',
+          LocalizedText('$categoryCount ${categoryCount == 1 ? 'category' : 'categories'}',
             style: theme.textTheme.bodySmall?.copyWith(
               color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
             ),
@@ -481,14 +475,13 @@ class CategoriesAnalysisCard extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
+                  LocalizedText(
                     name,
                     style: theme.textTheme.titleSmall?.copyWith(
                       fontWeight: FontWeight.w600,
                     ),
                   ),
-                  Text(
-                    '${percentage.toStringAsFixed(1)}%',
+                  LocalizedText('${percentage.toStringAsFixed(1)}%',
                     style: theme.textTheme.bodySmall?.copyWith(
                       color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
                     ),
@@ -498,7 +491,7 @@ class CategoriesAnalysisCard extends StatelessWidget {
             ),
 
             // Amount
-            Text(
+            LocalizedText(
               formatter.format(amount),
               style: theme.textTheme.titleMedium?.copyWith(
                 fontWeight: FontWeight.bold,
@@ -630,7 +623,7 @@ class CategoriesAnalysisCard extends StatelessWidget {
       debugPrint('Error navigating to category detail: $e');
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('Error navigating to category detail: $e'),
+          content: LocalizedText('Error navigating to category detail: $e'),
           backgroundColor: Colors.red,
         ),
       );

@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:finance_track/core/localization/localization.dart';
 
 class HomeQuickActionButtonWidget extends StatelessWidget {
   const HomeQuickActionButtonWidget({super.key});
@@ -82,7 +83,7 @@ class HomeQuickActionButtonWidget extends StatelessWidget {
               color: const Color(0xFF6C5CE7),
             ),
             SizedBox(width: 8.w),
-            Text(
+            LocalizedText(
               title,
               style: theme.textTheme.titleMedium?.copyWith(
                 fontWeight: FontWeight.bold,
@@ -95,7 +96,7 @@ class HomeQuickActionButtonWidget extends StatelessWidget {
           style: TextButton.styleFrom(
             padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 6.h),
           ),
-          child: Text(
+          child: LocalizedText(
             actionText,
             style: theme.textTheme.bodyMedium?.copyWith(
               fontWeight: FontWeight.w500,
@@ -114,7 +115,7 @@ class HomeQuickActionButtonWidget extends StatelessWidget {
           return const Center(child: CircularProgressIndicator());
         } else if (state is ExpenseListError) {
           return Center(
-            child: Text('Error: ${state.message}'),
+            child: LocalizedText('Error: ${state.message}'),
           );
         } else if (state is ExpenseListLoaded) {
           final expenses = state.expenses;
@@ -159,7 +160,7 @@ class HomeQuickActionButtonWidget extends StatelessWidget {
           return const Center(child: CircularProgressIndicator());
         } else if (state.status == IncomeListStatus.error) {
           return Center(
-            child: Text('Error: ${state.errorMessage}'),
+            child: LocalizedText('Error: ${state.errorMessage}'),
           );
         } else if (state.status == IncomeListStatus.loaded) {
           final incomes = state.incomes;
@@ -238,7 +239,7 @@ class HomeQuickActionButtonWidget extends StatelessWidget {
             ),
           ),
           SizedBox(height: 20.h),
-          Text(
+          LocalizedText(
             title,
             style: theme.textTheme.titleMedium?.copyWith(
               fontWeight: FontWeight.bold,
@@ -246,7 +247,7 @@ class HomeQuickActionButtonWidget extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
           SizedBox(height: 8.h),
-          Text(
+          LocalizedText(
             subtitle,
             style: theme.textTheme.bodyMedium?.copyWith(
               color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
@@ -304,16 +305,14 @@ class HomeQuickActionButtonWidget extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    'Financial Analytics',
+                  LocalizedText('Financial Analytics',
                     style: theme.textTheme.titleMedium?.copyWith(
                       fontWeight: FontWeight.bold,
                       color: Colors.white,
                     ),
                   ),
                   SizedBox(height: 4.h),
-                  Text(
-                    'Get insights into your spending habits',
+                  LocalizedText('Get insights into your spending habits',
                     style: theme.textTheme.bodySmall?.copyWith(
                       color: Colors.white.withValues(alpha: 0.9),
                     ),

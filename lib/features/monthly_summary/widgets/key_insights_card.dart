@@ -1,3 +1,4 @@
+import 'package:finance_track/core/localization/localization.dart';
 // import 'package:flutter/material.dart';
 // import 'package:flutter_screenutil/flutter_screenutil.dart';
 // import 'package:fl_chart/fl_chart.dart';
@@ -29,7 +30,7 @@
 //         child: Column(
 //           crossAxisAlignment: CrossAxisAlignment.start,
 //           children: [
-//             Text(
+//             LocalizedText(
 //               'Key Insights',
 //               style: Theme.of(context).textTheme.titleLarge?.copyWith(
 //                     fontWeight: FontWeight.bold,
@@ -113,14 +114,14 @@
 //             child: Column(
 //               crossAxisAlignment: CrossAxisAlignment.start,
 //               children: [
-//                 Text(
+//                 LocalizedText(
 //                   title,
 //                   style: Theme.of(context).textTheme.titleSmall?.copyWith(
 //                         color: Colors.grey[600],
 //                       ),
 //                 ),
 //                 const SizedBox(height: 4),
-//                 Text(
+//                 LocalizedText(
 //                   value,
 //                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
 //                         fontWeight: FontWeight.bold,

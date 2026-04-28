@@ -20,6 +20,7 @@ import 'package:go_router/go_router.dart';
 import '../../../core/router/app_router.dart';
 import '../../../core/extensions/currency_context_extension.dart';
 import 'dart:async';
+import 'package:finance_track/core/localization/localization.dart';
 
 /// Profile screen showing user information and settings
 class ProfileScreen extends StatefulWidget {
@@ -116,7 +117,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   });
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(
-                      content: Text('Data refreshed successfully!'),
+                      content: LocalizedText('Data refreshed successfully!'),
                       backgroundColor: Colors.green,
                     ),
                   );
@@ -129,7 +130,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   });
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
-                      content: Text('Error refreshing data: $errorMessage'),
+                      content: LocalizedText('Error refreshing data: $errorMessage'),
                       backgroundColor: Colors.red,
                     ),
                   );
@@ -141,7 +142,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   });
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(
-                      content: Text('No transactions found in the cloud.'),
+                      content: LocalizedText('No transactions found in the cloud.'),
                       backgroundColor: Colors.blue,
                     ),
                   );
@@ -161,8 +162,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       backgroundColor: const Color(0xFF6C63FF),
       flexibleSpace: FlexibleSpaceBar(
         titlePadding: EdgeInsets.only(left: 20.w, bottom: 16.h),
-        title: Text(
-          'Profile',
+        title: LocalizedText('Profile',
           style: TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.w600,
@@ -222,7 +222,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     radius: 40.r,
                     backgroundColor:
                         const Color(0xFF6C63FF).withValues(alpha: 0.1),
-                    child: Text(
+                    child: LocalizedText(
                       user.name?.substring(0, 1).toUpperCase() ?? 'G',
                       style: TextStyle(
                         fontSize: 32.sp,
@@ -232,7 +232,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                   ),
                   SizedBox(height: 16.h),
-                  Text(
+                  LocalizedText(
                     user.name ?? 'Guest User',
                     style: TextStyle(
                       fontSize: 20.sp,
@@ -240,7 +240,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                   ),
                   SizedBox(height: 4.h),
-                  Text(
+                  LocalizedText(
                     user.email ?? 'Not logged in',
                     style: TextStyle(
                       fontSize: 14.sp,
@@ -290,7 +290,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           size: 24.r,
         ),
         SizedBox(height: 8.h),
-        Text(
+        LocalizedText(
           value,
           style: TextStyle(
             fontSize: 18.sp,
@@ -298,7 +298,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ),
         ),
         SizedBox(height: 4.h),
-        Text(
+        LocalizedText(
           title,
           style: TextStyle(
             fontSize: 12.sp,
@@ -319,8 +319,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         children: [
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 20.w),
-            child: Text(
-              'Account',
+            child: LocalizedText('Account',
               style: TextStyle(
                 fontSize: 18.sp,
                 fontWeight: FontWeight.w600,
@@ -355,8 +354,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       color: Colors.green.withValues(alpha: 0.1),
                       borderRadius: BorderRadius.circular(8.r),
                     ),
-                    child: Text(
-                      'Active',
+                    child: LocalizedText('Active',
                       style: TextStyle(
                         fontSize: 10.sp,
                         fontWeight: FontWeight.w600,
@@ -395,7 +393,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       const Icon(Icons.info_outline, color: Colors.white),
                       SizedBox(width: 10.w),
                       const Expanded(
-                        child: Text('Biometric authentication coming soon!'),
+                        child: LocalizedText('Biometric authentication coming soon!'),
                       ),
                     ],
                   ),
@@ -434,8 +432,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       children: [
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 20.w),
-          child: Text(
-            'Data Management',
+          child: LocalizedText('Data Management',
             style: TextStyle(
               fontSize: 18.sp,
               fontWeight: FontWeight.w600,
@@ -473,8 +470,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       children: [
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 20.w),
-          child: Text(
-            'Preferences',
+          child: LocalizedText('Preferences',
             style: TextStyle(
               fontSize: 18.sp,
               fontWeight: FontWeight.w600,
@@ -497,8 +493,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         color: const Color(0xFF6C63FF).withValues(alpha: 0.1),
                         borderRadius: BorderRadius.circular(16.r),
                       ),
-                      child: Text(
-                        '${state.currency.symbol} ${state.currency.code}',
+                      child: LocalizedText('${state.currency.symbol} ${state.currency.code}',
                         style: TextStyle(
                           color: const Color(0xFF6C63FF),
                           fontWeight: FontWeight.w600,
@@ -509,6 +504,25 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   : const CircularProgressIndicator(),
               iconColor: const Color(0xFF6C63FF),
               onTap: () => showCurrencySelectionDialog(context),
+            );
+          },
+        ),
+        BlocBuilder<LanguageCubit, LanguageState>(
+          builder: (context, state) {
+            return ProfileItemTileWidget(
+              icon: Icons.language,
+              title: 'Language',
+              subtitle: 'Change app language',
+              trailing: LocalizedText(
+                languageLabel(state.language),
+                style: TextStyle(
+                  color: const Color(0xFF6C63FF),
+                  fontWeight: FontWeight.w600,
+                  fontSize: 14.sp,
+                ),
+              ),
+              iconColor: const Color(0xFF6C63FF),
+              onTap: () => showLanguageSelectionDialog(context),
             );
           },
         ),
@@ -529,7 +543,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         //       color: const Color(0xFF6C63FF).withValues(alpha:0.1),
         //       borderRadius: BorderRadius.circular(16.r),
         //     ),
-        //     child: Text(
+        //     child: LocalizedText(
         //       'Light',
         //       style: TextStyle(
         //         color: const Color(0xFF6C63FF),
@@ -548,7 +562,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         //             const Icon(Icons.info_outline, color: Colors.white),
         //             SizedBox(width: 10.w),
         //             const Expanded(
-        //               child: Text('Dark mode is coming soon!'),
+        //               child: LocalizedText('Dark mode is coming soon!'),
         //             ),
         //           ],
         //         ),
@@ -573,8 +587,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       children: [
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 20.w),
-          child: Text(
-            'Support',
+          child: LocalizedText('Support',
             style: TextStyle(
               fontSize: 18.sp,
               fontWeight: FontWeight.w600,
@@ -657,8 +670,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        'Logout',
+                      LocalizedText('Logout',
                         style: TextStyle(
                           fontSize: 16.sp,
                           fontWeight: FontWeight.w500,
@@ -666,8 +678,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ),
                       ),
                       SizedBox(height: 2.h),
-                      Text(
-                        'Sign out from your account',
+                      LocalizedText('Sign out from your account',
                         style: TextStyle(
                           fontSize: 12.sp,
                           color: Colors.grey[600],
@@ -712,7 +723,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       if (context.mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
-            content: Text('Data refreshed successfully!'),
+            content: LocalizedText('Data refreshed successfully!'),
             backgroundColor: Colors.green,
           ),
         );
@@ -725,7 +736,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       if (context.mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Error refreshing data: $e'),
+            content: LocalizedText('Error refreshing data: $e'),
             backgroundColor: Colors.red,
           ),
         );
@@ -742,14 +753,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Logout'),
-        content: const Text(
-          'Are you sure you want to log out?',
+        title: const LocalizedText('Logout'),
+        content: const LocalizedText('Are you sure you want to log out?',
         ),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: const Text('Cancel'),
+            child: const LocalizedText('Cancel'),
           ),
           TextButton(
             style: TextButton.styleFrom(
@@ -764,7 +774,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   .read<AppBloc>()
                   .add(const AppSetFirstTime(isFirstTime: true));
             },
-            child: const Text('Logout'),
+            child: const LocalizedText('Logout'),
           ),
         ],
       ),
@@ -775,21 +785,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Delete Account'),
-        content: const Text(
-          'Are you sure you want to delete your account? This action cannot be undone and all your data will be permanently deleted.',
+        title: const LocalizedText('Delete Account'),
+        content: const LocalizedText('Are you sure you want to delete your account? This action cannot be undone and all your data will be permanently deleted.',
         ),
         actions: [
           TextButton(
             onPressed: () => Navigator.of(context).pop(),
-            child: const Text('Cancel'),
+            child: const LocalizedText('Cancel'),
           ),
           TextButton(
             onPressed: () {
               Navigator.of(context).pop();
             },
-            child: const Text(
-              'Delete',
+            child: const LocalizedText('Delete',
               style: TextStyle(color: Colors.red),
             ),
           ),

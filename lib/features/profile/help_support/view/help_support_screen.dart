@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:finance_track/core/localization/localization.dart';
 
 /// Help and Support screen with contact options and feature suggestions
 class HelpSupportScreen extends StatelessWidget {
@@ -15,7 +16,7 @@ class HelpSupportScreen extends StatelessWidget {
       create: (context) => HelpSupportCubit(),
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Help & Support'),
+          title: const LocalizedText('Help & Support'),
           elevation: 0,
           backgroundColor: Theme.of(context).colorScheme.primary,
           foregroundColor: Colors.white,
@@ -79,8 +80,7 @@ class _HelpSupportContent extends StatelessWidget {
                 size: 32.r,
               ),
               SizedBox(width: 12.w),
-              Text(
-                'We\'re Here to Help',
+              LocalizedText('We\'re Here to Help',
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 20.sp,
@@ -90,8 +90,7 @@ class _HelpSupportContent extends StatelessWidget {
             ],
           ),
           SizedBox(height: 16.h),
-          Text(
-            'Have questions or need assistance with the app? Our support team is ready to help you get the most out of your expense tracking experience.',
+          LocalizedText('Have questions or need assistance with the app? Our support team is ready to help you get the most out of your expense tracking experience.',
             style: TextStyle(
               color: Colors.white.withValues(alpha: 0.9),
               fontSize: 14.sp,
@@ -108,8 +107,7 @@ class _HelpSupportContent extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          'Contact Us',
+        LocalizedText('Contact Us',
           style: TextStyle(
             fontSize: 18.sp,
             fontWeight: FontWeight.w600,
@@ -119,7 +117,7 @@ class _HelpSupportContent extends StatelessWidget {
         _buildContactItem(
           icon: Icons.email_outlined,
           title: 'Email Support',
-          description: 'oveshdevwala@gmail.com',
+          description: 'alperencelebiq@gmail.com',
           onTap: () => cubit.launchEmail(),
         ),
         SizedBox(height: 12.h),
@@ -179,7 +177,7 @@ class _HelpSupportContent extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
+                      LocalizedText(
                         title,
                         style: TextStyle(
                           fontSize: 16.sp,
@@ -187,7 +185,7 @@ class _HelpSupportContent extends StatelessWidget {
                         ),
                       ),
                       SizedBox(height: 4.h),
-                      Text(
+                      LocalizedText(
                         description,
                         style: TextStyle(
                           fontSize: 14.sp,
@@ -220,8 +218,7 @@ class _HelpSupportContent extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                'Send Us a Message',
+              LocalizedText('Send Us a Message',
                 style: TextStyle(
                   fontSize: 18.sp,
                   fontWeight: FontWeight.w600,
@@ -246,7 +243,7 @@ class _HelpSupportContent extends StatelessWidget {
                     TextFormField(
                       controller: state.subjectController,
                       decoration: InputDecoration(
-                        labelText: 'Subject',
+                        labelText: AppLocalizations.tr('Subject'),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12.r),
                         ),
@@ -254,7 +251,7 @@ class _HelpSupportContent extends StatelessWidget {
                       ),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'Please enter a subject';
+                          return AppLocalizations.tr('Please enter a subject');
                         }
                         return null;
                       },
@@ -263,7 +260,7 @@ class _HelpSupportContent extends StatelessWidget {
                     TextFormField(
                       controller: state.messageController,
                       decoration: InputDecoration(
-                        labelText: 'Message',
+                        labelText: AppLocalizations.tr('Message'),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12.r),
                         ),
@@ -273,7 +270,7 @@ class _HelpSupportContent extends StatelessWidget {
                       maxLines: 5,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'Please enter your message';
+                          return AppLocalizations.tr('Please enter your message');
                         }
                         return null;
                       },
@@ -301,8 +298,7 @@ class _HelpSupportContent extends StatelessWidget {
                               color: Colors.green,
                             ),
                             SizedBox(width: 8.w),
-                            const Text(
-                              'Message sent successfully!',
+                            const LocalizedText('Message sent successfully!',
                               style: TextStyle(
                                 color: Colors.green,
                               ),
@@ -333,8 +329,7 @@ class _HelpSupportContent extends StatelessWidget {
                                       Colors.white),
                                 ),
                               )
-                            : Text(
-                                'Send Message',
+                            : LocalizedText('Send Message',
                                 style: TextStyle(
                                   fontSize: 16.sp,
                                   fontWeight: FontWeight.bold,
@@ -358,8 +353,7 @@ class _HelpSupportContent extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          'Feature Suggestions',
+        LocalizedText('Feature Suggestions',
           style: TextStyle(
             fontSize: 18.sp,
             fontWeight: FontWeight.w600,
@@ -390,8 +384,7 @@ class _HelpSupportContent extends StatelessWidget {
                     size: 28.r,
                   ),
                   SizedBox(width: 12.w),
-                  Text(
-                    'Have an idea?',
+                  LocalizedText('Have an idea?',
                     style: TextStyle(
                       fontSize: 18.sp,
                       fontWeight: FontWeight.w600,
@@ -400,8 +393,7 @@ class _HelpSupportContent extends StatelessWidget {
                 ],
               ),
               SizedBox(height: 16.h),
-              Text(
-                'We\'re constantly improving our app and would love to hear your suggestions for new features or improvements.',
+              LocalizedText('We\'re constantly improving our app and would love to hear your suggestions for new features or improvements.',
                 style: TextStyle(
                   fontSize: 14.sp,
                   color: Colors.grey[700],
@@ -458,8 +450,7 @@ class _HelpSupportContent extends StatelessWidget {
                       borderRadius: BorderRadius.circular(12.r),
                     ),
                   ),
-                  child: Text(
-                    'Share Your Ideas',
+                  child: LocalizedText('Share Your Ideas',
                     style: TextStyle(
                       fontSize: 16.sp,
                       fontWeight: FontWeight.w600,
@@ -505,7 +496,7 @@ class _HelpSupportContent extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
+                  LocalizedText(
                     title,
                     style: TextStyle(
                       fontSize: 16.sp,
@@ -513,7 +504,7 @@ class _HelpSupportContent extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height: 4.h),
-                  Text(
+                  LocalizedText(
                     description,
                     style: TextStyle(
                       fontSize: 14.sp,

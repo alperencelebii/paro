@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:finance_track/core/app_bloc/app_bloc.dart';
 import 'package:finance_track/features/profile/profile_edit/bloc/profile_edit_bloc.dart';
+import 'package:finance_track/core/localization/localization.dart';
 
 class NameChangeForm extends StatefulWidget {
   final String initialName;
@@ -52,7 +53,7 @@ class _NameChangeFormState extends State<NameChangeForm> {
           // Show success message before navigation
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
-              content: Text('Name updated successfully'),
+              content: LocalizedText('Name updated successfully'),
               backgroundColor: Colors.green,
               duration: Duration(seconds: 1),
             ),
@@ -71,11 +72,11 @@ class _NameChangeFormState extends State<NameChangeForm> {
           // Show user-friendly error message
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
-              content: Text(state.errorMessage),
+              content: LocalizedText(state.errorMessage),
               backgroundColor: Colors.red,
               duration: const Duration(seconds: 3),
               action: SnackBarAction(
-                label: 'Dismiss',
+                label: AppLocalizations.tr('Dismiss'),
                 textColor: Colors.white,
                 onPressed: () {
                   ScaffoldMessenger.of(context).hideCurrentSnackBar();
@@ -93,8 +94,7 @@ class _NameChangeFormState extends State<NameChangeForm> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  'Update Display Name',
+                LocalizedText('Update Display Name',
                   style: TextStyle(
                     fontSize: 18.sp,
                     fontWeight: FontWeight.w600,
@@ -102,8 +102,7 @@ class _NameChangeFormState extends State<NameChangeForm> {
                   ),
                 ),
                 SizedBox(height: 8.h),
-                Text(
-                  'This name will be visible to others in the app.',
+                LocalizedText('This name will be visible to others in the app.',
                   style: TextStyle(
                     fontSize: 14.sp,
                     color: Colors.grey[600],
@@ -128,8 +127,8 @@ class _NameChangeFormState extends State<NameChangeForm> {
     return TextFormField(
       controller: _nameController,
       decoration: InputDecoration(
-        labelText: 'Display Name',
-        hintText: 'Enter your display name',
+        labelText: AppLocalizations.tr('Display Name'),
+        hintText: AppLocalizations.tr('Enter your display name'),
         prefixIcon: Icon(
           Icons.person_outline,
           color: const Color(0xFF6C63FF).withValues(alpha: 0.7),
@@ -171,7 +170,7 @@ class _NameChangeFormState extends State<NameChangeForm> {
       },
       validator: (value) {
         if (value == null || value.isEmpty) {
-          return 'Please enter your name';
+          return AppLocalizations.tr('Please enter your name');
         }
         return null;
       },
@@ -181,7 +180,7 @@ class _NameChangeFormState extends State<NameChangeForm> {
   Widget _buildErrorText(String message) {
     return Padding(
       padding: EdgeInsets.only(left: 16.w, top: 4.h),
-      child: Text(
+      child: LocalizedText(
         message,
         style: TextStyle(
           color: Colors.red[600],
@@ -209,7 +208,7 @@ class _NameChangeFormState extends State<NameChangeForm> {
                     // Show message that no changes were made
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(
-                        content: Text('No changes were made to your name'),
+                        content: LocalizedText('No changes were made to your name'),
                         backgroundColor: Colors.blue,
                       ),
                     );
@@ -237,8 +236,7 @@ class _NameChangeFormState extends State<NameChangeForm> {
                   strokeWidth: 2,
                 ),
               )
-            : Text(
-                'Update Name',
+            : LocalizedText('Update Name',
                 style: TextStyle(
                   fontSize: 16.sp,
                   fontWeight: FontWeight.w600,

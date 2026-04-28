@@ -10,6 +10,7 @@ import '../cubit/landing_state.dart';
 import 'landing_page1.dart';
 import 'landing_page2.dart';
 import 'landing_page3.dart';
+import 'package:finance_track/core/localization/localization.dart';
 
 /// The main landing screen that hosts the three landing pages
 class LandingScreen extends StatelessWidget {
@@ -163,8 +164,7 @@ class _LandingScreenContentState extends State<_LandingScreenContent> {
                             child: Row(
                               mainAxisSize: MainAxisSize.min,
                               children: [
-                                Text(
-                                  'Geç',
+                                LocalizedText('Geç',
                                   style: TextStyle(
                                     fontSize: 14.sp,
                                     fontWeight: FontWeight.w500,
@@ -376,7 +376,7 @@ class _LandingScreenContentState extends State<_LandingScreenContent> {
                 SizedBox(width: 6.w),
               ],
               Flexible(
-                child: Text(
+                child: LocalizedText(
                   label,
                   style: TextStyle(
                     fontSize: 14.sp,

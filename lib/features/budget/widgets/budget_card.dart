@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
+import 'package:finance_track/core/localization/localization.dart';
 
 import '../../../core/models/currency_model.dart';
 import '../../../core/router/app_router.dart';
@@ -103,16 +104,14 @@ class BudgetCard extends StatelessWidget {
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(
-                                    '${budget.period.displayName} Budget',
+                                  LocalizedText('${budget.period.displayName} Budget',
                                     style: theme.textTheme.titleLarge?.copyWith(
                                       fontWeight: FontWeight.bold,
                                       color: Colors.white,
                                     ),
                                   ),
                                   SizedBox(height: 4.h),
-                                  Text(
-                                    '$daysRemaining days remaining',
+                                  LocalizedText('$daysRemaining days remaining',
                                     style: theme.textTheme.bodyMedium?.copyWith(
                                       color:
                                           Colors.white.withValues(alpha: 0.9),
@@ -136,8 +135,7 @@ class BudgetCard extends StatelessWidget {
                                       : Colors.red.withValues(alpha: 0.2),
                               borderRadius: BorderRadius.circular(20.r),
                             ),
-                            child: Text(
-                              '${(percentUsed * 100).toInt()}% Used',
+                            child: LocalizedText('${(percentUsed * 100).toInt()}% Used',
                               style: theme.textTheme.bodySmall?.copyWith(
                                 color: percentUsed < 0.7
                                     ? Colors.green[100]
@@ -205,8 +203,7 @@ class BudgetCard extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        'Daily Budget',
+                      LocalizedText('Daily Budget',
                         style: theme.textTheme.titleMedium?.copyWith(
                           fontWeight: FontWeight.bold,
                         ),
@@ -249,7 +246,7 @@ class BudgetCard extends StatelessWidget {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(
+                                  LocalizedText(
                                     formatter.format(dailyBudget),
                                     style:
                                         theme.textTheme.headlineSmall?.copyWith(
@@ -258,8 +255,7 @@ class BudgetCard extends StatelessWidget {
                                     ),
                                   ),
                                   SizedBox(height: 4.h),
-                                  Text(
-                                    'Available to spend today',
+                                  LocalizedText('Available to spend today',
                                     style: theme.textTheme.bodyMedium?.copyWith(
                                       color: theme.colorScheme.onSurface
                                           .withValues(alpha: 0.6),
@@ -287,7 +283,7 @@ class BudgetCard extends StatelessWidget {
                                 Icons.edit_outlined,
                                 size: 18.r,
                               ),
-                              label: const Text('Edit'),
+                              label: const LocalizedText('Edit'),
                               style: OutlinedButton.styleFrom(
                                 padding: EdgeInsets.symmetric(vertical: 12.h),
                                 shape: RoundedRectangleBorder(
@@ -307,7 +303,7 @@ class BudgetCard extends StatelessWidget {
                                 Icons.visibility_outlined,
                                 size: 18.r,
                               ),
-                              label: const Text('All Budgets'),
+                              label: const LocalizedText('All Budgets'),
                               style: ElevatedButton.styleFrom(
                                 padding: EdgeInsets.symmetric(vertical: 12.h),
                                 backgroundColor: theme.colorScheme.primary,
@@ -362,16 +358,14 @@ class BudgetCard extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height: 24.h),
-                  Text(
-                    'No Budget Set',
+                  LocalizedText('No Budget Set',
                     style: theme.textTheme.titleLarge?.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
                     textAlign: TextAlign.center,
                   ),
                   SizedBox(height: 12.h),
-                  Text(
-                    'Create a monthly budget to track your spending and save money',
+                  LocalizedText('Create a monthly budget to track your spending and save money',
                     style: theme.textTheme.bodyMedium?.copyWith(
                       color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
                     ),
@@ -386,7 +380,7 @@ class BudgetCard extends StatelessWidget {
                       Icons.add_circle_outline,
                       size: 18.r,
                     ),
-                    label: const Text('Create Budget'),
+                    label: const LocalizedText('Create Budget'),
                     style: ElevatedButton.styleFrom(
                       padding: EdgeInsets.symmetric(
                         vertical: 16.h,
@@ -434,14 +428,14 @@ class BudgetCard extends StatelessWidget {
           ),
         ),
         SizedBox(height: 8.h),
-        Text(
+        LocalizedText(
           title,
           style: theme.textTheme.bodyMedium?.copyWith(
             color: Colors.white.withValues(alpha: 0.8),
           ),
         ),
         SizedBox(height: 4.h),
-        Text(
+        LocalizedText(
           amount,
           style: theme.textTheme.titleMedium?.copyWith(
             fontWeight: isHighlighted ? FontWeight.bold : FontWeight.w600,

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import 'dart:math' as math;
+import 'package:finance_track/core/localization/localization.dart';
 
 /// Redesigned BalanceSummaryCard widget matching overall dashboard UI
 class BalanceSummaryCard extends StatelessWidget {
@@ -56,8 +57,7 @@ class BalanceSummaryCard extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  'Total Balance',
+                LocalizedText('Total Balance',
                   style: theme.textTheme.titleLarge
                       ?.copyWith(fontWeight: FontWeight.bold),
                 ),
@@ -71,13 +71,13 @@ class BalanceSummaryCard extends StatelessWidget {
                   ),
                   child: Row(
                     children: [
-                      Text(
+                      LocalizedText(
                         currency.code,
                         style: theme.textTheme.bodyMedium
                             ?.copyWith(fontWeight: FontWeight.bold),
                       ),
                       SizedBox(width: 6.w),
-                      Text(
+                      LocalizedText(
                         currency.symbol,
                         style: theme.textTheme.bodyMedium
                             ?.copyWith(fontSize: 16.sp),
@@ -88,8 +88,7 @@ class BalanceSummaryCard extends StatelessWidget {
               ],
             ),
             SizedBox(height: 12.h),
-            Text(
-              'Updated ${DateFormat('MMM dd, yyyy').format(DateTime.now())}',
+            LocalizedText('Updated ${DateFormat('MMM dd, yyyy').format(DateTime.now())}',
               style: theme.textTheme.bodySmall?.copyWith(color: Colors.grey),
             ),
             SizedBox(height: 20.h),
@@ -97,7 +96,7 @@ class BalanceSummaryCard extends StatelessWidget {
             Row(
               children: [
                 Expanded(
-                  child: Text(
+                  child: LocalizedText(
                     formatter.format(balance),
                     style: theme.textTheme.headlineMedium
                         ?.copyWith(fontWeight: FontWeight.w800),
@@ -189,7 +188,7 @@ class BalanceSummaryCard extends StatelessWidget {
             children: [
               Icon(icon, color: color, size: 20),
               SizedBox(width: 8.w),
-              Text(
+              LocalizedText(
                 title,
                 style: Theme.of(context)
                     .textTheme
@@ -199,7 +198,7 @@ class BalanceSummaryCard extends StatelessWidget {
             ],
           ),
           SizedBox(height: 8.h),
-          Text(
+          LocalizedText(
             formatter.format(amount),
             style: Theme.of(context)
                 .textTheme
@@ -212,8 +211,7 @@ class BalanceSummaryCard extends StatelessWidget {
               Icon(isPositive ? Icons.trending_up : Icons.trending_down,
                   color: color, size: 16),
               SizedBox(width: 4.w),
-              Text(
-                '${change.abs().toStringAsFixed(1)}%',
+              LocalizedText('${change.abs().toStringAsFixed(1)}%',
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
                       color: color,
                       fontWeight: FontWeight.bold,

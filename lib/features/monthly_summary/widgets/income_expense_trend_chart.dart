@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
+import 'package:finance_track/core/localization/localization.dart';
 
 class IncomeExpenseTrendChart extends StatelessWidget {
   final Map<DateTime, double> dailyExpenses;
@@ -106,8 +107,7 @@ class IncomeExpenseTrendChart extends StatelessWidget {
                       ),
                     ),
                     SizedBox(width: 12.w),
-                    Text(
-                      'Income vs Expense',
+                    LocalizedText('Income vs Expense',
                       style: theme.textTheme.titleMedium?.copyWith(
                         fontWeight: FontWeight.w600,
                         fontSize: 18.sp,
@@ -166,7 +166,7 @@ class IncomeExpenseTrendChart extends StatelessWidget {
                         interval: yInterval,
                         reservedSize: 45,
                         getTitlesWidget: (value, meta) {
-                          return Text(
+                          return LocalizedText(
                             value >= 1000
                                 ? '$currencySymbol${(value / 1000).toStringAsFixed(0)}K'
                                 : '$currencySymbol${value.toStringAsFixed(0)}',
@@ -189,7 +189,7 @@ class IncomeExpenseTrendChart extends StatelessWidget {
                           final date = sortedDates[value.toInt()];
                           return Padding(
                             padding: EdgeInsets.only(top: 8.h),
-                            child: Text(
+                            child: LocalizedText(
                               date.day.toString(),
                               style: theme.textTheme.bodySmall?.copyWith(
                                 color: theme.textTheme.bodySmall?.color
@@ -360,7 +360,7 @@ class IncomeExpenseTrendChart extends StatelessWidget {
           ),
         ),
         SizedBox(width: 8.w),
-        Text(
+        LocalizedText(
           label,
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                 fontWeight: FontWeight.w500,
@@ -390,7 +390,7 @@ class IncomeExpenseTrendChart extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
+          LocalizedText(
             title,
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
                   color: color.withValues(alpha: 0.8),
@@ -398,8 +398,7 @@ class IncomeExpenseTrendChart extends StatelessWidget {
                 ),
           ),
           SizedBox(height: 4.h),
-          Text(
-            '$currencySymbol${amount.toStringAsFixed(0)}',
+          LocalizedText('$currencySymbol${amount.toStringAsFixed(0)}',
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
                   fontWeight: FontWeight.bold,
                   color: color,
@@ -435,16 +434,14 @@ class IncomeExpenseTrendChart extends StatelessWidget {
             color: theme.colorScheme.primary.withValues(alpha: 0.5),
           ),
           SizedBox(height: 16.h),
-          Text(
-            'No data available',
+          LocalizedText('No data available',
             style: theme.textTheme.titleMedium?.copyWith(
               color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
               fontWeight: FontWeight.w600,
             ),
           ),
           SizedBox(height: 8.h),
-          Text(
-            'Add income and expenses to see the comparison trend',
+          LocalizedText('Add income and expenses to see the comparison trend',
             textAlign: TextAlign.center,
             style: theme.textTheme.bodyMedium?.copyWith(
               color: theme.colorScheme.onSurface.withValues(alpha: 0.5),

@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
+import 'package:finance_track/core/localization/localization.dart';
 
 import '../../../core/utils/utils.dart';
 import '../../../data/models/income_model.dart';
@@ -77,7 +78,7 @@ class _MonthlySummaryScreenState extends State<MonthlySummaryScreen>
                 children: [
                   const Icon(Icons.error_outline, size: 48, color: Colors.red),
                   const SizedBox(height: 16),
-                  Text(state.message),
+                  LocalizedText(state.message),
                   const SizedBox(height: 16),
                   ElevatedButton(
                     onPressed: () {
@@ -85,7 +86,7 @@ class _MonthlySummaryScreenState extends State<MonthlySummaryScreen>
                           .read<MonthlySummaryCubit>()
                           .loadMonthlySummary(context);
                     },
-                    child: const Text('Retry'),
+                    child: const LocalizedText('Retry'),
                   ),
                 ],
               ),
@@ -116,8 +117,7 @@ class _MonthlySummaryScreenState extends State<MonthlySummaryScreen>
                         icon: const Icon(Icons.arrow_back, color: Colors.white),
                         onPressed: () => Navigator.of(context).pop(),
                       ),
-                      title: const Text(
-                        'Monthly Summary',
+                      title: const LocalizedText('Monthly Summary',
                         style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
@@ -177,7 +177,7 @@ class _MonthlySummaryScreenState extends State<MonthlySummaryScreen>
                                   .read<MonthlySummaryCubit>()
                                   .resetToCurrentMonth(context);
                             },
-                            tooltip: 'Reset to current month',
+                            tooltip: AppLocalizations.tr('Reset to current month'),
                           ),
                       ],
                       // bottom: null,
@@ -313,8 +313,7 @@ class _MonthlySummaryScreenState extends State<MonthlySummaryScreen>
                                         .withValues(alpha: 0.5),
                                   ),
                                   SizedBox(height: 16.h),
-                                  Text(
-                                    'No transactions yet',
+                                  LocalizedText('No transactions yet',
                                     style: Theme.of(context)
                                         .textTheme
                                         .titleMedium
@@ -326,8 +325,7 @@ class _MonthlySummaryScreenState extends State<MonthlySummaryScreen>
                                         ),
                                   ),
                                   SizedBox(height: 8.h),
-                                  Text(
-                                    'Add some expenses or income to see them here',
+                                  LocalizedText('Add some expenses or income to see them here',
                                     textAlign: TextAlign.center,
                                     style: Theme.of(context)
                                         .textTheme
@@ -462,7 +460,7 @@ class _MonthlySummaryScreenState extends State<MonthlySummaryScreen>
         for (final dateKey in sortedDateKeys) ...[
           // Date header
 
-          Text(
+          LocalizedText(
             formatTransactionDate(DateTime.parse(dateKey)),
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
                   fontWeight: FontWeight.w600,
@@ -487,8 +485,8 @@ class _MonthlySummaryScreenState extends State<MonthlySummaryScreen>
                 } catch (e) {
                   // If expense not found, show transaction item directly
                   return ListTile(
-                    title: Text(transaction.title),
-                    subtitle: const Text('Transaction data unavailable'),
+                    title: LocalizedText(transaction.title),
+                    subtitle: const LocalizedText('Transaction data unavailable'),
                     leading: Icon(
                       transaction.categoryIcon,
                       color: transaction.categoryColor,
@@ -504,8 +502,8 @@ class _MonthlySummaryScreenState extends State<MonthlySummaryScreen>
                 } catch (e) {
                   // If income not found, show transaction item directly
                   return ListTile(
-                    title: Text(transaction.title),
-                    subtitle: const Text('Transaction data unavailable'),
+                    title: LocalizedText(transaction.title),
+                    subtitle: const LocalizedText('Transaction data unavailable'),
                     leading: Icon(
                       transaction.categoryIcon,
                       color: transaction.categoryColor,
@@ -603,7 +601,7 @@ class _MonthSelectorHeaderDelegate extends SliverPersistentHeaderDelegate {
                         size: 20.r,
                       ),
                       SizedBox(width: 12.w),
-                      Text(
+                      LocalizedText(
                         loadedState.periodTitle,
                         style: TextStyle(
                           color: Theme.of(context).primaryColor,
@@ -677,7 +675,7 @@ class _MonthSelectorHeaderDelegate extends SliverPersistentHeaderDelegate {
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Text(
+                                  LocalizedText(
                                     DateFormat('MMM').format(month),
                                     style: TextStyle(
                                       color: isSelected
@@ -691,7 +689,7 @@ class _MonthSelectorHeaderDelegate extends SliverPersistentHeaderDelegate {
                                     ),
                                   ),
                                   const SizedBox(height: 4),
-                                  Text(
+                                  LocalizedText(
                                     month.year.toString(),
                                     style: TextStyle(
                                       color: isSelected
@@ -770,8 +768,8 @@ class _TabBarHeaderDelegate extends SliverPersistentHeaderDelegate {
           fontWeight: FontWeight.w500,
         ),
         tabs: const [
-          Tab(text: 'Overview'),
-          Tab(text: 'Transactions'),
+          Tab(child: LocalizedText('Overview')),
+          Tab(child: LocalizedText('Transactions')),
         ],
       ),
     );

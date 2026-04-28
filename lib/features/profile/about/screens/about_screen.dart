@@ -6,6 +6,7 @@ import '../bloc/about_state.dart';
 import '../widgets/feature_card.dart';
 import '../../../navigation/cubit/navigation_cubit.dart';
 import 'package:go_router/go_router.dart';
+import 'package:finance_track/core/localization/localization.dart';
 
 class AboutScreen extends StatelessWidget {
   const AboutScreen({super.key});
@@ -53,7 +54,7 @@ class _AboutScreenContent extends StatelessWidget {
                       ),
                       alignment: PlaceholderAlignment.middle,
                     ),
-                    const TextSpan(text: '  '),
+                    TextSpan(text: AppLocalizations.tr('  ')),
                     TextSpan(
                       text: state.errorMessage,
                       style: TextStyle(
@@ -89,7 +90,7 @@ class _AboutScreenContent extends StatelessWidget {
                       }
                     },
                   ),
-                  title: innerBoxIsScrolled ? const Text('App Features') : null,
+                  title: innerBoxIsScrolled ? const LocalizedText('App Features') : null,
                   centerTitle: true,
                   flexibleSpace: FlexibleSpaceBar(
                     background: SafeArea(
@@ -116,8 +117,7 @@ class _AboutScreenContent extends StatelessWidget {
                           const SizedBox(height: 12),
 
                           // App name
-                          const Text(
-                            'Expense Manager Pro',
+                          const LocalizedText('Expense Manager Pro',
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 24,
@@ -210,7 +210,7 @@ class _SearchBar extends StatelessWidget {
           color: Colors.black87,
         ),
         decoration: InputDecoration(
-          hintText: 'Search features...',
+          hintText: AppLocalizations.tr('Search features...'),
           hintStyle: TextStyle(
             fontSize: 16,
             color: Colors.grey[500],
@@ -254,8 +254,7 @@ class _EmptySearchResults extends StatelessWidget {
               color: Colors.grey[400],
             ),
             const SizedBox(height: 16),
-            const Text(
-              'No features found',
+            const LocalizedText('No features found',
               style: TextStyle(
                 fontWeight: FontWeight.w600,
                 fontSize: 16,
@@ -263,8 +262,7 @@ class _EmptySearchResults extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 8),
-            const Text(
-              'Try a different search term',
+            const LocalizedText('Try a different search term',
               style: TextStyle(
                 color: Colors.black54,
               ),
@@ -281,7 +279,7 @@ class _EmptySearchResults extends StatelessWidget {
                   borderRadius: BorderRadius.circular(8),
                 ),
               ),
-              child: const Text('Clear search'),
+              child: const LocalizedText('Clear search'),
             ),
           ],
         ),

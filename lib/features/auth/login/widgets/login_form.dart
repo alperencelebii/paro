@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:form_fields/form_fields.dart';
 import 'package:finance_track/features/auth/login/cubit/login_cubit.dart';
+import 'package:finance_track/core/localization/localization.dart';
 
 import '../../widgets/auth_field_widget.dart';
 
@@ -93,8 +94,7 @@ class _LoginFormContent extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      'Sign In',
+                    LocalizedText('Sign In',
                       style: theme.textTheme.headlineSmall?.copyWith(
                         fontWeight: FontWeight.bold,
                         color: theme.colorScheme.primary,
@@ -104,8 +104,7 @@ class _LoginFormContent extends StatelessWidget {
                     SizedBox(height: 4.h),
 
                     // Subtitle
-                    Text(
-                      'Continue to your account',
+                    LocalizedText('Continue to your account',
                       style: theme.textTheme.bodySmall?.copyWith(
                         color: Colors.black54,
                         fontSize: 12.sp,
@@ -135,7 +134,7 @@ class _LoginFormContent extends StatelessWidget {
             context: context,
             controller: _emailController,
             focusNode: _emailFocusNode,
-            label: 'Email',
+            label: AppLocalizations.tr('Email'),
             hint: 'Enter your email',
             keyboardType: TextInputType.emailAddress,
             textInputAction: TextInputAction.next,
@@ -146,7 +145,7 @@ class _LoginFormContent extends StatelessWidget {
             ),
             validator: (value) {
               if (value == null || value.isEmpty) {
-                return 'Email is required';
+                return AppLocalizations.tr('Email is required');
               }
               final email = Email.dirty(value);
               return email.errorMessage;
@@ -162,7 +161,7 @@ class _LoginFormContent extends StatelessWidget {
                 context: context,
                 controller: _passwordController,
                 focusNode: _passwordFocusNode,
-                label: 'Password',
+                label: AppLocalizations.tr('Password'),
                 hint: 'Enter your password',
                 obscureText: obscure,
                 textInputAction: TextInputAction.done,
@@ -185,7 +184,7 @@ class _LoginFormContent extends StatelessWidget {
                 ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Password is required';
+                    return AppLocalizations.tr('Password is required');
                   }
                   final password = Password.dirty(value);
                   return password.errorMessage;
@@ -198,7 +197,7 @@ class _LoginFormContent extends StatelessWidget {
           if (hasError)
             Padding(
               padding: EdgeInsets.only(top: 8.h),
-              child: Text(
+              child: LocalizedText(
                 state.submissionStatus.isTimeoutError
                     ? 'Connection timeout. Please try again.'
                     : 'Invalid email or password. Please try again.',
@@ -233,8 +232,7 @@ class _LoginFormContent extends StatelessWidget {
                         ),
                       ),
                       SizedBox(width: 6.w),
-                      Text(
-                        'Remember me',
+                      LocalizedText('Remember me',
                         style: theme.textTheme.bodySmall?.copyWith(
                           color: Colors.black54,
                         ),
@@ -253,8 +251,7 @@ class _LoginFormContent extends StatelessWidget {
                   minimumSize: Size.zero,
                   tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                 ),
-                child: Text(
-                  'Forgot Password?',
+                child: LocalizedText('Forgot Password?',
                   style: theme.textTheme.bodySmall?.copyWith(
                     color: theme.colorScheme.primary,
                     fontWeight: FontWeight.w500,
@@ -297,8 +294,7 @@ class _LoginFormContent extends StatelessWidget {
                       color: Colors.white,
                     ),
                   )
-                : Text(
-                    'Log In',
+                : LocalizedText('Log In',
                     style: theme.textTheme.titleMedium?.copyWith(
                       color: Colors.white,
                       fontWeight: FontWeight.w600,
@@ -327,7 +323,7 @@ class _LoginFormContent extends StatelessWidget {
 //       crossAxisAlignment: CrossAxisAlignment.start,
 //       mainAxisSize: MainAxisSize.min,
 //       children: [
-//         Text(
+//         LocalizedText(
 //           label,
 //           style: theme.textTheme.bodySmall?.copyWith(
 //             fontWeight: FontWeight.w500,

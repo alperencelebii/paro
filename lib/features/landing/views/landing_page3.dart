@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
+import 'package:finance_track/core/localization/localization.dart';
 
 /// Third landing page - Features showcasing expenses by category visualization
 class LandingPage3 extends StatelessWidget {
@@ -40,8 +41,7 @@ class LandingPage3 extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        'Veri Analizi',
+                      LocalizedText('Veri Analizi',
                         style: TextStyle(
                           fontSize: 18.sp,
                           fontWeight: FontWeight.bold,
@@ -51,8 +51,7 @@ class LandingPage3 extends StatelessWidget {
                         overflow: TextOverflow.ellipsis,
                       ),
                       SizedBox(height: 4.h),
-                      Text(
-                        'Akıllı analizlerle harcamalarınızı görselleştirin.',
+                      LocalizedText('Akıllı analizlerle harcamalarınızı görselleştirin.',
                         style: TextStyle(
                           fontSize: 12.sp,
                           fontWeight: FontWeight.w400,
@@ -80,8 +79,7 @@ class LandingPage3 extends StatelessWidget {
             SizedBox(height: 32.h),
 
             // Features section title
-            Text(
-              'Gelişmiş Özellikler',
+            LocalizedText('Gelişmiş Özellikler',
               style: TextStyle(
                 fontSize: 18.sp,
                 fontWeight: FontWeight.bold,
@@ -195,8 +193,7 @@ class LandingPage3 extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        'Gider Analizi',
+                      LocalizedText('Gider Analizi',
                         style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
@@ -220,8 +217,7 @@ class LandingPage3 extends StatelessWidget {
                               size: 14.r,
                             ),
                             SizedBox(width: 6.w),
-                            Text(
-                              'May 2026',
+                            LocalizedText('May 2026',
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 12.sp,
@@ -250,16 +246,14 @@ class LandingPage3 extends StatelessWidget {
                         center: Column(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            Text(
-                              '75%',
+                            LocalizedText('75%',
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 20.sp,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
-                            Text(
-                              'Kullanılan',
+                            LocalizedText('Kullanılan',
                               style: TextStyle(
                                 color: Colors.white.withValues(alpha: 0.8),
                                 fontSize: 12.sp,
@@ -319,7 +313,7 @@ class LandingPage3 extends StatelessWidget {
                         child: _buildStatItem(
                           theme,
                           'Aylık Bütçe',
-                          '\₺3,000',
+                          '₺3,000',
                           Icons.account_balance_wallet,
                         ),
                       ),
@@ -328,7 +322,7 @@ class LandingPage3 extends StatelessWidget {
                         child: _buildStatItem(
                           theme,
                           'Toplam Gider',
-                          '\₺2,250',
+                          '₺2,250',
                           Icons.shopping_cart,
                         ),
                       ),
@@ -337,7 +331,7 @@ class LandingPage3 extends StatelessWidget {
                         child: _buildStatItem(
                           theme,
                           'Kalan',
-                          '\₺750',
+                          '₺750',
                           Icons.savings,
                         ),
                       ),
@@ -372,7 +366,7 @@ class LandingPage3 extends StatelessWidget {
         ),
         SizedBox(width: 8.w),
         Expanded(
-          child: Text(
+          child: LocalizedText(
             title,
             style: TextStyle(
               color: Colors.white,
@@ -381,7 +375,7 @@ class LandingPage3 extends StatelessWidget {
             overflow: TextOverflow.ellipsis,
           ),
         ),
-        Text(
+        LocalizedText(
           percentage,
           style: TextStyle(
             color: Colors.white,
@@ -413,7 +407,7 @@ class LandingPage3 extends StatelessWidget {
               ),
               SizedBox(width: 4.w),
               Expanded(
-                child: Text(
+                child: LocalizedText(
                   title,
                   style: TextStyle(
                     color: Colors.white.withValues(alpha: 0.9),
@@ -425,7 +419,7 @@ class LandingPage3 extends StatelessWidget {
             ],
           ),
           SizedBox(height: 4.h),
-          Text(
+          LocalizedText(
             value,
             style: TextStyle(
               color: Colors.white,
@@ -486,7 +480,7 @@ class LandingPage3 extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
+                    LocalizedText(
                       title,
                       style: TextStyle(
                         fontSize: 16.sp,
@@ -497,7 +491,7 @@ class LandingPage3 extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                     ),
                     SizedBox(height: 4.h),
-                    Text(
+                    LocalizedText(
                       description,
                       style: TextStyle(
                         fontSize: 13.sp,
@@ -565,7 +559,7 @@ class LandingPage3 extends StatelessWidget {
                   size: 14.r,
                 ),
                 SizedBox(width: 4.w),
-                Text(
+                LocalizedText(
                   category['name'] as String,
                   style: TextStyle(
                     color: color,
@@ -612,8 +606,7 @@ class LandingPage3 extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  'Harcama Analizi',
+                LocalizedText('Harcama Analizi',
                   style: TextStyle(
                     color: theme.colorScheme.secondary,
                     fontWeight: FontWeight.bold,
@@ -621,8 +614,7 @@ class LandingPage3 extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 4.h),
-                Text(
-                  'Bu ay yemek harcamalarınız geçen aya göre %15 daha az oldu.',
+                LocalizedText('Bu ay yemek harcamalarınız geçen aya göre %15 daha az oldu.',
                   style: TextStyle(
                     color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
                     fontSize: 12.sp,
@@ -678,7 +670,7 @@ class LandingPage3 extends StatelessWidget {
           ),
         ),
         SizedBox(height: 4.h),
-        Text(
+        LocalizedText(
           label,
           style: TextStyle(
             fontSize: 10.sp,

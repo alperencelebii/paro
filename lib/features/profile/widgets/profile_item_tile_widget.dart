@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:finance_track/core/localization/localization.dart';
 
 class ProfileItemTileWidget extends StatelessWidget {
   const ProfileItemTileWidget(
@@ -58,7 +59,7 @@ class ProfileItemTileWidget extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
+                      LocalizedText(
                         title,
                         style: TextStyle(
                           fontSize: 16.sp,
@@ -66,7 +67,7 @@ class ProfileItemTileWidget extends StatelessWidget {
                         ),
                       ),
                       SizedBox(height: 2.h),
-                      Text(
+                      LocalizedText(
                         subtitle,
                         style: TextStyle(
                           fontSize: 12.sp,

@@ -6,6 +6,7 @@ import '../../../../data/objectbox.dart';
 import '../../../../data/models/expense_model.dart';
 import '../../../../data/models/income_model.dart';
 import '../../../../objectbox.g.dart';
+import 'package:finance_track/core/localization/localization.dart';
 
 class ExportDataRepository {
   // Get ObjectBox instance
@@ -179,7 +180,7 @@ class ExportDataRepository {
             mimeType: 'text/csv',
           ),
         ],
-        text: 'Transaction Export',
+        text: AppLocalizations.tr('Transaction Export'),
       );
     } catch (e) {
       throw Exception('Failed to export transactions: $e');

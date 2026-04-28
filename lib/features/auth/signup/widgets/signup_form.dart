@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:form_fields/form_fields.dart';
 import 'package:finance_track/features/auth/signup/cubit/signup_cubit.dart';
 import 'package:go_router/go_router.dart';
+import 'package:finance_track/core/localization/localization.dart';
 
 import '../../widgets/auth_field_widget.dart';
 
@@ -33,7 +34,7 @@ class SignupForm extends StatelessWidget {
       context: context,
       builder: (dialogContext) {
         return AlertDialog(
-          title: const Text('Error'),
+          title: const LocalizedText('Error'),
           content: SelectableText.rich(
             TextSpan(
               text: message,
@@ -42,7 +43,7 @@ class SignupForm extends StatelessWidget {
           ),
           actions: <Widget>[
             TextButton(
-              child: const Text('OK'),
+              child: const LocalizedText('OK'),
               onPressed: () => Navigator.of(dialogContext).pop(),
             ),
           ],
@@ -98,8 +99,7 @@ class _SignupFormViewState extends State<_SignupFormView> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      'Create Account',
+                    LocalizedText('Create Account',
                       style: theme.textTheme.headlineSmall?.copyWith(
                         fontWeight: FontWeight.bold,
                         color: theme.colorScheme.primary,
@@ -107,8 +107,7 @@ class _SignupFormViewState extends State<_SignupFormView> {
                       ),
                     ),
                     SizedBox(height: 4.h),
-                    Text(
-                      'Track expenses seamlessly',
+                    LocalizedText('Track expenses seamlessly',
                       style: theme.textTheme.bodySmall?.copyWith(
                         color: Colors.black54,
                         fontSize: 12.sp,
@@ -139,7 +138,7 @@ class _SignupFormViewState extends State<_SignupFormView> {
             context: context,
             controller: _emailController,
             focusNode: _emailFocusNode,
-            label: 'Email',
+            label: AppLocalizations.tr('Email'),
             hint: 'Enter your email',
             keyboardType: TextInputType.emailAddress,
             textInputAction: TextInputAction.next,
@@ -150,7 +149,7 @@ class _SignupFormViewState extends State<_SignupFormView> {
             ),
             validator: (value) {
               if (value == null || value.isEmpty) {
-                return 'Email is required';
+                return AppLocalizations.tr('Email is required');
               }
               final email = Email.dirty(value);
               return email.valid ? null : 'Please enter a valid email';
@@ -162,7 +161,7 @@ class _SignupFormViewState extends State<_SignupFormView> {
             context: context,
             controller: _usernameController,
             focusNode: _usernameFocusNode,
-            label: 'Username',
+            label: AppLocalizations.tr('Username'),
             hint: 'Enter your username',
             textInputAction: TextInputAction.next,
             prefixIcon: Icon(
@@ -172,7 +171,7 @@ class _SignupFormViewState extends State<_SignupFormView> {
             ),
             validator: (value) {
               if (value == null || value.isEmpty) {
-                return 'Username is required';
+                return AppLocalizations.tr('Username is required');
               }
               return null;
             },
@@ -191,7 +190,7 @@ class _SignupFormViewState extends State<_SignupFormView> {
                     context: context,
                     controller: _passwordController,
                     focusNode: _passwordFocusNode,
-                    label: 'Password',
+                    label: AppLocalizations.tr('Password'),
                     hint: 'Enter password',
                     obscureText: obscurePassword,
                     textInputAction: TextInputAction.done,
@@ -214,7 +213,7 @@ class _SignupFormViewState extends State<_SignupFormView> {
                     ),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return 'Password is required';
+                        return AppLocalizations.tr('Password is required');
                       }
                       final password = Password.dirty(value);
                       return password.valid ? null : 'Password is too weak';
@@ -271,8 +270,7 @@ class _SignupFormViewState extends State<_SignupFormView> {
                                 Colors.white),
                           ),
                         )
-                      : const Text(
-                          'Create Account',
+                      : const LocalizedText('Create Account',
                           style: TextStyle(
                             fontWeight: FontWeight.w600,
                           ),

@@ -10,6 +10,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:finance_track/core/extensions/currency_context_extension.dart';
+import 'package:finance_track/core/localization/localization.dart';
 
 class HomeActiveBudgetCard extends StatefulWidget {
   const HomeActiveBudgetCard({super.key});
@@ -192,7 +193,7 @@ class _HomeActiveBudgetCardState extends State<HomeActiveBudgetCard> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          const Text('No active budget'),
+          const LocalizedText('No active budget'),
           TextButton(
             onPressed: () {
               // _requirePremium(() {
@@ -200,7 +201,7 @@ class _HomeActiveBudgetCardState extends State<HomeActiveBudgetCard> {
             // });
               context.pushNamed(AppRoutes.budgetSettings);
             },
-            child: const Text('Set Budget'),
+            child: const LocalizedText('Set Budget'),
           )
         ],
       ),
@@ -244,7 +245,7 @@ class _HomeActiveBudgetCardState extends State<HomeActiveBudgetCard> {
               Row(
                 children: [
                   Expanded(
-                    child: Text(
+                    child: LocalizedText(
                       title,
                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
                             color: Colors.black87,
@@ -270,7 +271,7 @@ class _HomeActiveBudgetCardState extends State<HomeActiveBudgetCard> {
                           color: Colors.redAccent,
                           backgroundColor: Colors.transparent,
                         ),
-                        Text(
+                        LocalizedText(
                           percentText,
                           style: const TextStyle(
                             color: Colors.black,
@@ -298,12 +299,10 @@ class _HomeActiveBudgetCardState extends State<HomeActiveBudgetCard> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    'Used $currency${spent.toStringAsFixed(0)}',
+                  LocalizedText('Used $currency${spent.toStringAsFixed(0)}',
                     style: TextStyle(color: Colors.grey.shade700),
                   ),
-                  Text(
-                    'Total $currency${total.toStringAsFixed(0)}',
+                  LocalizedText('Total $currency${total.toStringAsFixed(0)}',
                     style: TextStyle(color: Colors.grey.shade700),
                   ),
                 ],

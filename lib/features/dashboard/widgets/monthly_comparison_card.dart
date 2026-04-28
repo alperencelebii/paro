@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
+import 'package:finance_track/core/localization/localization.dart';
 
 /// Widget for displaying monthly comparison
 class MonthlyComparisonCard extends StatelessWidget {
@@ -66,8 +67,7 @@ class MonthlyComparisonCard extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    '$currentMonth Summary',
+                  LocalizedText('$currentMonth Summary',
                     style: theme.textTheme.titleLarge?.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
@@ -120,14 +120,12 @@ class MonthlyComparisonCard extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
-                          'Expense to Income Ratio',
+                        LocalizedText('Expense to Income Ratio',
                           style: theme.textTheme.bodyMedium?.copyWith(
                             fontWeight: FontWeight.w500,
                           ),
                         ),
-                        Text(
-                          '${((thisMonthExpense / thisMonthIncome) * 100).toStringAsFixed(1)}%',
+                        LocalizedText('${((thisMonthExpense / thisMonthIncome) * 100).toStringAsFixed(1)}%',
                           style: theme.textTheme.bodyMedium?.copyWith(
                             fontWeight: FontWeight.bold,
                             color: thisMonthExpense > thisMonthIncome
@@ -158,22 +156,19 @@ class MonthlyComparisonCard extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
-                          '0%',
+                        LocalizedText('0%',
                           style: theme.textTheme.bodySmall?.copyWith(
                             color: theme.colorScheme.onSurface
                                 .withValues(alpha: 0.7),
                           ),
                         ),
-                        Text(
-                          '50%',
+                        LocalizedText('50%',
                           style: theme.textTheme.bodySmall?.copyWith(
                             color: theme.colorScheme.onSurface
                                 .withValues(alpha: 0.7),
                           ),
                         ),
-                        Text(
-                          '100%',
+                        LocalizedText('100%',
                           style: theme.textTheme.bodySmall?.copyWith(
                             color: theme.colorScheme.onSurface
                                 .withValues(alpha: 0.7),
@@ -216,7 +211,7 @@ class MonthlyComparisonCard extends StatelessWidget {
                 size: 14.r,
               ),
               SizedBox(width: 4.w),
-              Text(
+              LocalizedText(
                 title,
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
                       color: Theme.of(context).colorScheme.onSurface,
@@ -226,7 +221,7 @@ class MonthlyComparisonCard extends StatelessWidget {
             ],
           ),
           SizedBox(height: 8.h),
-          Text(
+          LocalizedText(
             formatter.format(amount),
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
                   color: Theme.of(context).colorScheme.onSurface,

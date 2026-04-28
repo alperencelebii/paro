@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:finance_track/features/profile/profile_edit/bloc/profile_edit_bloc.dart';
+import 'package:finance_track/core/localization/localization.dart';
 
 class PasswordChangeForm extends StatefulWidget {
   const PasswordChangeForm({super.key});
@@ -42,8 +43,7 @@ class _PasswordChangeFormState extends State<PasswordChangeForm> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  'Change Password',
+                LocalizedText('Change Password',
                   style: TextStyle(
                     fontSize: 18.sp,
                     fontWeight: FontWeight.w600,
@@ -51,8 +51,7 @@ class _PasswordChangeFormState extends State<PasswordChangeForm> {
                   ),
                 ),
                 SizedBox(height: 8.h),
-                Text(
-                  'Create a new password that is at least 6 characters long.',
+                LocalizedText('Create a new password that is at least 6 characters long.',
                   style: TextStyle(
                     fontSize: 14.sp,
                     color: Colors.grey[600],
@@ -91,8 +90,8 @@ class _PasswordChangeFormState extends State<PasswordChangeForm> {
           controller: _currentPasswordController,
           obscureText: obscure,
           decoration: InputDecoration(
-            labelText: 'Current Password',
-            hintText: 'Enter your current password',
+            labelText: AppLocalizations.tr('Current Password'),
+            hintText: AppLocalizations.tr('Enter your current password'),
             prefixIcon: Icon(
               Icons.lock_outline,
               color: const Color(0xFF6C63FF).withValues(alpha: 0.7),
@@ -148,10 +147,10 @@ class _PasswordChangeFormState extends State<PasswordChangeForm> {
           },
           validator: (value) {
             if (value == null || value.isEmpty) {
-              return 'Please enter your current password';
+              return AppLocalizations.tr('Please enter your current password');
             }
             if (value.length < 6) {
-              return 'Password must be at least 6 characters';
+              return AppLocalizations.tr('Password must be at least 6 characters');
             }
             return null;
           },
@@ -168,8 +167,8 @@ class _PasswordChangeFormState extends State<PasswordChangeForm> {
           controller: _newPasswordController,
           obscureText: obscure,
           decoration: InputDecoration(
-            labelText: 'New Password',
-            hintText: 'Enter your new password',
+            labelText: AppLocalizations.tr('New Password'),
+            hintText: AppLocalizations.tr('Enter your new password'),
             prefixIcon: Icon(
               Icons.lock_outline,
               color: const Color(0xFF6C63FF).withValues(alpha: 0.7),
@@ -225,10 +224,10 @@ class _PasswordChangeFormState extends State<PasswordChangeForm> {
           },
           validator: (value) {
             if (value == null || value.isEmpty) {
-              return 'Please enter your new password';
+              return AppLocalizations.tr('Please enter your new password');
             }
             if (value.length < 6) {
-              return 'Password must be at least 6 characters';
+              return AppLocalizations.tr('Password must be at least 6 characters');
             }
             return null;
           },
@@ -245,8 +244,8 @@ class _PasswordChangeFormState extends State<PasswordChangeForm> {
           controller: _confirmPasswordController,
           obscureText: obscure,
           decoration: InputDecoration(
-            labelText: 'Confirm Password',
-            hintText: 'Confirm your new password',
+            labelText: AppLocalizations.tr('Confirm Password'),
+            hintText: AppLocalizations.tr('Confirm your new password'),
             prefixIcon: Icon(
               Icons.lock_outline,
               color: const Color(0xFF6C63FF).withValues(alpha: 0.7),
@@ -302,10 +301,10 @@ class _PasswordChangeFormState extends State<PasswordChangeForm> {
           },
           validator: (value) {
             if (value == null || value.isEmpty) {
-              return 'Please confirm your new password';
+              return AppLocalizations.tr('Please confirm your new password');
             }
             if (value != _newPasswordController.text) {
-              return 'Passwords do not match';
+              return AppLocalizations.tr('Passwords do not match');
             }
             return null;
           },
@@ -317,7 +316,7 @@ class _PasswordChangeFormState extends State<PasswordChangeForm> {
   Widget _buildErrorText(String message) {
     return Padding(
       padding: EdgeInsets.only(left: 16.w, top: 4.h),
-      child: Text(
+      child: LocalizedText(
         message,
         style: TextStyle(
           color: Colors.red[600],
@@ -377,8 +376,7 @@ class _PasswordChangeFormState extends State<PasswordChangeForm> {
                   strokeWidth: 2,
                 ),
               )
-            : Text(
-                'Update Password',
+            : LocalizedText('Update Password',
                 style: TextStyle(
                   fontSize: 16.sp,
                   fontWeight: FontWeight.w600,

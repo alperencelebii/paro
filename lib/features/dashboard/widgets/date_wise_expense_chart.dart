@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import 'package:go_router/go_router.dart';
+import 'package:finance_track/core/localization/localization.dart';
 
 import '../../../core/core.dart';
 import '../../../core/extensions/currency_context_extension.dart';
@@ -70,8 +71,7 @@ class DateWiseExpenseChart extends StatelessWidget {
         borderRadius: BorderRadius.circular(16.r),
       ),
       child: Center(
-        child: Text(
-          'Error: $message',
+        child: LocalizedText('Error: $message',
           style: const TextStyle(color: Colors.red),
         ),
       ),
@@ -116,7 +116,7 @@ class DateWiseExpenseChart extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
+                    LocalizedText(
                       formatter.format(state.totalExpense),
                       style: TextStyle(
                         fontSize: 28.sp,
@@ -127,8 +127,7 @@ class DateWiseExpenseChart extends StatelessWidget {
                     SizedBox(height: 4.h),
                     Row(
                       children: [
-                        Text(
-                          'Last $days Days',
+                        LocalizedText('Last $days Days',
                           style: TextStyle(
                             fontSize: 12.sp,
                             color: Colors.grey.shade600,
@@ -146,8 +145,7 @@ class DateWiseExpenseChart extends StatelessWidget {
                                 : Colors.green.shade50,
                             borderRadius: BorderRadius.circular(4.r),
                           ),
-                          child: Text(
-                            '${state.changePercentage >= 0 ? '+' : ''}${state.changePercentage.toStringAsFixed(0)}%',
+                          child: LocalizedText('${state.changePercentage >= 0 ? '+' : ''}${state.changePercentage.toStringAsFixed(0)}%',
                             style: TextStyle(
                               fontSize: 11.sp,
                               fontWeight: FontWeight.w600,
@@ -166,8 +164,7 @@ class DateWiseExpenseChart extends StatelessWidget {
                 onPressed: () {
                   context.pushNamed(AppRoutes.dateWiseExpense);
                 },
-                child: Text(
-                  'View More',
+                child: LocalizedText('View More',
                   style: TextStyle(
                     fontSize: 14.sp,
                     fontWeight: FontWeight.w600,
@@ -198,7 +195,7 @@ class DateWiseExpenseChart extends StatelessWidget {
                         if (data.expense > 0)
                           Padding(
                             padding: EdgeInsets.only(bottom: 4.h),
-                            child: Text(
+                            child: LocalizedText(
                               formatter.format(data.expense),
                               style: TextStyle(
                                 fontSize: 9.sp,
@@ -221,7 +218,7 @@ class DateWiseExpenseChart extends StatelessWidget {
                         ),
                         SizedBox(height: 8.h),
                         // Date label
-                        Text(
+                        LocalizedText(
                           DateFormat('MMM').format(data.date),
                           style: TextStyle(
                             fontSize: 9.sp,
@@ -229,7 +226,7 @@ class DateWiseExpenseChart extends StatelessWidget {
                             fontWeight: FontWeight.w500,
                           ),
                         ),
-                        Text(
+                        LocalizedText(
                           DateFormat('d').format(data.date),
                           style: TextStyle(
                             fontSize: 9.sp,

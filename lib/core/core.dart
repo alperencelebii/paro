@@ -8,3 +8,4 @@ export 'colors/app_colors.dart';
 export 'spacing/app_spacing.dart';
 export 'size/app_size.dart';
 export 'theme/app_theme.dart';
+export 'localization/localization.dart';

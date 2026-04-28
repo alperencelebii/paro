@@ -2,6 +2,7 @@ import 'package:finance_track/features/profile/send_message/cubit/send_message_c
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:finance_track/core/localization/localization.dart';
 
 /// Send Message screen with contact form
 class SendMessageScreen extends StatelessWidget {
@@ -13,7 +14,7 @@ class SendMessageScreen extends StatelessWidget {
       create: (context) => SendMessageCubit(),
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Send Feedback'),
+          title: const LocalizedText('Send Feedback'),
           elevation: 0,
           backgroundColor: Theme.of(context).colorScheme.primary,
           foregroundColor: Colors.white,
@@ -78,8 +79,8 @@ class _SendMessageContent extends StatelessWidget {
                 TextFormField(
                   controller: state.subjectController,
                   decoration: InputDecoration(
-                    labelText: 'Subject',
-                    hintText: 'Subject',
+                    labelText: AppLocalizations.tr('Subject'),
+                    hintText: AppLocalizations.tr('Subject'),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12.r),
                     ),
@@ -87,7 +88,7 @@ class _SendMessageContent extends StatelessWidget {
                   ),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'Please enter a subject';
+                      return AppLocalizations.tr('Please enter a subject');
                     }
                     return null;
                   },
@@ -96,8 +97,8 @@ class _SendMessageContent extends StatelessWidget {
                 TextFormField(
                   controller: state.messageController,
                   decoration: InputDecoration(
-                    labelText: 'Message',
-                    hintText: 'Message',
+                    labelText: AppLocalizations.tr('Message'),
+                    hintText: AppLocalizations.tr('Message'),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12.r),
                     ),
@@ -107,7 +108,7 @@ class _SendMessageContent extends StatelessWidget {
                   maxLines: 5,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'Please enter your message';
+                      return AppLocalizations.tr('Please enter your message');
                     }
                     return null;
                   },
@@ -125,7 +126,7 @@ class _SendMessageContent extends StatelessWidget {
                         ),
                         SizedBox(width: 8.w),
                         Expanded(
-                          child: Text(
+                          child: LocalizedText(
                             state.errorMessage!,
                             style: TextStyle(
                               color: Colors.red,
@@ -146,8 +147,7 @@ class _SendMessageContent extends StatelessWidget {
                           color: Colors.green,
                         ),
                         SizedBox(width: 8.w),
-                        const Text(
-                          'Message sent successfully!',
+                        const LocalizedText('Message sent successfully!',
                           style: TextStyle(
                             color: Colors.green,
                           ),
@@ -178,8 +178,7 @@ class _SendMessageContent extends StatelessWidget {
                                   AlwaysStoppedAnimation<Color>(Colors.white),
                             ),
                           )
-                        : Text(
-                            'Send Message',
+                        : LocalizedText('Send Message',
                             style: TextStyle(
                               fontSize: 16.sp,
                               fontWeight: FontWeight.bold,

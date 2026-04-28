@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:finance_track/core/localization/localization.dart';
 
 Widget buildInputField({
   required BuildContext context,
@@ -20,7 +21,7 @@ Widget buildInputField({
     crossAxisAlignment: CrossAxisAlignment.start,
     mainAxisSize: MainAxisSize.min,
     children: [
-      Text(
+      LocalizedText(
         label,
         style: theme.textTheme.bodySmall?.copyWith(
           fontWeight: FontWeight.w600,
@@ -39,7 +40,7 @@ Widget buildInputField({
           fontSize: 16.sp,
         ),
         decoration: InputDecoration(
-          hintText: hint,
+          hintText: AppLocalizations.tr(hint),
           hintStyle: TextStyle(
             color: Colors.black38,
             fontSize: 14.sp,

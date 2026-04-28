@@ -5,6 +5,7 @@ import 'package:finance_track/core/extensions/extensions.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:finance_track/core/localization/localization.dart';
 
 extension ShowDialogExtension on BuildContext {
   Future<bool?> showInfoDialog({
@@ -38,9 +39,9 @@ extension ShowDialogExtension on BuildContext {
             (context) {
               return AlertDialog.adaptive(
                 actionsAlignment: MainAxisAlignment.end,
-                title: Text(title!),
+                title: LocalizedText(title!),
                 titleTextStyle: titleTextStyle,
-                content: content == null ? null : Text(content),
+                content: content == null ? null : LocalizedText(content),
                 actions: actions,
               );
             },
@@ -153,7 +154,7 @@ extension ShowDialogExtension on BuildContext {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     if (title != null) ...[
-                      Text(
+                      LocalizedText(
                         title,
                         style: context.titleLarge?.copyWith(color: titleColor),
                       ),
@@ -278,7 +279,7 @@ class _Text extends StatelessWidget {
     return DefaultTextStyle.merge(
       style: style,
       overflow: TextOverflow.ellipsis,
-      child: Text(text),
+      child: LocalizedText(text),
     );
   }
 }

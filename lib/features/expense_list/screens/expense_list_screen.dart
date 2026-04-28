@@ -22,6 +22,7 @@ import '../../analytics/widgets/transactions_filter_controls.dart';
 import '../../analytics/bloc/transaction_analytics_bloc.dart';
 import '../../analytics/bloc/transaction_analytics_state.dart';
 import '../../analytics/bloc/transaction_analytics_event.dart' as ta_events;
+import 'package:finance_track/core/localization/localization.dart';
 
 class ExpenseListScreenPage extends StatelessWidget {
   const ExpenseListScreenPage({super.key});
@@ -48,7 +49,7 @@ class ExpenseListScreen extends StatelessWidget {
       child: Scaffold(
         backgroundColor: Theme.of(context).colorScheme.surface,
         appBar: AppBar(
-          title: const Text('Expense History'),
+          title: const LocalizedText('Expense History'),
           elevation: 0,
           scrolledUnderElevation: 0,
           leading: IconButton(
@@ -67,7 +68,7 @@ class ExpenseListScreen extends StatelessWidget {
             IconButton(
               icon: const Icon(Icons.filter_list),
               onPressed: () => _showFilterDialog(context),
-              tooltip: 'Filter expenses',
+              tooltip: AppLocalizations.tr('Filter expenses'),
             ),
             IconButton(
               icon: const Icon(Icons.search),
@@ -83,7 +84,7 @@ class ExpenseListScreen extends StatelessWidget {
                   );
                 }
               },
-              tooltip: 'Search expenses',
+              tooltip: AppLocalizations.tr('Search expenses'),
             ),
           ],
           flexibleSpace: Container(
@@ -335,7 +336,7 @@ class _DateHeader extends StatelessWidget {
       padding: EdgeInsets.only(top: 16.h, bottom: 8.h),
       child: Row(
         children: [
-          Text(
+          LocalizedText(
             dateText,
             style: theme.textTheme.titleSmall?.copyWith(
               fontWeight: FontWeight.bold,
@@ -397,8 +398,7 @@ class ExpenseListItemWidget extends StatelessWidget {
           children: [
             Icon(Icons.edit, color: Colors.white, size: 24.r),
             SizedBox(width: 8.w),
-            Text(
-              'Edit',
+            LocalizedText('Edit',
               style: theme.textTheme.titleMedium?.copyWith(
                 color: Colors.white,
                 fontWeight: FontWeight.w600,
@@ -417,8 +417,7 @@ class ExpenseListItemWidget extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            Text(
-              'Delete',
+            LocalizedText('Delete',
               style: theme.textTheme.titleMedium?.copyWith(
                 color: Colors.white,
                 fontWeight: FontWeight.w600,
@@ -490,7 +489,7 @@ class ExpenseListItemWidget extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
+                      LocalizedText(
                         expense.title,
                         style: theme.textTheme.bodyLarge?.copyWith(
                           fontWeight: FontWeight.w600,
@@ -499,8 +498,7 @@ class ExpenseListItemWidget extends StatelessWidget {
                         overflow: TextOverflow.ellipsis,
                       ),
                       SizedBox(height: 4.h),
-                      Text(
-                        '${expense.category.displayName} • ${dateFormat.format(expense.date)}',
+                      LocalizedText('${expense.category.displayName} • ${dateFormat.format(expense.date)}',
                         style: theme.textTheme.bodySmall?.copyWith(
                           color: theme.colorScheme.onSurface
                               .withValues(alpha: 0.6),
@@ -519,8 +517,7 @@ class ExpenseListItemWidget extends StatelessWidget {
                         ? currencyState.selectedCurrency
                         : Currencies.inr;
 
-                    return Text(
-                      '−${CurrencyFormatter.format(expense.amount, currency)}',
+                    return LocalizedText('−${CurrencyFormatter.format(expense.amount, currency)}',
                       style: theme.textTheme.titleMedium?.copyWith(
                         color: Colors.redAccent,
                         fontWeight: FontWeight.bold,
@@ -639,8 +636,7 @@ class ExpenseListItemWidget extends StatelessWidget {
                                   );
                                 }),
                             SizedBox(height: 24.h),
-                            Text(
-                              'Delete Expense',
+                            LocalizedText('Delete Expense',
                               style: theme.textTheme.titleLarge?.copyWith(
                                 fontWeight: FontWeight.bold,
                                 color: Colors.red.shade700,
@@ -691,7 +687,7 @@ class ExpenseListItemWidget extends StatelessWidget {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                        Text(
+                                        LocalizedText(
                                           expense.title,
                                           style: theme.textTheme.titleMedium
                                               ?.copyWith(
@@ -708,7 +704,7 @@ class ExpenseListItemWidget extends StatelessWidget {
                                                     is CurrencyLoaded
                                                 ? currencyState.selectedCurrency
                                                 : Currencies.inr;
-                                            return Text(
+                                            return LocalizedText(
                                               CurrencyFormatter.format(
                                                   expense.amount, currency),
                                               style: theme.textTheme.bodyMedium
@@ -728,8 +724,7 @@ class ExpenseListItemWidget extends StatelessWidget {
 
                             SizedBox(height: 24.h),
 
-                            Text(
-                              'This action cannot be undone. Are you sure you want to delete this expense?',
+                            LocalizedText('This action cannot be undone. Are you sure you want to delete this expense?',
                               textAlign: TextAlign.center,
                               style: theme.textTheme.bodyMedium?.copyWith(
                                 color: theme.colorScheme.onSurface
@@ -763,8 +758,7 @@ class ExpenseListItemWidget extends StatelessWidget {
                                   ),
                                   padding: EdgeInsets.symmetric(vertical: 12.h),
                                 ),
-                                child: Text(
-                                  'Cancel',
+                                child: LocalizedText('Cancel',
                                   style: TextStyle(
                                     fontWeight: FontWeight.w600,
                                     color: theme.colorScheme.onSurface,
@@ -786,8 +780,7 @@ class ExpenseListItemWidget extends StatelessWidget {
                                   padding: EdgeInsets.symmetric(vertical: 12.h),
                                   elevation: 0,
                                 ),
-                                child: const Text(
-                                  'Delete',
+                                child: const LocalizedText('Delete',
                                   style: TextStyle(
                                     fontWeight: FontWeight.w600,
                                   ),
@@ -895,13 +888,12 @@ class _ExpenseDetailsDialogState extends State<_ExpenseDetailsDialog> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          'Expense Details',
+                        LocalizedText('Expense Details',
                           style: theme.textTheme.titleLarge?.copyWith(
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        Text(
+                        LocalizedText(
                           _selectedCategory.displayName,
                           style: theme.textTheme.bodyMedium?.copyWith(
                             color: color,
@@ -919,12 +911,12 @@ class _ExpenseDetailsDialogState extends State<_ExpenseDetailsDialog> {
                           _isEditing = true;
                         });
                       },
-                      tooltip: 'Edit expense',
+                      tooltip: AppLocalizations.tr('Edit expense'),
                     ),
                   IconButton(
                     icon: const Icon(Icons.close),
                     onPressed: () => Navigator.of(context).pop(),
-                    tooltip: 'Close',
+                    tooltip: AppLocalizations.tr('Close'),
                   ),
                 ],
               ),
@@ -934,21 +926,20 @@ class _ExpenseDetailsDialogState extends State<_ExpenseDetailsDialog> {
               if (_isEditing) ...[
                 // Edit Mode
                 _buildEditField(
-                  label: 'Title',
+                  label: AppLocalizations.tr('Title'),
                   controller: _titleController,
                   prefixIcon: Icons.title,
                 ),
                 const SizedBox(height: 16),
                 _buildEditField(
-                  label: 'Amount',
+                  label: AppLocalizations.tr('Amount'),
                   controller: _amountController,
                   prefixIcon: Icons.attach_money,
                   keyboardType: TextInputType.number,
                 ),
                 const SizedBox(height: 16),
                 // Category Dropdown
-                Text(
-                  'Category',
+                LocalizedText('Category',
                   style: theme.textTheme.titleSmall?.copyWith(
                     color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
                   ),
@@ -980,7 +971,7 @@ class _ExpenseDetailsDialogState extends State<_ExpenseDetailsDialog> {
                                 size: 20,
                               ),
                               const SizedBox(width: 12),
-                              Text(category.displayName),
+                              LocalizedText(category.displayName),
                             ],
                           ),
                         );
@@ -997,8 +988,7 @@ class _ExpenseDetailsDialogState extends State<_ExpenseDetailsDialog> {
                 ),
                 const SizedBox(height: 16),
                 // Date Picker
-                Text(
-                  'Date & Time',
+                LocalizedText('Date & Time',
                   style: theme.textTheme.titleSmall?.copyWith(
                     color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
                   ),
@@ -1020,8 +1010,7 @@ class _ExpenseDetailsDialogState extends State<_ExpenseDetailsDialog> {
                       children: [
                         const Icon(Icons.calendar_today),
                         const SizedBox(width: 12),
-                        Text(
-                          '${dateFormat.format(_selectedDate)} at ${timeFormat.format(_selectedDate)}',
+                        LocalizedText('${dateFormat.format(_selectedDate)} at ${timeFormat.format(_selectedDate)}',
                         ),
                         const Spacer(),
                         const Icon(Icons.edit_calendar),
@@ -1031,13 +1020,13 @@ class _ExpenseDetailsDialogState extends State<_ExpenseDetailsDialog> {
                 ),
                 const SizedBox(height: 16),
                 _buildEditField(
-                  label: 'Payment Method',
+                  label: AppLocalizations.tr('Payment Method'),
                   controller: _paymentMethodController,
                   prefixIcon: Icons.payment,
                 ),
                 const SizedBox(height: 16),
                 _buildEditField(
-                  label: 'Notes (Optional)',
+                  label: AppLocalizations.tr('Notes (Optional)'),
                   controller: _notesController,
                   prefixIcon: Icons.note,
                   maxLines: 3,
@@ -1066,7 +1055,7 @@ class _ExpenseDetailsDialogState extends State<_ExpenseDetailsDialog> {
                         style: OutlinedButton.styleFrom(
                           padding: const EdgeInsets.symmetric(vertical: 12),
                         ),
-                        child: const Text('Cancel'),
+                        child: const LocalizedText('Cancel'),
                       ),
                     ),
                     const SizedBox(width: 16),
@@ -1076,7 +1065,7 @@ class _ExpenseDetailsDialogState extends State<_ExpenseDetailsDialog> {
                         style: FilledButton.styleFrom(
                           padding: const EdgeInsets.symmetric(vertical: 12),
                         ),
-                        child: const Text('Save'),
+                        child: const LocalizedText('Save'),
                       ),
                     ),
                   ],
@@ -1091,15 +1080,14 @@ class _ExpenseDetailsDialogState extends State<_ExpenseDetailsDialog> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
-                            'Title',
+                          LocalizedText('Title',
                             style: theme.textTheme.titleSmall?.copyWith(
                               color: theme.colorScheme.onSurface
                                   .withValues(alpha: 0.7),
                             ),
                           ),
                           const SizedBox(height: 4),
-                          Text(
+                          LocalizedText(
                             widget.expense.title,
                             style: theme.textTheme.titleMedium,
                           ),
@@ -1109,15 +1097,14 @@ class _ExpenseDetailsDialogState extends State<_ExpenseDetailsDialog> {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
-                        Text(
-                          'Amount',
+                        LocalizedText('Amount',
                           style: theme.textTheme.titleSmall?.copyWith(
                             color: theme.colorScheme.onSurface
                                 .withValues(alpha: 0.7),
                           ),
                         ),
                         const SizedBox(height: 4),
-                        Text(
+                        LocalizedText(
                           currencyFormat.format(widget.expense.amount),
                           style: theme.textTheme.titleLarge?.copyWith(
                             fontWeight: FontWeight.bold,
@@ -1161,8 +1148,7 @@ class _ExpenseDetailsDialogState extends State<_ExpenseDetailsDialog> {
 
                 // Notes (if any)
                 if (widget.expense.notes?.isNotEmpty ?? false) ...[
-                  Text(
-                    'Notes',
+                  LocalizedText('Notes',
                     style: theme.textTheme.titleSmall?.copyWith(
                       color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
                     ),
@@ -1176,7 +1162,7 @@ class _ExpenseDetailsDialogState extends State<_ExpenseDetailsDialog> {
                           .withValues(alpha: 0.5),
                       borderRadius: BorderRadius.circular(12),
                     ),
-                    child: Text(
+                    child: LocalizedText(
                       widget.expense.notes!,
                       style: theme.textTheme.bodyMedium,
                     ),
@@ -1201,7 +1187,7 @@ class _ExpenseDetailsDialogState extends State<_ExpenseDetailsDialog> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
+        LocalizedText(
           label,
           style: Theme.of(context).textTheme.titleSmall?.copyWith(
                 color: Theme.of(context)
@@ -1257,13 +1243,13 @@ class _ExpenseDetailsDialogState extends State<_ExpenseDetailsDialog> {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
+            LocalizedText(
               title,
               style: theme.textTheme.bodySmall?.copyWith(
                 color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
               ),
             ),
-            Text(
+            LocalizedText(
               value,
               style: theme.textTheme.bodyLarge?.copyWith(
                 fontWeight: FontWeight.w500,
@@ -1379,7 +1365,7 @@ class _ExpenseDetailsDialogState extends State<_ExpenseDetailsDialog> {
   void _showValidationError(String message) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: Text(message),
+        content: LocalizedText(message),
         behavior: SnackBarBehavior.floating,
         backgroundColor: Theme.of(context).colorScheme.error,
       ),
@@ -1413,15 +1399,13 @@ class _EmptyExpenseView extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 32),
-              Text(
-                'No expenses yet',
+              LocalizedText('No expenses yet',
                 style: theme.textTheme.headlineSmall?.copyWith(
                   fontWeight: FontWeight.bold,
                 ),
               ),
               const SizedBox(height: 16),
-              Text(
-                'Start tracking your expenses by adding your first transaction',
+              LocalizedText('Start tracking your expenses by adding your first transaction',
                 textAlign: TextAlign.center,
                 style: theme.textTheme.bodyLarge?.copyWith(
                   color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
@@ -1439,7 +1423,7 @@ class _EmptyExpenseView extends StatelessWidget {
                   }
                 },
                 icon: const Icon(Icons.add),
-                label: const Text('Add Your First Expense'),
+                label: const LocalizedText('Add Your First Expense'),
                 style: ElevatedButton.styleFrom(
                   padding: const EdgeInsets.symmetric(
                     horizontal: 24,
@@ -1488,7 +1472,7 @@ class _ErrorView extends StatelessWidget {
               TextSpan(
                 children: [
                   TextSpan(
-                    text: 'Error loading expenses\n',
+                    text: AppLocalizations.tr('Error loading expenses\n'),
                     style: theme.textTheme.titleLarge?.copyWith(
                       fontWeight: FontWeight.bold,
                       color: Colors.red.shade700,
@@ -1510,7 +1494,7 @@ class _ErrorView extends StatelessWidget {
                 context.read<ExpenseListBloc>().add(const LoadExpenses());
               },
               icon: const Icon(Icons.refresh),
-              label: const Text('Try Again'),
+              label: const LocalizedText('Try Again'),
               style: ElevatedButton.styleFrom(
                 backgroundColor: theme.colorScheme.error,
                 foregroundColor: theme.colorScheme.onError,
@@ -1636,8 +1620,7 @@ class _FilterDialogState extends State<_FilterDialog> {
                 ),
                 const SizedBox(width: 12),
                 Expanded(
-                  child: Text(
-                    'Filter Expenses',
+                  child: LocalizedText('Filter Expenses',
                     style: theme.textTheme.titleMedium?.copyWith(
                       fontWeight: FontWeight.bold,
                       color: theme.colorScheme.onPrimaryContainer,
@@ -1648,7 +1631,7 @@ class _FilterDialogState extends State<_FilterDialog> {
                 IconButton(
                   icon: const Icon(Icons.close, size: 25),
                   onPressed: () => Navigator.pop(context),
-                  tooltip: 'Close',
+                  tooltip: AppLocalizations.tr('Close'),
                   color: theme.colorScheme.onPrimaryContainer,
                   constraints: const BoxConstraints(),
                   padding: const EdgeInsets.all(8),
@@ -1704,12 +1687,12 @@ class _FilterDialogState extends State<_FilterDialog> {
               children: [
                 TextButton(
                   onPressed: () => Navigator.pop(context),
-                  child: const Text('Cancel'),
+                  child: const LocalizedText('Cancel'),
                 ),
                 const SizedBox(width: 8),
                 FilledButton(
                   onPressed: _applyFilters,
-                  child: const Text('Apply'),
+                  child: const LocalizedText('Apply'),
                 ),
               ],
             ),
@@ -1764,7 +1747,7 @@ class _FilterItemSelectable extends StatelessWidget {
               ),
               const SizedBox(width: 16),
               Expanded(
-                child: Text(
+                child: LocalizedText(
                   title,
                   style: theme.textTheme.bodyLarge?.copyWith(
                     fontWeight:
@@ -1846,7 +1829,7 @@ class _ExpenseSearchDelegate extends SearchDelegate<Expense?> {
             query = '';
             showResults(context);
           },
-          tooltip: 'Clear',
+          tooltip: AppLocalizations.tr('Clear'),
         ),
     ];
   }
@@ -1858,7 +1841,7 @@ class _ExpenseSearchDelegate extends SearchDelegate<Expense?> {
       onPressed: () {
         close(context, null);
       },
-      tooltip: 'Back',
+      tooltip: AppLocalizations.tr('Back'),
     );
   }
 
@@ -1875,7 +1858,7 @@ class _ExpenseSearchDelegate extends SearchDelegate<Expense?> {
   Widget _buildSearchResults(BuildContext context) {
     if (expenses.isEmpty) {
       return const Center(
-        child: Text('No expenses found'),
+        child: LocalizedText('No expenses found'),
       );
     }
 
@@ -1900,8 +1883,7 @@ class _ExpenseSearchDelegate extends SearchDelegate<Expense?> {
           children: [
             const Icon(Icons.search_off, size: 48, color: Colors.grey),
             const SizedBox(height: 16),
-            Text(
-              'No expenses found for "$query"',
+            LocalizedText('No expenses found for "$query"',
               style: const TextStyle(fontSize: 16),
             ),
           ],
@@ -1937,13 +1919,13 @@ class _ExpenseSearchDelegate extends SearchDelegate<Expense?> {
           size: 24,
         ),
       ),
-      title: Text(
+      title: LocalizedText(
         expense.title,
         style: theme.textTheme.titleMedium?.copyWith(
           fontWeight: FontWeight.w600,
         ),
       ),
-      subtitle: Text(
+      subtitle: LocalizedText(
         expense.notes?.isNotEmpty == true
             ? expense.notes!
             : DateFormat('MMM d, yyyy').format(expense.date),
@@ -1957,14 +1939,14 @@ class _ExpenseSearchDelegate extends SearchDelegate<Expense?> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
-          Text(
+          LocalizedText(
             formattedAmount,
             style: theme.textTheme.titleMedium?.copyWith(
               fontWeight: FontWeight.bold,
               color: const Color(0xFFF25F5C),
             ),
           ),
-          Text(
+          LocalizedText(
             DateFormat('MMM d, yyyy').format(expense.date),
             style: theme.textTheme.bodySmall?.copyWith(
               color: Colors.grey[600],
@@ -1999,7 +1981,7 @@ Widget _buildSectionHeader(
             color: Colors.red.shade400,
           ),
           SizedBox(width: 8.w),
-          Text(
+          LocalizedText(
             title,
             style: theme.textTheme.titleMedium?.copyWith(
               fontWeight: FontWeight.bold,
@@ -2022,7 +2004,7 @@ Widget _buildSectionHeader(
       //         color: Colors.red.shade400,
       //       ),
       //       SizedBox(width: 4.w),
-      //       Text(
+      //       LocalizedText(
       //         filterText,
       //         style: theme.textTheme.bodySmall?.copyWith(
       //           fontWeight: FontWeight.w500,

@@ -15,32 +15,80 @@ extension CategoryTypeExtension on CategoryType {
       CategoryType.values[index.clamp(0, CategoryType.values.length - 1)];
 }
 
-/// Flutter release build için güvenli icon resolver
+/// Flutter release build safe icon resolver.
+///
+/// Dynamic IconData(codePoint, ...) breaks icon tree-shaking in release builds.
+/// Therefore all selectable icons are kept in a static const list and stored
+/// codePoints are resolved back to one of these const icons.
 class CategoryIconResolver {
-  static const Map<int, IconData> icons = {
-    0xe532: Icons.restaurant,
-    0xe59c: Icons.directions_car,
-    0xe8cc: Icons.shopping_cart,
-    0xe88a: Icons.home,
-    0xe227: Icons.attach_money,
-    0xe8f6: Icons.local_hospital,
-    0xe53f: Icons.local_gas_station,
-    0xe80c: Icons.school,
-    0xe3f3: Icons.movie,
-    0xe8b8: Icons.settings,
-    0xe574: Icons.flight,
-    0xe57d: Icons.train,
-    0xe530: Icons.directions_bus,
-    0xe541: Icons.local_taxi,
-    0xe8e5: Icons.work,
-    0xe263: Icons.savings,
-    0xe850: Icons.account_balance,
-    0xe2c7: Icons.category,
-  };
+  static const List<IconData> availableIcons = [
+    Icons.restaurant,
+    Icons.directions_car,
+    Icons.movie,
+    Icons.home,
+    Icons.shopping_bag,
+    Icons.medical_services,
+    Icons.school,
+    Icons.flight,
+    Icons.category,
+    Icons.coffee,
+    Icons.local_pizza,
+    Icons.fastfood,
+    Icons.lunch_dining,
+    Icons.icecream,
+    Icons.local_gas_station,
+    Icons.train,
+    Icons.directions_bus,
+    Icons.directions_bike,
+    Icons.pedal_bike,
+    Icons.sports_esports,
+    Icons.music_note,
+    Icons.theaters,
+    Icons.tv,
+    Icons.devices,
+    Icons.phone_iphone,
+    Icons.electric_bolt,
+    Icons.water_drop,
+    Icons.wifi,
+    Icons.home_work,
+    Icons.shopping_cart,
+    Icons.shopping_basket,
+    Icons.store,
+    Icons.health_and_safety,
+    Icons.monitor_heart,
+    Icons.healing,
+    Icons.book,
+    Icons.menu_book,
+    Icons.cast_for_education,
+    Icons.work,
+    Icons.payments,
+    Icons.attach_money,
+    Icons.savings,
+    Icons.card_giftcard,
+    Icons.pets,
+    Icons.baby_changing_station,
+    Icons.cleaning_services,
+    Icons.construction,
+    Icons.handyman,
+    Icons.fitness_center,
+    Icons.sports_soccer,
+    Icons.spa,
+    Icons.airplanemode_active,
+    Icons.beach_access,
+    Icons.local_taxi,
+    Icons.park,
+    Icons.kitchen,
+    Icons.local_florist,
+    Icons.settings,
+    Icons.account_balance,
+  ];
 
   static IconData? fromCodePoint(int? codePoint) {
     if (codePoint == null) return null;
-    return icons[codePoint] ?? Icons.category;
+    for (final icon in availableIcons) {
+      if (icon.codePoint == codePoint) return icon;
+    }
+    return Icons.category;
   }
 }
 

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'manage_categories_cubit.dart';
+import 'package:finance_track/core/localization/localization.dart';
 
 class ManageCategoriesScreen extends StatelessWidget {
   const ManageCategoriesScreen({super.key});
@@ -19,7 +20,7 @@ class ManageCategoriesScreen extends StatelessWidget {
             length: 2,
             child: Scaffold(
               appBar: AppBar(
-                title: const Text('My Categories'),
+                title: const LocalizedText('My Categories'),
                 backgroundColor: Theme.of(context).colorScheme.primary,
                 foregroundColor: Colors.white,
                 centerTitle: true,
@@ -39,8 +40,8 @@ class ManageCategoriesScreen extends StatelessWidget {
                     fontSize: 14.sp,
                   ),
                   tabs: const [
-                    Tab(text: 'Expense'),
-                    Tab(text: 'Income'),
+                    Tab(child: LocalizedText('Expense')),
+                    Tab(child: LocalizedText('Income')),
                   ],
                 ),
               ),
@@ -68,7 +69,7 @@ class ManageCategoriesScreen extends StatelessWidget {
                       }
                     },
                     icon: const Icon(Icons.add),
-                    label: const Text('Add'),
+                    label: const LocalizedText('Add'),
                   );
                 },
               ),
@@ -109,65 +110,7 @@ class ManageCategoriesScreen extends StatelessWidget {
       Colors.grey,
     ];
     Color selectedColor = existing?.color ?? colors.first;
-    final allIcons = <IconData>[
-      Icons.restaurant,
-      Icons.directions_car,
-      Icons.movie,
-      Icons.home,
-      Icons.shopping_bag,
-      Icons.medical_services,
-      Icons.school,
-      Icons.flight,
-      Icons.category,
-      Icons.coffee,
-      Icons.local_pizza,
-      Icons.fastfood,
-      Icons.lunch_dining,
-      Icons.icecream,
-      Icons.local_gas_station,
-      Icons.train,
-      Icons.directions_bus,
-      Icons.directions_bike,
-      Icons.pedal_bike,
-      Icons.sports_esports,
-      Icons.music_note,
-      Icons.theaters,
-      Icons.tv,
-      Icons.devices,
-      Icons.phone_iphone,
-      Icons.electric_bolt,
-      Icons.water_drop,
-      Icons.wifi,
-      Icons.home_work,
-      Icons.shopping_cart,
-      Icons.shopping_basket,
-      Icons.store,
-      Icons.health_and_safety,
-      Icons.monitor_heart,
-      Icons.healing,
-      Icons.book,
-      Icons.menu_book,
-      Icons.cast_for_education,
-      Icons.work,
-      Icons.payments,
-      Icons.attach_money,
-      Icons.savings,
-      Icons.card_giftcard,
-      Icons.pets,
-      Icons.baby_changing_station,
-      Icons.cleaning_services,
-      Icons.construction,
-      Icons.handyman,
-      Icons.fitness_center,
-      Icons.sports_soccer,
-      Icons.spa,
-      Icons.airplanemode_active,
-      Icons.beach_access,
-      Icons.local_taxi,
-      Icons.park,
-      Icons.kitchen,
-      Icons.local_florist,
-    ];
+    final allIcons = CategoryIconResolver.availableIcons;
     IconData? selectedIcon = existing?.icon ?? allIcons.first;
 
     final result = await showModalBottomSheet<UserCategory>(
@@ -192,32 +135,32 @@ class ManageCategoriesScreen extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
+                    LocalizedText(
                       existing == null ? 'Create Category' : 'Edit Category',
                       style: Theme.of(ctx).textTheme.titleLarge,
                     ),
                     const SizedBox(height: 12),
                     TextField(
                       controller: nameCtrl,
-                      decoration: const InputDecoration(
-                        labelText: 'Name',
+                      decoration: InputDecoration(
+                        labelText: AppLocalizations.tr('Name'),
                       ),
                       textCapitalization: TextCapitalization.sentences,
                     ),
                     const SizedBox(height: 12),
-                    Text('Type', style: Theme.of(ctx).textTheme.labelLarge),
+                    LocalizedText('Type', style: Theme.of(ctx).textTheme.labelLarge),
                     const SizedBox(height: 8),
                     Wrap(
                       spacing: 8,
                       children: [
                         ChoiceChip(
-                          label: const Text('Expense'),
+                          label: const LocalizedText('Expense'),
                           selected: type == CategoryType.expense,
                           onSelected: (_) =>
                               setState(() => type = CategoryType.expense),
                         ),
                         ChoiceChip(
-                          label: const Text('Income'),
+                          label: const LocalizedText('Income'),
                           selected: type == CategoryType.income,
                           onSelected: (_) =>
                               setState(() => type = CategoryType.income),
@@ -225,7 +168,7 @@ class ManageCategoriesScreen extends StatelessWidget {
                       ],
                     ),
                     const SizedBox(height: 12),
-                    Text('Color', style: Theme.of(ctx).textTheme.labelLarge),
+                    LocalizedText('Color', style: Theme.of(ctx).textTheme.labelLarge),
                     const SizedBox(height: 8),
                     SizedBox(
                       height: 96,
@@ -256,7 +199,7 @@ class ManageCategoriesScreen extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 12),
-                    Text('Icon', style: Theme.of(ctx).textTheme.labelLarge),
+                    LocalizedText('Icon', style: Theme.of(ctx).textTheme.labelLarge),
                     const SizedBox(height: 8),
                     SizedBox(
                       height: 180,
@@ -319,7 +262,7 @@ class ManageCategoriesScreen extends StatelessWidget {
                             ),
                           );
                         },
-                        child: const Text('Save'),
+                        child: const LocalizedText('Save'),
                       ),
                     ),
                     const SizedBox(height: 8),
@@ -361,7 +304,7 @@ class _CategoryList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (items.isEmpty) {
-      return const Center(child: Text('No categories'));
+      return const Center(child: LocalizedText('No categories'));
     }
     return ListView.builder(
       padding: const EdgeInsets.only(bottom: 200),
@@ -379,12 +322,12 @@ class _CategoryList extends StatelessWidget {
               backgroundColor: c.color.withValues(alpha: 0.15),
               child: Icon(c.icon ?? Icons.category, color: c.color),
             ),
-            title: Text(c.name,
+            title: LocalizedText(c.name,
                 style: Theme.of(context)
                     .textTheme
                     .titleLarge!
                     .copyWith(fontWeight: FontWeight.bold, fontSize: 16)),
-            subtitle: Text(
+            subtitle: LocalizedText(
               c.type == CategoryType.expense ? 'Expense' : 'Income',
               style: Theme.of(context).textTheme.bodySmall!.copyWith(
                   color: Theme.of(context)
@@ -409,8 +352,8 @@ class _CategoryList extends StatelessWidget {
               surfaceTintColor: Theme.of(context).colorScheme.surface,
               borderRadius: BorderRadius.zero,
               itemBuilder: (context) => const [
-                PopupMenuItem(value: 'edit', child: Text('Edit')),
-                PopupMenuItem(value: 'delete', child: Text('Delete')),
+                PopupMenuItem(value: 'edit', child: LocalizedText('Edit')),
+                PopupMenuItem(value: 'delete', child: LocalizedText('Delete')),
               ],
             ),
           ),

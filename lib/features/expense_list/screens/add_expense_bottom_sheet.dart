@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:finance_track/core/localization/localization.dart';
 
 import '../../../data/models/expense_model.dart';
 import '../add_expense_bloc/add_expense_bloc.dart';
@@ -81,8 +82,7 @@ class _AddExpenseBottomSheetContent extends StatelessWidget {
           ),
 
           // Expense label
-          const Text(
-            'Expenses',
+          const LocalizedText('Expenses',
             style: TextStyle(
               fontSize: 12,
               color: Colors.grey,
@@ -96,9 +96,9 @@ class _AddExpenseBottomSheetContent extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
             child: TextField(
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 border: InputBorder.none,
-                hintText: 'Add comment...',
+                hintText: AppLocalizations.tr('Add comment...'),
                 hintStyle: TextStyle(
                   color: Colors.grey,
                   fontSize: 14,
@@ -183,12 +183,12 @@ class _CategorySelector extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             ListTile(
-              title: const Text('Payment Methods'),
+              title: const LocalizedText('Payment Methods'),
               tileColor: Colors.grey.shade200,
             ),
             ListTile(
               leading: const Icon(Icons.attach_money, color: Colors.green),
-              title: const Text('Cash'),
+              title: const LocalizedText('Cash'),
               trailing:
                   currentMethod == 'Cash' ? const Icon(Icons.check) : null,
               onTap: () {
@@ -199,7 +199,7 @@ class _CategorySelector extends StatelessWidget {
             ),
             ListTile(
               leading: const Icon(Icons.credit_card, color: Colors.blue),
-              title: const Text('Card'),
+              title: const LocalizedText('Card'),
               trailing:
                   currentMethod == 'Card' ? const Icon(Icons.check) : null,
               onTap: () {
@@ -209,7 +209,7 @@ class _CategorySelector extends StatelessWidget {
             ),
             ListTile(
               leading: const Icon(Icons.account_balance, color: Colors.purple),
-              title: const Text('Bank'),
+              title: const LocalizedText('Bank'),
               trailing:
                   currentMethod == 'Bank' ? const Icon(Icons.check) : null,
               onTap: () {
@@ -238,7 +238,7 @@ class _CategorySelector extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             ListTile(
-              title: const Text('Categories'),
+              title: const LocalizedText('Categories'),
               tileColor: Colors.grey.shade200,
             ),
             SizedBox(
@@ -251,7 +251,7 @@ class _CategorySelector extends StatelessWidget {
                       category.icon,
                       color: _getCategoryColor(category),
                     ),
-                    title: Text(category.displayName),
+                    title: LocalizedText(category.displayName),
                     trailing: isSelected ? const Icon(Icons.check) : null,
                     onTap: () {
                       // Use the stored bloc instead of looking it up in the bottomSheetContext
@@ -342,7 +342,7 @@ class _CategorySelector extends StatelessWidget {
             children: [
               Icon(icon, size: 16, color: Colors.black87),
               const SizedBox(width: 4),
-              Text(
+              LocalizedText(
                 label,
                 style: const TextStyle(
                   fontWeight: FontWeight.w500,
@@ -381,14 +381,13 @@ class _AmountDisplay extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
-                '\$',
+              const LocalizedText('\$',
                 style: TextStyle(
                   fontSize: 20,
                   color: Colors.grey,
                 ),
               ),
-              Text(
+              LocalizedText(
                 amount,
                 style: const TextStyle(
                   fontSize: 48,
@@ -621,7 +620,7 @@ class KeypadItem extends StatelessWidget {
                       color: textColor,
                       size: 20,
                     )
-                  : Text(
+                  : LocalizedText(
                       text!,
                       style: TextStyle(
                         fontSize: 22,

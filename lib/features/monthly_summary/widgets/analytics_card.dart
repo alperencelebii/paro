@@ -5,6 +5,7 @@ import 'package:intl/intl.dart';
 import '../../profile/currency/bloc/currency/currency_bloc.dart';
 import '../../profile/currency/bloc/currency/currency_state.dart';
 import '../../../core/models/currency_model.dart';
+import 'package:finance_track/core/localization/localization.dart';
 
 class AnalyticsCard extends StatelessWidget {
   final double totalIncome;
@@ -68,8 +69,7 @@ class AnalyticsCard extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(width: 12),
-                    Text(
-                      'Monthly Analytics',
+                    LocalizedText('Monthly Analytics',
                       style: theme.textTheme.titleMedium?.copyWith(
                         fontWeight: FontWeight.w600,
                       ),
@@ -133,8 +133,7 @@ class AnalyticsCard extends StatelessWidget {
 
                 // Enhanced Insights Section
                 if (totalIncome > 0 || totalExpenses > 0) ...[
-                  Text(
-                    'Key Insights',
+                  LocalizedText('Key Insights',
                     style: theme.textTheme.titleSmall?.copyWith(
                       fontWeight: FontWeight.w600,
                     ),
@@ -270,14 +269,14 @@ class AnalyticsCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
+                LocalizedText(
                   insight.title,
                   style: theme.textTheme.bodyMedium?.copyWith(
                     fontWeight: FontWeight.w600,
                   ),
                 ),
                 const SizedBox(height: 2),
-                Text(
+                LocalizedText(
                   insight.description,
                   style: theme.textTheme.bodySmall?.copyWith(
                     color: theme.textTheme.bodySmall?.color
@@ -317,7 +316,7 @@ class AnalyticsCard extends StatelessWidget {
                 color: color,
               ),
               const SizedBox(width: 4),
-              Text(
+              LocalizedText(
                 formattedAmount,
                 style: theme.textTheme.titleMedium?.copyWith(
                   fontWeight: FontWeight.w600,
@@ -328,7 +327,7 @@ class AnalyticsCard extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 4),
-        Text(
+        LocalizedText(
           label,
           style: theme.textTheme.bodySmall?.copyWith(
             color: theme.textTheme.bodySmall?.color?.withValues(alpha: 0.7),

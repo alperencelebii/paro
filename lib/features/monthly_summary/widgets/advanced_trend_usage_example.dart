@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:intl/intl.dart';
+import 'package:finance_track/core/localization/localization.dart';
 
 import '../../../core/models/currency_model.dart';
 import 'advanced_trend_chart.dart';
@@ -22,15 +23,14 @@ class AdvancedTrendExamples extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Advanced Trend Examples'),
+        title: const LocalizedText('Advanced Trend Examples'),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              'Finance Visualization Examples',
+            LocalizedText('Finance Visualization Examples',
               style: theme.textTheme.titleLarge?.copyWith(
                 fontWeight: FontWeight.bold,
               ),
@@ -91,12 +91,12 @@ class AdvancedTrendExamples extends StatelessWidget {
 
     // Create legend items
     final legendItems = [
-      const LegendItem(
-        label: 'Daily Expenses',
+      LegendItem(
+        label: AppLocalizations.tr('Daily Expenses'),
         color: Colors.blue,
       ),
-      const LegendItem(
-        label: '7-Day Average',
+      LegendItem(
+        label: AppLocalizations.tr('7-Day Average'),
         color: Colors.orange,
       ),
     ];
@@ -171,12 +171,12 @@ class AdvancedTrendExamples extends StatelessWidget {
 
     // Create legend items
     final legendItems = [
-      const LegendItem(
-        label: 'Expenses',
+      LegendItem(
+        label: AppLocalizations.tr('Expenses'),
         color: Colors.blue,
       ),
-      const LegendItem(
-        label: 'Income',
+      LegendItem(
+        label: AppLocalizations.tr('Income'),
         color: Colors.green,
       ),
     ];
@@ -229,16 +229,16 @@ class AdvancedTrendExamples extends StatelessWidget {
 
     // Create legend items
     final legendItems = [
-      const LegendItem(
-        label: 'Food & Groceries',
+      LegendItem(
+        label: AppLocalizations.tr('Food & Groceries'),
         color: Colors.blue,
       ),
-      const LegendItem(
-        label: 'Entertainment',
+      LegendItem(
+        label: AppLocalizations.tr('Entertainment'),
         color: Colors.green,
       ),
-      const LegendItem(
-        label: 'Transport',
+      LegendItem(
+        label: AppLocalizations.tr('Transport'),
         color: Colors.orange,
       ),
     ];
@@ -321,16 +321,16 @@ class AdvancedTrendExamples extends StatelessWidget {
 
     // Create legend items
     final legendItems = [
-      const LegendItem(
-        label: 'Actual Spending',
+      LegendItem(
+        label: AppLocalizations.tr('Actual Spending'),
         color: Colors.blue,
       ),
-      const LegendItem(
-        label: 'Budget Plan',
+      LegendItem(
+        label: AppLocalizations.tr('Budget Plan'),
         color: Colors.green,
       ),
-      const LegendItem(
-        label: 'Projected Spending',
+      LegendItem(
+        label: AppLocalizations.tr('Projected Spending'),
         color: Colors.orange,
       ),
     ];

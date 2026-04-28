@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:finance_track/core/localization/localization.dart';
 
 import 'package:finance_track/core/router/app_router.dart';
 import 'package:finance_track/core/services/email_verification_service.dart';
@@ -125,7 +126,7 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
 
   void _showSnack(String message) {
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text(message)),
+      SnackBar(content: LocalizedText(message)),
     );
   }
 
@@ -155,12 +156,12 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
       child: Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
-          title: const Text('Verify your email'),
+          title: const LocalizedText('Verify your email'),
           backgroundColor: theme.colorScheme.primary,
           foregroundColor: theme.colorScheme.onPrimary,
           actions: [
             IconButton(
-              tooltip: 'Logout',
+              tooltip: AppLocalizations.tr('Logout'),
               icon: const Icon(Icons.logout_rounded),
               onPressed: () {
                 context.read<AppBloc>().add(const AppLogoutRequested());
@@ -174,20 +175,18 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(height: 12.h),
-              Text(
-                'We sent a verification link to:',
+              LocalizedText('We sent a verification link to:',
                 style: theme.textTheme.bodyMedium,
               ),
               SizedBox(height: 6.h),
-              Text(
+              LocalizedText(
                 email,
                 style: theme.textTheme.titleMedium?.copyWith(
                   fontWeight: FontWeight.w600,
                 ),
               ),
               SizedBox(height: 16.h),
-              Text(
-                'Please check your inbox and click the link to verify your account. You can reopen the app after verifying.',
+              LocalizedText('Please check your inbox and click the link to verify your account. You can reopen the app after verifying.',
                 style: theme.textTheme.bodyMedium?.copyWith(
                   color: Colors.black.withValues(alpha: 0.7),
                 ),
@@ -209,7 +208,7 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
                                 AlwaysStoppedAnimation<Color>(Colors.white),
                           ),
                         )
-                      : Text(
+                      : LocalizedText(
                           _timeUntilResend == null
                               ? 'Resend verification email'
                               : 'Resend in ${_formatDuration(_timeUntilResend!)}',
@@ -222,12 +221,11 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
                 height: 52.h,
                 child: OutlinedButton(
                   onPressed: _checkNow,
-                  child: const Text('I have verified, continue'),
+                  child: const LocalizedText('I have verified, continue'),
                 ),
               ),
               SizedBox(height: 16.h),
-              Text(
-                'Tips:',
+              LocalizedText('Tips:',
                 style: theme.textTheme.titleSmall
                     ?.copyWith(fontWeight: FontWeight.w600),
               ),
@@ -256,7 +254,7 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
         children: [
           const Icon(Icons.check_circle_outline, size: 16, color: Colors.green),
           SizedBox(width: 8.w),
-          Expanded(child: Text(text)),
+          Expanded(child: LocalizedText(text)),
         ],
       ),
     );

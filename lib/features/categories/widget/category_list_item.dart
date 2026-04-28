@@ -4,6 +4,7 @@ import 'package:finance_track/data/models/income_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
+import 'package:finance_track/core/localization/localization.dart';
 
 /// A widget to display a single category item in the list
 class CategoryListItem extends StatelessWidget {
@@ -85,7 +86,7 @@ class CategoryListItem extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
+                        LocalizedText(
                           categoryName,
                           style: TextStyle(
                             fontSize: 16.sp,
@@ -94,7 +95,7 @@ class CategoryListItem extends StatelessWidget {
                           ),
                         ),
                         SizedBox(height: 4.h),
-                        Text(
+                        LocalizedText(
                           formatter.format(amount),
                           style: TextStyle(
                             fontSize: 14.sp,
@@ -119,8 +120,7 @@ class CategoryListItem extends StatelessWidget {
                         ),
                       ],
                     ),
-                    child: Text(
-                      '${percentage.toStringAsFixed(1)}%',
+                    child: LocalizedText('${percentage.toStringAsFixed(1)}%',
                       style: TextStyle(
                         fontSize: 13.sp,
                         fontWeight: FontWeight.bold,

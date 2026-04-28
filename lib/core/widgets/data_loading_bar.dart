@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 import '../services/data_fetching_service.dart';
+import 'package:finance_track/core/localization/localization.dart';
 
 /// A beautiful loading bar widget that shows the data loading progress
 class DataLoadingBar extends StatefulWidget {
@@ -248,7 +249,7 @@ class _DataLoadingBarState extends State<DataLoadingBar>
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(
+                                  LocalizedText(
                                     _isError
                                         ? 'Error Loading Data'
                                         : _isSuccess
@@ -271,7 +272,7 @@ class _DataLoadingBarState extends State<DataLoadingBar>
                                         ),
                                   ),
                                   const SizedBox(height: 4),
-                                  Text(
+                                  LocalizedText(
                                     _message,
                                     style: Theme.of(context)
                                         .textTheme

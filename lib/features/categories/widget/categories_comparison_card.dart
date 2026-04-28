@@ -10,6 +10,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
+import 'package:finance_track/core/localization/localization.dart';
 
 // class CategoriesComparisonCard extends StatefulWidget {
 //   final Map<ExpenseCategory, double> expenseCategoriesAmount;
@@ -80,7 +81,7 @@ import 'package:intl/intl.dart';
 //             child: Row(
 //               mainAxisAlignment: MainAxisAlignment.spaceBetween,
 //               children: [
-//                 Text(
+//                 LocalizedText(
 //                   'Categories',
 //                   style: theme.textTheme.titleLarge?.copyWith(
 //                     fontWeight: FontWeight.bold,
@@ -97,19 +98,19 @@ import 'package:intl/intl.dart';
 //                     items: const [
 //                       DropdownMenuItem(
 //                         value: 7,
-//                         child: Text('Last 7 days'),
+//                         child: LocalizedText('Last 7 days'),
 //                       ),
 //                       DropdownMenuItem(
 //                         value: 30,
-//                         child: Text('Last 30 days'),
+//                         child: LocalizedText('Last 30 days'),
 //                       ),
 //                       DropdownMenuItem(
 //                         value: 90,
-//                         child: Text('Last 3 months'),
+//                         child: LocalizedText('Last 3 months'),
 //                       ),
 //                       DropdownMenuItem(
 //                         value: 365,
-//                         child: Text('Last year'),
+//                         child: LocalizedText('Last year'),
 //                       ),
 //                     ],
 //                     onChanged: (value) {
@@ -257,7 +258,7 @@ import 'package:intl/intl.dart';
 //             child: Center(
 //               child: TextButton.icon(
 //                 onPressed: widget.onViewMorePressed,
-//                 icon: Text(
+//                 icon: LocalizedText(
 //                   'Detailed Analysis',
 //                   style: theme.textTheme.bodyMedium?.copyWith(
 //                     color: theme.colorScheme.primary,
@@ -312,7 +313,7 @@ import 'package:intl/intl.dart';
 //                 size: 18.r,
 //               ),
 //               SizedBox(width: 8.w),
-//               Text(
+//               LocalizedText(
 //                 title,
 //                 style: theme.textTheme.bodyMedium?.copyWith(
 //                   color: isSelected
@@ -346,14 +347,14 @@ import 'package:intl/intl.dart';
 //       child: Column(
 //         crossAxisAlignment: CrossAxisAlignment.start,
 //         children: [
-//           Text(
+//           LocalizedText(
 //             title,
 //             style: theme.textTheme.bodySmall?.copyWith(
 //               fontWeight: FontWeight.w500,
 //             ),
 //           ),
 //           SizedBox(height: 4.h),
-//           Text(
+//           LocalizedText(
 //             amount,
 //             style: theme.textTheme.titleLarge?.copyWith(
 //               fontWeight: FontWeight.bold,
@@ -361,7 +362,7 @@ import 'package:intl/intl.dart';
 //             ),
 //           ),
 //           SizedBox(height: 4.h),
-//           Text(
+//           LocalizedText(
 //             '$categoryCount ${categoryCount == 1 ? 'category' : 'categories'}',
 //             style: theme.textTheme.bodySmall?.copyWith(
 //               color: theme.colorScheme.onSurface.withValues(alpha:0.7),
@@ -393,7 +394,7 @@ import 'package:intl/intl.dart';
 //         Padding(
 //           padding:
 //               EdgeInsets.only(left: 20.w, right: 20.w, top: 16.h, bottom: 8.h),
-//           child: Text(
+//           child: LocalizedText(
 //             title,
 //             style: theme.textTheme.titleMedium?.copyWith(
 //               fontWeight: FontWeight.bold,
@@ -457,13 +458,13 @@ import 'package:intl/intl.dart';
 //                         child: Column(
 //                           crossAxisAlignment: CrossAxisAlignment.start,
 //                           children: [
-//                             Text(
+//                             LocalizedText(
 //                               name,
 //                               style: theme.textTheme.bodyLarge?.copyWith(
 //                                 fontWeight: FontWeight.w600,
 //                               ),
 //                             ),
-//                             Text(
+//                             LocalizedText(
 //                               '${percentage.toStringAsFixed(1)}%',
 //                               style: theme.textTheme.bodySmall?.copyWith(
 //                                 color: theme.colorScheme.onSurface
@@ -478,7 +479,7 @@ import 'package:intl/intl.dart';
 //                       Column(
 //                         crossAxisAlignment: CrossAxisAlignment.end,
 //                         children: [
-//                           Text(
+//                           LocalizedText(
 //                             formatter.format(amount),
 //                             style: theme.textTheme.titleMedium?.copyWith(
 //                               fontWeight: FontWeight.bold,
@@ -493,7 +494,7 @@ import 'package:intl/intl.dart';
 //                                 size: 12.r,
 //                                 color: theme.colorScheme.primary,
 //                               ),
-//                               Text(
+//                               LocalizedText(
 //                                 'Details',
 //                                 style: theme.textTheme.bodySmall?.copyWith(
 //                                   color: theme.colorScheme.primary,
@@ -520,7 +521,7 @@ import 'package:intl/intl.dart';
 //                 // Navigate to see all categories
 //                 widget.onViewMorePressed();
 //               },
-//               child: Text(
+//               child: LocalizedText(
 //                 'See all ${sortedCategories.length} categories',
 //                 style: theme.textTheme.bodyMedium?.copyWith(
 //                   color: theme.colorScheme.primary,
@@ -553,7 +554,7 @@ import 'package:intl/intl.dart';
 //               color: Colors.grey.withValues(alpha:0.5),
 //             ),
 //             SizedBox(height: 16.h),
-//             Text(
+//             LocalizedText(
 //               message,
 //               style: theme.textTheme.bodyLarge?.copyWith(
 //                 color: Colors.grey,
@@ -687,7 +688,7 @@ import 'package:intl/intl.dart';
 //       debugPrint('Error navigating to category detail: $e');
 //       ScaffoldMessenger.of(context).showSnackBar(
 //         SnackBar(
-//           content: Text('Error navigating to category detail: $e'),
+//           content: LocalizedText('Error navigating to category detail: $e'),
 //           backgroundColor: Colors.red,
 //         ),
 //       );
@@ -741,8 +742,7 @@ class CategoryComparisonCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            'Period Comparison',
+          LocalizedText('Period Comparison',
             style: theme.textTheme.titleMedium?.copyWith(
               fontWeight: FontWeight.bold,
             ),
@@ -782,7 +782,7 @@ class CategoryComparisonCard extends StatelessWidget {
                 size: 16.r,
               ),
               SizedBox(width: 4.w),
-              Text(
+              LocalizedText(
                 changeText,
                 style: theme.textTheme.bodyMedium?.copyWith(
                   fontWeight: FontWeight.bold,
@@ -820,20 +820,20 @@ class _ComparisonPeriod extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
+        LocalizedText(
           title,
           style: theme.textTheme.bodySmall?.copyWith(
             color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
           ),
         ),
         SizedBox(height: 4.h),
-        Text(
+        LocalizedText(
           amount,
           style: theme.textTheme.titleMedium?.copyWith(
             fontWeight: FontWeight.bold,
           ),
         ),
-        Text(
+        LocalizedText(
           dateRange,
           style: theme.textTheme.bodySmall?.copyWith(
             color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
@@ -872,7 +872,7 @@ class _ComparisonInsight extends StatelessWidget {
           ),
           SizedBox(width: 8.w),
           Expanded(
-            child: Text(
+            child: LocalizedText(
               _getInsightText(),
               style: theme.textTheme.bodySmall?.copyWith(
                 color: theme.colorScheme.primary,

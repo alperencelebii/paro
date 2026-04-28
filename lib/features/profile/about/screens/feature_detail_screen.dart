@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../bloc/about_state.dart';
+import 'package:finance_track/core/localization/localization.dart';
 
 class FeatureDetailScreen extends StatelessWidget {
   final FeatureInfo feature;
@@ -28,7 +29,7 @@ class FeatureDetailScreen extends StatelessWidget {
               padding: const EdgeInsets.all(12),
             ),
             actions: const [],
-            title: Text(
+            title: LocalizedText(
               feature.title,
               style: TextStyle(
                 fontSize: 18.sp,
@@ -46,7 +47,7 @@ class FeatureDetailScreen extends StatelessWidget {
               //   children: [
               //     Padding(
               //       padding: const EdgeInsets.only(bottom: 24),
-              //       child: Text(
+              //       child: LocalizedText(
               //         feature.title,
               //         style: const TextStyle(
               //           fontSize: 28,
@@ -80,8 +81,7 @@ class FeatureDetailScreen extends StatelessWidget {
                                 color: Colors.white.withValues(alpha: 0.2),
                                 borderRadius: BorderRadius.circular(24),
                               ),
-                              child: Text(
-                                '#$tag',
+                              child: LocalizedText('#$tag',
                                 style: const TextStyle(
                                   fontSize: 14,
                                   color: Colors.white,
@@ -110,7 +110,7 @@ class FeatureDetailScreen extends StatelessWidget {
                   icon: Icons.info_outline,
                   iconColor: Colors.blue,
                   title: 'Overview',
-                  content: Text(
+                  content: LocalizedText(
                     feature.description,
                     style: const TextStyle(
                       fontSize: 12,
@@ -190,7 +190,7 @@ class FeatureDetailScreen extends StatelessWidget {
                 //           ),
                 //           const SizedBox(width: 10),
                 //           Expanded(
-                //             child: Text(
+                //             child: LocalizedText(
                 //               'This feature is coming soon to the app!',
                 //               style: TextStyle(
                 //                 fontSize: 14,
@@ -258,7 +258,7 @@ class FeatureDetailScreen extends StatelessWidget {
               ),
               const SizedBox(width: 12),
               Expanded(
-                child: Text(
+                child: LocalizedText(
                   title,
                   style: const TextStyle(
                     fontSize: 14,
@@ -291,7 +291,7 @@ class FeatureDetailScreen extends StatelessWidget {
           ),
           const SizedBox(width: 10),
           Expanded(
-            child: Text(
+            child: LocalizedText(
               capability,
               style: const TextStyle(
                 fontSize: 12,
@@ -319,7 +319,7 @@ class FeatureDetailScreen extends StatelessWidget {
           ),
           const SizedBox(width: 10),
           Expanded(
-            child: Text(
+            child: LocalizedText(
               example,
               style: const TextStyle(
                 fontSize: 12,

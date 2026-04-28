@@ -7,6 +7,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
+import 'package:finance_track/core/localization/localization.dart';
 
 /// Widget for displaying current month detailed summary
 class CurrentMonthSummaryCard extends StatelessWidget {
@@ -167,8 +168,7 @@ class CurrentMonthSummaryCard extends StatelessWidget {
                       Icons.analytics_outlined,
                       size: 20.r,
                     ),
-                    label: Text(
-                      'View Detailed Analysis',
+                    label: LocalizedText('View Detailed Analysis',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 15.sp,
@@ -236,8 +236,7 @@ class CurrentMonthSummaryCard extends StatelessWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        '$month $year',
+                      LocalizedText('$month $year',
                         style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
@@ -245,8 +244,7 @@ class CurrentMonthSummaryCard extends StatelessWidget {
                         ),
                       ),
                       SizedBox(height: 4.h),
-                      Text(
-                        '$daysPassed of $totalDaysInMonth days',
+                      LocalizedText('$daysPassed of $totalDaysInMonth days',
                         style: TextStyle(
                           color: Colors.white.withValues(alpha: 0.85),
                           fontSize: 13.sp,
@@ -272,8 +270,7 @@ class CurrentMonthSummaryCard extends StatelessWidget {
                           circularStrokeCap: CircularStrokeCap.round,
                           backgroundColor: Colors.white.withValues(alpha: 0.2),
                           progressColor: Colors.white,
-                          center: Text(
-                            '${(monthProgress * 100).toInt()}%',
+                          center: LocalizedText('${(monthProgress * 100).toInt()}%',
                             style: TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
@@ -285,8 +282,7 @@ class CurrentMonthSummaryCard extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height: 4.h),
-                  Text(
-                    '${totalDaysInMonth - daysPassed} days left',
+                  LocalizedText('${totalDaysInMonth - daysPassed} days left',
                     style: TextStyle(
                       color: Colors.white.withValues(alpha: 0.85),
                       fontSize: 11.sp,
@@ -306,8 +302,7 @@ class CurrentMonthSummaryCard extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      'Current Balance',
+                    LocalizedText('Current Balance',
                       style: TextStyle(
                         color: Colors.white.withValues(alpha: 0.85),
                         fontSize: 14.sp,
@@ -317,7 +312,7 @@ class CurrentMonthSummaryCard extends StatelessWidget {
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Text(
+                        LocalizedText(
                           formatter.format(balance),
                           style: TextStyle(
                             color: Colors.white,
@@ -345,7 +340,7 @@ class CurrentMonthSummaryCard extends StatelessWidget {
                                 size: 14.r,
                               ),
                               SizedBox(width: 4.w),
-                              Text(
+                              LocalizedText(
                                 balance >= 0 ? 'Positive' : 'Negative',
                                 style: TextStyle(
                                   color: Colors.white,
@@ -430,8 +425,7 @@ class CurrentMonthSummaryCard extends StatelessWidget {
 
             // Title
             Expanded(
-              child: Text(
-                'Month End Forecast',
+              child: LocalizedText('Month End Forecast',
                 style: theme.textTheme.titleMedium?.copyWith(
                   fontWeight: FontWeight.bold,
                 ),
@@ -459,7 +453,7 @@ class CurrentMonthSummaryCard extends StatelessWidget {
                     ),
                   ),
                   SizedBox(width: 4.w),
-                  Text(
+                  LocalizedText(
                     budgetStatus, // Dynamic status text
                     style: TextStyle(
                       color: statusColor,
@@ -482,8 +476,7 @@ class CurrentMonthSummaryCard extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  'Projected Balance',
+                LocalizedText('Projected Balance',
                   style: TextStyle(
                     color: Colors.black54,
                     fontSize: 12.sp,
@@ -492,7 +485,7 @@ class CurrentMonthSummaryCard extends StatelessWidget {
                 SizedBox(height: 4.h),
                 FittedBox(
                   fit: BoxFit.scaleDown,
-                  child: Text(
+                  child: LocalizedText(
                     formatter.format(projectedBalance),
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
@@ -504,7 +497,7 @@ class CurrentMonthSummaryCard extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 2.h),
-                Text(
+                LocalizedText(
                   // Show daily average context rather than just the final amount
                   thisMonthIncome > 0
                       ? 'Avg. daily income: ${formatter.format(thisMonthIncome / daysPassed)}'
@@ -536,8 +529,7 @@ class CurrentMonthSummaryCard extends StatelessWidget {
                     color: Colors.indigo,
                   ),
                   SizedBox(width: 4.w),
-                  Text(
-                    '$daysLeft days left',
+                  LocalizedText('$daysLeft days left',
                     style: TextStyle(
                       fontSize: 11.sp,
                       fontWeight: FontWeight.w500,
@@ -553,7 +545,7 @@ class CurrentMonthSummaryCard extends StatelessWidget {
         // Add spending analysis row
         Padding(
           padding: EdgeInsets.only(top: 6.h),
-          child: Text(
+          child: LocalizedText(
             // Show daily average expense context
             'Avg. daily expense: ${formatter.format(thisMonthExpense / (daysPassed > 0 ? daysPassed : 1))}',
             style: TextStyle(
@@ -569,16 +561,14 @@ class CurrentMonthSummaryCard extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
-              'Budget Usage',
+            LocalizedText('Budget Usage',
               style: TextStyle(
                 fontWeight: FontWeight.w500,
                 fontSize: 12.sp,
                 color: Colors.black54,
               ),
             ),
-            Text(
-              '${budgetUtilization.toStringAsFixed(1)}%',
+            LocalizedText('${budgetUtilization.toStringAsFixed(1)}%',
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 12.sp,
@@ -627,21 +617,21 @@ class CurrentMonthSummaryCard extends StatelessWidget {
         //   child: Row(
         //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
         //     children: [
-        //       Text(
+        //       LocalizedText(
         //         '0%',
         //         style: TextStyle(
         //           color: Colors.black.withValues(alpha:0.7),
         //           fontSize: 10.sp,
         //         ),
         //       ),
-        //       Text(
+        //       LocalizedText(
         //         '50%',
         //         style: TextStyle(
         //           color: Colors.black.withValues(alpha:0.7),
         //           fontSize: 10.sp,
         //         ),
         //       ),
-        //       Text(
+        //       LocalizedText(
         //         '100%',
         //         style: TextStyle(
         //           color: Colors.black.withValues(alpha:0.7),

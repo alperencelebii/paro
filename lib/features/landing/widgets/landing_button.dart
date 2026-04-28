@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:finance_track/core/localization/localization.dart';
 
 /// Button style for landing page buttons
 enum LandingButtonStyle {
@@ -90,7 +91,7 @@ class LandingButton extends StatelessWidget {
             children: [
               Icon(icon, size: 20.r),
               SizedBox(width: 8.w),
-              Text(
+              LocalizedText(
                 label,
                 style: TextStyle(
                   fontSize: 16.sp,
@@ -99,7 +100,7 @@ class LandingButton extends StatelessWidget {
               ),
             ],
           )
-        : Text(
+        : LocalizedText(
             label,
             style: TextStyle(
               fontSize: 16.sp,

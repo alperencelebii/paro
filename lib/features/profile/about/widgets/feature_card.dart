@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../bloc/about_state.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../core/router/app_router.dart';
+import 'package:finance_track/core/localization/localization.dart';
 
 class FeatureCard extends StatelessWidget {
   final FeatureInfo feature;
@@ -65,7 +66,7 @@ class FeatureCard extends StatelessWidget {
                         Row(
                           children: [
                             Expanded(
-                              child: Text(
+                              child: LocalizedText(
                                 feature.title,
                                 style: const TextStyle(
                                   fontSize: 16,
@@ -92,7 +93,7 @@ class FeatureCard extends StatelessWidget {
               // Description
               Padding(
                 padding: const EdgeInsets.only(top: 12, bottom: 12),
-                child: Text(
+                child: LocalizedText(
                   feature.description,
                   style: const TextStyle(
                     fontSize: 14,
@@ -117,8 +118,7 @@ class FeatureCard extends StatelessWidget {
                         color: Colors.grey[200],
                         borderRadius: BorderRadius.circular(16),
                       ),
-                      child: Text(
-                        '#$tag',
+                      child: LocalizedText('#$tag',
                         style: TextStyle(
                           fontSize: 12,
                           color: Colors.grey[700],

@@ -14,6 +14,7 @@ import 'package:finance_track/features/income_list/screens/income_list_screen.da
     show IncomeListItemWidget;
 import '../../../data/models/expense_model.dart';
 import '../../../data/models/income_model.dart';
+import 'package:finance_track/core/localization/localization.dart';
 
 class BudgetDetailScreen extends StatelessWidget {
   final Budget budget;
@@ -55,7 +56,7 @@ class _BudgetDetailView extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(budget.title.isNotEmpty
+        title: LocalizedText(budget.title.isNotEmpty
             ? budget.title
             : '${budget.period.displayName} Budget'),
         elevation: 0,
@@ -68,7 +69,7 @@ class _BudgetDetailView extends StatelessWidget {
         ),
         actions: [
           IconButton(
-            tooltip: 'Edit Budget',
+            tooltip: AppLocalizations.tr('Edit Budget'),
             icon: const Icon(Icons.edit_outlined, color: Colors.white),
             onPressed: () async {
               await budgetFormDialog(context, budget: budget);
@@ -99,7 +100,7 @@ class _BudgetDetailView extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('Transactions',
+                  LocalizedText('Transactions',
                       style: Theme.of(context).textTheme.displayMedium),
 
                   // Grouping selector only (no manual period chips)
@@ -159,13 +160,13 @@ class _BudgetHeaderCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Text('Active Budget',
+          // LocalizedText('Active Budget',
           //     style: Theme.of(context)
           //         .textTheme
           //         .bodySmall
           //         ?.copyWith(color: Colors.grey.shade600)),
           SizedBox(height: 4.h),
-          Text(
+          LocalizedText(
               budget.title.isNotEmpty
                   ? budget.title
                   : '${budget.period.displayName} Budget',
@@ -178,7 +179,7 @@ class _BudgetHeaderCard extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Budget Usage',
+                    LocalizedText('Budget Usage',
                         style: TextStyle(
                             color: Colors.grey.shade600, fontSize: 12.sp)),
                     SizedBox(height: 6.h),
@@ -218,10 +219,10 @@ class _BudgetHeaderCard extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(label,
+        LocalizedText(label,
             style: TextStyle(color: Colors.grey.shade600, fontSize: 12)),
         SizedBox(height: 4.h),
-        Text(value,
+        LocalizedText(value,
             style: const TextStyle(
                 color: Colors.black87, fontWeight: FontWeight.bold)),
       ],
@@ -254,7 +255,7 @@ class _PercentBadge extends StatelessWidget {
             color: Colors.redAccent,
             backgroundColor: Colors.transparent,
           ),
-          Text('$value%',
+          LocalizedText('$value%',
               style: const TextStyle(
                   color: Colors.black87, fontWeight: FontWeight.bold)),
         ],
@@ -283,7 +284,7 @@ class _GroupingSelector extends StatelessWidget {
       spacing: 8.w,
       children: [
         ChoiceChip(
-          label: Text('Date Wise',
+          label: LocalizedText('Date Wise',
               style: TextStyle(
                 color: grouping == Grouping.date
                     ? selectedFg
@@ -299,7 +300,7 @@ class _GroupingSelector extends StatelessWidget {
         ),
         if (budgetPeriod == BudgetPeriod.yearly)
           ChoiceChip(
-            label: Text('Monthly',
+            label: LocalizedText('Monthly',
                 style: TextStyle(
                   color: grouping == Grouping.monthly
                       ? selectedFg
@@ -316,7 +317,7 @@ class _GroupingSelector extends StatelessWidget {
         else
           ChoiceChip(
             showCheckmark: false,
-            label: Text('Weekly',
+            label: LocalizedText('Weekly',
                 style: TextStyle(
                   color: grouping == Grouping.weekly
                       ? selectedFg
@@ -368,11 +369,11 @@ class _AmountSummaryRow extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(label,
+            LocalizedText(label,
                 style: TextStyle(
                     color: color.withValues(alpha: 0.9), fontSize: 14.sp)),
             SizedBox(height: 4.h),
-            Text(value,
+            LocalizedText(value,
                 style: TextStyle(color: color, fontWeight: FontWeight.bold)),
           ],
         ),
@@ -478,7 +479,7 @@ class _GroupedTransactions extends StatelessWidget {
     }
 
     if (groups.isEmpty) {
-      return const Text('No transactions in this period');
+      return const LocalizedText('No transactions in this period');
     }
 
     return Column(
@@ -498,7 +499,7 @@ class _GroupedTransactions extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(entry.key,
+                  LocalizedText(entry.key,
                       style: Theme.of(context)
                           .textTheme
                           .titleSmall
@@ -506,8 +507,7 @@ class _GroupedTransactions extends StatelessWidget {
                   Row(
                     children: [
                       if (incomeTotal > 0) ...[
-                        Text(
-                          '+$currency${incomeTotal.toStringAsFixed(0)}',
+                        LocalizedText('+$currency${incomeTotal.toStringAsFixed(0)}',
                           style: const TextStyle(
                             color: Colors.green,
                             fontWeight: FontWeight.w700,
@@ -517,8 +517,7 @@ class _GroupedTransactions extends StatelessWidget {
                       if (incomeTotal > 0 && expenseTotal > 0)
                         SizedBox(width: 12.w),
                       if (expenseTotal > 0)
-                        Text(
-                          '-$currency${expenseTotal.toStringAsFixed(0)}',
+                        LocalizedText('-$currency${expenseTotal.toStringAsFixed(0)}',
                           style: const TextStyle(
                             color: Colors.red,
                             fontWeight: FontWeight.w700,

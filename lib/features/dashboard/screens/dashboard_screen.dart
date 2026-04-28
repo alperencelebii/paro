@@ -5,6 +5,7 @@ import 'package:finance_track/features/budget/bloc/budget_bloc/budget_bloc.dart'
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:finance_track/core/localization/localization.dart';
 
 import 'package:finance_track/features/dashboard/widgets/widgets.dart';
 import '../../../core/extensions/currency_context_extension.dart';
@@ -264,15 +265,14 @@ class _DashboardScreenState extends State<DashboardScreen>
               size: 48.r,
             ),
             SizedBox(height: 16.h),
-            Text(
-              'Error Loading Dashboard',
+            LocalizedText('Error Loading Dashboard',
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 18.sp,
               ),
             ),
             SizedBox(height: 8.h),
-            Text(
+            LocalizedText(
               message,
               textAlign: TextAlign.center,
               style: TextStyle(
@@ -285,7 +285,7 @@ class _DashboardScreenState extends State<DashboardScreen>
               onPressed: () {
                 context.read<DashboardCubit>().loadDashboardData();
               },
-              child: const Text('Try Again'),
+              child: const LocalizedText('Try Again'),
             ),
           ],
         ),
@@ -305,8 +305,7 @@ class _DashboardScreenState extends State<DashboardScreen>
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
-              'Dashboard',
+            LocalizedText('Dashboard',
               style: TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.bold,

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:finance_track/features/profile/profile_edit/bloc/profile_edit_bloc.dart';
+import 'package:finance_track/core/localization/localization.dart';
 
 class EmailChangeForm extends StatefulWidget {
   final String initialEmail;
@@ -47,8 +48,7 @@ class _EmailChangeFormState extends State<EmailChangeForm> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  'Update Email Address',
+                LocalizedText('Update Email Address',
                   style: TextStyle(
                     fontSize: 18.sp,
                     fontWeight: FontWeight.w600,
@@ -56,8 +56,7 @@ class _EmailChangeFormState extends State<EmailChangeForm> {
                   ),
                 ),
                 SizedBox(height: 8.h),
-                Text(
-                  'You will receive a verification link at your new email address.',
+                LocalizedText('You will receive a verification link at your new email address.',
                   style: TextStyle(
                     fontSize: 14.sp,
                     color: Colors.grey[600],
@@ -88,8 +87,8 @@ class _EmailChangeFormState extends State<EmailChangeForm> {
       controller: _emailController,
       keyboardType: TextInputType.emailAddress,
       decoration: InputDecoration(
-        labelText: 'Email Address',
-        hintText: 'Enter your new email address',
+        labelText: AppLocalizations.tr('Email Address'),
+        hintText: AppLocalizations.tr('Enter your new email address'),
         prefixIcon: Icon(
           Icons.email_outlined,
           color: const Color(0xFF6C63FF).withValues(alpha: 0.7),
@@ -131,11 +130,11 @@ class _EmailChangeFormState extends State<EmailChangeForm> {
       },
       validator: (value) {
         if (value == null || value.isEmpty) {
-          return 'Please enter your email';
+          return AppLocalizations.tr('Please enter your email');
         }
         if (!RegExp(r'^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+')
             .hasMatch(value)) {
-          return 'Please enter a valid email';
+          return AppLocalizations.tr('Please enter a valid email');
         }
         return null;
       },
@@ -150,8 +149,8 @@ class _EmailChangeFormState extends State<EmailChangeForm> {
           controller: _passwordController,
           obscureText: obscure,
           decoration: InputDecoration(
-            labelText: 'Current Password',
-            hintText: 'Enter your current password',
+            labelText: AppLocalizations.tr('Current Password'),
+            hintText: AppLocalizations.tr('Enter your current password'),
             prefixIcon: Icon(
               Icons.lock_outline,
               color: const Color(0xFF6C63FF).withValues(alpha: 0.7),
@@ -207,10 +206,10 @@ class _EmailChangeFormState extends State<EmailChangeForm> {
           },
           validator: (value) {
             if (value == null || value.isEmpty) {
-              return 'Please enter your current password';
+              return AppLocalizations.tr('Please enter your current password');
             }
             if (value.length < 6) {
-              return 'Password must be at least 6 characters';
+              return AppLocalizations.tr('Password must be at least 6 characters');
             }
             return null;
           },
@@ -222,7 +221,7 @@ class _EmailChangeFormState extends State<EmailChangeForm> {
   Widget _buildErrorText(String message) {
     return Padding(
       padding: EdgeInsets.only(left: 16.w, top: 4.h),
-      child: Text(
+      child: LocalizedText(
         message,
         style: TextStyle(
           color: Colors.red[600],
@@ -275,8 +274,7 @@ class _EmailChangeFormState extends State<EmailChangeForm> {
                   strokeWidth: 2,
                 ),
               )
-            : Text(
-                'Update Email',
+            : LocalizedText('Update Email',
                 style: TextStyle(
                   fontSize: 16.sp,
                   fontWeight: FontWeight.w600,

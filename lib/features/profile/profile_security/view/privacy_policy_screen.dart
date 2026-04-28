@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:finance_track/core/localization/localization.dart';
 
 class PrivacyPolicyScreen extends StatelessWidget {
   const PrivacyPolicyScreen({super.key});
@@ -8,7 +9,7 @@ class PrivacyPolicyScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Privacy Policy'),
+        title: const LocalizedText('Privacy Policy'),
         centerTitle: true,
         elevation: 0,
         backgroundColor: Theme.of(context).colorScheme.primary,
@@ -106,8 +107,7 @@ class PrivacyPolicyScreen extends StatelessWidget {
               bulletPoints: ['support@expensetracker.com'],
             ),
             SizedBox(height: 16.h),
-            Text(
-              'Last updated: ${DateTime.now().toString().substring(0, 10)}',
+            LocalizedText('Last updated: ${DateTime.now().toString().substring(0, 10)}',
               style: TextStyle(
                 fontSize: 14.sp,
                 fontStyle: FontStyle.italic,
@@ -125,8 +125,7 @@ class PrivacyPolicyScreen extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          'Privacy Policy',
+        LocalizedText('Privacy Policy',
           style: TextStyle(
             fontSize: 24.sp,
             fontWeight: FontWeight.bold,
@@ -134,8 +133,7 @@ class PrivacyPolicyScreen extends StatelessWidget {
           ),
         ),
         SizedBox(height: 8.h),
-        Text(
-          'Effective: ${DateTime.now().toString().substring(0, 10)}',
+        LocalizedText('Effective: ${DateTime.now().toString().substring(0, 10)}',
           style: TextStyle(
             fontSize: 14.sp,
             color: Colors.grey[600],
@@ -161,8 +159,7 @@ class PrivacyPolicyScreen extends StatelessWidget {
               ),
               SizedBox(width: 12.w),
               Expanded(
-                child: Text(
-                  'Your financial data is important to us. This policy explains how we protect your privacy.',
+                child: LocalizedText('Your financial data is important to us. This policy explains how we protect your privacy.',
                   style: TextStyle(
                     fontSize: 14.sp,
                     color: Colors.black87,
@@ -181,7 +178,7 @@ class PrivacyPolicyScreen extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
+        LocalizedText(
           title,
           style: TextStyle(
             fontSize: 18.sp,
@@ -190,7 +187,7 @@ class PrivacyPolicyScreen extends StatelessWidget {
           ),
         ),
         SizedBox(height: 8.h),
-        Text(
+        LocalizedText(
           content,
           style: TextStyle(
             fontSize: 14.sp,
@@ -204,8 +201,7 @@ class PrivacyPolicyScreen extends StatelessWidget {
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      '• ',
+                    LocalizedText('• ',
                       style: TextStyle(
                         fontSize: 14.sp,
                         color: const Color(0xFF6C63FF),
@@ -213,7 +209,7 @@ class PrivacyPolicyScreen extends StatelessWidget {
                       ),
                     ),
                     Expanded(
-                      child: Text(
+                      child: LocalizedText(
                         point,
                         style: TextStyle(
                           fontSize: 14.sp,

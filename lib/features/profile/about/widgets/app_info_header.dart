@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:finance_track/core/localization/localization.dart';
 
 // This widget is no longer used as its functionality is integrated directly
 // into the About screen. This file is kept for reference but the widget
@@ -44,23 +45,20 @@ class AppInfoHeader extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 16),
-          Text(
-            'Expense Manager Pro',
+          LocalizedText('Expense Manager Pro',
             style: theme.textTheme.headlineSmall?.copyWith(
               fontWeight: FontWeight.bold,
               color: theme.colorScheme.primary,
             ),
           ),
           const SizedBox(height: 8),
-          Text(
-            'v1.2.0',
+          LocalizedText('v1.2.0',
             style: theme.textTheme.titleMedium?.copyWith(
               color: theme.colorScheme.onPrimaryContainer,
             ),
           ),
           const SizedBox(height: 16),
-          Text(
-            'Your complete solution for expense tracking, budgeting, and financial analytics',
+          LocalizedText('Your complete solution for expense tracking, budgeting, and financial analytics',
             textAlign: TextAlign.center,
             style: theme.textTheme.bodyLarge?.copyWith(
               color: theme.colorScheme.onPrimaryContainer,
@@ -74,11 +72,11 @@ class AppInfoHeader extends StatelessWidget {
                 color: theme.colorScheme.onPrimaryContainer,
               ),
               children: [
-                const TextSpan(
-                  text: 'Need help? Visit our ',
+                TextSpan(
+                  text: AppLocalizations.tr('Need help? Visit our '),
                 ),
                 TextSpan(
-                  text: 'support center',
+                  text: AppLocalizations.tr('support center'),
                   style: TextStyle(
                     color: theme.colorScheme.primary,
                     fontWeight: FontWeight.bold,

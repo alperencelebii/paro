@@ -1,6 +1,7 @@
 // ignore_for_file: avoid_multiple_declarations_per_line, inference_failure_on_untyped_parameter, lines_longer_than_80_chars, public_member_api_docs
 
 import 'package:flutter/material.dart';
+import 'package:finance_track/core/localization/localization.dart';
 import 'package:flutter/services.dart'
     show MaxLengthEnforcement, TextInputFormatter;
 
@@ -348,10 +349,10 @@ class AppTextField extends StatelessWidget {
         labelStyle: labelStyle,
         floatingLabelAlignment: FloatingLabelAlignment.start,
         floatingLabelBehavior: floatingLabelBehaviour,
-        labelText: labelText,
-        hintText: hintText,
+        labelText: labelText == null ? null : AppLocalizations.tr(labelText!),
+        hintText: hintText == null ? null : AppLocalizations.tr(hintText!),
         hintStyle: hintStyle,
-        errorText: errorText,
+        errorText: errorText == null ? null : AppLocalizations.tr(errorText!),
         errorMaxLines: errorMaxLines,
         enabledBorder: enabledBorder,
         disabledBorder: disabledBorder,

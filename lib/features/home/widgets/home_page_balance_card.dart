@@ -8,6 +8,7 @@ import 'package:finance_track/features/profile/currency/screens/currency_selecti
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:finance_track/core/localization/localization.dart';
 
 // ignore: must_be_immutable
 class HomePageBalanceCard extends StatelessWidget {
@@ -66,8 +67,7 @@ class HomePageBalanceCard extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
-                            'Current Balance',
+                          LocalizedText('Current Balance',
                             style: theme.textTheme.titleMedium?.copyWith(
                               color: Colors.white.withValues(alpha: 0.9),
                               fontWeight: FontWeight.w500,
@@ -95,7 +95,7 @@ class HomePageBalanceCard extends StatelessWidget {
                                   size: 14.r,
                                 ),
                                 SizedBox(width: 4.w),
-                                Text(
+                                LocalizedText(
                                   balance >= 0 ? 'Positive' : 'Negative',
                                   style: theme.textTheme.bodySmall?.copyWith(
                                     color: Colors.white,
@@ -108,8 +108,7 @@ class HomePageBalanceCard extends StatelessWidget {
                         ],
                       ),
                       SizedBox(height: 16.h),
-                      Text(
-                        '${currency.symbol} ${balance.toStringAsFixed(2)}',
+                      LocalizedText('${currency.symbol} ${balance.toStringAsFixed(2)}',
                         style: theme.textTheme.headlineSmall?.copyWith(
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
@@ -131,8 +130,7 @@ class HomePageBalanceCard extends StatelessWidget {
                                 size: 14.r,
                               ),
                               SizedBox(width: 4.w),
-                              Text(
-                                'Currency: ${currency.code}',
+                              LocalizedText('Currency: ${currency.code}',
                                 style: theme.textTheme.bodySmall?.copyWith(
                                   color: Colors.white.withValues(alpha: 0.9),
                                   fontWeight: FontWeight.w500,
@@ -152,14 +150,12 @@ class HomePageBalanceCard extends StatelessWidget {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(
-                                'Expense ratio',
+                              LocalizedText('Expense ratio',
                                 style: theme.textTheme.bodySmall?.copyWith(
                                   color: Colors.white.withValues(alpha: 0.8),
                                 ),
                               ),
-                              Text(
-                                '${percentage.toStringAsFixed(1)}%',
+                              LocalizedText('${percentage.toStringAsFixed(1)}%',
                                 style: theme.textTheme.bodySmall?.copyWith(
                                   color: Colors.white.withValues(alpha: 0.8),
                                   fontWeight: FontWeight.bold,
@@ -249,7 +245,7 @@ class HomePageBalanceCard extends StatelessWidget {
                 size: 16.r,
               ),
               SizedBox(width: 6.w),
-              Text(
+              LocalizedText(
                 title,
                 style: theme.textTheme.bodyMedium?.copyWith(
                   color: Colors.white.withValues(alpha: 0.9),
@@ -259,7 +255,7 @@ class HomePageBalanceCard extends StatelessWidget {
             ],
           ),
           SizedBox(height: 8.h),
-          Text(
+          LocalizedText(
             amount,
             style: theme.textTheme.titleMedium?.copyWith(
               color: Colors.white,

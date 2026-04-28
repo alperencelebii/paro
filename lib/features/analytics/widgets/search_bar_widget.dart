@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:finance_track/core/localization/localization.dart';
 
 /// Search bar widget for filtering transactions
 class SearchBarWidget extends StatefulWidget {
@@ -66,7 +67,7 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
         controller: widget.controller,
         focusNode: _focusNode,
         decoration: InputDecoration(
-          hintText: 'Search transactions',
+          hintText: AppLocalizations.tr('Search transactions'),
           hintStyle: TextStyle(
             color: Theme.of(context)
                 .colorScheme
@@ -114,8 +115,7 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
                             borderRadius: BorderRadius.circular(8.r),
                           ),
                         ),
-                        child: Text(
-                          'Cancel',
+                        child: LocalizedText('Cancel',
                           style: TextStyle(
                             fontSize: 13.sp,
                             color: Theme.of(context).colorScheme.primary,

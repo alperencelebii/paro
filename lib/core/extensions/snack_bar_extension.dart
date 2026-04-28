@@ -3,6 +3,7 @@
 import 'package:finance_track/core/colors/app_colors.dart';
 import 'package:finance_track/core/constants/snackbar.dart';
 import 'package:flutter/material.dart';
+import 'package:finance_track/core/localization/localization.dart';
 
 extension SnackBarExtension on BuildContext {
   void showSnackBar(
@@ -19,7 +20,7 @@ extension SnackBarExtension on BuildContext {
         ..clearSnackBars()
         ..showSnackBar(
           SnackBar(
-            content: Text(
+            content: LocalizedText(
               text,
               style: const TextStyle().copyWith(color: AppColors.black),
             ),

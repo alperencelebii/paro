@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
+import 'package:finance_track/core/localization/localization.dart';
 
 /// Monthly Budget Card for the dashboard
 class MonthlyBudgetCard extends StatelessWidget {
@@ -129,8 +130,7 @@ class MonthlyBudgetCard extends StatelessWidget {
                                     ),
                                     SizedBox(width: 12.w),
                                     Expanded(
-                                      child: Text(
-                                        'Monthly Budget',
+                                      child: LocalizedText('Monthly Budget',
                                         style: TextStyle(
                                           color: Colors.white,
                                           fontWeight: FontWeight.bold,
@@ -160,7 +160,7 @@ class MonthlyBudgetCard extends StatelessWidget {
                                         size: 14.r,
                                       ),
                                       SizedBox(width: 4.w),
-                                      Text(
+                                      LocalizedText(
                                         daysRemaining > 0
                                             ? '$daysRemaining days remaining'
                                             : 'Month complete',
@@ -197,16 +197,14 @@ class MonthlyBudgetCard extends StatelessWidget {
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
                                       children: [
-                                        Text(
-                                          '$displayPercent%',
+                                        LocalizedText('$displayPercent%',
                                           style: TextStyle(
                                             color: Colors.white,
                                             fontWeight: FontWeight.bold,
                                             fontSize: 12.sp,
                                           ),
                                         ),
-                                        Text(
-                                          'Used',
+                                        LocalizedText('Used',
                                           style: TextStyle(
                                             color: Colors.white
                                                 .withValues(alpha: 0.9),
@@ -237,15 +235,14 @@ class MonthlyBudgetCard extends StatelessWidget {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
-                                'Total Budget',
+                              LocalizedText('Total Budget',
                                 style: TextStyle(
                                   color: Colors.white.withValues(alpha: 0.9),
                                   fontSize: 13.sp,
                                 ),
                               ),
                               SizedBox(height: 4.h),
-                              Text(
+                              LocalizedText(
                                 formatter.format(totalBudget),
                                 style: TextStyle(
                                   color: Colors.white,
@@ -267,15 +264,14 @@ class MonthlyBudgetCard extends StatelessWidget {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
-                                'Spent',
+                              LocalizedText('Spent',
                                 style: TextStyle(
                                   color: Colors.white.withValues(alpha: 0.9),
                                   fontSize: 13.sp,
                                 ),
                               ),
                               SizedBox(height: 4.h),
-                              Text(
+                              LocalizedText(
                                 formatter.format(spentAmount),
                                 style: TextStyle(
                                   color: Colors.white,
@@ -297,15 +293,14 @@ class MonthlyBudgetCard extends StatelessWidget {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
-                                'Remaining',
+                              LocalizedText('Remaining',
                                 style: TextStyle(
                                   color: Colors.white.withValues(alpha: 0.9),
                                   fontSize: 13.sp,
                                 ),
                               ),
                               SizedBox(height: 4.h),
-                              Text(
+                              LocalizedText(
                                 formatter.format(remainingAmount),
                                 style: TextStyle(
                                   color: Colors.white,
@@ -331,8 +326,7 @@ class MonthlyBudgetCard extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
-                            'Budget Status',
+                          LocalizedText('Budget Status',
                             style: theme.textTheme.titleMedium?.copyWith(
                               fontWeight: FontWeight.bold,
                             ),
@@ -357,7 +351,7 @@ class MonthlyBudgetCard extends StatelessWidget {
                                   ),
                                 ),
                                 SizedBox(width: 6.w),
-                                Text(
+                                LocalizedText(
                                   statusText,
                                   style: theme.textTheme.bodySmall?.copyWith(
                                     color: statusColor,
@@ -415,7 +409,7 @@ class MonthlyBudgetCard extends StatelessWidget {
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Text(
+                                    LocalizedText(
                                       context.currencySymbol,
                                       style: TextStyle(
                                         color: const Color(0xFF6C63FF),
@@ -423,8 +417,7 @@ class MonthlyBudgetCard extends StatelessWidget {
                                         fontSize: 18.sp,
                                       ),
                                     ),
-                                    Text(
-                                      'DAILY',
+                                    LocalizedText('DAILY',
                                       style: TextStyle(
                                         color: const Color(0xFF6C63FF),
                                         fontWeight: FontWeight.bold,
@@ -442,7 +435,7 @@ class MonthlyBudgetCard extends StatelessWidget {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(
+                                  LocalizedText(
                                     daysRemaining > 0
                                         ? formatter.format(dailyBudget)
                                         : '---',
@@ -453,7 +446,7 @@ class MonthlyBudgetCard extends StatelessWidget {
                                     ),
                                   ),
                                   SizedBox(height: 4.h),
-                                  Text(
+                                  LocalizedText(
                                     daysRemaining > 0
                                         ? 'Available to spend today'
                                         : 'Month complete',
@@ -501,8 +494,7 @@ class MonthlyBudgetCard extends StatelessWidget {
                                 size: 18.r,
                                 color: const Color(0xFF6C63FF),
                               ),
-                              label: const Text(
-                                'Edit Budget',
+                              label: const LocalizedText('Edit Budget',
                                 style: TextStyle(
                                   color: Color(0xFF6C63FF),
                                   fontWeight: FontWeight.w600,
@@ -526,7 +518,7 @@ class MonthlyBudgetCard extends StatelessWidget {
                                 Icons.visibility,
                                 size: 18.r,
                               ),
-                              label: const Text('All Budgets'),
+                              label: const LocalizedText('All Budgets'),
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: const Color(0xFF6C63FF),
                                 foregroundColor: Colors.white,

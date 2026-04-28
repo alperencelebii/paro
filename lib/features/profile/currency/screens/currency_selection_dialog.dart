@@ -5,6 +5,7 @@ import 'package:finance_track/core/models/currency_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:finance_track/core/localization/localization.dart';
 
 /// Currency selection dialog with beautiful UI
 class CurrencySelectionDialog extends StatelessWidget {
@@ -81,8 +82,7 @@ class CurrencySelectionDialog extends StatelessWidget {
                       ),
                       SizedBox(width: 16.w),
                       Expanded(
-                        child: Text(
-                          'Select Currency',
+                        child: LocalizedText('Select Currency',
                           style: theme.textTheme.titleLarge?.copyWith(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
@@ -96,7 +96,7 @@ class CurrencySelectionDialog extends StatelessWidget {
                         iconSize: 24.r,
                         padding: EdgeInsets.zero,
                         visualDensity: VisualDensity.compact,
-                        tooltip: 'Close',
+                        tooltip: AppLocalizations.tr('Close'),
                       ),
                     ],
                   ),
@@ -126,8 +126,7 @@ class CurrencySelectionDialog extends StatelessWidget {
                           size: 48.r,
                         ),
                         SizedBox(height: 16.h),
-                        Text(
-                          'Error: ${state.message}',
+                        LocalizedText('Error: ${state.message}',
                           style: theme.textTheme.bodyLarge?.copyWith(
                             color: theme.colorScheme.error,
                           ),
@@ -188,7 +187,7 @@ class CurrencySelectionDialog extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
+                        LocalizedText(
                           currency.name,
                           style: theme.textTheme.titleMedium?.copyWith(
                             fontWeight: isSelected
@@ -200,8 +199,7 @@ class CurrencySelectionDialog extends StatelessWidget {
                           ),
                         ),
                         SizedBox(height: 4.h),
-                        Text(
-                          '${currency.code} (${currency.symbol})',
+                        LocalizedText('${currency.code} (${currency.symbol})',
                           style: theme.textTheme.bodyMedium?.copyWith(
                             color: theme.colorScheme.onSurfaceVariant,
                           ),

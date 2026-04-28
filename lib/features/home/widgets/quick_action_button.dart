@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:finance_track/core/localization/localization.dart';
 
 class HomeQuickActionButton extends StatelessWidget {
   const HomeQuickActionButton({super.key});
@@ -117,7 +118,7 @@ class HomeQuickActionButton extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 8.h),
-              Text(
+              LocalizedText(
                 label,
                 style: theme.textTheme.bodyMedium?.copyWith(
                   fontWeight: FontWeight.w500,

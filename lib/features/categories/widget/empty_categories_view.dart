@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:finance_track/core/localization/localization.dart';
 
 /// A widget to display empty state for categories
 class EmptyCategoriesView extends StatelessWidget {
@@ -36,7 +37,7 @@ class EmptyCategoriesView extends StatelessWidget {
                 color: theme.colorScheme.primary.withValues(alpha: 0.5),
               ),
               SizedBox(height: 24.h),
-              Text(
+              LocalizedText(
                 isExpense
                     ? 'No expense categories found'
                     : 'No income categories found',
@@ -46,8 +47,7 @@ class EmptyCategoriesView extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
               SizedBox(height: 8.h),
-              Text(
-                'Try selecting a different time period',
+              LocalizedText('Try selecting a different time period',
                 style: theme.textTheme.bodyMedium?.copyWith(
                   color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
                 ),
@@ -58,7 +58,7 @@ class EmptyCategoriesView extends StatelessWidget {
                 ElevatedButton.icon(
                   onPressed: onClearFilters,
                   icon: const Icon(Icons.clear_all),
-                  label: const Text('Clear Filters'),
+                  label: const LocalizedText('Clear Filters'),
                 ),
               ],
             ],

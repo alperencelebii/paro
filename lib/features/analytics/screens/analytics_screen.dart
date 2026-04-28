@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
+import 'package:finance_track/core/localization/localization.dart';
 
 import 'package:finance_track/features/expense_list/bloc/expense_list_state.dart';
 import 'package:finance_track/features/expense_list/screens/expense_list_screen.dart';
@@ -175,8 +176,7 @@ class _AnalyticsScreenState extends State<AnalyticsScreen>
       // ],
       flexibleSpace: FlexibleSpaceBar(
         titlePadding: EdgeInsets.only(left: 20.w, bottom: 16.h),
-        title: Text(
-          'Analytics',
+        title: LocalizedText('Analytics',
           style: TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.bold,
@@ -247,8 +247,8 @@ class _AnalyticsScreenState extends State<AnalyticsScreen>
               child: SelectableText.rich(
                 TextSpan(
                   children: [
-                    const TextSpan(
-                      text: 'Error loading transaction data:\n',
+                    TextSpan(
+                      text: AppLocalizations.tr('Error loading transaction data:\n'),
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         color: Colors.red,
@@ -300,8 +300,7 @@ class _AnalyticsScreenState extends State<AnalyticsScreen>
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               // Title without filter count badge (moved to filter section)
-              Text(
-                'Recent Transactions',
+              LocalizedText('Recent Transactions',
                 style: theme.textTheme.titleLarge?.copyWith(
                   fontWeight: FontWeight.bold,
                 ),
@@ -350,8 +349,7 @@ class _AnalyticsScreenState extends State<AnalyticsScreen>
                                     : Colors.black87,
                               ),
                               SizedBox(width: 4.w),
-                              Text(
-                                'Filter',
+                              LocalizedText('Filter',
                                 style: TextStyle(
                                   fontSize: 12.sp,
                                   fontWeight: state.hasActiveFilters
@@ -385,8 +383,7 @@ class _AnalyticsScreenState extends State<AnalyticsScreen>
                                 color: Colors.black87,
                               ),
                               SizedBox(width: 4.w),
-                              Text(
-                                'Sort',
+                              LocalizedText('Sort',
                                 style: TextStyle(
                                   fontSize: 12.sp,
                                   color: Colors.black87,
@@ -442,8 +439,7 @@ class _AnalyticsScreenState extends State<AnalyticsScreen>
                         color: theme.colorScheme.primary,
                       ),
                       SizedBox(width: 6.w),
-                      Text(
-                        'Applied Filters',
+                      LocalizedText('Applied Filters',
                         style: TextStyle(
                           fontSize: 12.sp,
                           fontWeight: FontWeight.w600,
@@ -465,8 +461,7 @@ class _AnalyticsScreenState extends State<AnalyticsScreen>
                             width: 1,
                           ),
                         ),
-                        child: Text(
-                          '${state.activeFilterCount} active',
+                        child: LocalizedText('${state.activeFilterCount} active',
                           style: TextStyle(
                             fontSize: 11.sp,
                             fontWeight: FontWeight.w600,
@@ -496,8 +491,7 @@ class _AnalyticsScreenState extends State<AnalyticsScreen>
                           size: 14.r,
                           color: theme.colorScheme.error,
                         ),
-                        label: Text(
-                          'Reset all',
+                        label: LocalizedText('Reset all',
                           style: TextStyle(
                             fontSize: 12.sp,
                             color: theme.colorScheme.error,
@@ -574,7 +568,7 @@ class _AnalyticsScreenState extends State<AnalyticsScreen>
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          Text(
+                          LocalizedText(
                             state.showAllTransactions
                                 ? 'Show Less'
                                 : 'Show All (${state.filteredTransactions.length})',
@@ -655,7 +649,7 @@ class _AnalyticsScreenState extends State<AnalyticsScreen>
               children: [
                 Icon(Icons.all_inclusive, size: 14.r),
                 const SizedBox(width: 4),
-                Text('All', style: TextStyle(fontSize: 13.sp)),
+                LocalizedText('All', style: TextStyle(fontSize: 13.sp)),
               ],
             ),
           ),
@@ -667,7 +661,7 @@ class _AnalyticsScreenState extends State<AnalyticsScreen>
               children: [
                 Icon(Icons.arrow_downward, size: 14.r),
                 const SizedBox(width: 2),
-                Text('Expenses', style: TextStyle(fontSize: 12.sp)),
+                LocalizedText('Expenses', style: TextStyle(fontSize: 12.sp)),
               ],
             ),
           ),
@@ -679,7 +673,7 @@ class _AnalyticsScreenState extends State<AnalyticsScreen>
               children: [
                 Icon(Icons.arrow_upward, size: 14.r),
                 const SizedBox(width: 2),
-                Text('Incomes', style: TextStyle(fontSize: 12.sp)),
+                LocalizedText('Incomes', style: TextStyle(fontSize: 12.sp)),
               ],
             ),
           ),
@@ -705,7 +699,7 @@ class _AnalyticsScreenState extends State<AnalyticsScreen>
       chips.add(
         _buildFilterItem(
           context: context,
-          label: '$startDate - $endDate',
+          label: AppLocalizations.tr('$startDate - $endDate'),
           icon: Icons.date_range,
           onClear: () {
             context.read<TransactionAnalyticsBloc>().add(
@@ -734,7 +728,7 @@ class _AnalyticsScreenState extends State<AnalyticsScreen>
       chips.add(
         _buildFilterItem(
           context: context,
-          label: '$minText - $maxText',
+          label: AppLocalizations.tr('$minText - $maxText'),
           icon: Icons.attach_money,
           onClear: () {
             context.read<TransactionAnalyticsBloc>().add(
@@ -754,8 +748,7 @@ class _AnalyticsScreenState extends State<AnalyticsScreen>
       chips.add(
         _buildFilterItem(
           context: context,
-          label:
-              '${state.expenseCategories!.length} expense${state.expenseCategories!.length > 1 ? 's' : ''}',
+          label: AppLocalizations.tr('${state.expenseCategories!.length} expense${state.expenseCategories!.length > 1 ? 's' : ''}'),
           icon: Icons.category,
           onClear: () {
             context.read<TransactionAnalyticsBloc>().add(
@@ -770,8 +763,7 @@ class _AnalyticsScreenState extends State<AnalyticsScreen>
       chips.add(
         _buildFilterItem(
           context: context,
-          label:
-              '${state.incomeCategories!.length} income${state.incomeCategories!.length > 1 ? 's' : ''}',
+          label: AppLocalizations.tr('${state.incomeCategories!.length} income${state.incomeCategories!.length > 1 ? 's' : ''}'),
           icon: Icons.category,
           onClear: () {
             context.read<TransactionAnalyticsBloc>().add(
@@ -856,7 +848,7 @@ class _AnalyticsScreenState extends State<AnalyticsScreen>
                   color: theme.colorScheme.primary.withValues(alpha: 0.7),
                 ),
                 SizedBox(width: 6.w),
-                Text(
+                LocalizedText(
                   label,
                   style: TextStyle(
                     fontSize: 12.sp,
@@ -905,8 +897,7 @@ class _AnalyticsScreenState extends State<AnalyticsScreen>
               color: Colors.grey.withValues(alpha: 0.7),
             ),
             SizedBox(height: 16.h),
-            Text(
-              'No transactions found with the current filters',
+            LocalizedText('No transactions found with the current filters',
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 16.sp,
@@ -933,7 +924,7 @@ class _AnalyticsScreenState extends State<AnalyticsScreen>
                 });
               },
               icon: const Icon(Icons.refresh),
-              label: const Text('Reset Filters'),
+              label: const LocalizedText('Reset Filters'),
               style: ElevatedButton.styleFrom(
                 backgroundColor: theme.colorScheme.primary,
                 foregroundColor: theme.colorScheme.onPrimary,
@@ -1100,7 +1091,7 @@ class _AnalyticsScreenState extends State<AnalyticsScreen>
         if (originalTransaction == null) {
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
-              content: Text('Transaction not found'),
+              content: LocalizedText('Transaction not found'),
               backgroundColor: Colors.red,
             ),
           );
@@ -1128,14 +1119,12 @@ class _AnalyticsScreenState extends State<AnalyticsScreen>
             showDialog(
               context: context,
               builder: (context) => AlertDialog(
-                title: Text(
-                    'Delete ${transaction.isExpense ? 'Expense' : 'Income'}'),
-                content: Text(
-                    'Are you sure you want to delete ${transaction.title}?'),
+                title: LocalizedText('Delete ${transaction.isExpense ? 'Expense' : 'Income'}'),
+                content: LocalizedText('Are you sure you want to delete ${transaction.title}?'),
                 actions: [
                   TextButton(
                     onPressed: () => Navigator.of(context).pop(),
-                    child: const Text('Cancel'),
+                    child: const LocalizedText('Cancel'),
                   ),
                   FilledButton(
                     onPressed: () {
@@ -1151,8 +1140,7 @@ class _AnalyticsScreenState extends State<AnalyticsScreen>
                       }
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
-                          content: Text(
-                              '${transaction.isExpense ? 'Expense' : 'Income'} deleted'),
+                          content: LocalizedText('${transaction.isExpense ? 'Expense' : 'Income'} deleted'),
                           behavior: SnackBarBehavior.floating,
                           duration: const Duration(seconds: 2),
                           shape: RoundedRectangleBorder(
@@ -1165,7 +1153,7 @@ class _AnalyticsScreenState extends State<AnalyticsScreen>
                     style: FilledButton.styleFrom(
                       backgroundColor: Colors.red,
                     ),
-                    child: const Text('Delete'),
+                    child: const LocalizedText('Delete'),
                   ),
                 ],
               ),
@@ -1176,7 +1164,7 @@ class _AnalyticsScreenState extends State<AnalyticsScreen>
         // Handle the case where transaction isn't found
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Error loading transaction details: $e'),
+            content: LocalizedText('Error loading transaction details: $e'),
             backgroundColor: Colors.red,
           ),
         );
@@ -1213,9 +1201,9 @@ class _AnalyticsScreenState extends State<AnalyticsScreen>
 
       // Fallback if transaction not found
       return ListTile(
-        title: Text(transaction.title),
-        subtitle: Text(transaction.categoryName),
-        trailing: Text(
+        title: LocalizedText(transaction.title),
+        subtitle: LocalizedText(transaction.categoryName),
+        trailing: LocalizedText(
           (transaction.isExpense ? '-' : '+') +
               formatter.format(transaction.amount),
           style: TextStyle(
@@ -1228,8 +1216,8 @@ class _AnalyticsScreenState extends State<AnalyticsScreen>
     } catch (e) {
       // Handle any errors
       return ListTile(
-        title: const Text('Error loading transaction'),
-        subtitle: Text(transaction.id),
+        title: const LocalizedText('Error loading transaction'),
+        subtitle: LocalizedText(transaction.id),
         onTap: onTap,
       );
     }

@@ -42,7 +42,8 @@ class BudgetFormState {
     return BudgetFormState(
       amountController: TextEditingController(),
       titleController:
-          TextEditingController(text: '${defaultPeriod.displayName} Budget'),
+          TextEditingController(
+              text: AppLocalizations.tr('${defaultPeriod.displayName} Budget')),
       selectedPeriod: defaultPeriod,
       startDate: startOfMonth,
       endDate: endDate,
@@ -57,7 +58,7 @@ class BudgetFormState {
       titleController: TextEditingController(
         text: budget.title.isNotEmpty
             ? budget.title
-            : '${budget.period.displayName} Budget',
+            : AppLocalizations.tr('${budget.period.displayName} Budget'),
       ),
       selectedPeriod: budget.period,
       startDate: budget.startDate,

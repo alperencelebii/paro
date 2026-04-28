@@ -6,6 +6,7 @@ import 'package:permission_handler/permission_handler.dart';
 import '../../bloc/scanner_bloc.dart';
 import '../../bloc/scanner_event.dart';
 import '../../bloc/scanner_state.dart';
+import 'package:finance_track/core/localization/localization.dart';
 
 /// Page for selecting image source (camera or gallery)
 class ScanPage extends StatelessWidget {
@@ -18,11 +19,11 @@ class ScanPage extends StatelessWidget {
         if (state is ScannerError) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
-              content: Text(state.message),
+              content: LocalizedText(state.message),
               backgroundColor: Colors.red,
               action: state.canRetry
                   ? SnackBarAction(
-                      label: 'Retry',
+                      label: AppLocalizations.tr('Retry'),
                       textColor: Colors.white,
                       onPressed: () {
                         context.read<ScannerBloc>().add(const RetryScan());
@@ -41,7 +42,7 @@ class ScanPage extends StatelessWidget {
       },
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Scan Receipt / Invoice'),
+          title: const LocalizedText('Scan Receipt / Invoice'),
           backgroundColor: Theme.of(context).colorScheme.primary,
           leading: IconButton(
             icon: const Icon(Icons.close),
@@ -77,7 +78,7 @@ class ScanPage extends StatelessWidget {
         children: [
           const CircularProgressIndicator(),
           const SizedBox(height: 16),
-          const Text('Requesting permissions...'),
+          const LocalizedText('Requesting permissions...'),
         ],
       ),
     );
@@ -96,12 +97,11 @@ class ScanPage extends StatelessWidget {
               color: Colors.grey.shade400,
             ),
             const SizedBox(height: 16),
-            Text(
-              'Permissions Required',
+            LocalizedText('Permissions Required',
               style: Theme.of(context).textTheme.titleLarge,
             ),
             const SizedBox(height: 8),
-            Text(
+            LocalizedText(
               message,
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.bodyMedium,
@@ -111,7 +111,7 @@ class ScanPage extends StatelessWidget {
               onPressed: () {
                 context.read<ScannerBloc>().add(const RequestPermissions());
               },
-              child: const Text('Grant Permissions'),
+              child: const LocalizedText('Grant Permissions'),
             ),
             const SizedBox(height: 12),
             TextButton(
@@ -128,7 +128,7 @@ class ScanPage extends StatelessWidget {
                   context.read<ScannerBloc>().add(const RequestPermissions());
                 }
               },
-              child: const Text('Open App Settings'),
+              child: const LocalizedText('Open App Settings'),
             ),
           ],
         ),
@@ -147,13 +147,11 @@ class ScanPage extends StatelessWidget {
             color: Theme.of(context).colorScheme.primary,
           ),
           const SizedBox(height: 24),
-          Text(
-            'Scan Receipt or Invoice',
+          LocalizedText('Scan Receipt or Invoice',
             style: Theme.of(context).textTheme.headlineSmall,
           ),
           const SizedBox(height: 8),
-          Text(
-            'Take a photo or choose from gallery',
+          LocalizedText('Take a photo or choose from gallery',
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                   color: Colors.grey.shade600,
                 ),
@@ -165,14 +163,14 @@ class ScanPage extends StatelessWidget {
               _buildSourceButton(
                 context,
                 icon: Icons.camera_alt,
-                label: 'Take Photo',
+                label: AppLocalizations.tr('Take Photo'),
                 onTap: () => _pickImage(context, ImageSource.camera),
               ),
               const SizedBox(width: 24),
               _buildSourceButton(
                 context,
                 icon: Icons.photo_library,
-                label: 'Gallery',
+                label: AppLocalizations.tr('Gallery'),
                 onTap: () => _pickImage(context, ImageSource.gallery),
               ),
             ],
@@ -207,7 +205,7 @@ class ScanPage extends StatelessWidget {
               color: Theme.of(context).colorScheme.primary,
             ),
             const SizedBox(height: 12),
-            Text(
+            LocalizedText(
               label,
               style: TextStyle(
                 fontWeight: FontWeight.w600,
@@ -261,10 +259,10 @@ class ScanPage extends StatelessWidget {
       if (context.mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Failed to pick image: ${e.toString()}'),
+            content: LocalizedText('Failed to pick image: ${e.toString()}'),
             backgroundColor: Colors.red,
             action: SnackBarAction(
-              label: 'Retry',
+              label: AppLocalizations.tr('Retry'),
               textColor: Colors.white,
               onPressed: () => _pickImage(context, source),
             ),

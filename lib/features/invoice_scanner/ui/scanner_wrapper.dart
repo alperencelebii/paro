@@ -8,6 +8,7 @@ import 'pages/camera_page.dart';
 import 'pages/crop_page.dart';
 import 'pages/preview_page.dart';
 import 'dart:io';
+import 'package:finance_track/core/localization/localization.dart';
 
 /// Wrapper widget that uses the app-level ScannerBloc
 /// The bloc is provided at the app level in app.dart
@@ -55,7 +56,7 @@ class _ScannerWrapperState extends State<ScannerWrapper> {
                 builder: (_) => image != null
                     ? CropPage(image: image)
                     : const Scaffold(
-                        body: Center(child: Text('No image provided')),
+                        body: Center(child: LocalizedText('No image provided')),
                       ),
               );
             case '/preview':

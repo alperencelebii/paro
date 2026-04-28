@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
+import 'package:finance_track/core/localization/localization.dart';
 
 import '../../../data/models/expense_model.dart';
 import '../../../data/models/income_model.dart';
@@ -201,7 +202,7 @@ class _TransactionEditSheetState extends State<TransactionEditSheet> {
           children: [
             const Icon(Icons.check_circle, color: Colors.white),
             SizedBox(width: 8.w),
-            Expanded(child: Text(message)),
+            Expanded(child: LocalizedText(message)),
           ],
         ),
         behavior: SnackBarBehavior.floating,
@@ -221,7 +222,7 @@ class _TransactionEditSheetState extends State<TransactionEditSheet> {
           children: [
             const Icon(Icons.error_outline, color: Colors.white),
             SizedBox(width: 8.w),
-            Expanded(child: Text(message)),
+            Expanded(child: LocalizedText(message)),
           ],
         ),
         behavior: SnackBarBehavior.floating,
@@ -266,8 +267,7 @@ class _TransactionEditSheetState extends State<TransactionEditSheet> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text(
-              'Select Expense Category',
+            LocalizedText('Select Expense Category',
               style: theme.textTheme.titleMedium?.copyWith(
                 fontWeight: FontWeight.bold,
               ),
@@ -324,7 +324,7 @@ class _TransactionEditSheetState extends State<TransactionEditSheet> {
                             child: Icon(icon, color: color),
                           ),
                           SizedBox(height: 8.h),
-                          Text(
+                          LocalizedText(
                             TransactionUtils.getCategoryDisplayName(category),
                             style: theme.textTheme.bodySmall,
                             textAlign: TextAlign.center,
@@ -360,8 +360,7 @@ class _TransactionEditSheetState extends State<TransactionEditSheet> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text(
-              'Select Income Category',
+            LocalizedText('Select Income Category',
               style: theme.textTheme.titleMedium?.copyWith(
                 fontWeight: FontWeight.bold,
               ),
@@ -418,7 +417,7 @@ class _TransactionEditSheetState extends State<TransactionEditSheet> {
                             child: Icon(icon, color: color),
                           ),
                           SizedBox(height: 8.h),
-                          Text(
+                          LocalizedText(
                             TransactionUtils.getCategoryDisplayName(category),
                             style: theme.textTheme.bodySmall,
                             textAlign: TextAlign.center,
@@ -540,8 +539,7 @@ class _TransactionEditSheetState extends State<TransactionEditSheet> {
                 size: 18.r,
               ),
               SizedBox(width: 6.w),
-              Text(
-                'Edit ${widget.isExpense ? 'Expense' : 'Income'}',
+              LocalizedText('Edit ${widget.isExpense ? 'Expense' : 'Income'}',
                 style: theme.textTheme.titleLarge?.copyWith(
                   fontWeight: FontWeight.bold,
                   color: accentColor,
@@ -551,7 +549,7 @@ class _TransactionEditSheetState extends State<TransactionEditSheet> {
               IconButton(
                 icon: Icon(Icons.close, size: 20.r),
                 onPressed: () => Navigator.of(context).pop(),
-                tooltip: 'Close',
+                tooltip: AppLocalizations.tr('Close'),
                 style: IconButton.styleFrom(
                   foregroundColor: theme.colorScheme.onSurface,
                   padding: EdgeInsets.zero,
@@ -587,7 +585,7 @@ class _TransactionEditSheetState extends State<TransactionEditSheet> {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text(
+          LocalizedText(
             context.currencySymbol,
             style: theme.textTheme.headlineMedium!.copyWith(
               color: accentColor,
@@ -606,10 +604,10 @@ class _TransactionEditSheetState extends State<TransactionEditSheet> {
               keyboardType:
                   const TextInputType.numberWithOptions(decimal: true),
               textAlign: TextAlign.left,
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 border: InputBorder.none,
                 contentPadding: EdgeInsets.zero,
-                hintText: '0.00',
+                hintText: AppLocalizations.tr('0.00'),
                 isDense: true,
               ),
               inputFormatters: [
@@ -681,8 +679,7 @@ class _TransactionEditSheetState extends State<TransactionEditSheet> {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: [
-        Text(
-          'Date',
+        LocalizedText('Date',
           style: theme.textTheme.titleSmall?.copyWith(
             fontWeight: FontWeight.bold,
             color: theme.colorScheme.onSurface.withValues(alpha: 0.8),
@@ -711,7 +708,7 @@ class _TransactionEditSheetState extends State<TransactionEditSheet> {
                 ),
                 SizedBox(width: 8.w),
                 Expanded(
-                  child: Text(
+                  child: LocalizedText(
                     formattedDate,
                     style: theme.textTheme.bodyMedium,
                     overflow: TextOverflow.ellipsis,
@@ -739,8 +736,7 @@ class _TransactionEditSheetState extends State<TransactionEditSheet> {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: [
-        Text(
-          'Category',
+        LocalizedText('Category',
           style: theme.textTheme.titleSmall?.copyWith(
             fontWeight: FontWeight.bold,
             color: theme.colorScheme.onSurface.withValues(alpha: 0.8),
@@ -777,7 +773,7 @@ class _TransactionEditSheetState extends State<TransactionEditSheet> {
                 ),
                 SizedBox(width: 8.w),
                 Expanded(
-                  child: Text(
+                  child: LocalizedText(
                     categoryName,
                     style: theme.textTheme.bodyMedium,
                     overflow: TextOverflow.ellipsis,
@@ -814,7 +810,7 @@ class _TransactionEditSheetState extends State<TransactionEditSheet> {
           border: InputBorder.none,
           contentPadding:
               EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
-          hintText: 'Source (e.g., Company Name)',
+          hintText: AppLocalizations.tr('Source (e.g., Company Name)'),
           prefixIcon: Icon(
             Icons.account_balance_outlined,
             color: theme.colorScheme.primary,
@@ -844,7 +840,7 @@ class _TransactionEditSheetState extends State<TransactionEditSheet> {
           border: InputBorder.none,
           contentPadding:
               EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
-          hintText: 'Payment Method (e.g., Credit Card)',
+          hintText: AppLocalizations.tr('Payment Method (e.g., Credit Card)'),
           prefixIcon: Icon(
             Icons.payment_outlined,
             color: theme.colorScheme.primary,
@@ -874,7 +870,7 @@ class _TransactionEditSheetState extends State<TransactionEditSheet> {
           border: InputBorder.none,
           contentPadding:
               EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
-          hintText: 'Notes (Optional)',
+          hintText: AppLocalizations.tr('Notes (Optional)'),
           prefixIcon: Icon(
             Icons.note_outlined,
             color: theme.colorScheme.primary,
@@ -909,8 +905,7 @@ class _TransactionEditSheetState extends State<TransactionEditSheet> {
                   valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
                 ),
               )
-            : Text(
-                'Update ${widget.isExpense ? 'Expense' : 'Income'}',
+            : LocalizedText('Update ${widget.isExpense ? 'Expense' : 'Income'}',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 16.sp,

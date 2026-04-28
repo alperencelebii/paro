@@ -1,6 +1,7 @@
 import 'package:finance_track/features/profile/currency/screens/currency_selection_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:finance_track/core/localization/localization.dart';
 
 import '../bloc/currency/currency_bloc.dart';
 import '../bloc/currency/currency_event.dart';
@@ -27,7 +28,7 @@ class CurrencySelectionScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Select Currency'),
+        title: const LocalizedText('Select Currency'),
         centerTitle: true,
       ),
       body: BlocBuilder<CurrencyBloc, CurrencyState>(
@@ -36,8 +37,7 @@ class CurrencySelectionScreen extends StatelessWidget {
             return const Center(child: CircularProgressIndicator());
           } else if (state is CurrencyError) {
             return Center(
-              child: Text(
-                'Error: ${state.message}',
+              child: LocalizedText('Error: ${state.message}',
                 style: TextStyle(color: theme.colorScheme.error),
               ),
             );
@@ -62,14 +62,13 @@ class CurrencySelectionScreen extends StatelessWidget {
         final isSelected = currency.code == selectedCurrency.code;
 
         return ListTile(
-          title: Text(
+          title: LocalizedText(
             currency.name,
             style: theme.textTheme.titleMedium?.copyWith(
               fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
             ),
           ),
-          subtitle: Text(
-            '${currency.code} (${currency.symbol})',
+          subtitle: LocalizedText('${currency.code} (${currency.symbol})',
             style: theme.textTheme.bodyMedium,
           ),
           trailing: isSelected

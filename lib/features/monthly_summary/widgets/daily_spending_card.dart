@@ -6,6 +6,7 @@ import '../../profile/currency/bloc/currency/currency_bloc.dart';
 import '../../profile/currency/bloc/currency/currency_state.dart';
 import '../../../core/models/currency_model.dart';
 import 'package:intl/intl.dart';
+import 'package:finance_track/core/localization/localization.dart';
 
 class DailySpendingCard extends StatefulWidget {
   final Map<DateTime, double> dailySpending;
@@ -117,8 +118,7 @@ class _DailySpendingCardState extends State<DailySpendingCard> {
                       ),
                     ),
                     SizedBox(width: 12.w),
-                    Text(
-                      'Daily Transactions',
+                    LocalizedText('Daily Transactions',
                       style: theme.textTheme.titleMedium?.copyWith(
                         fontWeight: FontWeight.w600,
                       ),
@@ -183,7 +183,7 @@ class _DailySpendingCardState extends State<DailySpendingCard> {
                                   final currency = state is CurrencyLoaded
                                       ? state.selectedCurrency
                                       : Currencies.inr;
-                                  return Text(
+                                  return LocalizedText(
                                     value >= 1000
                                         ? '${currency.symbol}${(value / 1000).toStringAsFixed(0)}K'
                                         : '${currency.symbol}${value.toStringAsFixed(0)}',
@@ -208,7 +208,7 @@ class _DailySpendingCardState extends State<DailySpendingCard> {
                               final date = sortedDates[value.toInt()];
                               return Padding(
                                 padding: EdgeInsets.only(top: 8.h),
-                                child: Text(
+                                child: LocalizedText(
                                   date.day.toString(),
                                   style: theme.textTheme.bodySmall?.copyWith(
                                     color: theme.textTheme.bodySmall?.color
@@ -359,7 +359,7 @@ class _DailySpendingCardState extends State<DailySpendingCard> {
 
                                 // Add newline if not the last item
                                 if (spot != spots.last) {
-                                  tooltipSpans.add(const TextSpan(text: '\n'));
+                                  tooltipSpans.add(TextSpan(text: AppLocalizations.tr('\n')));
                                 }
                               }
 
@@ -443,7 +443,7 @@ class _DailySpendingCardState extends State<DailySpendingCard> {
           ),
         ),
         SizedBox(width: 8.w),
-        Text(
+        LocalizedText(
           label,
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                 fontWeight: FontWeight.w500,
@@ -479,16 +479,14 @@ class _DailySpendingCardState extends State<DailySpendingCard> {
               color: theme.colorScheme.primary.withValues(alpha: 0.5),
             ),
             SizedBox(height: 16.h),
-            Text(
-              'No daily transaction data',
+            LocalizedText('No daily transaction data',
               style: theme.textTheme.titleMedium?.copyWith(
                 color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
                 fontWeight: FontWeight.w600,
               ),
             ),
             SizedBox(height: 8.h),
-            Text(
-              'Add transactions to see daily spending and income trends',
+            LocalizedText('Add transactions to see daily spending and income trends',
               textAlign: TextAlign.center,
               style: theme.textTheme.bodyMedium?.copyWith(
                 color: theme.colorScheme.onSurface.withValues(alpha: 0.5),
