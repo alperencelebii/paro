@@ -12,6 +12,7 @@ import '../../../expense_list/screens/add_expense_bottom_sheet.dart';
 import '../../../expense_list/add_expense_bloc/add_expense_bloc.dart';
 import '../../../expense_list/add_expense_bloc/add_expense_event.dart';
 import '../../../../data/repositories/expense_repository.dart';
+import '../../../../data/models/expense_model.dart';
 import '../../../../core/router/app_router.dart';
 import 'package:finance_track/core/localization/localization.dart';
 
@@ -178,6 +179,14 @@ class PreviewPage extends StatelessWidget {
             onTap: invoice.total != null
                 ? () => _editAmount(context, invoice.total!)
                 : null,
+          ),
+          const SizedBox(height: 12),
+
+          FieldChip(
+            label: AppLocalizations.tr('Tahmini kategori'),
+            value: _suggestCategory(invoice).displayName,
+            confidence: 0.76,
+            isLowConfidence: false,
           ),
           const SizedBox(height: 12),
 
@@ -352,6 +361,41 @@ class PreviewPage extends StatelessWidget {
     );
   }
 
+
+  ExpenseCategory _suggestCategory(InvoiceModel invoice) {
+    final source = [
+      invoice.merchant,
+      invoice.rawOcrText ?? '',
+      invoice.lineItems.map((item) => item.description).join(' '),
+    ].join(' ').toLowerCase();
+
+    if (RegExp(r'(market|mart|grocery|supermarket|migros|carrefour|bim|a101|sok|şok|food|restaurant|cafe|coffee|pizza|burger|yemek|lokanta)').hasMatch(source)) {
+      return ExpenseCategory.food;
+    }
+    if (RegExp(r'(taxi|uber|fuel|gas|petrol|metro|bus|train|otobus|otobüs|ulaşım|transport)').hasMatch(source)) {
+      return ExpenseCategory.transportation;
+    }
+    if (RegExp(r'(electric|water|internet|phone|bill|utility|fatura|doğalgaz|dogalgaz)').hasMatch(source)) {
+      return ExpenseCategory.utilities;
+    }
+    if (RegExp(r'(pharmacy|eczane|hospital|clinic|health|medical|ilaç|ilac)').hasMatch(source)) {
+      return ExpenseCategory.health;
+    }
+    if (RegExp(r'(clothes|fashion|store|shop|shopping|giyim|ayakkabı|ayakkabi)').hasMatch(source)) {
+      return ExpenseCategory.shopping;
+    }
+    if (RegExp(r'(cinema|movie|game|entertainment|concert|eglence|eğlence)').hasMatch(source)) {
+      return ExpenseCategory.entertainment;
+    }
+    if (RegExp(r'(hotel|flight|travel|booking|airlines|otel|uçak|ucak|seyahat)').hasMatch(source)) {
+      return ExpenseCategory.travel;
+    }
+    if (RegExp(r'(school|course|book|education|kurs|kitap|okul)').hasMatch(source)) {
+      return ExpenseCategory.education;
+    }
+    return ExpenseCategory.other;
+  }
+
   void _showReviewBottomSheet(BuildContext context, InvoiceModel invoice) {
     // Get the expense repository
     final expenseRepository = RepositoryProvider.of<ExpenseRepository>(context);
@@ -364,6 +408,7 @@ class PreviewPage extends StatelessWidget {
     if (invoice.date != null) {
       expenseBloc.add(UpdateDate(invoice.date!));
     }
+    expenseBloc.add(UpdateCategory(_suggestCategory(invoice)));
     
     // Use merchant as notes (which will become title)
     final notes = invoice.invoiceNumber != null

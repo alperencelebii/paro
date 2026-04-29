@@ -1,3 +1,4 @@
+import 'package:finance_track/core/colors/app_colors.dart';
 import 'package:finance_track/features/profile/widgets/profile_item_tile_widget.dart';
 import 'package:finance_track/features/subscription/cubits/subscription_cubit/subscription_cubit.dart';
 import 'package:finance_track/features/subscription/bloc/subscription_management_bloc.dart';
@@ -206,7 +207,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               margin: EdgeInsets.symmetric(horizontal: 16.w),
               padding: EdgeInsets.all(20.r),
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: Theme.of(context).colorScheme.surface,
                 borderRadius: BorderRadius.circular(16.r),
                 boxShadow: [
                   BoxShadow(
@@ -244,7 +245,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     user.email ?? 'Not logged in',
                     style: TextStyle(
                       fontSize: 14.sp,
-                      color: Colors.grey[600],
+                      color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.62),
                     ),
                   ),
                   SizedBox(height: 20.h),
@@ -259,7 +260,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       Container(
                         height: 40.h,
                         width: 1,
-                        color: Colors.grey[300],
+                        color: Theme.of(context).colorScheme.outline.withValues(alpha: 0.25),
                       ),
                       _buildStatItem(
                         title: 'Balance',
@@ -302,7 +303,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           title,
           style: TextStyle(
             fontSize: 12.sp,
-            color: Colors.grey[600],
+            color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.62),
           ),
         ),
       ],
@@ -323,7 +324,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               style: TextStyle(
                 fontSize: 18.sp,
                 fontWeight: FontWeight.w600,
-                color: Colors.grey[800],
+                color: Theme.of(context).colorScheme.onSurface,
               ),
             ),
           ),
@@ -436,7 +437,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             style: TextStyle(
               fontSize: 18.sp,
               fontWeight: FontWeight.w600,
-              color: Colors.grey[800],
+              color: Theme.of(context).colorScheme.onSurface,
             ),
           ),
         ),
@@ -474,7 +475,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             style: TextStyle(
               fontSize: 18.sp,
               fontWeight: FontWeight.w600,
-              color: Colors.grey[800],
+              color: Theme.of(context).colorScheme.onSurface,
             ),
           ),
         ),
@@ -532,6 +533,27 @@ class _ProfileScreenState extends State<ProfileScreen> {
           subtitle: 'Add, edit, or delete your custom categories',
           iconColor: const Color(0xFF1D4ED8),
           onTap: () => context.pushNamed(AppRoutes.manageCategories),
+        ),
+        ProfileItemTileWidget(
+          icon: Icons.flag_rounded,
+          title: 'Birikim Hedefleri',
+          subtitle: 'Hedeflerini ve ilerlemeni yönet',
+          iconColor: AppColors.accent,
+          onTap: () => context.pushNamed(AppRoutes.savingsGoals),
+        ),
+        ProfileItemTileWidget(
+          icon: Icons.repeat_rounded,
+          title: 'Tekrarlayan Giderler',
+          subtitle: 'Abonelik ve düzenli ödemelerini takip et',
+          iconColor: AppColors.warning,
+          onTap: () => context.pushNamed(AppRoutes.recurringExpenses),
+        ),
+        ProfileItemTileWidget(
+          icon: Icons.notifications_active_outlined,
+          title: 'Akıllı Hatırlatıcılar',
+          subtitle: 'Bütçe, abonelik ve günlük uyarı tercihleri',
+          iconColor: AppColors.primary,
+          onTap: () => context.pushNamed(AppRoutes.reminderSettings),
         ),
         // ProfileItemTileWidget(
         //   icon: Icons.brightness_6_outlined,
@@ -591,7 +613,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             style: TextStyle(
               fontSize: 18.sp,
               fontWeight: FontWeight.w600,
-              color: Colors.grey[800],
+              color: Theme.of(context).colorScheme.onSurface,
             ),
           ),
         ),
@@ -633,7 +655,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 16.w, vertical: 6.h),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Theme.of(context).colorScheme.surface,
         borderRadius: BorderRadius.circular(16.r),
         boxShadow: [
           BoxShadow(
@@ -681,7 +703,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       LocalizedText('Sign out from your account',
                         style: TextStyle(
                           fontSize: 12.sp,
-                          color: Colors.grey[600],
+                          color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.62),
                         ),
                       ),
                     ],

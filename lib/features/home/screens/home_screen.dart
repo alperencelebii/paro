@@ -13,7 +13,6 @@ import 'package:intl/intl.dart';
 import 'package:finance_track/core/localization/localization.dart';
 // Now using Tesseract OCR (supports 16KB page sizes)
 import 'package:go_router/go_router.dart';
-import '../../../core/extensions/currency_context_extension.dart';
 import '../../../core/router/app_router.dart';
 import '../widgets/widgets.dart';
 
@@ -125,11 +124,7 @@ class _HomeScreenState extends State<HomeScreen>
               _buildAppBar(context),
               SliverToBoxAdapter(
                 child: BlocBuilder<CurrencyBloc, CurrencyState>(
-                  builder: (context, currencyState) {
-                    final currency = currencyState is CurrencyLoaded
-                        ? currencyState.selectedCurrency
-                        : context.selectedCurrency;
-
+                  builder: (context, _) {
                     return FadeTransition(
                       opacity: _fadeAnimation,
                       child: SlideTransition(
@@ -139,7 +134,7 @@ class _HomeScreenState extends State<HomeScreen>
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              HomePageBalanceCard(currency: currency),
+                              const ParoPremiumDashboard(),
                               15.verticalSpace,
                               // const HomeQuickActionButton(),
                               // 15.verticalSpace,

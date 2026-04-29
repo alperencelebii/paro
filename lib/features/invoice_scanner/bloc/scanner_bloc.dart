@@ -206,7 +206,7 @@ class ScannerBloc extends Bloc<ScannerEvent, ScannerState> {
             : 'Scanned Expense',
         amount: invoice.total!,
         date: invoiceDateWithoutTime, // Use current time, not bill date
-        category: ExpenseCategory.other, // Default category
+        category: _guessExpenseCategory(invoice),
         notes: invoice.invoiceNumber != null
             ? 'Invoice #${invoice.invoiceNumber}'
             : null,
@@ -225,6 +225,41 @@ class ScannerBloc extends Bloc<ScannerEvent, ScannerState> {
         errorMessage: e.toString(),
       ));
     }
+  }
+
+
+  ExpenseCategory _guessExpenseCategory(InvoiceModel invoice) {
+    final source = [
+      invoice.merchant,
+      invoice.rawOcrText ?? '',
+      invoice.lineItems.map((item) => item.description).join(' '),
+    ].join(' ').toLowerCase();
+
+    if (RegExp(r'(market|mart|grocery|supermarket|migros|carrefour|bim|a101|sok|şok|food|restaurant|cafe|coffee|pizza|burger|yemek|lokanta)').hasMatch(source)) {
+      return ExpenseCategory.food;
+    }
+    if (RegExp(r'(taxi|uber|fuel|gas|petrol|metro|bus|train|otobus|otobüs|ulaşım|transport)').hasMatch(source)) {
+      return ExpenseCategory.transportation;
+    }
+    if (RegExp(r'(electric|water|internet|phone|bill|utility|fatura|doğalgaz|dogalgaz)').hasMatch(source)) {
+      return ExpenseCategory.utilities;
+    }
+    if (RegExp(r'(pharmacy|eczane|hospital|clinic|health|medical|ilaç|ilac)').hasMatch(source)) {
+      return ExpenseCategory.health;
+    }
+    if (RegExp(r'(clothes|fashion|store|shop|shopping|giyim|ayakkabı|ayakkabi)').hasMatch(source)) {
+      return ExpenseCategory.shopping;
+    }
+    if (RegExp(r'(cinema|movie|game|entertainment|concert|eglence|eğlence)').hasMatch(source)) {
+      return ExpenseCategory.entertainment;
+    }
+    if (RegExp(r'(hotel|flight|travel|booking|airlines|otel|uçak|ucak|seyahat)').hasMatch(source)) {
+      return ExpenseCategory.travel;
+    }
+    if (RegExp(r'(school|course|book|education|kurs|kitap|okul)').hasMatch(source)) {
+      return ExpenseCategory.education;
+    }
+    return ExpenseCategory.other;
   }
 
   void _onRetryScan(

@@ -4,3 +4,4 @@ export 'home_quick_action_button_widget.dart';
 export 'quick_action_button.dart';
 export 'transaction_edit_sheet.dart';
 export 'home_active_budget_card.dart';
+export 'paro_premium_dashboard.dart';

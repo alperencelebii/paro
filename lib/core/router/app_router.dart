@@ -57,6 +57,9 @@ import 'package:finance_track/data/models/budget_model.dart';
 import 'package:finance_track/features/profile/categories/manage_categories_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:finance_track/features/auth/verify_email/view/verify_email_page.dart';
+import 'package:finance_track/features/reminders/screens/reminder_settings_screen.dart';
+import 'package:finance_track/features/savings_goals/screens/savings_goals_screen.dart';
+import 'package:finance_track/features/recurring_expenses/screens/recurring_expenses_screen.dart';
 
 /// Custom page transition that slides from right to left
 class SlideRightToLeftTransitionPage<T> extends CustomTransitionPage<T> {
@@ -154,6 +157,9 @@ class AppRoutes {
   static const String invoiceScanner = 'invoice-scanner';
   static const String invoiceScannerCrop = 'invoice-scanner-crop';
   static const String invoiceScannerPreview = 'invoice-scanner-preview';
+  static const String recurringExpenses = 'recurring-expenses';
+  static const String savingsGoals = 'savings-goals';
+  static const String reminderSettings = 'reminder-settings';
 }
 
 /// Path names used for routing
@@ -193,6 +199,9 @@ class AppPaths {
   static const String invoiceScanner = '/invoice-scanner';
   static const String invoiceScannerCrop = '/invoice-scanner/crop';
   static const String invoiceScannerPreview = '/invoice-scanner/preview';
+  static const String recurringExpenses = '/recurring-expenses';
+  static const String savingsGoals = '/savings-goals';
+  static const String reminderSettings = '/reminder-settings';
 
   /// Get path for a tab
   static String getPathForTab(NavigationTab tab) {
@@ -638,6 +647,37 @@ class AppRouter {
             pageBuilder: (context, state) => SlideRightToLeftTransitionPage(
               state: state,
               child: const SubscriptionManagementScreen(),
+            ),
+          ),
+
+          // Recurring expenses route
+          GoRoute(
+            parentNavigatorKey: _rootNavigatorKey,
+            path: AppPaths.recurringExpenses,
+            name: AppRoutes.recurringExpenses,
+            pageBuilder: (context, state) => SlideRightToLeftTransitionPage(
+              state: state,
+              child: const RecurringExpensesScreen(),
+            ),
+          ),
+          // Savings goals route
+          GoRoute(
+            parentNavigatorKey: _rootNavigatorKey,
+            path: AppPaths.savingsGoals,
+            name: AppRoutes.savingsGoals,
+            pageBuilder: (context, state) => SlideRightToLeftTransitionPage(
+              state: state,
+              child: const SavingsGoalsScreen(),
+            ),
+          ),
+          // Reminder settings route
+          GoRoute(
+            parentNavigatorKey: _rootNavigatorKey,
+            path: AppPaths.reminderSettings,
+            name: AppRoutes.reminderSettings,
+            pageBuilder: (context, state) => SlideRightToLeftTransitionPage(
+              state: state,
+              child: const ReminderSettingsScreen(),
             ),
           ),
           // Invoice Scanner route - now using Tesseract OCR (supports 16KB)
