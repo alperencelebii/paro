@@ -99,25 +99,19 @@ class _AboutScreenContent extends StatelessWidget {
                         children: [
                           const SizedBox(height: 10),
                           // App logo
-                          Container(
-                            width: 80,
-                            height: 80,
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            child: Center(
-                              child: Icon(
-                                Icons.folder,
-                                color: theme.colorScheme.primary,
-                                size: 40,
-                              ),
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(20),
+                            child: Image.asset(
+                              'assets/images/paro_logo.png',
+                              width: 80,
+                              height: 80,
+                              fit: BoxFit.cover,
                             ),
                           ),
                           const SizedBox(height: 12),
 
                           // App name
-                          const LocalizedText('Expense Manager Pro',
+                          const LocalizedText('PARO Cüzdan',
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 24,

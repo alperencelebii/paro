@@ -1,3 +1,4 @@
+import 'package:finance_track/core/colors/app_colors.dart';
 import 'package:finance_track/core/models/currency_model.dart';
 import 'package:finance_track/core/utils/currency_formatter.dart';
 import 'package:finance_track/features/expense_list/bloc/expense_list_bloc.dart';
@@ -47,13 +48,13 @@ class HomePageBalanceCard extends StatelessWidget {
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
                     colors: [
-                      Color(0xFF6C63FF),
-                      Color(0xFF574ED7),
+                      AppColors.primary,
+                      AppColors.primaryDark,
                     ],
                   ),
                   boxShadow: [
                     BoxShadow(
-                      color: const Color(0xFF6C5CE7).withValues(alpha: 0.3),
+                      color: AppColors.primary.withValues(alpha: 0.3),
                       blurRadius: 12,
                       offset: const Offset(0, 6),
                     ),
@@ -90,8 +91,8 @@ class HomePageBalanceCard extends StatelessWidget {
                                       ? Icons.trending_up
                                       : Icons.trending_down,
                                   color: balance >= 0
-                                      ? const Color(0xFF00F5A0)
-                                      : const Color(0xFFF25F5C),
+                                      ? AppColors.income
+                                      : AppColors.expense,
                                   size: 14.r,
                                 ),
                                 SizedBox(width: 4.w),
@@ -172,8 +173,8 @@ class HomePageBalanceCard extends StatelessWidget {
                                   Colors.white.withValues(alpha: 0.15),
                               valueColor: AlwaysStoppedAnimation<Color>(
                                 percentage < 80
-                                    ? const Color(0xFF00F5A0)
-                                    : const Color(0xFFF25F5C),
+                                    ? AppColors.income
+                                    : AppColors.expense,
                               ),
                               minHeight: 6.h,
                             ),
@@ -191,7 +192,7 @@ class HomePageBalanceCard extends StatelessWidget {
                             'Income',
                             CurrencyFormatter.format(totalIncomes, currency),
                             Icons.arrow_downward,
-                            const Color(0xFF00F5A0),
+                            AppColors.income,
                           ),
                           Container(
                             height: 40.h,
@@ -203,7 +204,7 @@ class HomePageBalanceCard extends StatelessWidget {
                             'Expenses',
                             CurrencyFormatter.format(totalExpenses, currency),
                             Icons.arrow_upward,
-                            const Color(0xFFF25F5C),
+                            AppColors.expense,
                           ),
                         ],
                       ),

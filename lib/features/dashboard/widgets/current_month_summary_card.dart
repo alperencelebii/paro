@@ -200,7 +200,7 @@ class CurrentMonthSummaryCard extends StatelessWidget {
       decoration: BoxDecoration(
         gradient: const LinearGradient(
           colors: [
-            Color(0xFF6C63FF),
+            Color(0xFF1D4ED8),
             Color(0xFF4942E4),
           ],
           begin: Alignment.topLeft,

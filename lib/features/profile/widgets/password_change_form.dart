@@ -94,7 +94,7 @@ class _PasswordChangeFormState extends State<PasswordChangeForm> {
             hintText: AppLocalizations.tr('Enter your current password'),
             prefixIcon: Icon(
               Icons.lock_outline,
-              color: const Color(0xFF6C63FF).withValues(alpha: 0.7),
+              color: const Color(0xFF1D4ED8).withValues(alpha: 0.7),
               size: 20.r,
             ),
             suffixIcon: IconButton(
@@ -105,7 +105,7 @@ class _PasswordChangeFormState extends State<PasswordChangeForm> {
                 obscure
                     ? Icons.visibility_off_outlined
                     : Icons.visibility_outlined,
-                color: const Color(0xFF6C63FF).withValues(alpha: 0.7),
+                color: const Color(0xFF1D4ED8).withValues(alpha: 0.7),
                 size: 20.r,
               ),
             ),
@@ -124,7 +124,7 @@ class _PasswordChangeFormState extends State<PasswordChangeForm> {
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12.r),
               borderSide: const BorderSide(
-                color: Color(0xFF6C63FF),
+                color: Color(0xFF1D4ED8),
                 width: 2,
               ),
             ),
@@ -171,7 +171,7 @@ class _PasswordChangeFormState extends State<PasswordChangeForm> {
             hintText: AppLocalizations.tr('Enter your new password'),
             prefixIcon: Icon(
               Icons.lock_outline,
-              color: const Color(0xFF6C63FF).withValues(alpha: 0.7),
+              color: const Color(0xFF1D4ED8).withValues(alpha: 0.7),
               size: 20.r,
             ),
             suffixIcon: IconButton(
@@ -182,7 +182,7 @@ class _PasswordChangeFormState extends State<PasswordChangeForm> {
                 obscure
                     ? Icons.visibility_off_outlined
                     : Icons.visibility_outlined,
-                color: const Color(0xFF6C63FF).withValues(alpha: 0.7),
+                color: const Color(0xFF1D4ED8).withValues(alpha: 0.7),
                 size: 20.r,
               ),
             ),
@@ -201,7 +201,7 @@ class _PasswordChangeFormState extends State<PasswordChangeForm> {
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12.r),
               borderSide: const BorderSide(
-                color: Color(0xFF6C63FF),
+                color: Color(0xFF1D4ED8),
                 width: 2,
               ),
             ),
@@ -248,7 +248,7 @@ class _PasswordChangeFormState extends State<PasswordChangeForm> {
             hintText: AppLocalizations.tr('Confirm your new password'),
             prefixIcon: Icon(
               Icons.lock_outline,
-              color: const Color(0xFF6C63FF).withValues(alpha: 0.7),
+              color: const Color(0xFF1D4ED8).withValues(alpha: 0.7),
               size: 20.r,
             ),
             suffixIcon: IconButton(
@@ -259,7 +259,7 @@ class _PasswordChangeFormState extends State<PasswordChangeForm> {
                 obscure
                     ? Icons.visibility_off_outlined
                     : Icons.visibility_outlined,
-                color: const Color(0xFF6C63FF).withValues(alpha: 0.7),
+                color: const Color(0xFF1D4ED8).withValues(alpha: 0.7),
                 size: 20.r,
               ),
             ),
@@ -278,7 +278,7 @@ class _PasswordChangeFormState extends State<PasswordChangeForm> {
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12.r),
               borderSide: const BorderSide(
-                color: Color(0xFF6C63FF),
+                color: Color(0xFF1D4ED8),
                 width: 2,
               ),
             ),
@@ -360,7 +360,7 @@ class _PasswordChangeFormState extends State<PasswordChangeForm> {
                 }
               },
         style: ElevatedButton.styleFrom(
-          backgroundColor: const Color(0xFF6C63FF),
+          backgroundColor: const Color(0xFF1D4ED8),
           foregroundColor: Colors.white,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12.r),

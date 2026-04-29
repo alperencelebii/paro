@@ -39,13 +39,13 @@ class AppInfoHeader extends StatelessWidget {
               shape: BoxShape.circle,
             ),
             child: Icon(
-              Icons.account_balance_wallet,
+              Icons.account_balance_wallet_rounded,
               color: theme.colorScheme.onPrimary,
               size: 36,
             ),
           ),
           const SizedBox(height: 16),
-          LocalizedText('Expense Manager Pro',
+          LocalizedText('PARO Cüzdan',
             style: theme.textTheme.headlineSmall?.copyWith(
               fontWeight: FontWeight.bold,
               color: theme.colorScheme.primary,
@@ -84,7 +84,7 @@ class AppInfoHeader extends StatelessWidget {
                   ),
                   recognizer: TapGestureRecognizer()
                     ..onTap =
-                        () => _launchURL('https://support.expensemanager.com'),
+                        () => _launchURL('https://glowuply.com'),
                 ),
               ],
             ),

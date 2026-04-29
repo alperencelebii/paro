@@ -178,8 +178,8 @@ class ExpenseApp extends StatelessWidget {
                 return BlocBuilder<LanguageCubit, LanguageState>(
                   builder: (context, languageState) {
                     return MaterialApp.router(
-                      title: 'Finance Track',
-                      onGenerateTitle: (context) => AppLocalizations.tr('Finance Track'),
+                      title: 'PARO Cüzdan',
+                      onGenerateTitle: (context) => AppLocalizations.tr('PARO Cüzdan'),
                       locale: languageState.locale,
                       supportedLocales: AppLocalizations.supportedLocales,
                       localizationsDelegates: const [
@@ -191,7 +191,7 @@ class ExpenseApp extends StatelessWidget {
                       theme: lightThemeData(),
                       debugShowCheckedModeBanner: false,
                       darkTheme: darkThemeData(),
-                      themeMode: ThemeMode.light,
+                      themeMode: ThemeMode.system,
                       routerConfig: appRouter.router(appBloc),
                       builder: (context, child) {
                         return ConnectivityBanner(

@@ -129,7 +129,7 @@ class PrivacyPolicyScreen extends StatelessWidget {
           style: TextStyle(
             fontSize: 24.sp,
             fontWeight: FontWeight.bold,
-            color: const Color(0xFF6C63FF),
+            color: const Color(0xFF1D4ED8),
           ),
         ),
         SizedBox(height: 8.h),
@@ -143,10 +143,10 @@ class PrivacyPolicyScreen extends StatelessWidget {
         Container(
           padding: EdgeInsets.all(16.w),
           decoration: BoxDecoration(
-            color: const Color(0xFF6C63FF).withValues(alpha: 0.1),
+            color: const Color(0xFF1D4ED8).withValues(alpha: 0.1),
             borderRadius: BorderRadius.circular(12.r),
             border: Border.all(
-              color: const Color(0xFF6C63FF).withValues(alpha: 0.3),
+              color: const Color(0xFF1D4ED8).withValues(alpha: 0.3),
               width: 1,
             ),
           ),
@@ -154,7 +154,7 @@ class PrivacyPolicyScreen extends StatelessWidget {
             children: [
               Icon(
                 Icons.privacy_tip_outlined,
-                color: const Color(0xFF6C63FF),
+                color: const Color(0xFF1D4ED8),
                 size: 24.w,
               ),
               SizedBox(width: 12.w),
@@ -204,7 +204,7 @@ class PrivacyPolicyScreen extends StatelessWidget {
                     LocalizedText('• ',
                       style: TextStyle(
                         fontSize: 14.sp,
-                        color: const Color(0xFF6C63FF),
+                        color: const Color(0xFF1D4ED8),
                         fontWeight: FontWeight.bold,
                       ),
                     ),

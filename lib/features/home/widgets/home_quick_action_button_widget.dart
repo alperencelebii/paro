@@ -80,7 +80,7 @@ class HomeQuickActionButtonWidget extends StatelessWidget {
             Icon(
               icon,
               size: 18.r,
-              color: const Color(0xFF6C5CE7),
+              color: const Color(0xFF1D4ED8),
             ),
             SizedBox(width: 8.w),
             LocalizedText(
@@ -100,7 +100,7 @@ class HomeQuickActionButtonWidget extends StatelessWidget {
             actionText,
             style: theme.textTheme.bodyMedium?.copyWith(
               fontWeight: FontWeight.w500,
-              color: const Color(0xFF6C5CE7),
+              color: const Color(0xFF1D4ED8),
             ),
           ),
         ),
@@ -229,13 +229,13 @@ class HomeQuickActionButtonWidget extends StatelessWidget {
           Container(
             padding: EdgeInsets.all(20.r),
             decoration: BoxDecoration(
-              color: const Color(0xFF6C5CE7).withValues(alpha: 0.1),
+              color: const Color(0xFF1D4ED8).withValues(alpha: 0.1),
               shape: BoxShape.circle,
             ),
             child: Icon(
               icon,
               size: 32.r,
-              color: const Color(0xFF6C5CE7),
+              color: const Color(0xFF1D4ED8),
             ),
           ),
           SizedBox(height: 20.h),
@@ -273,14 +273,14 @@ class HomeQuickActionButtonWidget extends StatelessWidget {
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
             colors: [
-              Color(0xFF6C5CE7),
+              Color(0xFF1D4ED8),
               Color(0xFF5E57B4),
             ],
           ),
           borderRadius: BorderRadius.circular(20.r),
           boxShadow: [
             BoxShadow(
-              color: const Color(0xFF6C5CE7).withValues(alpha: 0.3),
+              color: const Color(0xFF1D4ED8).withValues(alpha: 0.3),
               blurRadius: 12,
               offset: const Offset(0, 6),
             ),

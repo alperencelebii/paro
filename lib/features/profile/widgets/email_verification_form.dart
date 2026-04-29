@@ -31,7 +31,7 @@ class _EmailVerificationFormState extends State<EmailVerificationForm> {
     return Scaffold(
       appBar: AppBar(
         title: const LocalizedText('Verify Email'),
-        backgroundColor: const Color(0xFF6C63FF),
+        backgroundColor: const Color(0xFF1D4ED8),
         foregroundColor: Colors.white,
       ),
       body: BlocConsumer<ProfileEditBloc, ProfileEditState>(
@@ -66,7 +66,7 @@ class _EmailVerificationFormState extends State<EmailVerificationForm> {
                     Center(
                       child: Icon(
                         Icons.email_outlined,
-                        color: const Color(0xFF6C63FF),
+                        color: const Color(0xFF1D4ED8),
                         size: 80.r,
                       ),
                     ),
@@ -132,7 +132,7 @@ class _EmailVerificationFormState extends State<EmailVerificationForm> {
         counterText: '',
         prefixIcon: Icon(
           Icons.security,
-          color: const Color(0xFF6C63FF).withValues(alpha: 0.7),
+          color: const Color(0xFF1D4ED8).withValues(alpha: 0.7),
           size: 20.r,
         ),
         border: OutlineInputBorder(
@@ -150,7 +150,7 @@ class _EmailVerificationFormState extends State<EmailVerificationForm> {
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12.r),
           borderSide: const BorderSide(
-            color: Color(0xFF6C63FF),
+            color: Color(0xFF1D4ED8),
             width: 2,
           ),
         ),
@@ -213,7 +213,7 @@ class _EmailVerificationFormState extends State<EmailVerificationForm> {
                 }
               },
         style: ElevatedButton.styleFrom(
-          backgroundColor: const Color(0xFF6C63FF),
+          backgroundColor: const Color(0xFF1D4ED8),
           foregroundColor: Colors.white,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12.r),
@@ -250,11 +250,11 @@ class _EmailVerificationFormState extends State<EmailVerificationForm> {
                 context.read<ProfileEditBloc>().add(ProfileEditResendOtp());
               },
         style: TextButton.styleFrom(
-          foregroundColor: const Color(0xFF6C63FF),
+          foregroundColor: const Color(0xFF1D4ED8),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12.r),
             side: const BorderSide(
-              color: Color(0xFF6C63FF),
+              color: Color(0xFF1D4ED8),
               width: 1,
             ),
           ),

@@ -62,7 +62,7 @@ class ExpenseListScreen extends StatelessWidget {
             },
           ),
           centerTitle: false,
-          backgroundColor: const Color(0xFFF25F5C),
+          backgroundColor: const Color(0xFFEF4444),
           foregroundColor: Colors.white,
           actions: [
             IconButton(
@@ -89,7 +89,7 @@ class ExpenseListScreen extends StatelessWidget {
           ],
           flexibleSpace: Container(
             decoration: const BoxDecoration(
-              color: Color(0xFFF25F5C),
+              color: Color(0xFFEF4444),
             ),
             child: Stack(
               children: [
@@ -149,7 +149,7 @@ class ExpenseListScreen extends StatelessWidget {
             }
           },
           elevation: 4,
-          backgroundColor: const Color(0xFFF25F5C),
+          backgroundColor: const Color(0xFFEF4444),
           foregroundColor: Colors.white,
           child: const Icon(Icons.add),
         ),
@@ -389,7 +389,7 @@ class ExpenseListItemWidget extends StatelessWidget {
       direction: DismissDirection.horizontal,
       background: Container(
         decoration: BoxDecoration(
-          color: const Color(0xFFF25F5C).withValues(alpha: 0.9),
+          color: const Color(0xFFEF4444).withValues(alpha: 0.9),
           borderRadius: BorderRadius.circular(16.r),
         ),
         alignment: Alignment.centerLeft,
@@ -1808,7 +1808,7 @@ class _ExpenseSearchDelegate extends SearchDelegate<Expense?> {
     final theme = Theme.of(context);
     return theme.copyWith(
       appBarTheme: const AppBarTheme(
-        backgroundColor: Color(0xFFF25F5C),
+        backgroundColor: Color(0xFFEF4444),
         foregroundColor: Colors.white,
         elevation: 0,
       ),
@@ -1943,7 +1943,7 @@ class _ExpenseSearchDelegate extends SearchDelegate<Expense?> {
             formattedAmount,
             style: theme.textTheme.titleMedium?.copyWith(
               fontWeight: FontWeight.bold,
-              color: const Color(0xFFF25F5C),
+              color: const Color(0xFFEF4444),
             ),
           ),
           LocalizedText(

@@ -102,7 +102,7 @@ class PrivacySecurityView extends StatelessWidget {
       margin: EdgeInsets.all(8.w),
       padding: EdgeInsets.all(16.w),
       decoration: BoxDecoration(
-        color: const Color(0xFF6C63FF).withValues(alpha: 0.1),
+        color: const Color(0xFF1D4ED8).withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(16.r),
       ),
       child: Column(
@@ -112,7 +112,7 @@ class PrivacySecurityView extends StatelessWidget {
             children: [
               Icon(
                 Icons.shield_outlined,
-                color: const Color(0xFF6C63FF),
+                color: const Color(0xFF1D4ED8),
                 size: 28.w,
               ),
               SizedBox(width: 12.w),
@@ -120,7 +120,7 @@ class PrivacySecurityView extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 18.sp,
                   fontWeight: FontWeight.bold,
-                  color: const Color(0xFF6C63FF),
+                  color: const Color(0xFF1D4ED8),
                 ),
               ),
             ],
@@ -160,7 +160,7 @@ class PrivacySecurityView extends StatelessWidget {
           subtitle: 'Use fingerprint or face recognition to access the app',
           trailing: Switch(
             value: state.biometricEnabled,
-            activeColor: const Color(0xFF6C63FF),
+            activeColor: const Color(0xFF1D4ED8),
             onChanged: (value) {
               // Show a snackbar notification instead of toggling the setting
               ScaffoldMessenger.of(context).showSnackBar(

@@ -124,11 +124,11 @@ class _ExportDataView extends StatelessWidget {
                       }
                     },
                     backgroundColor: Colors.white,
-                    selectedColor: const Color(0xFF6C63FF),
+                    selectedColor: const Color(0xFF1D4ED8),
                     checkmarkColor: Colors.white,
                     side: BorderSide(
                       color: isSelected
-                          ? const Color(0xFF6C63FF)
+                          ? const Color(0xFF1D4ED8)
                           : Colors.grey[300]!,
                     ),
                   ),
@@ -190,7 +190,7 @@ class _ExportDataView extends StatelessWidget {
             return Theme(
               data: Theme.of(context).copyWith(
                 colorScheme: const ColorScheme.light(
-                  primary: Color(0xFF6C63FF),
+                  primary: Color(0xFF1D4ED8),
                   onPrimary: Colors.white,
                   surface: Colors.white,
                   onSurface: Colors.black,
@@ -312,14 +312,14 @@ class _ExportDataView extends StatelessWidget {
                 leading: Container(
                   padding: EdgeInsets.all(8.r),
                   decoration: BoxDecoration(
-                    color: const Color(0xFF6C63FF).withValues(alpha: 0.1),
+                    color: const Color(0xFF1D4ED8).withValues(alpha: 0.1),
                     borderRadius: BorderRadius.circular(8.r),
                   ),
                   child: Icon(
                     transaction['type'] == 'income'
                         ? Icons.arrow_upward
                         : Icons.arrow_downward,
-                    color: const Color(0xFF6C63FF),
+                    color: const Color(0xFF1D4ED8),
                     size: 20.r,
                   ),
                 ),
@@ -424,7 +424,7 @@ class _ExportDataView extends StatelessWidget {
                   ? null
                   : () => context.read<ExportDataCubit>().exportTransactions(),
               style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xFF6C63FF),
+                backgroundColor: const Color(0xFF1D4ED8),
                 foregroundColor: Colors.white,
                 padding: EdgeInsets.symmetric(vertical: 16.h),
                 shape: RoundedRectangleBorder(

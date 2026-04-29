@@ -161,7 +161,7 @@ class _SendMessageContent extends StatelessWidget {
                     onPressed:
                         state.isSending ? null : () => cubit.submitForm(),
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFF6C63FF),
+                      backgroundColor: const Color(0xFF1D4ED8),
                       foregroundColor: Colors.white,
                       padding: EdgeInsets.symmetric(vertical: 16.h),
                       shape: RoundedRectangleBorder(

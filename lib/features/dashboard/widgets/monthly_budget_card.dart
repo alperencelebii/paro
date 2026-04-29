@@ -91,8 +91,8 @@ class MonthlyBudgetCard extends StatelessWidget {
                       begin: Alignment.topLeft,
                       end: Alignment.bottomRight,
                       colors: [
-                        Color(0xFF6C63FF),
-                        Color(0xFF574ED7),
+                        Color(0xFF1D4ED8),
+                        Color(0xFF1E40AF),
                       ],
                     ),
                     borderRadius: BorderRadius.only(
@@ -398,7 +398,7 @@ class MonthlyBudgetCard extends StatelessWidget {
                                 shape: BoxShape.circle,
                                 boxShadow: [
                                   BoxShadow(
-                                    color: const Color(0xFF6C63FF)
+                                    color: const Color(0xFF1D4ED8)
                                         .withValues(alpha: 0.2),
                                     offset: const Offset(0, 3),
                                     blurRadius: 8,
@@ -412,14 +412,14 @@ class MonthlyBudgetCard extends StatelessWidget {
                                     LocalizedText(
                                       context.currencySymbol,
                                       style: TextStyle(
-                                        color: const Color(0xFF6C63FF),
+                                        color: const Color(0xFF1D4ED8),
                                         fontWeight: FontWeight.bold,
                                         fontSize: 18.sp,
                                       ),
                                     ),
                                     LocalizedText('DAILY',
                                       style: TextStyle(
-                                        color: const Color(0xFF6C63FF),
+                                        color: const Color(0xFF1D4ED8),
                                         fontWeight: FontWeight.bold,
                                         fontSize: 8.sp,
                                       ),
@@ -440,7 +440,7 @@ class MonthlyBudgetCard extends StatelessWidget {
                                         ? formatter.format(dailyBudget)
                                         : '---',
                                     style: TextStyle(
-                                      color: const Color(0xFF6C63FF),
+                                      color: const Color(0xFF1D4ED8),
                                       fontWeight: FontWeight.bold,
                                       fontSize: 22.sp,
                                     ),
@@ -492,18 +492,18 @@ class MonthlyBudgetCard extends StatelessWidget {
                               icon: Icon(
                                 Icons.edit,
                                 size: 18.r,
-                                color: const Color(0xFF6C63FF),
+                                color: const Color(0xFF1D4ED8),
                               ),
                               label: const LocalizedText('Edit Budget',
                                 style: TextStyle(
-                                  color: Color(0xFF6C63FF),
+                                  color: Color(0xFF1D4ED8),
                                   fontWeight: FontWeight.w600,
                                 ),
                               ),
                               style: OutlinedButton.styleFrom(
                                 padding: EdgeInsets.symmetric(vertical: 12.h),
                                 side:
-                                    const BorderSide(color: Color(0xFF6C63FF)),
+                                    const BorderSide(color: Color(0xFF1D4ED8)),
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(12.r),
                                 ),
@@ -520,7 +520,7 @@ class MonthlyBudgetCard extends StatelessWidget {
                               ),
                               label: const LocalizedText('All Budgets'),
                               style: ElevatedButton.styleFrom(
-                                backgroundColor: const Color(0xFF6C63FF),
+                                backgroundColor: const Color(0xFF1D4ED8),
                                 foregroundColor: Colors.white,
                                 elevation: 0,
                                 padding: EdgeInsets.symmetric(vertical: 12.h),

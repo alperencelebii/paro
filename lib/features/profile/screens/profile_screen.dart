@@ -159,7 +159,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       expandedHeight: 120.h,
       floating: false,
       pinned: true,
-      backgroundColor: const Color(0xFF6C63FF),
+      backgroundColor: const Color(0xFF1D4ED8),
       flexibleSpace: FlexibleSpaceBar(
         titlePadding: EdgeInsets.only(left: 20.w, bottom: 16.h),
         title: LocalizedText('Profile',
@@ -174,7 +174,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             gradient: LinearGradient(
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
-              colors: [Color(0xFF6C63FF), Color(0xFF4839D5)],
+              colors: [Color(0xFF1D4ED8), Color(0xFF1E40AF)],
             ),
           ),
         ),
@@ -221,13 +221,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   CircleAvatar(
                     radius: 40.r,
                     backgroundColor:
-                        const Color(0xFF6C63FF).withValues(alpha: 0.1),
+                        const Color(0xFF1D4ED8).withValues(alpha: 0.1),
                     child: LocalizedText(
                       user.name?.substring(0, 1).toUpperCase() ?? 'G',
                       style: TextStyle(
                         fontSize: 32.sp,
                         fontWeight: FontWeight.bold,
-                        color: const Color(0xFF6C63FF),
+                        color: const Color(0xFF1D4ED8),
                       ),
                     ),
                   ),
@@ -286,7 +286,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       children: [
         Icon(
           icon,
-          color: const Color(0xFF6C63FF),
+          color: const Color(0xFF1D4ED8),
           size: 24.r,
         ),
         SizedBox(height: 8.h),
@@ -346,7 +346,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   icon: Icons.subscriptions,
                   title: 'Subscription Management',
                   subtitle: 'View and manage your subscription details',
-                  iconColor: const Color(0xFF6C63FF),
+                  iconColor: const Color(0xFF1D4ED8),
                   trailing: Container(
                     padding:
                         EdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),
@@ -490,19 +490,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       padding:
                           EdgeInsets.symmetric(horizontal: 12.w, vertical: 6.h),
                       decoration: BoxDecoration(
-                        color: const Color(0xFF6C63FF).withValues(alpha: 0.1),
+                        color: const Color(0xFF1D4ED8).withValues(alpha: 0.1),
                         borderRadius: BorderRadius.circular(16.r),
                       ),
                       child: LocalizedText('${state.currency.symbol} ${state.currency.code}',
                         style: TextStyle(
-                          color: const Color(0xFF6C63FF),
+                          color: const Color(0xFF1D4ED8),
                           fontWeight: FontWeight.w600,
                           fontSize: 14.sp,
                         ),
                       ),
                     )
                   : const CircularProgressIndicator(),
-              iconColor: const Color(0xFF6C63FF),
+              iconColor: const Color(0xFF1D4ED8),
               onTap: () => showCurrencySelectionDialog(context),
             );
           },
@@ -516,12 +516,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
               trailing: LocalizedText(
                 languageLabel(state.language),
                 style: TextStyle(
-                  color: const Color(0xFF6C63FF),
+                  color: const Color(0xFF1D4ED8),
                   fontWeight: FontWeight.w600,
                   fontSize: 14.sp,
                 ),
               ),
-              iconColor: const Color(0xFF6C63FF),
+              iconColor: const Color(0xFF1D4ED8),
               onTap: () => showLanguageSelectionDialog(context),
             );
           },
@@ -530,7 +530,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           icon: Icons.category_outlined,
           title: 'My Categories',
           subtitle: 'Add, edit, or delete your custom categories',
-          iconColor: const Color(0xFF6C63FF),
+          iconColor: const Color(0xFF1D4ED8),
           onTap: () => context.pushNamed(AppRoutes.manageCategories),
         ),
         // ProfileItemTileWidget(
@@ -540,13 +540,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
         //   trailing: Container(
         //     padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 6.h),
         //     decoration: BoxDecoration(
-        //       color: const Color(0xFF6C63FF).withValues(alpha:0.1),
+        //       color: const Color(0xFF1D4ED8).withValues(alpha:0.1),
         //       borderRadius: BorderRadius.circular(16.r),
         //     ),
         //     child: LocalizedText(
         //       'Light',
         //       style: TextStyle(
-        //         color: const Color(0xFF6C63FF),
+        //         color: const Color(0xFF1D4ED8),
         //         fontWeight: FontWeight.w600,
         //         fontSize: 14.sp,
         //       ),
@@ -566,7 +566,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         //             ),
         //           ],
         //         ),
-        //         backgroundColor: const Color(0xFF6C63FF),
+        //         backgroundColor: const Color(0xFF1D4ED8),
         //         duration: const Duration(seconds: 2),
         //         behavior: SnackBarBehavior.floating,
         //         shape: RoundedRectangleBorder(
@@ -609,7 +609,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           icon: Icons.feedback_outlined,
           title: 'Send Feedback',
           subtitle: 'Share your thoughts and suggestions',
-          iconColor: const Color(0xFF6C63FF),
+          iconColor: const Color(0xFF1D4ED8),
           onTap: () {
             context.pushNamed(AppRoutes.sendMessage);
           },

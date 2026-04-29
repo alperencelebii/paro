@@ -35,7 +35,7 @@ class _SubscriptionManagementView extends StatelessWidget {
       backgroundColor: Colors.grey[50],
       appBar: AppBar(
         title: const LocalizedText('Subscription Management'),
-        backgroundColor: const Color(0xFF6C63FF),
+        backgroundColor: const Color(0xFF1D4ED8),
         foregroundColor: Colors.white,
         elevation: 0,
         actions: [
@@ -114,7 +114,7 @@ class _SubscriptionManagementView extends StatelessWidget {
                     icon: const Icon(Icons.refresh),
                     label: const LocalizedText('Retry'),
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFF6C63FF),
+                      backgroundColor: const Color(0xFF1D4ED8),
                       foregroundColor: Colors.white,
                     ),
                   ),
@@ -155,7 +155,7 @@ class _SubscriptionManagementView extends StatelessWidget {
                     icon: const Icon(Icons.arrow_forward),
                     label: const LocalizedText('View Plans'),
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFF6C63FF),
+                      backgroundColor: const Color(0xFF1D4ED8),
                       foregroundColor: Colors.white,
                     ),
                   ),
@@ -238,8 +238,8 @@ class _SubscriptionManagementView extends StatelessWidget {
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [
-            const Color(0xFF6C63FF),
-            const Color(0xFF4839D5),
+            const Color(0xFF1D4ED8),
+            const Color(0xFF1E40AF),
           ],
         ),
         borderRadius: BorderRadius.circular(16.r),
@@ -477,7 +477,7 @@ class _SubscriptionManagementView extends StatelessWidget {
             children: [
               Icon(
                 Icons.subscriptions,
-                color: const Color(0xFF6C63FF),
+                color: const Color(0xFF1D4ED8),
                 size: 20.r,
               ),
               SizedBox(width: 8.w),
@@ -578,7 +578,7 @@ class _SubscriptionManagementView extends StatelessWidget {
             children: [
               Icon(
                 Icons.account_circle,
-                color: const Color(0xFF6C63FF),
+                color: const Color(0xFF1D4ED8),
                 size: 20.r,
               ),
               SizedBox(width: 8.w),
@@ -630,7 +630,7 @@ class _SubscriptionManagementView extends StatelessWidget {
             children: [
               Icon(
                 Icons.receipt_long,
-                color: const Color(0xFF6C63FF),
+                color: const Color(0xFF1D4ED8),
                 size: 20.r,
               ),
               SizedBox(width: 8.w),
@@ -705,7 +705,7 @@ class _SubscriptionManagementView extends StatelessWidget {
             children: [
               Icon(
                 Icons.settings,
-                color: const Color(0xFF6C63FF),
+                color: const Color(0xFF1D4ED8),
                 size: 20.r,
               ),
               SizedBox(width: 8.w),
@@ -739,7 +739,7 @@ class _SubscriptionManagementView extends StatelessWidget {
                 icon: const Icon(Icons.open_in_new),
                 label: const LocalizedText('Open Subscription Settings'),
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFF6C63FF),
+                  backgroundColor: const Color(0xFF1D4ED8),
                   foregroundColor: Colors.white,
                   padding: EdgeInsets.symmetric(vertical: 14.h),
                 ),
@@ -757,8 +757,8 @@ class _SubscriptionManagementView extends StatelessWidget {
               icon: const Icon(Icons.refresh),
               label: const LocalizedText('Refresh Subscription Info'),
               style: OutlinedButton.styleFrom(
-                foregroundColor: const Color(0xFF6C63FF),
-                side: const BorderSide(color: Color(0xFF6C63FF)),
+                foregroundColor: const Color(0xFF1D4ED8),
+                side: const BorderSide(color: Color(0xFF1D4ED8)),
                 padding: EdgeInsets.symmetric(vertical: 14.h),
               ),
             ),

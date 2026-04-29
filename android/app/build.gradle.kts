@@ -6,8 +6,8 @@ plugins {
     id("dev.flutter.flutter-gradle-plugin")
 }
 
-import java.util.Properties
 import java.io.FileInputStream
+import java.util.Properties
 
 val keystoreProperties = Properties()
 val keystorePropertiesFile = rootProject.file("key.properties")
@@ -15,8 +15,18 @@ if (keystorePropertiesFile.exists()) {
     keystoreProperties.load(FileInputStream(keystorePropertiesFile))
 }
 
+fun signingProperty(name: String): String? =
+    keystoreProperties.getProperty(name)?.takeIf { it.isNotBlank() }
+
+val hasReleaseKeystore =
+    keystorePropertiesFile.exists() &&
+    signingProperty("storeFile") != null &&
+    signingProperty("storePassword") != null &&
+    signingProperty("keyAlias") != null &&
+    signingProperty("keyPassword") != null
+
 android {
-    namespace = "com.devwala.finance_track"
+    namespace = "com.glowuply.paro"
     compileSdk = 36
     ndkVersion = "29.0.13846066"
 
@@ -30,27 +40,37 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.devwala.finance_track"
+        applicationId = "com.glowuply.paro"
         minSdk = flutter.minSdkVersion
         targetSdk = 35
         versionCode = flutter.versionCode
         versionName = flutter.versionName
-        
-        // Enable MultiDex to support apps with more than 64K methods (needed for invoice scanner)
+
+        // Enable MultiDex to support apps with more than 64K methods.
         multiDexEnabled = true
     }
+
     signingConfigs {
         create("release") {
-            keyAlias = keystoreProperties["keyAlias"] as String?
-            keyPassword = keystoreProperties["keyPassword"] as String?
-            storeFile = keystoreProperties["storeFile"]?.let { file(it) }
-            storePassword = keystoreProperties["storePassword"] as String?
+            if (hasReleaseKeystore) {
+                keyAlias = signingProperty("keyAlias")
+                keyPassword = signingProperty("keyPassword")
+                storeFile = file(signingProperty("storeFile")!!)
+                storePassword = signingProperty("storePassword")
+            }
         }
     }
 
     buildTypes {
         getByName("release") {
-            signingConfig = signingConfigs.getByName("release")
+            // If android/key.properties is not available, release builds fall back
+            // to the debug keystore so local APK generation still works.
+            // Use a real upload keystore before publishing to Google Play.
+            signingConfig = if (hasReleaseKeystore) {
+                signingConfigs.getByName("release")
+            } else {
+                signingConfigs.getByName("debug")
+            }
             isMinifyEnabled = true
             isShrinkResources = true
             proguardFiles(
@@ -59,8 +79,6 @@ android {
             )
         }
     }
-
-    
 }
 
 flutter {
@@ -70,7 +88,7 @@ flutter {
 dependencies {
     // MultiDex support for apps with more than 64K methods
     implementation("androidx.multidex:multidex:2.0.1")
-    
+
     // Firebase Crashlytics (optional)
     // implementation("com.google.firebase:firebase-crashlytics")
 

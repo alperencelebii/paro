@@ -131,7 +131,7 @@ class _NameChangeFormState extends State<NameChangeForm> {
         hintText: AppLocalizations.tr('Enter your display name'),
         prefixIcon: Icon(
           Icons.person_outline,
-          color: const Color(0xFF6C63FF).withValues(alpha: 0.7),
+          color: const Color(0xFF1D4ED8).withValues(alpha: 0.7),
           size: 20.r,
         ),
         border: OutlineInputBorder(
@@ -149,7 +149,7 @@ class _NameChangeFormState extends State<NameChangeForm> {
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12.r),
           borderSide: const BorderSide(
-            color: Color(0xFF6C63FF),
+            color: Color(0xFF1D4ED8),
             width: 2,
           ),
         ),
@@ -220,7 +220,7 @@ class _NameChangeFormState extends State<NameChangeForm> {
                 }
               },
         style: ElevatedButton.styleFrom(
-          backgroundColor: const Color(0xFF6C63FF),
+          backgroundColor: const Color(0xFF1D4ED8),
           foregroundColor: Colors.white,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12.r),

@@ -37,8 +37,8 @@ class CurrencySelectionDialog extends StatelessWidget {
               decoration: const BoxDecoration(
                 gradient: LinearGradient(
                   colors: [
-                    Color(0xFF6C63FF), // Match the app's primary color
-                    Color(0xFF574ED7), // Darker variant for gradient
+                    Color(0xFF1D4ED8), // Match the app's primary color
+                    Color(0xFF1E40AF), // Darker variant for gradient
                   ],
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
@@ -164,7 +164,7 @@ class CurrencySelectionDialog extends StatelessWidget {
 
         return Material(
           color: isSelected
-              ? const Color(0xFF6C63FF).withValues(alpha: 0.08)
+              ? const Color(0xFF1D4ED8).withValues(alpha: 0.08)
               : Colors.transparent,
           child: InkWell(
             onTap: () {
@@ -173,8 +173,8 @@ class CurrencySelectionDialog extends StatelessWidget {
                 Navigator.of(context).pop();
               }
             },
-            splashColor: const Color(0xFF6C63FF).withValues(alpha: 0.1),
-            highlightColor: const Color(0xFF6C63FF).withValues(alpha: 0.05),
+            splashColor: const Color(0xFF1D4ED8).withValues(alpha: 0.1),
+            highlightColor: const Color(0xFF1D4ED8).withValues(alpha: 0.05),
             child: Padding(
               padding: EdgeInsets.symmetric(
                 horizontal: 24.w,
@@ -194,7 +194,7 @@ class CurrencySelectionDialog extends StatelessWidget {
                                 ? FontWeight.bold
                                 : FontWeight.normal,
                             color: isSelected
-                                ? const Color(0xFF6C63FF)
+                                ? const Color(0xFF1D4ED8)
                                 : theme.colorScheme.onSurface,
                           ),
                         ),
@@ -214,7 +214,7 @@ class CurrencySelectionDialog extends StatelessWidget {
                       width: 24.r,
                       height: 24.r,
                       decoration: const BoxDecoration(
-                        color: Color(0xFF6C63FF),
+                        color: Color(0xFF1D4ED8),
                         shape: BoxShape.circle,
                       ),
                       child: Icon(

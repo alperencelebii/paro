@@ -298,8 +298,8 @@ class BudgetTrackingCardWidget extends StatelessWidget {
   //         begin: Alignment.topLeft,
   //         end: Alignment.bottomRight,
   //         colors: [
-  //           Color(0xFF6C63FF),
-  //           Color(0xFF574ED7),
+  //           Color(0xFF1D4ED8),
+  //           Color(0xFF1E40AF),
   //         ],
   //       ),
   //       borderRadius: BorderRadius.circular(24.r),
@@ -421,7 +421,7 @@ class BudgetTrackingCardWidget extends StatelessWidget {
   //             onPressed: () => _promptUpgrade(context),
   //             style: ElevatedButton.styleFrom(
   //               backgroundColor: Colors.white,
-  //               foregroundColor: const Color(0xFF574ED7),
+  //               foregroundColor: const Color(0xFF1E40AF),
   //               elevation: 0,
   //               padding: EdgeInsets.symmetric(vertical: 12.h),
   //               shape: RoundedRectangleBorder(

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="LaunchTheme" parent="@android:style/Theme.Material.Light.NoActionBar">
+        <item name="android:windowSplashScreenBackground">@color/paro_primary</item>
+        <item name="android:windowSplashScreenAnimatedIcon">@drawable/paro_logo</item>
+        <item name="android:forceDarkAllowed">false</item>
+    </style>
+
+    <style name="NormalTheme" parent="@android:style/Theme.Material.Light.NoActionBar">
+        <item name="android:windowBackground">@color/paro_light_background</item>
+        <item name="android:forceDarkAllowed">false</item>
+    </style>
+</resources>

@@ -168,7 +168,7 @@ class DateWiseExpenseChart extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 14.sp,
                     fontWeight: FontWeight.w600,
-                    color: const Color(0xFF6C63FF),
+                    color: const Color(0xFF1D4ED8),
                   ),
                 ),
               ),

@@ -111,7 +111,7 @@ class _FaqViewState extends State<FaqView> with SingleTickerProviderStateMixin {
                     expandedHeight: expandedHeight,
                     floating: false,
                     pinned: true,
-                    backgroundColor: const Color(0xFF6C63FF),
+                    backgroundColor: const Color(0xFF1D4ED8),
                     foregroundColor: Colors.white,
                     flexibleSpace: FlexibleSpaceBar(
                       title: AnimatedOpacity(
@@ -127,13 +127,13 @@ class _FaqViewState extends State<FaqView> with SingleTickerProviderStateMixin {
                       background: Container(
                         decoration: BoxDecoration(
                           gradient: const LinearGradient(
-                            colors: [Color(0xFF6C63FF), Color(0xFF5A52CC)],
+                            colors: [Color(0xFF1D4ED8), Color(0xFF1E40AF)],
                             begin: Alignment.topCenter,
                             end: Alignment.bottomCenter,
                           ),
                           boxShadow: [
                             BoxShadow(
-                              color: const Color(0xFF6C63FF)
+                              color: const Color(0xFF1D4ED8)
                                   .withValues(alpha: 0.3),
                               offset: const Offset(0, 4),
                               blurRadius: 12,
@@ -211,10 +211,10 @@ class _FaqViewState extends State<FaqView> with SingleTickerProviderStateMixin {
               hintText: AppLocalizations.tr('Search FAQs...'),
               filled: true,
               fillColor: Colors.grey[50],
-              prefixIcon: const Icon(Icons.search, color: Color(0xFF6C63FF)),
+              prefixIcon: const Icon(Icons.search, color: Color(0xFF1D4ED8)),
               suffixIcon: _searchController.text.isNotEmpty
                   ? IconButton(
-                      icon: const Icon(Icons.clear, color: Color(0xFF6C63FF)),
+                      icon: const Icon(Icons.clear, color: Color(0xFF1D4ED8)),
                       onPressed: () {
                         _searchController.clear();
                         context.read<FaqBloc>().add(const ClearSearch());
@@ -232,7 +232,7 @@ class _FaqViewState extends State<FaqView> with SingleTickerProviderStateMixin {
               focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(12.r),
                 borderSide:
-                    const BorderSide(color: Color(0xFF6C63FF), width: 1.5),
+                    const BorderSide(color: Color(0xFF1D4ED8), width: 1.5),
               ),
               contentPadding:
                   EdgeInsets.symmetric(vertical: 14.h, horizontal: 16.w),
@@ -287,10 +287,10 @@ class _FaqViewState extends State<FaqView> with SingleTickerProviderStateMixin {
                   _searchController.clear();
                   context.read<FaqBloc>().add(const ClearSearch());
                 },
-                icon: const Icon(Icons.refresh, color: Color(0xFF6C63FF)),
+                icon: const Icon(Icons.refresh, color: Color(0xFF1D4ED8)),
                 label: LocalizedText('Clear Search',
                   style: TextStyle(
-                    color: const Color(0xFF6C63FF),
+                    color: const Color(0xFF1D4ED8),
                     fontWeight: FontWeight.w500,
                     fontSize: 14.sp,
                   ),
@@ -412,12 +412,12 @@ class _SearchResultsListView extends StatelessWidget {
           leading: Container(
             padding: EdgeInsets.all(8.r),
             decoration: BoxDecoration(
-              color: const Color(0xFF6C63FF).withValues(alpha: 0.1),
+              color: const Color(0xFF1D4ED8).withValues(alpha: 0.1),
               borderRadius: BorderRadius.circular(10.r),
             ),
             child: Icon(
               result.categoryIcon,
-              color: const Color(0xFF6C63FF),
+              color: const Color(0xFF1D4ED8),
               size: 20.r,
             ),
           ),
@@ -427,7 +427,7 @@ class _SearchResultsListView extends StatelessWidget {
                 padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),
                 margin: EdgeInsets.only(top: 4.h),
                 decoration: BoxDecoration(
-                  color: const Color(0xFF6C63FF).withValues(alpha: 0.05),
+                  color: const Color(0xFF1D4ED8).withValues(alpha: 0.05),
                   borderRadius: BorderRadius.circular(4.r),
                 ),
                 child: LocalizedText(
@@ -435,7 +435,7 @@ class _SearchResultsListView extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 11.sp,
                     fontWeight: FontWeight.w500,
-                    color: const Color(0xFF6C63FF),
+                    color: const Color(0xFF1D4ED8),
                   ),
                 ),
               ),
@@ -452,8 +452,8 @@ class _SearchResultsListView extends StatelessWidget {
               height: 1.3,
             ),
           ),
-          iconColor: const Color(0xFF6C63FF),
-          collapsedIconColor: const Color(0xFF6C63FF),
+          iconColor: const Color(0xFF1D4ED8),
+          collapsedIconColor: const Color(0xFF1D4ED8),
           expandedCrossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
@@ -530,12 +530,12 @@ class _FaqCategoryItem extends StatelessWidget {
           leading: Container(
             padding: EdgeInsets.all(10.r),
             decoration: BoxDecoration(
-              color: const Color(0xFF6C63FF).withValues(alpha: 0.1),
+              color: const Color(0xFF1D4ED8).withValues(alpha: 0.1),
               borderRadius: BorderRadius.circular(10.r),
             ),
             child: Icon(
               category.icon,
-              color: const Color(0xFF6C63FF),
+              color: const Color(0xFF1D4ED8),
               size: 22.r,
             ),
           ),
@@ -547,8 +547,8 @@ class _FaqCategoryItem extends StatelessWidget {
               color: Colors.black87,
             ),
           ),
-          iconColor: const Color(0xFF6C63FF),
-          collapsedIconColor: const Color(0xFF6C63FF),
+          iconColor: const Color(0xFF1D4ED8),
+          collapsedIconColor: const Color(0xFF1D4ED8),
           tilePadding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
           childrenPadding: EdgeInsets.only(bottom: 8.h, left: 8.w, right: 8.w),
           children: [
@@ -596,8 +596,8 @@ class _FaqCategoryItem extends StatelessWidget {
             color: Colors.black87,
           ),
         ),
-        iconColor: const Color(0xFF6C63FF),
-        collapsedIconColor: const Color(0xFF6C63FF),
+        iconColor: const Color(0xFF1D4ED8),
+        collapsedIconColor: const Color(0xFF1D4ED8),
         backgroundColor: Colors.white,
         collapsedBackgroundColor: Colors.white,
         shape: const RoundedRectangleBorder(

@@ -23,16 +23,13 @@ class LandingPage1 extends StatelessWidget {
             // Header section
             Row(
               children: [
-                Container(
-                  padding: EdgeInsets.all(12.r),
-                  decoration: BoxDecoration(
-                    color: theme.colorScheme.primary.withValues(alpha: 0.1),
-                    borderRadius: BorderRadius.circular(14.r),
-                  ),
-                  child: Icon(
-                    Icons.account_balance_wallet_rounded,
-                    size: 28.r,
-                    color: theme.colorScheme.primary,
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(16.r),
+                  child: Image.asset(
+                    'assets/images/paro_logo.png',
+                    width: 56.r,
+                    height: 56.r,
+                    fit: BoxFit.cover,
                   ),
                 ),
                 SizedBox(width: 16.w),
@@ -40,7 +37,7 @@ class LandingPage1 extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      LocalizedText('Akıllı Cüzdan Takibi',
+                      LocalizedText('PARO Cüzdan',
                         style: TextStyle(
                           fontSize: 18.sp,
                           fontWeight: FontWeight.bold,
@@ -50,7 +47,7 @@ class LandingPage1 extends StatelessWidget {
                         overflow: TextOverflow.ellipsis,
                       ),
                       SizedBox(height: 4.h),
-                      LocalizedText('Tam Kapsamlı Cep Ortağınız',
+                      LocalizedText('Akıllı gelir-gider ve bütçe takibi',
                         style: TextStyle(
                           fontSize: 12.sp,
                           fontWeight: FontWeight.w400,
@@ -128,7 +125,7 @@ class LandingPage1 extends StatelessWidget {
               icon: Icons.sync_rounded,
               title: 'Bulut Senkronizasyonu',
               description: 'Verilerinize tüm cihazlarınızdan güvenli bir şekilde erişin.',
-              color: Colors.blueAccent,
+              color: theme.colorScheme.primary,
               index: 3,
             ),
 

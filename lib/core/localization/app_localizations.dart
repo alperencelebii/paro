@@ -335,9 +335,10 @@ class AppLocalizations {
 
   static final Map<String, String> _tr = {
     // App / navigation
-    'Finance Track': 'Paro',
-    'Finance Tracker': 'Paro',
-    'Expense Manager Pro': 'Gider Yöneticisi Pro',
+    'Finance Track': 'PARO Cüzdan',
+    'PARO Cüzdan': 'PARO Cüzdan',
+    'Finance Tracker': 'PARO Cüzdan',
+    'Expense Manager Pro': 'PARO Cüzdan',
     'Home': 'Ana Sayfa',
     'Dashboard': 'Panel',
     'Analytics': 'Analizler',

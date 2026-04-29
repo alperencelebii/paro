@@ -13,8 +13,8 @@
     <uses-feature android:name="android.hardware.camera.autofocus" android:required="false" />
 
     <application
-        android:label="Finance Track"
-        android:name="com.devwala.finance_track.MainApplication"
+        android:label="@string/app_name"
+        android:name="com.glowuply.paro.MainApplication"
         android:icon="@mipmap/ic_launcher"
         android:enableOnBackInvokedCallback="true">
         <activity

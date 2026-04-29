@@ -1,4 +1,4 @@
-package com.devwala.finance_track
+package com.glowuply.paro
 
 import android.app.Application
 import android.content.Context
@@ -10,4 +10,3 @@ class MainApplication : Application() {
         MultiDex.install(this)
     }
 }
-

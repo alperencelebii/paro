@@ -299,7 +299,7 @@ class _DashboardScreenState extends State<DashboardScreen>
       floating: false,
       pinned: true,
       elevation: 0,
-      backgroundColor: const Color(0xFF6C63FF),
+      backgroundColor: const Color(0xFF1D4ED8),
       flexibleSpace: FlexibleSpaceBar(
         titlePadding: EdgeInsets.only(left: 20.w, bottom: 16.h),
         title: Row(
@@ -326,13 +326,13 @@ class _DashboardScreenState extends State<DashboardScreen>
         ),
         background: Container(
           decoration: const BoxDecoration(
-            // color: Color(0xFF6C5CE7),
+            // color: Color(0xFF1D4ED8),
             gradient: LinearGradient(
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
               colors: [
-                Color(0xFF6C63FF),
-                Color(0xFF574ED7),
+                Color(0xFF1D4ED8),
+                Color(0xFF1E40AF),
               ],
             ),
           ),

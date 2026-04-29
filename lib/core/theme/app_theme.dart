@@ -45,7 +45,7 @@ class SystemUiOverlayTheme {
   static const SystemUiOverlayStyle androidLightSystemBarTheme =
       SystemUiOverlayStyle(
     statusBarBrightness: Brightness.light,
-    statusBarColor: AppColors.white,
+    statusBarColor: AppColors.lightBackground,
     statusBarIconBrightness: Brightness.dark,
     systemNavigationBarIconBrightness: Brightness.dark,
   );
@@ -54,7 +54,7 @@ class SystemUiOverlayTheme {
   static const SystemUiOverlayStyle androidDarkSystemBarTheme =
       SystemUiOverlayStyle(
     statusBarBrightness: Brightness.dark,
-    statusBarColor: AppColors.black,
+    statusBarColor: AppColors.darkBackground,
     statusBarIconBrightness: Brightness.light,
     systemNavigationBarIconBrightness: Brightness.light,
   );

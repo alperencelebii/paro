@@ -1,16 +1,22 @@
-# finance_track
+# PARO Cüzdan
 
-A new Flutter project.
+PARO Cüzdan; gelir, gider, bütçe ve kategori takibi için hazırlanmış Flutter tabanlı kişisel finans uygulamasıdır.
 
-## Getting Started
+## Paket bilgisi
 
-This project is a starting point for a Flutter application.
+- Android applicationId / namespace: `com.glowuply.paro`
+- Görünen uygulama adı: `PARO Cüzdan`
+- Ana renk: `#1D4ED8`
+- Accent: `#22C55E`
 
-A few resources to get you started if this is your first Flutter project:
+## Build
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Debug APK:
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+```bash
+flutter clean
+flutter pub get
+flutter build apk --debug
+```
+
+Release APK için gerçek yayın anahtarı kullanmanız önerilir. Bu projede `android/key.properties` yoksa release build yerel test için debug keystore ile imzalanır.

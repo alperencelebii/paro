@@ -170,7 +170,7 @@ class _AnalyticsScreenState extends State<AnalyticsScreen>
       floating: false,
       pinned: true,
       elevation: 0,
-      backgroundColor: const Color(0xFF6C63FF),
+      backgroundColor: const Color(0xFF1D4ED8),
       // actions: [
 
       // ],
@@ -189,8 +189,8 @@ class _AnalyticsScreenState extends State<AnalyticsScreen>
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
               colors: [
-                Color(0xFF6C63FF),
-                Color(0xFF574ED7),
+                Color(0xFF1D4ED8),
+                Color(0xFF1E40AF),
               ],
             ),
           ),

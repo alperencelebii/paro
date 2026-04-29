@@ -1,3 +1,4 @@
+import 'package:finance_track/core/colors/app_colors.dart';
 import 'package:finance_track/core/router/app_router.dart';
 import 'package:finance_track/features/expense_list/bloc/expense_list_bloc.dart';
 import 'package:finance_track/features/expense_list/bloc/expense_list_event.dart';
@@ -23,7 +24,7 @@ class HomeQuickActionButton extends StatelessWidget {
           context,
           'Add Expense',
           Icons.shopping_bag_outlined,
-          const Color(0xFFF25F5C),
+          AppColors.expense,
           () async {
             final result = await TransactionUtils.showAddExpenseSheet(
               context: context,
@@ -41,7 +42,7 @@ class HomeQuickActionButton extends StatelessWidget {
           context,
           'Add Income',
           Icons.account_balance_wallet_outlined,
-          const Color.fromARGB(255, 6, 214, 141),
+          AppColors.income,
           () async {
             final result = await TransactionUtils.showAddIncomeSheet(
               context: context,
@@ -59,7 +60,7 @@ class HomeQuickActionButton extends StatelessWidget {
           context,
           'Analytics',
           Icons.insert_chart_outlined_rounded,
-          const Color(0xFF6C63FF),
+          AppColors.primary,
           () {
             _navigateToAnalytics(context);
           },

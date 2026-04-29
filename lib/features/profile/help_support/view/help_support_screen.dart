@@ -56,14 +56,14 @@ class _HelpSupportContent extends StatelessWidget {
       padding: EdgeInsets.all(20.r),
       decoration: BoxDecoration(
         gradient: const LinearGradient(
-          colors: [Color(0xFF6C63FF), Color(0xFF4839D5)],
+          colors: [Color(0xFF1D4ED8), Color(0xFF1E40AF)],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
         borderRadius: BorderRadius.circular(16.r),
         boxShadow: [
           BoxShadow(
-            color: const Color(0xFF6C63FF).withValues(alpha: 0.3),
+            color: const Color(0xFF1D4ED8).withValues(alpha: 0.3),
             offset: const Offset(0, 4),
             blurRadius: 12,
           ),
@@ -163,12 +163,12 @@ class _HelpSupportContent extends StatelessWidget {
                 Container(
                   padding: EdgeInsets.all(10.r),
                   decoration: BoxDecoration(
-                    color: const Color(0xFF6C63FF).withValues(alpha: 0.1),
+                    color: const Color(0xFF1D4ED8).withValues(alpha: 0.1),
                     borderRadius: BorderRadius.circular(10.r),
                   ),
                   child: Icon(
                     icon,
-                    color: const Color(0xFF6C63FF),
+                    color: const Color(0xFF1D4ED8),
                     size: 24.r,
                   ),
                 ),
@@ -312,7 +312,7 @@ class _HelpSupportContent extends StatelessWidget {
                         onPressed:
                             state.isSending ? null : () => cubit.submitForm(),
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xFF6C63FF),
+                          backgroundColor: const Color(0xFF1D4ED8),
                           foregroundColor: Colors.white,
                           padding: EdgeInsets.symmetric(vertical: 16.h),
                           shape: RoundedRectangleBorder(
@@ -443,8 +443,8 @@ class _HelpSupportContent extends StatelessWidget {
                     );
                   },
                   style: OutlinedButton.styleFrom(
-                    side: const BorderSide(color: Color(0xFF6C63FF)),
-                    foregroundColor: const Color(0xFF6C63FF),
+                    side: const BorderSide(color: Color(0xFF1D4ED8)),
+                    foregroundColor: const Color(0xFF1D4ED8),
                     padding: EdgeInsets.symmetric(vertical: 16.h),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12.r),
@@ -482,12 +482,12 @@ class _HelpSupportContent extends StatelessWidget {
             Container(
               padding: EdgeInsets.all(8.r),
               decoration: BoxDecoration(
-                color: const Color(0xFF6C63FF).withValues(alpha: 0.1),
+                color: const Color(0xFF1D4ED8).withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(8.r),
               ),
               child: Icon(
                 icon,
-                color: const Color(0xFF6C63FF),
+                color: const Color(0xFF1D4ED8),
                 size: 20.r,
               ),
             ),

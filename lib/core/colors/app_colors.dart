@@ -1,64 +1,66 @@
 import 'package:flutter/material.dart';
 
-/// Defines the color palette for the App UI Kit.
+/// PARO Cüzdan brand color system.
 abstract class AppColors {
-  /// Black
+  /// Core neutral colors.
   static const Color black = Color(0xFF000000);
-
-  /// The background color.
-  static const Color background = Color.fromARGB(255, 32, 30, 30);
-
-  /// White
   static const Color white = Color(0xFFFFFFFF);
-
-  /// Transparent
   static const Color transparent = Color(0x00000000);
 
-  /// The light blue color.
-  static const Color lightBlue = Color.fromARGB(255, 100, 181, 246);
+  /// Brand primary: trust / fintech blue.
+  static const Color primary = Color(0xFF1D4ED8);
 
-  /// The blue primary color and swatch.
-  static const Color blue = Color(0xFF3898EC);
+  /// Darker primary for pressed/hover states.
+  static const Color primaryDark = Color(0xFF1E40AF);
 
-  /// The deep blue color.
-  static const Color deepBlue = Color(0xff337eff);
+  /// Disabled/soft primary.
+  static const Color primarySoft = Color(0xFF93C5FD);
 
-  /// The green color.
+  /// Money / positive accent.
+  static const Color accent = Color(0xFF22C55E);
+
+  /// Logo and hero gradient start.
+  static const Color gradientStart = Color(0xFF06B6D4);
+
+  /// Logo and hero gradient end.
+  static const Color gradientEnd = Color(0xFF22C55E);
+
+  /// Status colors.
+  static const Color income = Color(0xFF22C55E);
+  static const Color expense = Color(0xFFEF4444);
+  static const Color warning = Color(0xFFF59E0B);
+  static const Color neutral = Color(0xFF64748B);
+
+  /// Dark mode palette.
+  static const Color darkBackground = Color(0xFF0F172A);
+  static const Color darkSurface = Color(0xFF1E293B);
+  static const Color darkBorder = Color(0xFF334155);
+  static const Color darkText = Color(0xFFF8FAFC);
+  static const Color darkTextSecondary = Color(0xFF94A3B8);
+
+  /// Light mode palette.
+  static const Color lightBackground = Color(0xFFF9FAFB);
+  static const Color lightSurface = Color(0xFFFFFFFF);
+  static const Color lightBorder = Color(0xFFE5E7EB);
+  static const Color lightText = Color(0xFF0F172A);
+  static const Color lightTextSecondary = Color(0xFF6B7280);
+
+  /// Backward-compatible aliases used in older widgets.
+  static const Color background = darkBackground;
+  static const Color lightBlue = Color(0xFF60A5FA);
+  static const Color blue = primary;
+  static const Color deepBlue = primary;
   static const MaterialColor green = Colors.green;
-
-  /// The orange accent color.
-  static const Color orangeAccent = Color.fromARGB(255, 230, 81, 0);
-
-  /// The primary orange color.
-  static const Color orange = Color.fromARGB(255, 239, 108, 0);
-
-  /// The border outline color.
-  static const Color borderOutline = Color.fromARGB(165, 58, 58, 58);
-
-  /// Light dark.
-  static const Color lightDark = Color.fromARGB(164, 120, 119, 119);
-
-  /// Dark.
-  static const Color dark = Color.fromARGB(255, 58, 58, 58);
-
-  /// Primary dark blue color.
-  static const Color primaryDarkBlue = Color(0xff1c1e22);
-
-  /// Grey.
-  static const Color grey = Colors.grey;
-
-  /// The bright grey color.
-  static const Color brightGrey = Color.fromARGB(255, 238, 238, 238);
-
-  /// The dark grey color.
-  static const Color darkGrey = Color.fromARGB(255, 66, 66, 66);
-
-  /// The emphasize grey color.
-  static const Color emphasizeGrey = Color.fromARGB(255, 97, 97, 97);
-
-  /// The emphasize dark grey color.
-  static const Color emphasizeDarkGrey = Color.fromARGB(255, 40, 37, 37);
-
-  /// Red material color.
+  static const Color orangeAccent = warning;
+  static const Color orange = warning;
+  static const Color borderOutline = darkBorder;
+  static const Color lightDark = darkTextSecondary;
+  static const Color dark = darkSurface;
+  static const Color primaryDarkBlue = darkBackground;
+  static const Color grey = neutral;
+  static const Color brightGrey = lightBackground;
+  static const Color darkGrey = darkSurface;
+  static const Color emphasizeGrey = lightTextSecondary;
+  static const Color emphasizeDarkGrey = darkBackground;
   static const MaterialColor red = Colors.red;
 }

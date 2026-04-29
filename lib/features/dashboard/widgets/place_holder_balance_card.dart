@@ -16,8 +16,8 @@ class PlaceHolderBalanceCard extends StatelessWidget {
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [
-            const Color(0xFF6C63FF).withValues(alpha: 0.3),
-            const Color(0xFF574ED7).withValues(alpha: 0.3),
+            const Color(0xFF1D4ED8).withValues(alpha: 0.3),
+            const Color(0xFF1E40AF).withValues(alpha: 0.3),
           ],
         ),
         borderRadius: BorderRadius.circular(24.r),

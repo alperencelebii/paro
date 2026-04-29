@@ -26,10 +26,7 @@ class DefaultFirebaseOptions {
       case TargetPlatform.android:
         return android;
       case TargetPlatform.iOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for ios - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return ios;
       case TargetPlatform.macOS:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for macos - '
@@ -60,4 +57,16 @@ class DefaultFirebaseOptions {
     databaseURL: 'https://yemekye-6fbc4-default-rtdb.europe-west1.firebasedatabase.app',
     storageBucket: 'yemekye-6fbc4.firebasestorage.app',
   );
+
+
+  static const FirebaseOptions ios = FirebaseOptions(
+    apiKey: 'AIzaSyDQNlbQv6Yy6gkSom98D4PYEqrBs1yNiQk',
+    appId: '1:700441439019:ios:b894624b2cc67517f4f36e',
+    messagingSenderId: '700441439019',
+    projectId: 'yemekye-6fbc4',
+    databaseURL: 'https://yemekye-6fbc4-default-rtdb.europe-west1.firebasedatabase.app',
+    storageBucket: 'yemekye-6fbc4.firebasestorage.app',
+    iosBundleId: 'com.glowuply.paro',
+  );
+
 }

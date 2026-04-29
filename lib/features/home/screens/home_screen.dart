@@ -1,3 +1,4 @@
+import 'package:finance_track/core/colors/app_colors.dart';
 import 'package:finance_track/features/budget/bloc/budget_bloc/budget_bloc.dart';
 import 'package:finance_track/features/expense_list/bloc/expense_list_bloc.dart';
 import 'package:finance_track/features/expense_list/bloc/expense_list_state.dart';
@@ -175,7 +176,7 @@ class _HomeScreenState extends State<HomeScreen>
       pinned: true, collapsedHeight: 70.h,
       elevation: 0,
 
-      backgroundColor: const Color(0xFF6C63FF),
+      backgroundColor: AppColors.primary,
       flexibleSpace: FlexibleSpaceBar(
         titlePadding: EdgeInsets.only(bottom: 16.h, left: 20.w, right: 20.w),
         title: Column(
@@ -191,7 +192,7 @@ class _HomeScreenState extends State<HomeScreen>
               ),
             ),
             SizedBox(height: 4.h),
-            LocalizedText('Finance Tracker',
+            LocalizedText('PARO Cüzdan',
               style: theme.textTheme.titleLarge?.copyWith(
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
@@ -206,8 +207,8 @@ class _HomeScreenState extends State<HomeScreen>
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
               colors: [
-                Color(0xFF6C63FF),
-                Color(0xFF574ED7),
+                AppColors.primary,
+                AppColors.primaryDark,
               ],
             ),
           ),

@@ -1,13 +1,13 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:finance_track/core/app_bloc/app_bloc.dart';
+import 'package:finance_track/core/colors/app_colors.dart';
 import 'package:finance_track/core/router/app_router.dart';
 import 'package:finance_track/core/services/update_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:finance_track/core/localization/localization.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -35,7 +35,7 @@ class _SplashScreenState extends State<SplashScreen>
       curve: Curves.easeIn,
     );
 
-    _scaleAnimation = Tween<double>(begin: 0.9, end: 1.0).animate(
+    _scaleAnimation = Tween<double>(begin: 0.88, end: 1.0).animate(
       CurvedAnimation(
         parent: _controller,
         curve: Curves.easeOutBack,
@@ -44,7 +44,6 @@ class _SplashScreenState extends State<SplashScreen>
 
     _controller.forward();
 
-    // Check authentication state after animation
     _controller.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
         _checkUpdateThenNavigate();
@@ -54,12 +53,10 @@ class _SplashScreenState extends State<SplashScreen>
 
   Future<void> _checkUpdateThenNavigate() async {
     try {
-      // Mandatory update gate. If true, we navigate to update screen and stop flow.
       final intercepted =
           await UpdateService.instance.checkAndNavigateIfRequired(context);
       if (intercepted) return;
 
-      // Continue with first-time and auth navigation
       final prefs = await SharedPreferences.getInstance();
       final isFirstTime = prefs.getBool('first_time_user') ?? true;
 
@@ -79,7 +76,6 @@ class _SplashScreenState extends State<SplashScreen>
         context.go(AppPaths.landing);
       }
     } catch (e) {
-      // In case of errors, fallback to landing page
       if (mounted) {
         context.go(AppPaths.landing);
       }
@@ -95,57 +91,80 @@ class _SplashScreenState extends State<SplashScreen>
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final primaryColor = theme.colorScheme.primary;
 
     return Scaffold(
-      backgroundColor: theme.colorScheme.surface,
-      body: Center(
-        child: AnimatedBuilder(
-          animation: _controller,
-          builder: (context, child) {
-            return FadeTransition(
-              opacity: _fadeAnimation,
-              child: ScaleTransition(
-                scale: _scaleAnimation,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Container(
-                      padding: const EdgeInsets.all(16),
-                      decoration: BoxDecoration(
-                        color: primaryColor.withValues(alpha: 0.1),
-                        shape: BoxShape.circle,
-                      ),
-                      child: Icon(
-                        Icons.account_balance_wallet_rounded,
-                        size: 60,
-                        color: primaryColor,
-                      ),
-                    ),
-                    const SizedBox(height: 16),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        LocalizedText('Finance',
-                          style: theme.textTheme.headlineSmall?.copyWith(
-                            fontWeight: FontWeight.bold,
-                            color: primaryColor,
+      body: DecoratedBox(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              AppColors.primary,
+              AppColors.darkBackground,
+            ],
+          ),
+        ),
+        child: Center(
+          child: AnimatedBuilder(
+            animation: _controller,
+            builder: (context, child) {
+              return FadeTransition(
+                opacity: _fadeAnimation,
+                child: ScaleTransition(
+                  scale: _scaleAnimation,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Container(
+                        width: 132,
+                        height: 132,
+                        padding: const EdgeInsets.all(8),
+                        decoration: BoxDecoration(
+                          color: AppColors.white.withValues(alpha: 0.10),
+                          borderRadius: BorderRadius.circular(32),
+                          border: Border.all(
+                            color: AppColors.white.withValues(alpha: 0.18),
+                          ),
+                          boxShadow: [
+                            BoxShadow(
+                              color: AppColors.black.withValues(alpha: 0.20),
+                              blurRadius: 24,
+                              offset: const Offset(0, 12),
+                            ),
+                          ],
+                        ),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(26),
+                          child: Image.asset(
+                            'assets/images/paro_logo.png',
+                            fit: BoxFit.cover,
                           ),
                         ),
-                        LocalizedText('Track',
-                          style: theme.textTheme.headlineSmall?.copyWith(
-                            fontWeight: FontWeight.w400,
-                            color: theme.colorScheme.onSurface,
-                          ),
+                      ),
+                      const SizedBox(height: 22),
+                      Text(
+                        'PARO Cüzdan',
+                        style: theme.textTheme.headlineSmall?.copyWith(
+                          color: AppColors.white,
+                          fontWeight: FontWeight.w800,
+                          letterSpacing: 0.4,
                         ),
-                      ],
-                    ),
-                  ],
+                      ),
+                      const SizedBox(height: 8),
+                      Text(
+                        'Gelir, gider ve bütçe takibi',
+                        style: theme.textTheme.bodyMedium?.copyWith(
+                          color: AppColors.white.withValues(alpha: 0.78),
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            );
-          },
+              );
+            },
+          ),
         ),
       ),
     );

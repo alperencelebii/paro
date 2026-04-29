@@ -42,7 +42,7 @@ class _DateWiseExpenseScreenState extends State<DateWiseExpenseScreen> {
       child: Scaffold(
         appBar: AppBar(
           title: const LocalizedText('Date-wise Expenses'),
-          backgroundColor: const Color(0xFF6C63FF),
+          backgroundColor: const Color(0xFF1D4ED8),
           foregroundColor: Colors.white,
           elevation: 0,
         ),
@@ -180,7 +180,7 @@ class _DateWiseExpenseScreenState extends State<DateWiseExpenseScreen> {
               decoration: BoxDecoration(
                 gradient: isSelected
                     ? const LinearGradient(
-                        colors: [Color(0xFF6C63FF), Color(0xFF574ED7)],
+                        colors: [Color(0xFF1D4ED8), Color(0xFF1E40AF)],
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight,
                       )
@@ -193,9 +193,9 @@ class _DateWiseExpenseScreenState extends State<DateWiseExpenseScreen> {
                 borderRadius: BorderRadius.circular(16.r),
                 border: Border.all(
                   color: isSelected
-                      ? const Color(0xFF6C63FF)
+                      ? const Color(0xFF1D4ED8)
                       : isToday
-                          ? const Color(0xFF6C63FF)
+                          ? const Color(0xFF1D4ED8)
                           : Colors.grey.shade300,
                   width: isSelected
                       ? 2
@@ -206,7 +206,7 @@ class _DateWiseExpenseScreenState extends State<DateWiseExpenseScreen> {
                 boxShadow: isSelected
                     ? [
                         BoxShadow(
-                          color: const Color(0xFF6C63FF).withValues(alpha: 0.3),
+                          color: const Color(0xFF1D4ED8).withValues(alpha: 0.3),
                           blurRadius: 8,
                           offset: const Offset(0, 4),
                         ),
@@ -255,7 +255,7 @@ class _DateWiseExpenseScreenState extends State<DateWiseExpenseScreen> {
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         color:
-                            isSelected ? Colors.white : const Color(0xFF6C63FF),
+                            isSelected ? Colors.white : const Color(0xFF1D4ED8),
                       ),
                     ),
                 ],

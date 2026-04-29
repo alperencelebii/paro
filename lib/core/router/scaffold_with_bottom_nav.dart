@@ -252,7 +252,7 @@ class _NavigationBar extends StatelessWidget {
           width: 48,
           child: Icon(
             isSelected ? activeIcon : icon,
-            color: isSelected ? const Color(0xFF6C5CE7) : iconColor,
+            color: isSelected ? const Color(0xFF1D4ED8) : iconColor,
             size: 24,
           ),
         ),
