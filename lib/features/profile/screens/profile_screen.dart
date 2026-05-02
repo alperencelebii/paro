@@ -283,30 +283,43 @@ class _ProfileScreenState extends State<ProfileScreen> {
     required String value,
     required IconData icon,
   }) {
-    return Column(
-      children: [
-        Icon(
-          icon,
-          color: const Color(0xFF1D4ED8),
-          size: 24.r,
-        ),
-        SizedBox(height: 8.h),
-        LocalizedText(
-          value,
-          style: TextStyle(
-            fontSize: 18.sp,
-            fontWeight: FontWeight.w600,
+    return Expanded(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(
+            icon,
+            color: const Color(0xFF1D4ED8),
+            size: 24.r,
           ),
-        ),
-        SizedBox(height: 4.h),
-        LocalizedText(
-          title,
-          style: TextStyle(
-            fontSize: 12.sp,
-            color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.62),
+          SizedBox(height: 8.h),
+          FittedBox(
+            fit: BoxFit.scaleDown,
+            child: LocalizedText(
+              value,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(
+                fontSize: 18.sp,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
           ),
-        ),
-      ],
+          SizedBox(height: 4.h),
+          LocalizedText(
+            title,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: TextStyle(
+              fontSize: 12.sp,
+              color: Theme.of(context)
+                  .colorScheme
+                  .onSurface
+                  .withValues(alpha: 0.62),
+            ),
+          ),
+        ],
+      ),
     );
   }
 

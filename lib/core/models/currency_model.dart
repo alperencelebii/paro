@@ -62,9 +62,9 @@ class Currency extends Equatable {
 class Currencies {
   /// Indian Rupee (default)
   static const Currency inr = Currency(
-    code: 'INR',
-    symbol: '₹',
-    name: 'Indian Rupee',
+    code: 'TRY',
+    symbol: '₺',
+    name: 'Türk Lirası',
     flag: '🇮🇳',
   );
 
@@ -290,7 +290,7 @@ class Currencies {
       ['TMT', 'Turkmenistani Manat', 'm'],
       ['TND', 'Tunisian Dinar', 'د.ت'],
       ['TOP', 'Tongan Paʻanga', 'T\$'],
-      ['TRY', 'Turkish Lira', '₺'],
+      ['TRY', 'Türk Lirası', '₺'],
       ['TTD', 'Trinidad and Tobago Dollar', 'TT\$'],
       ['TWD', 'New Taiwan Dollar', 'NT\$'],
       ['TZS', 'Tanzanian Shilling', 'TSh'],

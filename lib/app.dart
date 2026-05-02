@@ -194,8 +194,15 @@ class ExpenseApp extends StatelessWidget {
                       themeMode: ThemeMode.system,
                       routerConfig: appRouter.router(appBloc),
                       builder: (context, child) {
-                        return ConnectivityBanner(
-                          child: child ?? const SizedBox.shrink(),
+                        final mediaQuery = MediaQuery.of(context);
+                        final scale = mediaQuery.textScaler.scale(1).clamp(0.85, 1.0).toDouble();
+                        return MediaQuery(
+                          data: mediaQuery.copyWith(
+                            textScaler: TextScaler.linear(scale),
+                          ),
+                          child: ConnectivityBanner(
+                            child: child ?? const SizedBox.shrink(),
+                          ),
                         );
                       },
                     );

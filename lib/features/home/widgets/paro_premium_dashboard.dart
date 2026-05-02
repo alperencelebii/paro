@@ -1,4 +1,3 @@
-
 import 'dart:math' as math;
 
 import 'package:finance_track/core/colors/app_colors.dart';
@@ -11,11 +10,11 @@ import 'package:finance_track/data/models/income_model.dart';
 import 'package:finance_track/features/expense_list/bloc/expense_list_bloc.dart';
 import 'package:finance_track/features/expense_list/bloc/expense_list_event.dart';
 import 'package:finance_track/features/expense_list/bloc/expense_list_state.dart';
+import 'package:finance_track/features/home/services/paro_calm_coach_service.dart';
 import 'package:finance_track/features/home/services/paro_insights_service.dart';
 import 'package:finance_track/features/income_list/bloc/income_list_bloc.dart';
 import 'package:finance_track/features/income_list/bloc/income_list_event.dart';
 import 'package:finance_track/features/income_list/bloc/income_list_state.dart';
-import 'package:finance_track/features/navigation/cubit/navigation_cubit.dart';
 import 'package:finance_track/features/recurring_expenses/services/recurring_expense_service.dart';
 import 'package:finance_track/features/savings_goals/services/savings_goal_service.dart';
 import 'package:finance_track/features/transactions/utils/transaction_utils.dart';
@@ -64,16 +63,41 @@ class ParoPremiumDashboard extends StatelessWidget {
               expenses: expenses,
               incomes: incomes,
             );
+            final dailyStatus = ParoCalmCoachService.dailyStatus(
+              expenses: expenses,
+              incomes: incomes,
+            );
+            final calmSuggestions = ParoCalmCoachService.suggestions(
+              expenses: expenses,
+              incomes: incomes,
+            );
+            final gentleNotifications = ParoCalmCoachService.gentleNotifications(
+              expenses: expenses,
+              incomes: incomes,
+            );
+            final quickAdds = ParoCalmCoachService.quickAdds(expenses);
+            final comfortScore = ParoCalmCoachService.financialComfortScore(
+              expenses: expenses,
+              incomes: incomes,
+            );
+
+            String money(double amount) => CurrencyFormatter.format(amount, currency);
 
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 _HeroBalanceCard(
-                  balance: CurrencyFormatter.format(balance, currency),
-                  monthNet: CurrencyFormatter.format(monthNet, currency),
-                  income: CurrencyFormatter.format(monthIncomeTotal, currency),
-                  expense: CurrencyFormatter.format(monthExpenseTotal, currency),
+                  balance: money(balance),
+                  monthNet: money(monthNet),
+                  income: money(monthIncomeTotal),
+                  expense: money(monthExpenseTotal),
                   isPositive: monthNet >= 0,
+                  comfortScore: comfortScore,
+                ),
+                SizedBox(height: 14.h),
+                _DailyComfortCard(
+                  data: dailyStatus,
+                  onPrimaryAction: () => _addExpense(context),
                 ),
                 SizedBox(height: 14.h),
                 _QuickActionsGrid(
@@ -93,35 +117,60 @@ class ParoPremiumDashboard extends StatelessWidget {
                   },
                 ),
                 SizedBox(height: 14.h),
+                _OneTapAddCard(
+                  suggestions: quickAdds,
+                  formatter: money,
+                  onTap: () => _addExpense(context),
+                ),
+                SizedBox(height: 14.h),
                 _SmartInsightCard(insights: insights),
+                SizedBox(height: 14.h),
+                _CalmSuggestionsCard(
+                  suggestions: calmSuggestions,
+                  onGoals: () => context.pushNamed(AppRoutes.savingsGoals),
+                ),
+                SizedBox(height: 14.h),
+                _GentleNotificationsCard(
+                  notifications: gentleNotifications,
+                  onSettings: () => context.pushNamed(AppRoutes.reminderSettings),
+                ),
                 SizedBox(height: 14.h),
                 _TrendAndPreviewRow(
                   values: trendValues,
-                  total: CurrencyFormatter.format(
+                  total: money(
                     trendValues.fold<double>(0, (sum, item) => sum + item),
-                    currency,
                   ),
                 ),
                 SizedBox(height: 14.h),
-                Row(
-                  children: [
-                    Expanded(
-                      child: _SavingsPreviewCard(
-                        service: SavingsGoalService(),
-                        onTap: () => context.pushNamed(AppRoutes.savingsGoals),
-                      ),
-                    ),
-                    SizedBox(width: 12.w),
-                    Expanded(
-                      child: _RecurringPreviewCard(
-                        service: RecurringExpenseService(),
-                        currencyFormatter: (amount) =>
-                            CurrencyFormatter.format(amount, currency),
-                        onTap: () =>
-                            context.pushNamed(AppRoutes.recurringExpenses),
-                      ),
-                    ),
-                  ],
+                LayoutBuilder(
+                  builder: (context, constraints) {
+                    final narrow = constraints.maxWidth < 360;
+                    final goals = _SavingsPreviewCard(
+                      service: SavingsGoalService(),
+                      onTap: () => context.pushNamed(AppRoutes.savingsGoals),
+                    );
+                    final recurring = _RecurringPreviewCard(
+                      service: RecurringExpenseService(),
+                      currencyFormatter: money,
+                      onTap: () => context.pushNamed(AppRoutes.recurringExpenses),
+                    );
+                    if (narrow) {
+                      return Column(
+                        children: [
+                          goals,
+                          SizedBox(height: 12.h),
+                          recurring,
+                        ],
+                      );
+                    }
+                    return Row(
+                      children: [
+                        Expanded(child: goals),
+                        SizedBox(width: 12.w),
+                        Expanded(child: recurring),
+                      ],
+                    );
+                  },
                 ),
               ],
             );
@@ -151,6 +200,32 @@ class ParoPremiumDashboard extends StatelessWidget {
   }
 }
 
+class _SafeText extends StatelessWidget {
+  const _SafeText(
+    this.text, {
+    this.style,
+    this.maxLines = 1,
+    this.textAlign,
+  });
+
+  final String text;
+  final TextStyle? style;
+  final int maxLines;
+  final TextAlign? textAlign;
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      text,
+      maxLines: maxLines,
+      overflow: TextOverflow.ellipsis,
+      softWrap: maxLines > 1,
+      textAlign: textAlign,
+      style: style,
+    );
+  }
+}
+
 class _HeroBalanceCard extends StatelessWidget {
   const _HeroBalanceCard({
     required this.balance,
@@ -158,6 +233,7 @@ class _HeroBalanceCard extends StatelessWidget {
     required this.income,
     required this.expense,
     required this.isPositive,
+    required this.comfortScore,
   });
 
   final String balance;
@@ -165,6 +241,7 @@ class _HeroBalanceCard extends StatelessWidget {
   final String income;
   final String expense;
   final bool isPositive;
+  final int comfortScore;
 
   @override
   Widget build(BuildContext context) {
@@ -172,7 +249,7 @@ class _HeroBalanceCard extends StatelessWidget {
 
     return Container(
       width: double.infinity,
-      padding: EdgeInsets.all(22.r),
+      padding: EdgeInsets.all(20.r),
       decoration: BoxDecoration(
         gradient: const LinearGradient(
           colors: [AppColors.primary, AppColors.primaryDark],
@@ -182,7 +259,7 @@ class _HeroBalanceCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(28.r),
         boxShadow: [
           BoxShadow(
-            color: AppColors.primary.withValues(alpha: 0.28),
+            color: AppColors.primary.withValues(alpha: 0.22),
             blurRadius: 24,
             offset: const Offset(0, 14),
           ),
@@ -191,24 +268,15 @@ class _HeroBalanceCard extends StatelessWidget {
       child: Stack(
         children: [
           Positioned(
-            right: -12.w,
-            top: -24.h,
+            right: -18.w,
+            top: -28.h,
             child: Container(
-              width: 120.r,
-              height: 120.r,
+              width: 128.r,
+              height: 128.r,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 color: Colors.white.withValues(alpha: 0.06),
               ),
-            ),
-          ),
-          Positioned(
-            right: 8.w,
-            bottom: -32.h,
-            child: Icon(
-              Icons.account_balance_wallet_rounded,
-              color: Colors.white.withValues(alpha: 0.08),
-              size: 128.r,
             ),
           ),
           Column(
@@ -227,7 +295,7 @@ class _HeroBalanceCard extends StatelessWidget {
                   ),
                   SizedBox(width: 12.w),
                   Expanded(
-                    child: LocalizedText(
+                    child: _SafeText(
                       'PARO kontrol merkezi',
                       style: theme.textTheme.titleMedium?.copyWith(
                         color: Colors.white,
@@ -235,42 +303,24 @@ class _HeroBalanceCard extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Container(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 10.w, vertical: 6.h),
-                    decoration: BoxDecoration(
-                      color: (isPositive ? AppColors.income : AppColors.expense)
-                          .withValues(alpha: 0.18),
-                      borderRadius: BorderRadius.circular(99),
-                      border: Border.all(
-                        color: Colors.white.withValues(alpha: 0.14),
+                  Flexible(
+                    child: FittedBox(
+                      fit: BoxFit.scaleDown,
+                      alignment: Alignment.centerRight,
+                      child: _Pill(
+                        icon: isPositive
+                            ? Icons.trending_up_rounded
+                            : Icons.trending_down_rounded,
+                        label: monthNet,
+                        color: isPositive ? AppColors.income : AppColors.expense,
+                        foreground: Colors.white,
                       ),
-                    ),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Icon(
-                          isPositive
-                              ? Icons.trending_up_rounded
-                              : Icons.trending_down_rounded,
-                          color: Colors.white,
-                          size: 14.r,
-                        ),
-                        SizedBox(width: 4.w),
-                        Text(
-                          monthNet,
-                          style: theme.textTheme.bodySmall?.copyWith(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w800,
-                          ),
-                        ),
-                      ],
                     ),
                   ),
                 ],
               ),
-              SizedBox(height: 24.h),
-              LocalizedText(
+              SizedBox(height: 22.h),
+              Text(
                 'Toplam bakiye',
                 style: theme.textTheme.bodyMedium?.copyWith(
                   color: Colors.white.withValues(alpha: 0.78),
@@ -278,36 +328,63 @@ class _HeroBalanceCard extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 6.h),
-              Text(
-                balance,
-                style: theme.textTheme.headlineMedium?.copyWith(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w900,
-                  fontSize: 30.sp,
-                  letterSpacing: -0.5,
+              FittedBox(
+                fit: BoxFit.scaleDown,
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  balance,
+                  maxLines: 1,
+                  style: theme.textTheme.headlineMedium?.copyWith(
+                    color: Colors.white,
+                    fontWeight: FontWeight.w900,
+                    fontSize: 30.sp,
+                    letterSpacing: -0.5,
+                  ),
                 ),
               ),
-              SizedBox(height: 22.h),
-              Row(
-                children: [
-                  Expanded(
-                    child: _HeroMiniStat(
+              SizedBox(height: 18.h),
+              LayoutBuilder(
+                builder: (context, constraints) {
+                  final narrow = constraints.maxWidth < 320;
+                  final items = [
+                    _HeroMiniStat(
                       label: 'Bu ay gelir',
                       value: income,
                       icon: Icons.arrow_downward_rounded,
                       color: AppColors.income,
                     ),
-                  ),
-                  SizedBox(width: 10.w),
-                  Expanded(
-                    child: _HeroMiniStat(
+                    _HeroMiniStat(
                       label: 'Bu ay gider',
                       value: expense,
                       icon: Icons.arrow_upward_rounded,
                       color: AppColors.expense,
                     ),
-                  ),
-                ],
+                    _HeroMiniStat(
+                      label: 'Rahatlık',
+                      value: '$comfortScore/100',
+                      icon: Icons.spa_rounded,
+                      color: AppColors.gradientStart,
+                    ),
+                  ];
+                  if (narrow) {
+                    return Column(
+                      children: [
+                        for (final item in items) ...[
+                          item,
+                          if (item != items.last) SizedBox(height: 8.h),
+                        ],
+                      ],
+                    );
+                  }
+                  return Row(
+                    children: [
+                      for (int i = 0; i < items.length; i++) ...[
+                        Expanded(child: items[i]),
+                        if (i != items.length - 1) SizedBox(width: 8.w),
+                      ],
+                    ],
+                  );
+                },
               ),
             ],
           ),
@@ -335,46 +412,105 @@ class _HeroMiniStat extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Container(
-      padding: EdgeInsets.all(12.r),
+      constraints: BoxConstraints(minHeight: 72.h),
+      padding: EdgeInsets.all(10.r),
       decoration: BoxDecoration(
         color: Colors.white.withValues(alpha: 0.11),
         borderRadius: BorderRadius.circular(18.r),
         border: Border.all(color: Colors.white.withValues(alpha: 0.08)),
       ),
-      child: Row(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Container(
-            width: 30.r,
-            height: 30.r,
-            decoration: BoxDecoration(
-              color: color.withValues(alpha: 0.20),
-              shape: BoxShape.circle,
-            ),
-            child: Icon(icon, size: 16.r, color: Colors.white),
+          Row(
+            children: [
+              Icon(icon, size: 14.r, color: color),
+              SizedBox(width: 4.w),
+              Expanded(
+                child: _SafeText(
+                  label,
+                  style: theme.textTheme.bodySmall?.copyWith(
+                    color: Colors.white.withValues(alpha: 0.72),
+                    fontSize: 10.sp,
+                  ),
+                ),
+              ),
+            ],
           ),
-          SizedBox(width: 8.w),
+          SizedBox(height: 5.h),
+          FittedBox(
+            fit: BoxFit.scaleDown,
+            alignment: Alignment.centerLeft,
+            child: Text(
+              value,
+              maxLines: 1,
+              style: theme.textTheme.bodySmall?.copyWith(
+                color: Colors.white,
+                fontWeight: FontWeight.w900,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _DailyComfortCard extends StatelessWidget {
+  const _DailyComfortCard({
+    required this.data,
+    required this.onPrimaryAction,
+  });
+
+  final ParoComfortCardData data;
+  final VoidCallback onPrimaryAction;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
+    return _SurfaceCard(
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _IconBubble(icon: data.icon, color: data.color),
+          SizedBox(width: 12.w),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                LocalizedText(
-                  label,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: theme.textTheme.bodySmall?.copyWith(
-                    color: Colors.white.withValues(alpha: 0.72),
-                  ),
-                ),
-                SizedBox(height: 2.h),
-                Text(
-                  value,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: theme.textTheme.bodySmall?.copyWith(
-                    color: Colors.white,
+                _SafeText(
+                  data.title,
+                  style: theme.textTheme.titleSmall?.copyWith(
                     fontWeight: FontWeight.w900,
                   ),
                 ),
+                SizedBox(height: 6.h),
+                _SafeText(
+                  data.message,
+                  maxLines: 3,
+                  style: theme.textTheme.bodySmall?.copyWith(
+                    color: theme.colorScheme.onSurface.withValues(alpha: 0.68),
+                    height: 1.35,
+                  ),
+                ),
+                if (data.actionLabel != null) ...[
+                  SizedBox(height: 10.h),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: TextButton.icon(
+                      onPressed: onPrimaryAction,
+                      style: TextButton.styleFrom(
+                        padding: EdgeInsets.symmetric(horizontal: 10.w),
+                        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                        minimumSize: Size(0, 34.h),
+                      ),
+                      icon: Icon(Icons.add_rounded, size: 16.r),
+                      label: _SafeText(data.actionLabel!),
+                    ),
+                  ),
+                ],
               ],
             ),
           ),
@@ -401,181 +537,167 @@ class _QuickActionsGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Row(
-          children: [
-            Expanded(
-              child: _QuickActionTile(
-                title: 'Gider',
-                icon: Icons.remove_rounded,
-                color: AppColors.expense,
-                onTap: onAddExpense,
-              ),
-            ),
-            SizedBox(width: 10.w),
-            Expanded(
-              child: _QuickActionTile(
-                title: 'Gelir',
-                icon: Icons.add_rounded,
-                color: AppColors.income,
-                onTap: onAddIncome,
-              ),
-            ),
-            SizedBox(width: 10.w),
-            Expanded(
-              child: _QuickActionTile(
-                title: 'Fiş tara',
-                icon: Icons.document_scanner_rounded,
-                color: AppColors.primary,
-                onTap: onScan,
-              ),
-            ),
-          ],
-        ),
-        SizedBox(height: 10.h),
-        Row(
-          children: [
-            Expanded(
-              child: _WideActionTile(
-                title: 'Birikim hedefleri',
-                icon: Icons.flag_rounded,
-                color: AppColors.accent,
-                onTap: onGoals,
-              ),
-            ),
-            SizedBox(width: 10.w),
-            Expanded(
-              child: _WideActionTile(
-                title: 'Abonelikler',
-                icon: Icons.repeat_rounded,
-                color: AppColors.warning,
-                onTap: onRecurring,
-              ),
-            ),
-          ],
-        ),
-      ],
+    final actions = [
+      _ActionSpec('Gider', Icons.remove_rounded, AppColors.expense, onAddExpense),
+      _ActionSpec('Gelir', Icons.add_rounded, AppColors.income, onAddIncome),
+      _ActionSpec('Fiş tara', Icons.document_scanner_rounded, AppColors.primary, onScan),
+      _ActionSpec('Hedef', Icons.flag_rounded, AppColors.accent, onGoals),
+      _ActionSpec('Abonelik', Icons.repeat_rounded, AppColors.warning, onRecurring),
+    ];
+
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final count = constraints.maxWidth < 340 ? 2 : 3;
+        return GridView.builder(
+          itemCount: actions.length,
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: count,
+            mainAxisSpacing: 10.h,
+            crossAxisSpacing: 10.w,
+            childAspectRatio: count == 2 ? 1.75 : 1.15,
+          ),
+          itemBuilder: (context, index) {
+            final action = actions[index];
+            return _QuickActionTile(spec: action);
+          },
+        );
+      },
     );
   }
 }
 
-class _QuickActionTile extends StatelessWidget {
-  const _QuickActionTile({
-    required this.title,
-    required this.icon,
-    required this.color,
-    required this.onTap,
-  });
-
+class _ActionSpec {
+  const _ActionSpec(this.title, this.icon, this.color, this.onTap);
   final String title;
   final IconData icon;
   final Color color;
   final VoidCallback onTap;
+}
+
+class _QuickActionTile extends StatelessWidget {
+  const _QuickActionTile({required this.spec});
+  final _ActionSpec spec;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    return InkWell(
-      onTap: onTap,
+    return Material(
+      color: theme.colorScheme.surface,
       borderRadius: BorderRadius.circular(20.r),
-      child: Container(
-        padding: EdgeInsets.symmetric(vertical: 14.h, horizontal: 8.w),
-        decoration: BoxDecoration(
-          color: theme.colorScheme.surface,
-          borderRadius: BorderRadius.circular(20.r),
-          border: Border.all(
-            color: theme.colorScheme.outline.withValues(alpha: 0.22),
+      child: InkWell(
+        onTap: spec.onTap,
+        borderRadius: BorderRadius.circular(20.r),
+        child: Container(
+          padding: EdgeInsets.all(10.r),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20.r),
+            border: Border.all(
+              color: theme.colorScheme.outline.withValues(alpha: 0.22),
+            ),
           ),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withValues(alpha: 0.035),
-              blurRadius: 14,
-              offset: const Offset(0, 6),
-            ),
-          ],
-        ),
-        child: Column(
-          children: [
-            Container(
-              width: 38.r,
-              height: 38.r,
-              decoration: BoxDecoration(
-                color: color.withValues(alpha: 0.13),
-                shape: BoxShape.circle,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              _IconBubble(icon: spec.icon, color: spec.color, size: 36.r),
+              SizedBox(height: 8.h),
+              _SafeText(
+                spec.title,
+                textAlign: TextAlign.center,
+                style: theme.textTheme.bodySmall?.copyWith(
+                  fontWeight: FontWeight.w800,
+                ),
               ),
-              child: Icon(icon, color: color, size: 22.r),
-            ),
-            SizedBox(height: 8.h),
-            LocalizedText(
-              title,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-              style: theme.textTheme.bodySmall?.copyWith(
-                fontWeight: FontWeight.w800,
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
   }
 }
 
-class _WideActionTile extends StatelessWidget {
-  const _WideActionTile({
-    required this.title,
-    required this.icon,
-    required this.color,
+class _OneTapAddCard extends StatelessWidget {
+  const _OneTapAddCard({
+    required this.suggestions,
+    required this.formatter,
     required this.onTap,
   });
 
-  final String title;
-  final IconData icon;
-  final Color color;
+  final List<ParoQuickAddSuggestion> suggestions;
+  final String Function(double amount) formatter;
   final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    return InkWell(
-      onTap: onTap,
-      borderRadius: BorderRadius.circular(20.r),
-      child: Container(
-        padding: EdgeInsets.all(14.r),
-        decoration: BoxDecoration(
-          color: theme.colorScheme.surface,
-          borderRadius: BorderRadius.circular(20.r),
-          border: Border.all(
-            color: theme.colorScheme.outline.withValues(alpha: 0.22),
-          ),
-        ),
-        child: Row(
-          children: [
-            Container(
-              width: 38.r,
-              height: 38.r,
-              decoration: BoxDecoration(
-                color: color.withValues(alpha: 0.13),
-                shape: BoxShape.circle,
-              ),
-              child: Icon(icon, color: color, size: 20.r),
-            ),
-            SizedBox(width: 10.w),
-            Expanded(
-              child: LocalizedText(
-                title,
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-                style: theme.textTheme.bodySmall?.copyWith(
-                  fontWeight: FontWeight.w800,
+    return _SurfaceCard(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              _IconBubble(icon: Icons.touch_app_rounded, color: AppColors.primary),
+              SizedBox(width: 10.w),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    _SafeText(
+                      'Tek dokunuşla hızlı kayıt',
+                      style: theme.textTheme.titleSmall?.copyWith(
+                        fontWeight: FontWeight.w900,
+                      ),
+                    ),
+                    SizedBox(height: 3.h),
+                    _SafeText(
+                      'Öneriyi seç, tutarı onayla, bitti.',
+                      maxLines: 2,
+                      style: theme.textTheme.bodySmall?.copyWith(
+                        color: theme.colorScheme.onSurface.withValues(alpha: 0.62),
+                      ),
+                    ),
+                  ],
                 ),
               ),
-            ),
-          ],
-        ),
+            ],
+          ),
+          SizedBox(height: 12.h),
+          Wrap(
+            spacing: 8.w,
+            runSpacing: 8.h,
+            children: suggestions.map((item) {
+              return InkWell(
+                onTap: onTap,
+                borderRadius: BorderRadius.circular(999),
+                child: Container(
+                  padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 9.h),
+                  decoration: BoxDecoration(
+                    color: item.color.withValues(alpha: 0.10),
+                    borderRadius: BorderRadius.circular(999),
+                    border: Border.all(color: item.color.withValues(alpha: 0.18)),
+                  ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(item.icon, color: item.color, size: 16.r),
+                      SizedBox(width: 6.w),
+                      Text(
+                        '${item.label} · ${formatter(item.amount)}',
+                        style: theme.textTheme.bodySmall?.copyWith(
+                          fontWeight: FontWeight.w800,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              );
+            }).toList(),
+          ),
+        ],
       ),
     );
   }
@@ -598,45 +720,26 @@ class _SmartInsightCard extends StatelessWidget {
             color: AppColors.primary,
           );
 
-    return Container(
-      padding: EdgeInsets.all(18.r),
-      decoration: BoxDecoration(
-        color: theme.colorScheme.surface,
-        borderRadius: BorderRadius.circular(24.r),
-        border: Border.all(
-          color: theme.colorScheme.outline.withValues(alpha: 0.24),
-        ),
-      ),
+    return _SurfaceCard(
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-            width: 48.r,
-            height: 48.r,
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  first.color.withValues(alpha: 0.18),
-                  AppColors.primary.withValues(alpha: 0.08),
-                ],
-              ),
-              borderRadius: BorderRadius.circular(16.r),
-            ),
-            child: Icon(first.icon, color: first.color, size: 24.r),
-          ),
-          SizedBox(width: 14.w),
+          _IconBubble(icon: first.icon, color: first.color),
+          SizedBox(width: 12.w),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                LocalizedText(
+                _SafeText(
                   first.title,
                   style: theme.textTheme.titleSmall?.copyWith(
                     fontWeight: FontWeight.w900,
                   ),
                 ),
-                SizedBox(height: 5.h),
-                LocalizedText(
+                SizedBox(height: 6.h),
+                _SafeText(
                   first.message,
+                  maxLines: 3,
                   style: theme.textTheme.bodySmall?.copyWith(
                     color: theme.colorScheme.onSurface.withValues(alpha: 0.66),
                     height: 1.35,
@@ -651,176 +754,90 @@ class _SmartInsightCard extends StatelessWidget {
   }
 }
 
-class _TrendAndPreviewRow extends StatelessWidget {
-  const _TrendAndPreviewRow({
-    required this.values,
-    required this.total,
+class _CalmSuggestionsCard extends StatelessWidget {
+  const _CalmSuggestionsCard({
+    required this.suggestions,
+    required this.onGoals,
   });
 
-  final List<double> values;
-  final String total;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Expanded(
-          child: _MiniTrendCard(values: values, total: total),
-        ),
-        SizedBox(width: 12.w),
-        Expanded(
-          child: _BudgetNudgeCard(
-            onTap: () {
-              final String path = AppPaths.getPathForTab(NavigationTab.analytics);
-              context.go(path);
-              context.read<NavigationCubit>().changeTab(NavigationTab.analytics);
-            },
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class _MiniTrendCard extends StatelessWidget {
-  const _MiniTrendCard({
-    required this.values,
-    required this.total,
-  });
-
-  final List<double> values;
-  final String total;
+  final List<ParoComfortCardData> suggestions;
+  final VoidCallback onGoals;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    return Container(
-      height: 142.h,
-      padding: EdgeInsets.all(16.r),
-      decoration: BoxDecoration(
-        color: theme.colorScheme.surface,
-        borderRadius: BorderRadius.circular(24.r),
-        border: Border.all(
-          color: theme.colorScheme.outline.withValues(alpha: 0.24),
-        ),
-      ),
+    return _SurfaceCard(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          LocalizedText(
-            '7 gün gider',
-            style: theme.textTheme.bodySmall?.copyWith(
-              color: theme.colorScheme.onSurface.withValues(alpha: 0.62),
-              fontWeight: FontWeight.w700,
-            ),
-          ),
-          SizedBox(height: 4.h),
-          Text(
-            total,
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-            style: theme.textTheme.titleMedium?.copyWith(
-              fontWeight: FontWeight.w900,
-            ),
+          Row(
+            children: [
+              _IconBubble(icon: Icons.spa_rounded, color: AppColors.accent),
+              SizedBox(width: 10.w),
+              Expanded(
+                child: _SafeText(
+                  'Rahat öneriler',
+                  style: theme.textTheme.titleSmall?.copyWith(
+                    fontWeight: FontWeight.w900,
+                  ),
+                ),
+              ),
+            ],
           ),
           SizedBox(height: 12.h),
-          Expanded(
-            child: CustomPaint(
-              painter: _MiniTrendPainter(values: values),
-              child: const SizedBox.expand(),
-            ),
-          ),
+          for (int i = 0; i < suggestions.length; i++) ...[
+            _SuggestionRow(data: suggestions[i], onTap: onGoals),
+            if (i != suggestions.length - 1) SizedBox(height: 10.h),
+          ],
         ],
       ),
     );
   }
 }
 
-class _MiniTrendPainter extends CustomPainter {
-  const _MiniTrendPainter({required this.values});
-
-  final List<double> values;
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    final maxValue = values.isEmpty ? 0 : values.reduce(math.max);
-    final safeMax = maxValue <= 0 ? 1 : maxValue;
-    final barWidth = size.width / (values.length * 1.8);
-    final gap = (size.width - barWidth * values.length) / (values.length - 1);
-    final paint = Paint()
-      ..shader = const LinearGradient(
-        colors: [AppColors.gradientStart, AppColors.gradientEnd],
-        begin: Alignment.bottomCenter,
-        end: Alignment.topCenter,
-      ).createShader(Offset.zero & size);
-
-    for (var i = 0; i < values.length; i++) {
-      final normalized = values[i] / safeMax;
-      final height = math.max(8.0, size.height * normalized);
-      final left = i * (barWidth + gap);
-      final rect = RRect.fromRectAndRadius(
-        Rect.fromLTWH(left, size.height - height, barWidth, height),
-        const Radius.circular(8),
-      );
-      canvas.drawRRect(rect, paint);
-    }
-  }
-
-  @override
-  bool shouldRepaint(covariant _MiniTrendPainter oldDelegate) =>
-      oldDelegate.values != values;
-}
-
-class _BudgetNudgeCard extends StatelessWidget {
-  const _BudgetNudgeCard({required this.onTap});
-
+class _SuggestionRow extends StatelessWidget {
+  const _SuggestionRow({required this.data, required this.onTap});
+  final ParoComfortCardData data;
   final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-
     return InkWell(
       onTap: onTap,
-      borderRadius: BorderRadius.circular(24.r),
+      borderRadius: BorderRadius.circular(16.r),
       child: Container(
-        height: 142.h,
-        padding: EdgeInsets.all(16.r),
+        padding: EdgeInsets.all(12.r),
         decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: [
-              AppColors.primary.withValues(alpha: 0.95),
-              AppColors.gradientStart.withValues(alpha: 0.82),
-            ],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-          ),
-          borderRadius: BorderRadius.circular(24.r),
+          color: data.color.withValues(alpha: 0.07),
+          borderRadius: BorderRadius.circular(16.r),
         ),
-        child: Column(
+        child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Icon(
-              Icons.insights_rounded,
-              color: Colors.white,
-              size: 28.r,
-            ),
-            const Spacer(),
-            LocalizedText(
-              'Detaylı analiz',
-              style: theme.textTheme.titleSmall?.copyWith(
-                color: Colors.white,
-                fontWeight: FontWeight.w900,
-              ),
-            ),
-            SizedBox(height: 5.h),
-            LocalizedText(
-              'Kategori kırılımını ve trendlerini gör.',
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-              style: theme.textTheme.bodySmall?.copyWith(
-                color: Colors.white.withValues(alpha: 0.84),
+            Icon(data.icon, color: data.color, size: 20.r),
+            SizedBox(width: 10.w),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  _SafeText(
+                    data.title,
+                    style: theme.textTheme.bodySmall?.copyWith(
+                      fontWeight: FontWeight.w900,
+                    ),
+                  ),
+                  SizedBox(height: 4.h),
+                  _SafeText(
+                    data.message,
+                    maxLines: 3,
+                    style: theme.textTheme.bodySmall?.copyWith(
+                      color: theme.colorScheme.onSurface.withValues(alpha: 0.64),
+                      height: 1.30,
+                    ),
+                  ),
+                ],
               ),
             ),
           ],
@@ -830,47 +847,206 @@ class _BudgetNudgeCard extends StatelessWidget {
   }
 }
 
-class _SavingsPreviewCard extends StatelessWidget {
-  const _SavingsPreviewCard({
-    required this.service,
-    required this.onTap,
+class _GentleNotificationsCard extends StatelessWidget {
+  const _GentleNotificationsCard({
+    required this.notifications,
+    required this.onSettings,
   });
+
+  final List<ParoGentleNotification> notifications;
+  final VoidCallback onSettings;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final visible = notifications.isEmpty
+        ? const [
+            ParoGentleNotification(
+              title: 'Bildirimler sakin modda',
+              message: 'PARO yalnızca faydalı ve yormayan hatırlatmalar göstermeye çalışır.',
+              icon: Icons.notifications_none_rounded,
+              priority: 0,
+            ),
+          ]
+        : notifications;
+
+    return _SurfaceCard(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              _IconBubble(icon: Icons.notifications_active_rounded, color: AppColors.primary),
+              SizedBox(width: 10.w),
+              Expanded(
+                child: _SafeText(
+                  'Kullanışlı bildirimler',
+                  style: theme.textTheme.titleSmall?.copyWith(
+                    fontWeight: FontWeight.w900,
+                  ),
+                ),
+              ),
+              TextButton(
+                onPressed: onSettings,
+                child: const _SafeText('Ayarla'),
+              ),
+            ],
+          ),
+          SizedBox(height: 10.h),
+          for (final item in visible) ...[
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Icon(item.icon, color: AppColors.primary, size: 18.r),
+                SizedBox(width: 8.w),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      _SafeText(
+                        item.title,
+                        style: theme.textTheme.bodySmall?.copyWith(
+                          fontWeight: FontWeight.w900,
+                        ),
+                      ),
+                      SizedBox(height: 3.h),
+                      _SafeText(
+                        item.message,
+                        maxLines: 2,
+                        style: theme.textTheme.bodySmall?.copyWith(
+                          color: theme.colorScheme.onSurface.withValues(alpha: 0.62),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            if (item != visible.last) SizedBox(height: 10.h),
+          ],
+        ],
+      ),
+    );
+  }
+}
+
+class _TrendAndPreviewRow extends StatelessWidget {
+  const _TrendAndPreviewRow({required this.values, required this.total});
+
+  final List<double> values;
+  final String total;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return _SurfaceCard(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              _IconBubble(icon: Icons.show_chart_rounded, color: AppColors.gradientStart),
+              SizedBox(width: 10.w),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    _SafeText(
+                      'Son 7 gün harcama ritmi',
+                      style: theme.textTheme.titleSmall?.copyWith(
+                        fontWeight: FontWeight.w900,
+                      ),
+                    ),
+                    SizedBox(height: 3.h),
+                    _SafeText(
+                      'Toplam: $total',
+                      style: theme.textTheme.bodySmall?.copyWith(
+                        color: theme.colorScheme.onSurface.withValues(alpha: 0.62),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          SizedBox(height: 16.h),
+          SizedBox(
+            height: 82.h,
+            child: CustomPaint(
+              painter: _MiniBarPainter(
+                values: values,
+                color: AppColors.primary,
+                trackColor: theme.colorScheme.outline.withValues(alpha: 0.14),
+              ),
+              child: const SizedBox.expand(),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _MiniBarPainter extends CustomPainter {
+  const _MiniBarPainter({
+    required this.values,
+    required this.color,
+    required this.trackColor,
+  });
+
+  final List<double> values;
+  final Color color;
+  final Color trackColor;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    if (values.isEmpty) return;
+    final maxValue = values.reduce(math.max).clamp(1.0, double.infinity);
+    final gap = size.width / (values.length * 2.2);
+    final barWidth = (size.width - gap * (values.length - 1)) / values.length;
+    final radius = Radius.circular(barWidth / 2);
+
+    for (int i = 0; i < values.length; i++) {
+      final left = i * (barWidth + gap);
+      final track = RRect.fromRectAndRadius(
+        Rect.fromLTWH(left, 0, barWidth, size.height),
+        radius,
+      );
+      canvas.drawRRect(track, Paint()..color = trackColor);
+      final height = (values[i] / maxValue) * size.height;
+      final bar = RRect.fromRectAndRadius(
+        Rect.fromLTWH(left, size.height - height, barWidth, height),
+        radius,
+      );
+      canvas.drawRRect(bar, Paint()..color = color.withValues(alpha: 0.82));
+    }
+  }
+
+  @override
+  bool shouldRepaint(covariant _MiniBarPainter oldDelegate) =>
+      oldDelegate.values != values || oldDelegate.color != color;
+}
+
+class _SavingsPreviewCard extends StatelessWidget {
+  const _SavingsPreviewCard({required this.service, required this.onTap});
 
   final SavingsGoalService service;
   final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
-    final currency = context.selectedCurrency;
-    final theme = Theme.of(context);
-
     return FutureBuilder(
       future: service.getGoals(),
       builder: (context, snapshot) {
         final goals = snapshot.data ?? const [];
-        final saved = goals.fold<double>(0, (sum, goal) => sum + goal.savedAmount);
-        final target =
-            goals.fold<double>(0, (sum, goal) => sum + goal.targetAmount);
-        final progress = target <= 0 ? 0.0 : (saved / target).clamp(0.0, 1.0).toDouble();
-
-        return _PreviewShell(
-          onTap: onTap,
+        final active = goals.length;
+        return _SmallPreviewCard(
+          title: 'Birikim',
+          value: active == 0 ? 'Hedef yok' : '$active hedef',
+          subtitle: active == 0 ? 'Küçük bir hedef oluştur' : 'İlerlemeni sakince takip et',
           icon: Icons.flag_rounded,
           color: AppColors.accent,
-          title: 'Hedefler',
-          value: goals.isEmpty
-              ? 'Başlat'
-              : CurrencyFormatter.format(saved, currency),
-          subtitle: goals.isEmpty
-              ? 'Birikim hedefi ekle'
-              : '%${(progress * 100).toStringAsFixed(0)} tamamlandı',
-          bottom: LinearProgressIndicator(
-            value: progress,
-            minHeight: 6.h,
-            backgroundColor: AppColors.accent.withValues(alpha: 0.12),
-            valueColor: const AlwaysStoppedAnimation<Color>(AppColors.accent),
-            borderRadius: BorderRadius.circular(99),
-          ),
+          onTap: onTap,
         );
       },
     );
@@ -891,129 +1067,194 @@ class _RecurringPreviewCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: service.monthlyEstimate(),
+      future: service.getRecurringExpenses(),
       builder: (context, snapshot) {
-        final estimate = snapshot.data ?? 0.0;
-        return _PreviewShell(
-          onTap: onTap,
+        final items = snapshot.data ?? const [];
+        final monthly = items.fold<double>(0, (sum, item) => sum + item.monthlyEstimate);
+        return _SmallPreviewCard(
+          title: 'Abonelik',
+          value: items.isEmpty ? 'Yok' : currencyFormatter(monthly),
+          subtitle: items.isEmpty ? 'Düzenli gider ekle' : 'Aylık tahmini toplam',
           icon: Icons.repeat_rounded,
           color: AppColors.warning,
-          title: 'Abonelik',
-          value: estimate <= 0 ? 'Ekle' : currencyFormatter(estimate),
-          subtitle: estimate <= 0 ? 'Tekrarlayan gider' : 'aylık tahmini',
-          bottom: Row(
-            children: [
-              Icon(Icons.schedule_rounded, size: 14.r, color: AppColors.warning),
-              SizedBox(width: 5.w),
-              Expanded(
-                child: LocalizedText(
-                  'Yaklaşan ödemeleri izle',
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: Theme.of(context)
-                            .colorScheme
-                            .onSurface
-                            .withValues(alpha: 0.58),
-                      ),
-                ),
-              ),
-            ],
-          ),
+          onTap: onTap,
         );
       },
     );
   }
 }
 
-class _PreviewShell extends StatelessWidget {
-  const _PreviewShell({
-    required this.onTap,
-    required this.icon,
-    required this.color,
+class _SmallPreviewCard extends StatelessWidget {
+  const _SmallPreviewCard({
     required this.title,
     required this.value,
     required this.subtitle,
-    required this.bottom,
+    required this.icon,
+    required this.color,
+    required this.onTap,
   });
 
-  final VoidCallback onTap;
-  final IconData icon;
-  final Color color;
   final String title;
   final String value;
   final String subtitle;
-  final Widget bottom;
+  final IconData icon;
+  final Color color;
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    return InkWell(
-      onTap: onTap,
-      borderRadius: BorderRadius.circular(24.r),
-      child: Container(
-        height: 142.h,
-        padding: EdgeInsets.all(16.r),
-        decoration: BoxDecoration(
-          color: theme.colorScheme.surface,
-          borderRadius: BorderRadius.circular(24.r),
-          border: Border.all(
-            color: theme.colorScheme.outline.withValues(alpha: 0.24),
+    return Material(
+      color: theme.colorScheme.surface,
+      borderRadius: BorderRadius.circular(22.r),
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(22.r),
+        child: Container(
+          padding: EdgeInsets.all(16.r),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(22.r),
+            border: Border.all(
+              color: theme.colorScheme.outline.withValues(alpha: 0.22),
+            ),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              _IconBubble(icon: icon, color: color),
+              SizedBox(height: 10.h),
+              _SafeText(
+                title,
+                style: theme.textTheme.bodySmall?.copyWith(
+                  color: theme.colorScheme.onSurface.withValues(alpha: 0.60),
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              SizedBox(height: 3.h),
+              FittedBox(
+                fit: BoxFit.scaleDown,
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  value,
+                  maxLines: 1,
+                  style: theme.textTheme.titleMedium?.copyWith(
+                    fontWeight: FontWeight.w900,
+                  ),
+                ),
+              ),
+              SizedBox(height: 3.h),
+              _SafeText(
+                subtitle,
+                maxLines: 2,
+                style: theme.textTheme.bodySmall?.copyWith(
+                  color: theme.colorScheme.onSurface.withValues(alpha: 0.55),
+                ),
+              ),
+            ],
           ),
         ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                Container(
-                  width: 36.r,
-                  height: 36.r,
-                  decoration: BoxDecoration(
-                    color: color.withValues(alpha: 0.13),
-                    shape: BoxShape.circle,
-                  ),
-                  child: Icon(icon, color: color, size: 20.r),
-                ),
-                const Spacer(),
-                Icon(
-                  Icons.chevron_right_rounded,
-                  color: theme.colorScheme.onSurface.withValues(alpha: 0.34),
-                ),
-              ],
-            ),
-            const Spacer(),
-            LocalizedText(
-              title,
-              style: theme.textTheme.bodySmall?.copyWith(
-                color: theme.colorScheme.onSurface.withValues(alpha: 0.62),
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-            SizedBox(height: 3.h),
-            Text(
-              value,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-              style: theme.textTheme.titleSmall?.copyWith(
-                fontWeight: FontWeight.w900,
-              ),
-            ),
-            SizedBox(height: 8.h),
-            LocalizedText(
-              subtitle,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-              style: theme.textTheme.bodySmall?.copyWith(
-                color: theme.colorScheme.onSurface.withValues(alpha: 0.58),
-              ),
-            ),
-            SizedBox(height: 8.h),
-            bottom,
-          ],
-        ),
       ),
+    );
+  }
+}
+
+class _Pill extends StatelessWidget {
+  const _Pill({
+    required this.icon,
+    required this.label,
+    required this.color,
+    this.foreground,
+  });
+
+  final IconData icon;
+  final String label;
+  final Color color;
+  final Color? foreground;
+
+  @override
+  Widget build(BuildContext context) {
+    final fg = foreground ?? color;
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 6.h),
+      decoration: BoxDecoration(
+        color: color.withValues(alpha: 0.16),
+        borderRadius: BorderRadius.circular(999),
+        border: Border.all(color: color.withValues(alpha: 0.22)),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(icon, color: fg, size: 14.r),
+          SizedBox(width: 4.w),
+          Text(
+            label,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                  color: fg,
+                  fontWeight: FontWeight.w900,
+                ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _IconBubble extends StatelessWidget {
+  const _IconBubble({
+    required this.icon,
+    required this.color,
+    this.size,
+  });
+
+  final IconData icon;
+  final Color color;
+  final double? size;
+
+  @override
+  Widget build(BuildContext context) {
+    final bubbleSize = size ?? 44.r;
+    return Container(
+      width: bubbleSize,
+      height: bubbleSize,
+      decoration: BoxDecoration(
+        color: color.withValues(alpha: 0.12),
+        borderRadius: BorderRadius.circular(14.r),
+      ),
+      child: Icon(icon, color: color, size: bubbleSize * 0.48),
+    );
+  }
+}
+
+class _SurfaceCard extends StatelessWidget {
+  const _SurfaceCard({required this.child});
+
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return Container(
+      width: double.infinity,
+      padding: EdgeInsets.all(16.r),
+      decoration: BoxDecoration(
+        color: theme.colorScheme.surface,
+        borderRadius: BorderRadius.circular(24.r),
+        border: Border.all(
+          color: theme.colorScheme.outline.withValues(alpha: 0.22),
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 0.025),
+            blurRadius: 18,
+            offset: const Offset(0, 8),
+          ),
+        ],
+      ),
+      child: child,
     );
   }
 }

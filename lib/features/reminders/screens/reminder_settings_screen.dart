@@ -126,6 +126,30 @@ class _ReminderSettingsScreenState extends State<ReminderSettingsScreen> {
                     settings.copyWith(subscriptionReminderEnabled: value),
                   ),
                 ),
+                _ReminderSwitchTile(
+                  icon: Icons.spa_rounded,
+                  title: 'Rahat ton',
+                  subtitle: 'Uyarıları yargılamayan, sakin ve destekleyici dille göster.',
+                  value: settings.calmToneEnabled,
+                  onChanged: (value) => _save(
+                    settings.copyWith(calmToneEnabled: value),
+                  ),
+                ),
+                _ReminderSwitchTile(
+                  icon: Icons.celebration_rounded,
+                  title: 'Pozitif ilerleme',
+                  subtitle: 'Daha az harcadığında veya düzenli kayıt yaptığında motive edici bildirim göster.',
+                  value: settings.positiveProgressEnabled,
+                  onChanged: (value) => _save(
+                    settings.copyWith(positiveProgressEnabled: value),
+                  ),
+                ),
+                _NotificationLimitTile(
+                  value: settings.maxDailyNotifications,
+                  onChanged: (value) => _save(
+                    settings.copyWith(maxDailyNotifications: value),
+                  ),
+                ),
                 SizedBox(height: 8.h),
                 _TimeTile(
                   hour: settings.dailyHour,
@@ -150,7 +174,7 @@ class _ReminderSettingsScreenState extends State<ReminderSettingsScreen> {
                 ),
                 SizedBox(height: 14.h),
                 Text(
-                  'Not: Bu ekran hatırlatıcı tercihlerini kaydeder. Gerçek cihaz bildirimi için native notification plugin yapılandırması ayrıca açılabilir.',
+                  'PARO bildirim mantığı: az, faydalı ve sakin. Gereksiz tekrar yok; önemli durumlar ve pozitif ilerleme öne çıkar.',
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
                         color: Theme.of(context)
                             .colorScheme
@@ -291,6 +315,86 @@ class _TimeTile extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class _NotificationLimitTile extends StatelessWidget {
+  const _NotificationLimitTile({
+    required this.value,
+    required this.onChanged,
+  });
+
+  final int value;
+  final ValueChanged<int> onChanged;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return Container(
+      margin: EdgeInsets.only(bottom: 12.h),
+      padding: EdgeInsets.all(16.r),
+      decoration: BoxDecoration(
+        color: theme.colorScheme.surface,
+        borderRadius: BorderRadius.circular(18.r),
+        border: Border.all(
+          color: theme.colorScheme.outline.withValues(alpha: 0.25),
+        ),
+      ),
+      child: Row(
+        children: [
+          Container(
+            width: 44.r,
+            height: 44.r,
+            decoration: BoxDecoration(
+              color: AppColors.warning.withValues(alpha: 0.12),
+              borderRadius: BorderRadius.circular(14.r),
+            ),
+            child: const Icon(
+              Icons.tune_rounded,
+              color: AppColors.warning,
+            ),
+          ),
+          SizedBox(width: 14.w),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                LocalizedText(
+                  'Günlük bildirim sınırı',
+                  style: theme.textTheme.titleSmall?.copyWith(
+                    fontWeight: FontWeight.w800,
+                  ),
+                ),
+                SizedBox(height: 4.h),
+                Text(
+                  'Günde en fazla $value nazik hatırlatma',
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: theme.textTheme.bodySmall?.copyWith(
+                    color: theme.colorScheme.onSurface.withValues(alpha: 0.62),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          SizedBox(width: 10.w),
+          DropdownButton<int>(
+            value: value,
+            underline: const SizedBox.shrink(),
+            borderRadius: BorderRadius.circular(14.r),
+            items: const [1, 2, 3]
+                .map((item) => DropdownMenuItem<int>(
+                      value: item,
+                      child: Text('$item'),
+                    ))
+                .toList(),
+            onChanged: (next) {
+              if (next != null) onChanged(next);
+            },
+          ),
+        ],
       ),
     );
   }
